@@ -1,10 +1,4 @@
 <?php
-
-/**
- * change the values of each variable
- * then rename the file name to config.php
- *  instead of config.sample.php
- */
   // DB Params
   define('DB_HOST', 'localhost');
   define('DB_USER', 'root');
@@ -15,7 +9,7 @@
   // App Root
   define('APPROOT', dirname(dirname(__FILE__)));
   // URL Root
-  define('URLROOT', 'http://'.$_SERVER['HTTP_HOST'].'/test');
+  define('URLROOT', 'http://'.$_SERVER['HTTP_HOST'].'/chuyconsultation');
   // Site Name
   define('SITENAME', 'CHUY Consultation');
   //Patient portal name
