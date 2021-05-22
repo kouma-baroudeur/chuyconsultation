@@ -1,0 +1,279 @@
+@charset "utf-8";
+
+@import url("fontawesome-free/css/fontawesome-all.min.css");
+@import url("framework.css");
+
+
+
+/* Back to Top */
+#backtotop{z-index:999; display:inline-block; position:fixed; visibility:hidden; bottom:20px; right:20px; width:36px; height:36px; line-height:36px; font-size:16px; text-align:center; opacity:.2;}
+#backtotop i{display:block; width:100%; height:100%; line-height:inherit;}
+#backtotop.visible{visibility:visible; opacity:1;}
+#backtotop:hover{opacity:1;}
+
+
+/* Tables
+--------------------------------------------------------------------------------------------------------------- */
+table, th, td{border:1px solid; border-collapse:collapse; vertical-align:top;}
+table, th{table-layout:auto;}
+table{width:100%; margin-bottom:15px;}
+th, td{padding:5px 8px;}
+td{border-width:0 1px;}
+
+
+/* Gallery
+--------------------------------------------------------------------------------------------------------------- */
+#gallery{display:block; width:100%; margin-bottom:50px;}
+#gallery figure figcaption{display:block; width:100%; clear:both;}
+#gallery li{margin-bottom:30px;}
+
+
+/* Font Awesome Social Icons
+--------------------------------------------------------------------------------------------------------------- */
+.faico{margin:0; padding:0; list-style:none;}
+.faico li{display:inline-block; margin:8px 5px 0 0; padding:0; line-height:normal;}
+.faico li:last-child{margin-right:0;}
+.faico a{display:inline-block; width:36px; height:36px; line-height:36px; font-size:18px; text-align:center;}
+
+.faico a{color:inherit; background-color:rgba(255,255,255,.2);}
+.faico a:hover{color:#FFFFFF;}
+
+.faicon-dribble:hover{background-color:#EA4C89;}
+.faicon-facebook:hover{background-color:#3B5998;}
+.faicon-google-plus:hover{background-color:#DB4A39;}
+.faicon-linkedin:hover{background-color:#0E76A8;}
+.faicon-twitter:hover{background-color:#00ACEE;}
+.faicon-vk:hover{background-color:#4E658E;}
+
+
+/* ------------------------------------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------------------------------------ */
+
+
+/* Colours
+--------------------------------------------------------------------------------------------------------------- */
+body{color:#A5A6AA; background-color:#000000;}
+a{color:#90cdf4;}
+a:active, a:focus{background:transparent !important;}/* IE10 + 11 Bugfix - prevents grey background */
+hr, .borderedbox{border-color:#D7D7D7;}
+label span{color:#FF0000; background-color:inherit;}
+input:focus, textarea:focus, *:required:focus{border-color:#90cdf4 !important;}
+
+.overlay{color:#FFFFFF; background-color:inherit;}
+.overlay::after{color:inherit; background-color:rgba(0,0,0,.55);}
+.overlay.light{color:#474747;}
+.overlay.light::after{background-color:rgba(255,255,255,.7);}
+
+.btn, .btn.inverse:hover{color:#FFFFFF; background-color:#90cdf4; border-color:#90cdf4;}
+.btn:hover, .btn.inverse{color:inherit; background-color:transparent; border-color:inherit;}
+
+.coloured{color:#FFFFFF; background-color:#90cdf4;}
+.coloured .btn{color:#90cdf4; background-color:#FFFFFF;}
+.coloured .btn:hover{color:inherit; background-color:transparent; border-color:inherit;}
+
+.imgover:hover::before{background-color:#42aaeb;/* #B0CA35 */}
+.imgover, .imgover:hover::after{color:#FFFFFF;}
+
+
+/* Rows */
+.row0, .row0 a{}
+.row1{color:#FFFFFF; background-color:rgba(255,255,255,.4);}
+.row1:hover{color:#474747; background-color:#FFFFFF;}
+.row2{color:#474747; background-color:#F4F4F4;}
+.row3{color:#474747; background-color:#FFFFFF;}
+.row4{color:#A5A6AA; background-color:#000000;}
+.row5, .row5 a{color:#A5A6AA; background-color:#000000;}
+
+
+/* Top Bar */
+#topbar #searchform{color:#90cdf4;}
+#topbar #searchform input{color:#FFFFFF; background:#90cdf4;}
+#topbar #searchform button{color:#FFFFFF; background:transparent;}
+
+
+/* Header */
+#header #logo a{color:inherit;}
+
+
+/* Page Intro */
+#pageintro{color:#FFFFFF;}
+
+
+/* Content Area */
+.elements article, #services .elements article:hover{color:#474747; background-color:#FFFFFF; border-color:#D7D7D7;}
+.elements article:hover, #services .elements article:hover{border-color:#90cdf4;}
+.elements article a i{color:#90cdf4; background-color:#F4F4F4;}
+.elements article:hover a i, #introblocks .elements li:nth-child(even) article:hover a i{color:#FFFFFF; background-color:#90cdf4;}
+#introblocks .elements article:hover{box-shadow:0px 0px 15px rgba(0,0,0,.1);}
+#introblocks .elements li:nth-child(even) article{background-color:#F4F4F4;}
+#introblocks .elements li:nth-child(even) article a i{background-color:#FFFFFF;}
+#services .elements article{color:#FFFFFF; background-color:rgba(255,255,255,.2); border-color:#000000;}
+#services .elements article > p:last-of-type{border-color:#D7D7D7;}
+
+.shout figure figcaption a{color:inherit; background-color:inherit; border-color:#D7D7D7;}
+.shout figure:hover figcaption a, .shout figure figcaption a::after{color:#FFFFFF; background-color:#90cdf4; border-color:#90cdf4;}
+.shout figure:hover figcaption a::after{color:#90cdf4; background-color:#FFFFFF;}
+
+
+/* Footer */
+#footer .heading{color:#FFFFFF;}
+#footer hr, #footer .borderedbox, #footer .linklist li{border-color:rgba(255,255,255,.1);}
+
+#footer input, #footer button{border-color:transparent;}
+#footer input{color:#FFFFFF; background-color:rgba(255,255,255,.2);}
+#footer input:focus{background-color:#90cdf4;}
+#footer button{color:#FFFFFF; background-color:#90cdf4;}
+#footer button:hover{color:inherit; background-color:transparent; border-color:inherit;}
+
+#ctdetails{border-color:#90cdf4;}
+#ctdetails::before, #ctdetails::after{background:#90cdf4;}
+#ctdetails > ul li{color:inherit; background-color:#90cdf4;}
+#ctdetails > ul li i, #ctdetails > ul li strong{color:#FFFFFF;}
+#ctdetails > ul li a i{background-color:#90cdf4;}
+#ctdetails > ul li:nth-child(even), #ctdetails > ul li:hover{color:#FFFFFF; background-color:#90cdf4;}
+
+
+/* Navigation */
+#mainav li a{color:inherit;}
+#mainav .active a, #mainav a:hover, #mainav li:hover > a{color:#90cdf4; background-color:inherit;}
+#mainav li li a, #mainav .active li a{color:#FFFFFF; background-color:#90cdf4; border-color:#90cdf4;/* #B0CA35 */}
+#mainav li li:hover > a, #mainav .active .active > a{color:#FFFFFF; background-color:#90cdf4;}
+#mainav form select{color:#474747; background-color:#FFFFFF; border-color:#D7D7D7;}
+
+#breadcrumb a{color:inherit; background-color:inherit;}
+#breadcrumb li:last-child a{color:#90cdf4;}
+
+.container .sidebar nav a{color:inherit; border-color:#D7D7D7;}
+.container .sidebar nav a:hover{color:#90cdf4;}
+
+.pagination a, .pagination strong{border-color:#D7D7D7;}
+.pagination .current *{color:#FFFFFF; background-color:#90cdf4;}
+
+#backtotop{color:#0a0a0a; background-color:#667eea;}
+
+
+/* Tables + Comments */
+table, th, td, #comments .avatar, #comments input, #comments textarea{border-color:#D7D7D7;}
+th{color:#FFFFFF; background-color:#373737;}
+tr, #comments li, #comments input[type="submit"], #comments input[type="reset"]{color:inherit; background-color:#FBFBFB;}
+tr:nth-child(even), #comments li:nth-child(even){color:inherit; background-color:#F7F7F7;}
+table a, #comments a{background-color:inherit;}
+
+
+/* ------------------------------------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------------------------------------ */
+
+
+/* Media Queries
+--------------------------------------------------------------------------------------------------------------- */
+@-ms-viewport{width:device-width;}
+
+
+/* Max Wrapper Width - Laptop, Desktop etc.
+--------------------------------------------------------------------------------------------------------------- */
+@media screen and (min-width:1140px){
+	.hoc{max-width:1140px;}
+}
+
+@media screen and (min-width:978px) and (max-width:1140px){
+	.hoc{max-width:95%;}
+}
+
+
+/* Mobile Devices
+--------------------------------------------------------------------------------------------------------------- */
+@media screen and (max-width:978px){
+	.hoc{max-width:90%;}
+
+	#topbar{}
+
+	#header{padding:30px 0;}
+	#header #logo{margin-top:0;}
+
+	#mainav{}
+	#mainav ul{display:none;}
+	#mainav form{display:block; margin-top:2px;}
+
+	#breadcrumb{}
+
+	.container{}
+	#comments input[type="reset"]{margin-top:10px;}
+	.pagination li{display:inline-block; margin:0 5px 5px 0;}
+
+	#footer{}
+
+	#copyright{}
+	#copyright p:first-of-type{margin-bottom:10px;}
+}
+
+@media screen and (min-width:750px) and (max-width:900px){
+	#introblocks .elements article{padding-left:15px;}
+	#services .elements article{padding:20px;}
+	#services .elements article > div{padding:0;}
+	#introblocks .elements article footer, #services .elements article > div footer{position:inherit; top:auto; left:auto; margin-bottom:20px;}
+}
+
+@media screen and (max-width:750px){
+	.imgl, .imgr{display:inline-block; float:none; margin:0 0 10px 0;}
+	.fl_left, .fl_right{display:block; float:none;}
+	.group .group > *:last-child, .clear .clear > *:last-child, .clear .group > *:last-child, .group .clear > *:last-child{margin-bottom:0;}/* Experimental - Needs more testing in different situations, stops double margin when stacking */
+	.one_half, .one_third, .two_third, .one_quarter, .two_quarter, .three_quarter{display:block; float:none; width:auto; margin:0 0 30px 0;}
+
+	#topbar{text-align:center;}
+	#topbar > div:first-of-type ul{margin:0 0 10px 0;}
+	#topbar #searchform{display:none;}/* This is personal preference - remove if not required */
+
+	#header{text-align:center;}
+	#header #logo{margin:0 0 15px 0;}
+
+	#pageintro article{max-width:none;}
+	#pageintro .heading{margin-bottom:20px; font-size:2.5rem;}
+	#pageintro article p:last-of-type{line-height:1.4; font-size:1.2rem;}
+
+	.sectiontitle{max-width:none;}
+	.shout figure{margin:0 auto 30px;}
+	.elements-three li:nth-last-child(-n+3){margin-bottom:30px;}
+	.elements-three li:last-child, .shout figure:last-child{margin-bottom:0;}
+
+	#ctdetails{margin-bottom:80px;}/* Gives good separation between the two elements */
+
+	#footer{padding-bottom:50px;}/* Not needed - just looks better */
+	#footer .latestimg > li, #footer .latestimg > li:nth-last-child(-n+3){display:inline-block; float:none; width:auto; margin:0 5% 5% 0;}
+	#footer .latestimg > li:last-child{margin-bottom:0;}
+	#footer .latestimg > li img{width:auto;}
+}
+
+@media screen and (min-width:451px) and (max-width:900px){
+	.pr-charts .pr-chart-ctrl{width:50%; margin-bottom:50px;}
+	.pr-charts .pr-chart-ctrl:nth-child(n+3){margin-bottom:0;}
+}
+
+@media screen and (max-width:450px){
+	#topbar > div:first-of-type ul li{display:block; margin:0;}
+
+	#services .elements article > div{padding:0;}
+	#services .elements article > div footer{position:inherit; top:auto; left:auto; margin-bottom:20px;}
+
+	.pr-charts .pr-chart-ctrl{width:100%; margin-bottom:50px;}
+	.pr-charts .pr-chart-ctrl:last-child{margin-bottom:0;}
+}
+
+
+/* Other
+--------------------------------------------------------------------------------------------------------------- */
+@media screen and (max-width:650px){
+	.scrollable{display:block; width:100%; margin:0 0 30px 0; padding:0 0 15px 0; overflow:auto; overflow-x:scroll;}
+	.scrollable table{margin:0; padding:0; white-space:nowrap;}
+
+	.inline li{display:block; margin-bottom:10px;}
+	.pushright li{margin-right:0;}
+
+	.font-x2{font-size:1.6rem;}
+	.font-x3{font-size:1.8rem;}
+}
