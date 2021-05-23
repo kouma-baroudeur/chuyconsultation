@@ -188,7 +188,7 @@
         >
           <img
             class="object-cover w-12 h-12 rounded-full"
-            src="<?=URLROOT?>/assets/images/Defaultpic.jpg"
+            src="<?=PAT?>"
             alt="pp"
             aria-hidden="true"
           />

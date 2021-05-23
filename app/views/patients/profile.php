@@ -17,7 +17,7 @@
                 <div class="p-4 flex flex-row items-center justify-between">
                     <a href="patient"
                         class="text-lg font-semibold tracking-widest rounded-lg focus:outline-none focus:shadow-outline">
-                        &#x1F8A8; Back home
+                        &#x1F8A8; Retour
                     </a>
                     <button class="md:hidden rounded-lg focus:outline-none focus:shadow-outline" @click="open = !open">
                         <svg fill="currentColor" viewBox="0 0 20 20" class="w-6 h-6">
@@ -35,7 +35,7 @@
                     <div @click.away="open = false" class="relative" x-data="{ open: false }">
                         <button
                             class="flex flex-row items-center space-x-2 w-full px-4 py-2 mt-2 text-sm font-semibold text-left bg-transparent hover:bg-blue-600 md:w-auto md:inline md:mt-0 md:ml-4 hover:bg-blue-600 focus:bg-blue-600 focus:outline-none focus:shadow-outline">
-                            <span><h1>Welcome &nbsp; <?=$data->nomPatient?> <?=$data->prenomPatient?></h1></span>
+                            <span><h1>Bienvenue &nbsp; <?=$data->nomPatient?> <?=$data->prenomPatient?></h1></span>
                         </button>
                     </div>
                 </nav>
@@ -50,6 +50,7 @@
                     <!-- Profile Card -->
                     <div class="bg-white p-3 border-t-4 border-blue-600">
                         <div class="image overflow-hidden">
+                        <?=strtoupper($_SESSION['userType'])?>
                         <?php echo'
                             <img
                                 class="h-auto w-full mx-auto"
@@ -60,7 +61,7 @@
                         ?>
                         </div>
                         
-                        <h1 class="text-black font-bold lg:text-sm md:text-xl leading-8 my-10"><?=$data->nomPatient?> <?=$data->prenomPatient?></h1>
+                        <h1 class="text-black font-bold lg:text-sm md:text-xl leading-8 my-10"><?=$data->nomPatient?> &nbsp; <?=$data->prenomPatient?></h1>
                     </div>
                     <!-- End of profile card -->
                     <div class="my-4"></div>
@@ -78,20 +79,20 @@
                                         d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                                 </svg>
                             </span>
-                            <span class="tracking-wide">About</span>
+                            <span class="tracking-wide">A propos</span>
                         </div>
                         <div class="text-black">
                             <div class="grid md:grid-cols-2 text-sm">
                                 <div class="grid grid-cols-2">
-                                    <div class="px-4 py-2 font-semibold">First Name</div>
+                                    <div class="px-4 py-2 font-semibold">Nom</div>
                                     <div class="px-4 py-2"><?=$data->nomPatient?></div>
                                 </div>
                                 <div class="grid grid-cols-2">
-                                    <div class="px-4 py-2 font-semibold">Last Name</div>
+                                    <div class="px-4 py-2 font-semibold">Prénom</div>
                                     <div class="px-4 py-2"><?=$data->prenomPatient?></div>
                                 </div>
                                 <div class="grid grid-cols-2">
-                                    <div class="px-4 py-2 font-semibold">Gender</div>
+                                    <div class="px-4 py-2 font-semibold">Genre</div>
                                     <div class="px-4 py-2"><?=$data->sexePatient?></div>
                                 </div>
                                 
@@ -100,9 +101,9 @@
                                     <div class="px-4 py-2"><?=$data->adressePatient?></div>
                                 </div>
                                 <div class="grid grid-cols-2">
-                                    <div class="px-4 py-2 font-semibold">Email.</div>
+                                    <div class="px-4 py-2 font-semibold">Email</div>
                                     <div class="px-4 py-2">
-                                        <a class="text-blue-800" href="#"><?=$data->email?></a>
+                                        <a class="text-blue-800" href="#"><?=$_SESSION['userMail']?></a>
                                     </div>
                                 </div>
                                 <div class="grid grid-cols-2">
@@ -126,29 +127,29 @@
                                     <path id="Line_209" d="M0,.458H7.3" transform="translate(4.87 6.865)" fill="none" stroke="#200e32" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5"/>
                                 </svg>
                             </span>
-                            <span class="tracking-wide">Emergency contacts</span>
+                            <span class="tracking-wide">Contact en cas d'urgence</span>
                         </div>
                         <div class="text-black">
                             <div class="grid md:grid-cols-2 text-sm">
                                 <div class="grid grid-cols-2">
-                                    <div class="px-4 py-2 font-semibold">First Name</div>
-                                    <div class="px-4 py-2"><?php  echo ucfirst($_SESSION['emergencyfname'])?></div>
+                                    <div class="px-4 py-2 font-semibold">Nom</div>
+                                    <div class="px-4 py-2"></div>
                                 </div>
                                 <div class="grid grid-cols-2">
-                                    <div class="px-4 py-2 font-semibold">Last Name</div>
-                                    <div class="px-4 py-2"><?php  echo ($_SESSION['emergencylname'])?></div>
+                                    <div class="px-4 py-2 font-semibold">Prénom</div>
+                                    <div class="px-4 py-2"></div>
                                 </div>
                                 <div class="grid grid-cols-2">
-                                    <div class="px-4 py-2 font-semibold">Gender</div>
-                                    <div class="px-4 py-2"><?php  echo ($_SESSION['emergencygender'])?></div>
+                                    <div class="px-4 py-2 font-semibold">Genre</div>
+                                    <div class="px-4 py-2"></div>
                                 </div>
                                 <div class="grid grid-cols-2">
-                                    <div class="px-4 py-2 font-semibold">Contact No.</div>
-                                    <div class="px-4 py-2"><?php  echo ($_SESSION['emergencyphone'])?></div>
+                                    <div class="px-4 py-2 font-semibold">Téléphone</div>
+                                    <div class="px-4 py-2"></div>
                                 </div>
                                 <div class="grid grid-cols-2">
-                                    <div class="px-4 py-2 font-semibold">Relationship</div>
-                                    <div class="px-4 py-2"><?php  echo ($_SESSION['relationship'])?></div>
+                                    <div class="px-4 py-2 font-semibold">Lien</div>
+                                    <div class="px-4 py-2"></div>
                                 </div>
                             </div>
                         </div>

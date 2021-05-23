@@ -19,6 +19,7 @@
 
         public function index()
         {  
+          /* this->patient("patient"); */
         }
         public function patient($page="home")
         { 

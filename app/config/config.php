@@ -23,7 +23,10 @@
   define('SITELOGO',URLROOT.'/assets/images/logo.jpg');
   //icon for our site
   define('SITEICON', URLROOT.'/assets/icons/logo.ico');
-  
+  //doctor image
+  define('DOC',URLROOT.'/assets/images/doctor-icon.png');
+  //patient image
+  define('PAT',URLROOT.'/assets/images/patient.png');
 
   //some repetitive names
   define('DASHBOARD', 'Tableau de bord');
