@@ -5,7 +5,7 @@
   <!-- CTA -->
   <a
     class="flex items-center justify-between p-4 mb-8 text-meduim font-semibold text-white bg-blue-600 rounded-lg shadow-md focus:outline-none focus:shadow-outline-blue"
-    href="askRdv"
+    href="askRdv" 
   >
     <div class="flex items-center">
       <svg
@@ -24,7 +24,7 @@
   <!-- medicaldoc -->
   <div class="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-3">
     <!-- Card -->
-    <a href="profile">
+    <a href="profile" >
       <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800"  >
         <div   class="p-3 mr-4 text-orange-500 bg-orange-100 rounded-full dark:text-orange-100 dark:bg-orange-500"  >
           <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
@@ -41,7 +41,7 @@
       </div>
     </a>
     <!-- Card -->
-    <a href="layouts/messages">
+    <a href="planning">
       <div  class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800" >
         <div class="p-3 mr-4 text-teal-500 bg-teal-100 rounded-full dark:text-teal-100 dark:bg-teal-500" >
         <svg

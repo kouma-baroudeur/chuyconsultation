@@ -88,6 +88,26 @@
             $answer = $this->db->resultSet();
             return $answer;
         }
+
+        public function planning($etat){
+            $user=[
+                'id'    =>  $_SESSION['userId'],
+                'type'  =>  $_SESSION['userType'],
+                'email' => $_SESSION['userMail'],
+                'state' => $_SESSION['userState']
+                 ];
+            $codePatient=$this->getPatientById($user)->IP;
+            $sql = "SELECT * ";
+            $sql .="FROM medecin,plannings,service ";
+            $sql .="WHERE medecin.codeService = service.codeService ";
+            $sql .="AND plannings.codeMedecin = medecin.CodeMedecin ";
+            
+            $sql .="ORDER BY plannings.id DESC  ";
+            $this->db->query($sql);
+            $this->db->bind(':IP',$codePatient);
+            $rows= $this->db->resultSet();
+            return $rows;
+        }
     
     }
     

@@ -121,6 +121,19 @@
             }
             redirect('patients/patient');
           }
+
+          public function planning($etat=''){
+            if ($_SESSION['userType'] != 'patient') {
+              notAuthorized();
+            } else {
+              $data = [
+                'planning' => $this->patientModel->planning($etat),
+                'patient' => $this->activeUser
+              ];
+              $this->view('patients/planning', $data);
+            }
+        
+          }
     }
     
 ?>

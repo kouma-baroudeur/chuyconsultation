@@ -32,57 +32,43 @@
                         'email' => trim($_POST['email']),
                         'password' => trim($_POST['password']),
                         'confirm_pass' => trim($_POST['confirm_pass']),
-                        'type' => trim($_POST['type']),
+                        'type' => "patient",
                         'email_err' => '',
                         'password_err' => '',
                         'confirm_pass_err' => '',
                         'type_err' => ''
                     ];
-                    if(empty($data['email']))
-                    { // checking email in server side
+                    if(empty($data['email'])){ // checking email in server side
                         $data['email_err'] = 'Veuillez entrer votre adresse e-mail.';
                     }else
                     {
-                        if($this->userModel->findUserByEmail($data['email']))
-                        {
+                        if($this->userModel->findUserByEmail($data['email'])){
                             $data['email_err'] = 'Email déja enregistré, veuillez vous connecter';
                         }
                     }
-                    if(!($data['type']=='medecin' || $data['type']=='patient'))
-                    {
-                        $data['type_err'] = 'Veuiller confirmer si vous êtes patient ou médecin.';
-                    }
-                    if(empty($data['password']))
-                    {
+                    if(empty($data['password'])){
                         $data['password_err'] = 'Veuillez entrer votre mot de passe.';
-                    }elseif(strlen($data['password'])<6)
-                    {
+                    }elseif(strlen($data['password'])<6){
                         $data['password_err'] .= 'Votre mot de passe doit être au moins 6 caracteres';
                     }
-                    if(empty($data['confirm_pass']))
-                    {
+                    if(empty($data['confirm_pass'])){
                         $data['confirm_pass_err'] = 'Veuillez confirmer votre mot de passe.';
-                    }else
-                    {
+                    }else{
                         if($data['password']!=$data['confirm_pass'])
-                        $data['confirm_pass_err'] = 'La confirmation ne correspond pas au mot de passe';
+                            $data['confirm_pass_err'] = 'La confirmation ne correspond pas au mot de passe';
                     }
-        
-                    if(empty($data['email_err']) && empty($data['password_err']) && empty($data['confirm_pass_err']) && empty($data['type_err']))
-                    {
+
+                    if(empty($data['email_err']) && empty($data['password_err']) && empty($data['confirm_pass_err']) && empty($data['type_err'])){
                         // hashing the password for security
                         $data['password']=password_hash($data['password'],PASSWORD_DEFAULT);
                         // register user
-                        if($this->userModel->register($data))
-                        {
+                        if($this->userModel->register($data)){
                             flash('register_success','Vous êtes bien inscrit, Veuillez vous s\'authentifier');
                             redirect('users/login');
-                        }else
-                        {
+                        }else{
                             die('Quelque chose qui ne va pas bien!');
                         }           
-                    }else
-                    {
+                    }else{
                     
                         $this->view('users/register',$data);
                     }

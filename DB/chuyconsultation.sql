@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le :  Dim 23 mai 2021 à 07:49
+-- Généré le :  Dim 23 mai 2021 à 19:15
 -- Version du serveur :  10.4.6-MariaDB
 -- Version de PHP :  7.3.9
 
@@ -34,8 +34,33 @@ CREATE TABLE `contacturgence` (
   `prenomContact` varchar(32) NOT NULL,
   `sexeContact` varchar(32) NOT NULL,
   `adresseContact` varchar(255) NOT NULL,
+  `telurgence` int(11) NOT NULL,
   `lienPatientContact` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `jours`
+--
+
+CREATE TABLE `jours` (
+  `codeJour` char(3) NOT NULL,
+  `valeur` varchar(15) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `jours`
+--
+
+INSERT INTO `jours` (`codeJour`, `valeur`) VALUES
+('DIM', 'DIMANCHE'),
+('JEU', 'JEUDI'),
+('LUN', 'LUNDI'),
+('MAR', 'MARDI'),
+('MER', 'MERCREDI'),
+('SAM', 'SAMEDI'),
+('VEN', 'VENDREDI');
 
 -- --------------------------------------------------------
 
@@ -61,8 +86,9 @@ CREATE TABLE `medecin` (
 --
 
 INSERT INTO `medecin` (`codeMedecin`, `nomMedecin`, `prenomMedecin`, `codeService`, `userId`, `sexeMedecin`, `adresseMedecin`, `dateNaissanceMedecin`, `lieuNaissanceMedecin`, `telMedecin`) VALUES
-(0, 'KOUMADOUL', 'Baroud', 'CARDIO', 2, 'M', 'Ngoa-Ekellé, Yaoundé-Cameroun', '1997-10-04', 'N\'Djamena', 693553454),
-(1, 'KOUMADOUL', 'Baroud', 'DERMATO', 2, 'M', 'Ngoa-Ekellé, Yaoundé-Cameroun', '1997-10-04', 'N\'Djamena', 693553454);
+(1, 'KOUMADOUL', 'Baroud', 'CARDIO', 2, 'M', 'Ngoa-Ekellé, Yaoundé-Cameroun', '1997-10-04', 'N\'Djamena', 693553454),
+(2, 'KOUMADOUL', 'Baroud', 'DERMATO', 3, 'M', 'Ngoa-Ekellé, Yaoundé-Cameroun', '1997-10-04', 'N\'Djamena', 693553454),
+(3, 'LEKEBAYE BAIPOU', 'Francis', 'KINESI', 4, 'M', 'Yaoundé Bastos', '1996-10-05', 'Yaoundé', 691836203);
 
 -- --------------------------------------------------------
 
@@ -88,7 +114,30 @@ CREATE TABLE `patient` (
 --
 
 INSERT INTO `patient` (`IP`, `nomPatient`, `prenomPatient`, `sexePatient`, `adressePatient`, `dateNaissancePatient`, `lieuNaissancePatient`, `emergencyContact`, `premiereObservation`, `userId`) VALUES
-(0, 'Michelle', 'MOYOPO', 'F', 'Yaoundé,mimboman', '2000-10-26', 'Kossamba', NULL, NULL, 0);
+(1, 'Michelle', 'MOYOPO', 'F', 'Yaoundé,mimboman', '2000-10-26', 'Kossamba', NULL, NULL, 1),
+(2, 'GAETAN', 'TEUMMAH', 'M', 'Soa-Nkolfoulou', '1999-01-04', 'Yaoundé', NULL, NULL, 5),
+(3, 'NDJUKOM MBOBDA', 'Alexie', 'F', 'Yaoundé Mimboman', '1998-04-15', 'Douala', NULL, NULL, 6);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `plannings`
+--
+
+CREATE TABLE `plannings` (
+  `id` int(11) NOT NULL,
+  `jours` char(3) NOT NULL,
+  `disponibilites` varchar(255) NOT NULL COMMENT 'ici le medecins emargera ses heures disponibles, nous avons laisser en VARCHAR pour cela',
+  `codeMedecin` int(16) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `plannings`
+--
+
+INSERT INTO `plannings` (`id`, `jours`, `disponibilites`, `codeMedecin`) VALUES
+(1, 'LUN', '07h - 12h', 2),
+(2, 'MER', '14h30 - 22h', 3);
 
 -- --------------------------------------------------------
 
@@ -130,7 +179,9 @@ CREATE TABLE `rendezvous` (
 --
 
 INSERT INTO `rendezvous` (`numeroRdv`, `dateRdv`, `heureRdv`, `IP`, `codeMedecin`, `etatRdv`) VALUES
-(0, '2021-05-27', '12:50:00', 0, 1, 'Attente');
+(1, '2021-05-27', '12:50:00', 1, 1, 'Attente'),
+(2, '2021-05-30', '07:50:00', 1, 3, 'Attente'),
+(3, '2021-06-03', '10:00:00', 2, 3, 'Attente');
 
 -- --------------------------------------------------------
 
@@ -203,9 +254,12 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `email`, `password`, `type`, `state`) VALUES
-(0, 'michellefotso2@gmail.com', '$2y$10$uquVd1sfpBpKmRiKt/5xfuGBehqTPhLq5nqkRSyKqlnlGGkq3eTWa', 'patient', 'complet'),
-(1, 'koumadoulbaroud@gmail.com', '$2y$10$OVhc1WGnEFDvOql3Z6R8iOHUo6eoAQ0szrQ7lA8lhD4I1S8JC373.', 'admin', 'complet'),
-(2, 'koumadoul.baroud@facsciences-uy1.cm', '$2y$10$oZEqqlRqI7XZAqwq78Vojegi3.MC1dFLHZiVx8AXMAIFHPFOkOGL.', 'medecin', 'incomplet');
+(1, 'michellefotso2@gmail.com', '$2y$10$uquVd1sfpBpKmRiKt/5xfuGBehqTPhLq5nqkRSyKqlnlGGkq3eTWa', 'patient', 'complet'),
+(2, 'koumadoulbaroud@gmail.com', '$2y$10$OVhc1WGnEFDvOql3Z6R8iOHUo6eoAQ0szrQ7lA8lhD4I1S8JC373.', 'admin', 'complet'),
+(3, 'koumadoul.baroud@facsciences-uy1.cm', '$2y$10$oZEqqlRqI7XZAqwq78Vojegi3.MC1dFLHZiVx8AXMAIFHPFOkOGL.', 'medecin', 'incomplet'),
+(4, 'fbaipou@gmail.com', '$2y$10$xPFERi//uTp68OLJJiU1XOhGczN4B2fnBWptju8jwtSNT7AD.HvzW', 'medecin', 'complet'),
+(5, 'gaetanteummah@gmail.com', '$2y$10$KBDkLkV9oNJTJyT2dNF9Seyr4H9kiQuum7CblezF3kK9E3pQh1Fh.', 'patient', 'complet'),
+(6, 'alexiakending1@gmail.com', '$2y$10$w6Nnb1iFpH9ziQO2jJhncO7baXSjOjuh2/1ikTUxLQuSXkEkrWmAe', 'patient', 'complet');
 
 --
 -- Index pour les tables déchargées
@@ -219,12 +273,19 @@ ALTER TABLE `contacturgence`
   ADD KEY `lienPatientContact` (`lienPatientContact`);
 
 --
+-- Index pour la table `jours`
+--
+ALTER TABLE `jours`
+  ADD PRIMARY KEY (`codeJour`);
+
+--
 -- Index pour la table `medecin`
 --
 ALTER TABLE `medecin`
   ADD PRIMARY KEY (`codeMedecin`),
   ADD KEY `Code_Service` (`codeService`),
-  ADD KEY `FK_medecin_users` (`userId`);
+  ADD KEY `FK_medecin_users` (`userId`),
+  ADD KEY `nomMedecin` (`nomMedecin`);
 
 --
 -- Index pour la table `patient`
@@ -234,6 +295,14 @@ ALTER TABLE `patient`
   ADD KEY `userId` (`userId`),
   ADD KEY `premiereObservation` (`premiereObservation`),
   ADD KEY `emergencyContact` (`emergencyContact`);
+
+--
+-- Index pour la table `plannings`
+--
+ALTER TABLE `plannings`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `jours` (`jours`),
+  ADD KEY `lien_entre_medecin_planning` (`codeMedecin`);
 
 --
 -- Index pour la table `premiereobservation`
@@ -270,6 +339,46 @@ ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 --
+-- AUTO_INCREMENT pour les tables déchargées
+--
+
+--
+-- AUTO_INCREMENT pour la table `medecin`
+--
+ALTER TABLE `medecin`
+  MODIFY `codeMedecin` int(32) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT pour la table `patient`
+--
+ALTER TABLE `patient`
+  MODIFY `IP` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT pour la table `plannings`
+--
+ALTER TABLE `plannings`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT pour la table `rendezvous`
+--
+ALTER TABLE `rendezvous`
+  MODIFY `numeroRdv` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT pour la table `secretaire`
+--
+ALTER TABLE `secretaire`
+  MODIFY `codeSecretaire` int(32) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pour la table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
 -- Contraintes pour les tables déchargées
 --
 
@@ -293,6 +402,13 @@ ALTER TABLE `patient`
   ADD CONSTRAINT `FK_patient_users` FOREIGN KEY (`userId`) REFERENCES `users` (`id`);
 
 --
+-- Contraintes pour la table `plannings`
+--
+ALTER TABLE `plannings`
+  ADD CONSTRAINT `FK_planning_jours` FOREIGN KEY (`jours`) REFERENCES `jours` (`codeJour`),
+  ADD CONSTRAINT `FK_planning_medecin` FOREIGN KEY (`codeMedecin`) REFERENCES `medecin` (`codeMedecin`);
+
+--
 -- Contraintes pour la table `premiereobservation`
 --
 ALTER TABLE `premiereobservation`
@@ -302,8 +418,8 @@ ALTER TABLE `premiereobservation`
 -- Contraintes pour la table `rendezvous`
 --
 ALTER TABLE `rendezvous`
-  ADD CONSTRAINT `FK_consultation_medecin` FOREIGN KEY (`codeMedecin`) REFERENCES `medecin` (`codeMedecin`),
-  ADD CONSTRAINT `FK_consultation_patient` FOREIGN KEY (`IP`) REFERENCES `patient` (`IP`);
+  ADD CONSTRAINT `FK_rendezvous_medecin` FOREIGN KEY (`codeMedecin`) REFERENCES `medecin` (`codeMedecin`),
+  ADD CONSTRAINT `FK_rendezvous_patient` FOREIGN KEY (`IP`) REFERENCES `patient` (`IP`);
 
 --
 -- Contraintes pour la table `secretaire`
