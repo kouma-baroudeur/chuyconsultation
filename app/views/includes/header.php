@@ -9,7 +9,7 @@
 	<meta name="author" content="KOUMADOUL Baroud">
 	<title><?=SITENAME?></title>
 	<!-- Favicons-->
-	<link rel="icon" href="<?=URLROOT?>/assets/icons/logo.ico" type="image/gif">
+	<link rel="icon" href="<?=SITEICON?>" type="image/gif">
 	<!-- Web Fonts-->
 	<link href="<?=URLROOT?>/assets/styles/styles.css" rel="stylesheet" type="text/css">
 	<!-- Bootstrap core CSS-->

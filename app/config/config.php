@@ -16,8 +16,14 @@
   define('PATIENTPORTALNAME', 'CHUY Portail Patient');
   //Hospital name
   define('HOSPITAL', 'CHU Yaoundé');
+  //patient profile name
+  define('PATIENT', 'CHU Patient Profile');
+  
   //logo for our site
   define('SITELOGO',URLROOT.'/assets/images/logo.jpg');
+  //icon for our site
+  define('SITEICON', URLROOT.'/assets/icons/logo.ico');
+  
 
   //some repetitive names
   define('DASHBOARD', 'Tableau de bord');

@@ -1,6 +1,6 @@
 <?php require APPROOT . '/views/includes/header.php'; ?>
 <section class="module-page-title">
-    <div class="bg-blue-400 container">
+    <div class=" container">
         <div class="row-page-title">
             <div class="page-title-captions">
                 <h1 class="h5">Créer un compte</h1>
