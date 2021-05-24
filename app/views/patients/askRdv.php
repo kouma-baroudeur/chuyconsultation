@@ -7,10 +7,9 @@
 
         <div class="shadow w-full rounded-lg bg-white overflow-hidden w-full block p-8">
             
-            <h2 class="font-bold text-2xl mb-6 text-gray-800 border-b pb-2">Add Appointement Details</h2>
+            <h2 class="font-bold text-2xl mb-6 text-gray-800 border-b pb-2">Les détails du rendez-vous</h2>
             
             <form method="post" name="askRdv" action="<?=URLROOT?>/patients/askRdvAction/<?=$data['patient']->IP?>">
-
                 <div class="mb-4">
                     <label class="form-group text-gray-800 block mb-1 font-bold text-sm tracking-wide">Date</label>
                     <input name="dateRdv" class="form-control form-control-lg" type="date">

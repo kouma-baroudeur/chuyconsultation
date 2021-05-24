@@ -5,7 +5,7 @@
     <?php require APPROOT . '/views/includes/head.php'; ?>
     <main class="h-full pb-16 overflow-y-auto" id="dynamicContent">
         <?=flash('EtatPostEditCons');?>
-        <?php require APPROOT . '/views/includes/dashboard.php'; ?>
+        <?php require APPROOT . '/views/includes/medocs.php'; ?>
     </main>
   </div>
   <!-- Mobile sidebar -->

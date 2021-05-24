@@ -49,6 +49,7 @@
                   'sexe' => $_POST['sexe'],
                   'adresse' => $_POST['adresse'],
                 ];
+                
                 if(!$this->patientModel->createProfile($data)){
                   flash('ErrorProfileCreate','Erreur de création du profile!','alert alert-danger');
                 }
@@ -64,6 +65,9 @@
               notAuthorized();
             } else {
               $activeUser = $this->activeUser;
+              $this->patientModel->Header();
+              $this->patientModel->Footer();
+              $this->patientModel->SetCol();
               $this->view('patients/profile', $activeUser);
             }
           }
@@ -121,7 +125,6 @@
             }
             redirect('patients/patient');
           }
-
           public function planning($etat=''){
             if ($_SESSION['userType'] != 'patient') {
               notAuthorized();
@@ -131,6 +134,18 @@
                 'patient' => $this->activeUser
               ];
               $this->view('patients/planning', $data);
+            }
+        
+          }
+          public function medoc($etat=''){
+            if ($_SESSION['userType'] != 'patient') {
+              notAuthorized();
+            } else {
+              $data = [
+                'medoc' => $this->patientModel->medoc($etat),
+                'patient' => $this->activeUser
+              ];
+              $this->view('patients/medoc', $data);
             }
         
           }
