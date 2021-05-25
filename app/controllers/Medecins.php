@@ -16,6 +16,23 @@
                 $this->activeUser = $this->medecinModel->getMedecinById($user);
         }
 
+        public function medecin($page="home")
+        { 
+            if ($_SESSION['userType'] != 'medecin') {
+                notAuthorized();
+            } else {
+                $data = [
+                // parametres utilisees pour les sous panneau
+                'params' => $page,
+                'medecin' => $this->activeUser
+                ];
+                if($_SESSION['userState']=='incomplet')
+                $this->view('medecins/initialForm', $data);
+                else
+                $this->view('medecins/home', $data);
+            }
+        }
+
     }
     
 ?>

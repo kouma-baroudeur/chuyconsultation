@@ -6,7 +6,19 @@
         {
             $this->db = new Database;
         }
-        
+        public function getAdminById($user){
+            // getAdminByUserId
+            if ($user['type']=='admin'){
+                $sql1 = 'SELECT * FROM medecin WHERE userId = :userId';
+            }
+            $this->db->query($sql1);
+            $this->db->bind(':userId',$user['id']); 
+            $row->type=$user['type'];
+            $row->email = $user['email'];
+            $row->state = $user['state'];
+            $row = $this->db->single();
+            return $row;
+        }
     }
     
 ?>

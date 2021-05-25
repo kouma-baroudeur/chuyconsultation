@@ -2,7 +2,7 @@
   <div class="container flex items-center justify-between h-full px-6 mx-auto text-blue-600 dark:text-blue-600" >
     <!-- Mobile hamburger -->
     <button
-      class="p-1 mr-5 -ml-1 rounded-md md:hidden focus:outline-none focus:shadow-outline-blue"
+      class="p-1 mr-5 -ml-1 rounded-md md:hidden focus:outline-none focus:shadow-outline-blue dark:text-white"
       @click="toggleSideMenu"
       aria-label="Menu">
       <svg
@@ -24,7 +24,7 @@
       >
         <div class="absolute inset-y-0 flex items-center pl-2">
           <svg
-            class="w-4 h-4"
+            class="w-4 h-4 dark:text-white"
             aria-hidden="true"
             fill="currentColor"
             viewBox="0 0 20 20"
@@ -37,7 +37,7 @@
           </svg>
         </div>
         <input
-          class="w-full pl-8 pr-2 text-sm text-gray-700 placeholder-gray-600 bg-gray-100 border-0 rounded-md dark:placeholder-gray-500 dark:focus:shadow-outline-gray dark:focus:placeholder-gray-600 dark:bg-gray-700 dark:text-gray-200 focus:placeholder-gray-500 focus:bg-white focus:border-blue-600 focus:outline-none focus:shadow-outline-blue form-input"
+          class="w-full pl-8 pr-2 text-sm text-gray-700 placeholder-gray-600 bg-gray-100 border-0 rounded-md dark:placeholder-white-600 dark:focus:shadow-outline-white dark:focus:placeholder-white dark:bg-gray-700 dark:text-white focus:placeholder-gray-500 focus:bg-white focus:border-blue-600 focus:outline-none focus:shadow-outline-blue form-input"
           type="text"
           placeholder="Search..."
           aria-label="Search"
@@ -57,7 +57,7 @@
               class="w-5 h-5"
               aria-hidden="true"
               fill="currentColor"
-              viewBox="0 0 20 20"
+              viewBox="0 0 20 20" 
             >
               <path
                 d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"
@@ -66,7 +66,7 @@
           </template>
           <template x-if="dark">
             <svg
-              class="w-5 h-5"
+              class="w-5 h-5 text-white"
               aria-hidden="true"
               fill="currentColor"
               viewBox="0 0 20 20"
@@ -90,7 +90,7 @@
           aria-haspopup="true"
         >
           <svg
-            class="w-5 h-5"
+            class="w-5 h-5 dark:text-white"
             aria-hidden="true"
             fill="currentColor"
             viewBox="0 0 20 20"
@@ -139,7 +139,7 @@
           aria-label="Messages"
           aria-haspopup="true"
         >
-        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+        <svg class="w-5 h-5 dark:text-white" fill="currentColor" viewBox="0 0 20 20">
           <path
             fill-rule="evenodd"
             d="M18 5v8a2 2 0 01-2 2h-5l-5 4v-4H4a2 2 0 01-2-2V5a2 2 0 012-2h12a2 2 0 012 2zM7 8H5v2h2V8zm2 0h2v2H9V8zm6 0h-2v2h2V8z"
@@ -177,7 +177,7 @@
           </ul>
         </template>
       </li>
-      <!-- Profile menu -->
+      <!-- Profile menu : profile image depend on users-->
       <li class="relative">
         <button
           class="align-middle rounded-full focus:shadow-outline-blue focus:outline-none"
@@ -185,13 +185,33 @@
           @keydown.escape="closeProfileMenu"
           aria-label="Account"
           aria-haspopup="true"
-        >
-          <img
+        ><?php
+          if ($_SESSION['userType']=='patient') {
+            ?><img style="border: solid; color: white;"
             class="object-cover w-12 h-12 rounded-full"
-            src="<?=PAT?>"
+            src=<?=PAT?>
             alt="pp"
             aria-hidden="true"
-          />
+          /><?php
+          }
+          if ($_SESSION['userType']=='admin') {
+            ?><img
+            class="object-cover w-12 h-12 rounded-full"
+            src=<?=ADM?>
+            alt="pp"
+            aria-hidden="true"
+          /><?php
+          }
+          if ($_SESSION['userType']=='medecin') {
+            ?><img
+            class="object-cover w-12 h-12 rounded-full"
+            src=<?=DOC?>
+            alt="pp"
+            aria-hidden="true"
+          /><?php
+          }
+        ?>
+          
         </button>
         <template x-if="isProfileMenuOpen">
           <ul
@@ -223,6 +243,8 @@
                   ></path>
                 </svg>
                 <span><?=$data['patient']->nomPatient.' '.$data['patient']->prenomPatient?></span>
+                <span><?=$data['medecin']->nomMedecin.' '.$data['medecin']->prenomMedecin?></span>
+                <span><?=$data['admin']->nomMedecin.' '.$data['admin']->prenomMedecin?></span>
               </a>
             </li>
             <li class="flex">

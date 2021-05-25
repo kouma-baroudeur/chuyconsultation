@@ -27,6 +27,8 @@
   define('DOC',URLROOT.'/assets/images/doctor-icon.png');
   //patient image
   define('PAT',URLROOT.'/assets/images/patient.png');
+  //admin image
+  define('ADM',URLROOT.'/assets/images/admin.jpg');
 
   //some repetitive names
   define('DASHBOARD', 'Tableau de bord');
@@ -36,6 +38,8 @@
   define('CONSULT', 'Consultation');
   define('PAYMENT', 'Facturation');
   define('TAKERDV', 'Prendre un rendez-vous');
+  define('PERS', 'Gérer les patients');
+  define('USERS', 'Gérer le staff');
   define('EMAIL', 'koumadoulbaroud@gmail.com');
   define('PHONE', '+237 693 55 34 54');
   

@@ -25,7 +25,8 @@
         $_SESSION['userId']=$user->id;
         $_SESSION['userMail']=$user->email;
         $_SESSION['userState']=$user->state;
-        redirect('patients/'.$user->type);
+
+        redirect($_SESSION['userType'].'s/'.$user->type);   
     }
     function endUserSession(){
         unset($_SESSION['userType']);

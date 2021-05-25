@@ -13,7 +13,24 @@
             ];
             $this->adminModel = $this->model('Admin');
             if($_SESSION['userType']=='admin')
-                $this->activeUser = $this->medecinModel->getAdminById($user);
+                $this->activeUser = $this->adminModel->getAdminById($user);
+        }
+       
+        public function admin($page="home")
+        { 
+            if ($_SESSION['userType'] != 'admin') {
+                notAuthorized();
+            } else {
+                $data = [
+                // parametres utilisees pour les sous panneau
+                'params' => $page,
+                'admin' => $this->activeUser
+                ];
+                if($_SESSION['userState']=='incomplet')
+                $this->view('admins/initialForm', $data);
+                else
+                $this->view('admins/home', $data);
+            }
         }
     }
     

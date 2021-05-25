@@ -65,9 +65,6 @@
               notAuthorized();
             } else {
               $activeUser = $this->activeUser;
-              $this->patientModel->Header();
-              $this->patientModel->Footer();
-              $this->patientModel->SetCol();
               $this->view('patients/profile', $activeUser);
             }
           }
