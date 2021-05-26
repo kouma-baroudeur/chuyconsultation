@@ -103,47 +103,6 @@
 <script src="<?=URLROOT?>/assets/scripts/plugins.min.js"></script>
 <script src="<?=URLROOT?>/assets/scripts/charts.js"></script>
 <script src="<?=URLROOT?>/assets/scripts/custom.min.js"></script>
-<script>
-	function editCons(id) {
-	    $('#dynamicContent').load('<?=URLROOT?>/panels/editCons/' + id);
-	}
-	function deleteCons(id) {
-	    $('#dynamicContent').load('<?=URLROOT?>/panels/deleteCons/' + id);
-	}
-	$('#consultationsMe').on('click', function(e) {
-	    e.preventDefault();
-	    $('#dynamicContent').load('<?=URLROOT?>/panels/consultations');
-	});
-	$('#profile').on('click', function(e) {
-	    e.preventDefault();
-	    $('#dynamicContent').load('<?=URLROOT?>/panels/profile');
-	});
-	$('#consultationsMeAtt').on('click', function(e) {
-	    e.preventDefault();
-	    $('#dynamicContent').load('<?=URLROOT?>/panels/consultations/only/Attente');
-	});
-	$('#consultationsAll').on('click', function(e) {
-	    e.preventDefault();
-	    $('#dynamicContent').load('<?=URLROOT?>/panels/consultations/all');
-	});
-	$('#consultationsAllAtt').on('click', function(e) {
-	    e.preventDefault();
-	    $('#dynamicContent').load('<?=URLROOT?>/panels/consultations/all/Attente');
-	});
-	$('#askConsult').on('click', function(e) {
-	    e.preventDefault();
-	    $('#dynamicContent').load('<?=URLROOT?>/panels/askConsult');
-	});
-	$('#mesConsultations').on('click', function(e) {
-	    e.preventDefault();
-	    $('#dynamicContent').load('<?=URLROOT?>/panels/mesConsultations');
-	});
-	
-	$('#report').on('click', function(e) {
-	    e.preventDefault();
-	    $('#dynamicContent').load('<?=URLROOT?>/panels/report');
-	});
-</script>
 </body>
 
 </html>

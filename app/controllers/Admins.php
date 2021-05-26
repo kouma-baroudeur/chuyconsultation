@@ -32,6 +32,19 @@
                 $this->view('admins/home', $data);
             }
         }
+        public function user(){
+            if ($_SESSION['userType'] != 'admin') {
+              notAuthorized();
+            } else {
+                $data = [
+                    'admin' => $this->activeUser,
+                    'userId' => $_SESSION['userId'],
+                    'medecins' => $this->adminModel->user()
+                  ];
+              $this->view('admins/user', $data);
+            }
+        
+        }
     }
     
 ?>

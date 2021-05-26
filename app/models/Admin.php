@@ -19,6 +19,18 @@
             $row = $this->db->single();
             return $row;
         }
+
+        public function user(){
+            $sql = "SELECT * ";
+            $sql .= "FROM medecin,service,users ";
+            $sql .= "WHERE medecin.codeService = service.codeService ";
+            $sql .= "AND medecin.userId = users.id ";
+            $sql .= "GROUP BY medecin.codeMedecin ";
+            $this->db->query($sql);
+            $answer = $this->db->resultSet();
+            return $answer;
+    
+        }
     }
     
 ?>
