@@ -1,5 +1,5 @@
 <?php
-    /* this model (class) is to control all users */
+    /* this model (class) is to control patient */
     class User
     {
         private $db;

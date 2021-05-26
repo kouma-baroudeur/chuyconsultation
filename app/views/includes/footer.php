@@ -103,6 +103,7 @@
 <script src="<?=URLROOT?>/assets/scripts/plugins.min.js"></script>
 <script src="<?=URLROOT?>/assets/scripts/charts.js"></script>
 <script src="<?=URLROOT?>/assets/scripts/custom.min.js"></script>
+<script src="<?=URLROOT?>/assets/scripts/script.js"></script>
 </body>
 
 </html>

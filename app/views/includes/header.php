@@ -5,8 +5,8 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="description" content="Site de prise de rdv pour le CHU Yaoundé-Cameroun">
-	<meta name="author" content="KOUMADOUL Baroud">
+	<meta name="description" content="Site de prise de rdv de consultation pour le CHU Yaoundé-Cameroun">
+	<meta name="author" content="KOUMADOUL Baroud Le Baroudeur">
 	<title><?=SITENAME?></title>
 	<!-- Favicons-->
 	<link rel="icon" href="<?=SITEICON?>" type="image/gif">

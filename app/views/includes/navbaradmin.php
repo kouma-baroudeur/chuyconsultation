@@ -24,7 +24,7 @@
               ></span>
               <a 
                class=" inline-flex items-center w-full text-sm font-semibold text-gray-800 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100"
-                href="patient"
+                href="admin"
               >
                 <svg
                   class="w-5 h-5"
@@ -163,7 +163,7 @@
               ></span>
               <a
                 class="inline-flex items-center w-full text-sm font-semibold text-gray-800 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100"
-                href="user"
+                href="staff"
               >
                 <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                     <path
@@ -215,7 +215,7 @@
               ></span>
               <a
                 class="inline-flex items-center w-full text-sm font-semibold text-gray-800 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100"
-                href="patient"
+                href="admin"
               >
                 <svg
                   class="w-5 h-5"
@@ -354,7 +354,7 @@
               ></span>
               <a
                 class="inline-flex items-center w-full text-sm font-semibold text-gray-800 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100"
-                href="user"
+                href="staff"
               >
                 <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                     <path

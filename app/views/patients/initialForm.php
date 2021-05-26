@@ -12,7 +12,7 @@
             <div class="page-title-secondary">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="<?=URLROOT?>">Home</a></li>
-                    <li class="breadcrumb-item"><a href="<?=URLROOT?>/panels/<?=$_SESSION['userType']?>">Mon panneau</a>
+                    <li class="breadcrumb-item"><a href="<?=URLROOT?>/<?=$_SESSION['userType'].'s/'?><?=$_SESSION['userType']?>">Mon panneau</a>
                     </li>
                 </ol>
             </div>
