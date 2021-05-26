@@ -10,7 +10,7 @@
         // find user by email
         public function findUserByEmail($email)
         {
-            $this->db->query('SELECT * FROM users WHERE email = :email');
+            $this->db->query(FINDUSERBYMAIL);
             $this->db->bind(':email',$email);
 
             $row = $this->db->single();
@@ -24,7 +24,7 @@
         }
         public function register($data)
         {
-            $this->db->query('INSERT INTO users (email,password,type,state) VALUES (:email,:password,:type,:state)');
+            $this->db->query(REGISTERUSER);
             // bind value
             $this->db->bind(':email',$data['email']);
             $this->db->bind(':password',$data['password']);
@@ -35,7 +35,7 @@
         }
         public function login($email,$pass)
         {
-            $this->db->query('SELECT * FROM users WHERE email = :email');
+            $this->db->query(LOGINUSER);
             $this->db->bind(':email',$email);
             $this->db->execute();
             $row = $this->db->single();

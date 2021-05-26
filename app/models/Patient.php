@@ -1,6 +1,5 @@
 <?php
     /* model patient */
-    /* require APPROOT . '/libraries/fpdf/fpdf.php'; */
     class Patient
     {
         private $db;
@@ -15,7 +14,7 @@
         public function getPatientById($user){
             // getPatientByUserId
             if ($user['type']=='patient'){
-                $sql1 = 'SELECT * FROM patient WHERE userId = :userId';
+                $sql1 = FINDPATIENTBYID;
             }
             $this->db->query($sql1);
             $this->db->bind(':userId',$user['id']); 
@@ -28,8 +27,7 @@
         public function createProfile($data)
         {
             if ($_SESSION['userType'] == 'patient') {
-                $sql = "INSERT INTO patient (nomPatient,prenomPatient,adressePatient,sexePatient,dateNaissancePatient,lieuNaissancePatient,userId) ";
-                $sql .= "VALUES (:nom,:prenom,:adresse,:sexe,:dateNaissance,:lieuNaissance,:userId) ";
+                $sql = CREATEPATIENTPROFILE;
             }
             $this->db->query($sql);
             $this->db->bind(':nom', $data['nom']);
@@ -40,7 +38,7 @@
             $this->db->bind(':adresse', $data['adresse']);
             $this->db->bind(':userId', $_SESSION['userId']);
             $answer = $this->db->execute();
-             $this->db->query("UPDATE users SET state = 'complet' WHERE id=".$_SESSION['userId']);
+             $this->db->query(UPDATESTATE.$_SESSION['userId']);
              $updateState =$this->db->execute();
             $_SESSION['userState']='complet';
             return $answer && $updateState;
@@ -61,19 +59,19 @@
             $sql .="AND rendezvous.IP = patient.IP ";
             $sql .="AND rendezvous.codeMedecin = medecin.codeMedecin ";
             if($etat=="Attente"){
-                $sql .="AND rendezvous.etatRdv = 'Attente' ";
+                $sql .=RDVETATATTENTE;
             }elseif($etat=="Confirme"){
-                $sql .="AND rendezvous.etatRdv = 'Confirme' ";
+                $sql .=RDVETATCONFIRME;
             }
             $sql .="AND rendezvous.IP = :IP ";
-            $sql .="ORDER BY rendezvous.numeroRdv DESC  ";
+            $sql .=RDVORDRE;
             $this->db->query($sql);
             $this->db->bind(':IP',$codePatient);
             $rows= $this->db->resultSet();
             return $rows;
         }
         public function askRdv($data){
-            $sql="INSERT INTO rendezvous (dateRdv,heureRdv,IP,codeMedecin,etatRdv) VALUES (:dateRdv,:heureRdv,:IP,:codeMedecin,'Attente') ";
+            $sql=ASKRDV;
             $this->db->query($sql);
             $this->db->bind(':IP',$data['IP']);
             $this->db->bind(':codeMedecin',$data['codeMedecin']);

@@ -187,7 +187,7 @@
           aria-haspopup="true"
         ><?php
           if ($_SESSION['userType']=='patient') {
-            ?><img style="border: solid; color: white;"
+            ?><img
             class="object-cover w-12 h-12 rounded-full"
             src=<?=PAT?>
             alt="pp"

@@ -9,7 +9,7 @@
         public function getAdminById($user){
             // getAdminByUserId
             if ($user['type']=='admin'){
-                $sql1 = 'SELECT * FROM medecin WHERE userId = :userId';
+                $sql1 = GETMBYID;
             }
             $this->db->query($sql1);
             $this->db->bind(':userId',$user['id']); 

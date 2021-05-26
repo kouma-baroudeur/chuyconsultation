@@ -11,7 +11,7 @@
         public function getMedecinById($user){
             // getMedecinByUserId
             if ($user['type']=='medecin'){
-                $sql1 = 'SELECT * FROM medecin WHERE userId = :userId';
+                $sql1 = GETMBYID;
             }
             $this->db->query($sql1);
             $this->db->bind(':userId',$user['id']); 

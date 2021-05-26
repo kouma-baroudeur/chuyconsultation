@@ -26,7 +26,7 @@
   //doctor image
   define('DOC',URLROOT.'/assets/images/doctor-icon.png');
   //patient image
-  define('PAT',URLROOT.'/assets/images/patient.png');
+  define('PAT',URLROOT.'/assets/images/patient-picture-default.png');
   //admin image
   define('ADM',URLROOT.'/assets/images/admin.jpg');
 

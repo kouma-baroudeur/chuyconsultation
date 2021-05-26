@@ -15,14 +15,11 @@
                 <!-- Profile Card -->
                 <div class="bg-white p-3 border-t-4 border-blue-600">
                     <div class="image overflow-hidden">
-                    <?php echo'
                         <img
                             class="h-auto w-full mx-auto"
-                            src="../assets/images/Defaultpic.jpg"
+                            src="<?=PAT?>"
                             alt="patient pp"
                         />
-                        ';  
-                    ?>
                     </div>
                 </div>
                 <!-- End of profile card -->
