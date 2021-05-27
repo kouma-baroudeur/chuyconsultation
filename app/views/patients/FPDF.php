@@ -8,7 +8,7 @@
 				*******************************************************************************/
 
 	define('FPDF_VERSION','1.83');
-
+	require('fpdf/fpdf.php');
 	class FPDF
 	{
 		protected $page;               // current page number

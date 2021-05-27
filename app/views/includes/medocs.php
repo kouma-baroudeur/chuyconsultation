@@ -17,7 +17,7 @@
   <!-- CTA -->
   <a
     class="flex items-center justify-between p-4 mb-8 text-sm font-semibold text-white bg-blue-600 rounded-lg shadow-md focus:outline-none focus:shadow-outline-blue"
-    href="test">
+    href="dm">
     <div class="flex items-center">
       <span>Téléchargez votre <?=MD?></span>
     </div>

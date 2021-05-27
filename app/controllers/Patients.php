@@ -38,6 +38,14 @@
             }
         }
 
+        public function dm()
+        {
+            $data = [
+              'patient' => $this->activeUser,
+              'userId' => $_SESSION['userId']
+            ];
+          $this->view('patients/PDF',$data);
+        }
         public function createProfile(){
             if(isLoggedIn() && $_SESSION['userState']=='incomplet' ){
               $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);

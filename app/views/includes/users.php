@@ -7,7 +7,7 @@
       >+Ajouter un personnel
     </button>
   </a>
-  <?=flash('EtatPostEditCons')?>
+  <?= flash('register_success')?>
  <!-- With actions -->
   <h4 class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300" >
     Liste de tout le personnel du système

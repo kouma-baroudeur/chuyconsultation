@@ -40,6 +40,8 @@
   define('TAKERDV', 'Prendre un rendez-vous');
   define('PERS', 'Gérer les patients');
   define('USERS', 'Gérer le staff');
+  define('CHAT', 'Messagerie chat');
+  
   define('EMAIL', 'koumadoulbaroud@gmail.com');
   define('PHONE', '+237 693 55 34 54');
   

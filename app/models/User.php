@@ -35,7 +35,7 @@
         }
         public function login($email,$pass)
         {
-            $this->db->query(LOGINUSER);
+            $this->db->query(FINDUSERBYMAIL);
             $this->db->bind(':email',$email);
             $this->db->execute();
             $row = $this->db->single();
