@@ -1,5 +1,6 @@
 workspace*
 app/config/config.php
-modelisation*
+Modelisation*
 DB*
 PDF*
+app/helpers/sql_requests.php
