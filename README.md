@@ -13,7 +13,7 @@ Pour la réalisation de ce projet,[Dr. ][MOUAFOU Laetitia] n'était pas la seule
 
 ## Equipe de développement
 
-L'équipe de développement est constituée de [M. ][KOUMADOUL Baroud], [Mlle. MOYOPO FOTSO Michelle ][Rosane] dite la Débogueuse 👻 et de [M. NJIH KEMI Steve ][Christian ] le Designer.
+L'équipe de développement est constituée de [M. ][KOUMADOUL Baroud], [Mlle. MOYOPO FOTSO Michelle ][Rosane] dite la Débogueuse 😆 et de [M. NJIH KEMI Steve ][Christian ] le Designer.
 C'est avec cette équipe dynamique que ce projet à finalement vu jour.
 Elle est constituée uniquement des étudiant de l'[Université de Yaoundé 1/ICT4D ][L3].
 

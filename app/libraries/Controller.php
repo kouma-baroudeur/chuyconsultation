@@ -23,5 +23,5 @@
         die('Cette vue n\'existe pas');
       }
     }
+
   }
-?>
