@@ -4,7 +4,7 @@
 
 ## Genèse de CHUYConsultation
 
-Ce projet a vu le jour grâce au lour fardeau que [Dr ][MOUAFOU ][Laetitia] a pour son pays.
+Ce projet a vu le jour grâce au lour fardeau que [Dr][MOUAFOU][Laetitia] a pour son pays.
 Ayant constaté avec regret que le système hospitalier n'est guère informatisé comme il se doit dans ce pays ([Cameroun]) qui regorge d'énorme potentiel en informatique, Elle a décidé de partager ce fardeau avec ses étudiants afin de pouvoir mettre sur pied ce projet ([CHUYConsultation]) de gestion des [consultations] dans un premier temps.
 
 ## Encadreurs
