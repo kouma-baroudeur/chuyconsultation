@@ -44,7 +44,7 @@
               'patient' => $this->activeUser,
               'userId' => $_SESSION['userId']
             ];
-          $this->view('patients/PDF',$data);
+          $this->view('patients/Pdf',$data);
         }
         public function createProfile(){
             if(isLoggedIn() && $_SESSION['userState']=='incomplet' ){
