@@ -11,8 +11,8 @@
             </div>
             <div class="page-title-secondary">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="<?=URLROOT?>">Home</a></li>
-                    <li class="breadcrumb-item"><a href="<?=URLROOT?>/<?=$_SESSION['userType'].'s/'?><?=$_SESSION['userType']?>">Mon panneau</a>
+                    <li class="breadcrumb-item"><a href="<?= URLROOT ?>">Home</a></li>
+                    <li class="breadcrumb-item"><a href="<?= URLROOT ?>/<?= $_SESSION['userType'] . 's/' ?><?= $_SESSION['userType'] ?>">Mon panneau</a>
                     </li>
                 </ol>
             </div>
@@ -21,10 +21,10 @@
 </section>
 <section class="module">
     <div class="container">
-        <?=flash('ErrorProfileCreate')?>
+        <?= flash('ErrorProfileCreate') ?>
         <h3>Bienvenue, veullez renseigner ces informations soigneusement!</h3><br>
-        <form action="<?=URLROOT?>/patients/createProfile/" method="POST">
-            
+        <form action="<?= URLROOT ?>/patients/createProfile/" method="POST">
+
             <div class="form-group">
                 <label for="nom"> Nom :</label>
                 <input type="text" class="form-control" id="nom" name="nom" placeholder="Nom">
