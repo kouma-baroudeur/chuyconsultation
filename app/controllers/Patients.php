@@ -42,7 +42,8 @@ class Patients extends Controller
   {
     $data = [
       'patient' => $this->activeUser,
-      'userId' => $_SESSION['userId']
+      'userId' => $_SESSION['userId'],
+      'dm' => $this->patientModel->dm()
     ];
     $this->view('patients/Pdf', $data);
   }
@@ -152,7 +153,7 @@ class Patients extends Controller
         'medoc' => $this->patientModel->medoc($etat),
         'patient' => $this->activeUser
       ];
-      $this->view('patients/medoc', $data);
+      $this->view('patients/medoc', $data); 
     }
   }
 }

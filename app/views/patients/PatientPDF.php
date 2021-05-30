@@ -34,25 +34,9 @@ class PatientPDF extends FPDF
         $this->Ln(4);
     }
 
-    function ChapterBody($file)
-    {
-        // Read text file
-        $txt = file_get_contents($file);
-        // Times 12
-        $this->SetFont('Times', '', 12);
-        // Output justified text
-        $this->MultiCell(0, 5, $data['userId']->email);
-        // Line break
-        $this->Ln();
-        // Mention in italics
-        $this->SetFont('', 'I');
-        $this->Cell(0, 5, '(end of excerpt)');
-    }
-
-    function PrintChapter($num, $title, $file)
+    function PrintChapter($num, $title)
     {
         $this->AddPage();
         $this->ChapterTitle($num, $title);
-        $this->ChapterBody($file);
     }
 }
