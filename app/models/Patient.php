@@ -132,5 +132,26 @@ class Patient
         $rows = $this->db->resultSet();
         return $rows;
     }
+    public function consult($etat)
+    {
+        $user = [
+            'id'    =>  $_SESSION['userId'],
+            'type'  =>  $_SESSION['userType'],
+            'email' => $_SESSION['userMail'],
+            'state' => $_SESSION['userState']
+        ];
+        $codePatient = $this->getPatientById($user)->IP;
+        $sql = "SELECT * ";
+        $sql .= "FROM patient,medecin,service, consultations ";
+        $sql .= "WHERE consultations.codeMedecin = medecin.codeMedecin ";
+        $sql .= "AND consultations.IP = :IP ";
+        $sql .= "AND patient.IP = :IP ";
+        $sql .= "AND medecin.codeService = service.codeService ";
+        $sql .= "ORDER BY consultations.numeroConsultation DESC  ";
+        $this->db->query($sql);
+        $this->db->bind(':IP', $codePatient);
+        $rows = $this->db->resultSet();
+        return $rows;
+    }
    
 }

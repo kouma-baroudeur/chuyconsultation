@@ -1,6 +1,6 @@
 <?php
 
-/** DB Params*/
+/** DB Params e;#bZcR7GO-**/
 
 define('DB_HOST', 'localhost');
 define('DB_USER', 'root');
@@ -16,6 +16,10 @@ define('URLROOT', 'http://' . $_SERVER['HTTP_HOST'] . '/chuyconsultation');
 define('SITENAME', 'CHUY Consultation');
 //Patient portal name
 define('PATIENTPORTALNAME', 'CHUY Portail Patient');
+//Admin portal name
+define('ADMINPORTALNAME', 'CHUY Portail Administrateur');
+//Admin portal name
+define('MEDECINPORTALNAME', 'CHUY Portail Médecin');
 //Hospital name
 define('HOSPITAL', 'CHU Yaoundé');
 //patient profile name
@@ -36,10 +40,10 @@ define('DOCHEADER', URLROOT . '/assets/images/headerMOPH.png');
 
 //some repetitive names
 define('DASHBOARD', 'Tableau de bord');
-define('REPORT', 'Rapports');
-define('MD', 'Dossier médical');
+define('REPORT', 'Mes rendez-vous');
+define('MD', 'Mon dossier médical');
 define('RDV', 'Rendez-vous');
-define('CONSULT', 'Consultation');
+define('CONSULT', 'Mes consultation');
 define('PAYMENT', 'Facturation');
 define('TAKERDV', 'Prendre un rendez-vous');
 define('PERS', 'Gérer les patients');

@@ -8,10 +8,12 @@ class PatientPDF extends FPDF
     
     function Header()
     {
-        // Logo
-        $this->Image(DOCHEADER, 24, 1, 150, 80);
-        // Line break
-        $this->Ln(60);
+        if ($this->PageNo() == 1 ) {
+             // Logo
+            $this->Image(DOCHEADER, 24, 1, 150, 80);
+            // Line break
+            $this->Ln(60);
+        }
     }
 
     function Footer()
@@ -23,7 +25,10 @@ class PatientPDF extends FPDF
         // Text color in gray
         $this->SetTextColor(128);
         // Page number
-        $this->Cell(0, 10, 'Page ' . $this->PageNo(), 0, 0, 'L');
+        $this->Cell(0, 10,utf8_decode('Page ' . $this->PageNo().'   
+        CHU Yaoundé Consultation    
+        tel:+237 693 553 454    
+        Melen'.$this->Image(SITELOGO, 189, 280, 10, 10,'', URLROOT)), 0, 0, 'L');
     }
 
     function ChapterTitle($num, $label)

@@ -1,5 +1,5 @@
 <?php
-/* model medecin */
+/** model medecin */
 class Medecin
 {
     private $db;

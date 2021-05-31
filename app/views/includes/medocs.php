@@ -28,7 +28,7 @@
   <a class="flex items-center justify-between p-4 mb-8 text-sm font-semibold text-white bg-blue-600 
       rounded-lg shadow-md focus:outline-none focus:shadow-outline-blue" href="dm" target="_blank">
     <div class="flex items-center">
-      <span>Téléchargez votre <?= MD ?></span>
+      <span>Je télécharge <?= MD ?></span>
     </div>
     <span>ICI &#8681;</span>
   </a>

@@ -42,7 +42,21 @@ class Admins extends Controller
             $this->view('admins/user', $data);
         }
     }
-
+    /* public function sendMail($mail_to, $pass)
+    {
+        //sending mail to physician
+        // create email headers
+        $email = "koumadoulbaroud@gmail.com";
+        $email_subject = "Identifiants de compte au CHUY";
+        $email_message = "Bienvenue dans le système cher personnel du CHU Yaoundé.";
+        $email_message.="Voici vos identifiants pour avoir accès à votre espace :\n";
+        $email_message.="adresse email".$mail_to." et mot de passe" .$pass."\n";
+        
+        $headers = "MIME-Version: 1.0" . "\r\n";
+        $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+        $headers .= 'From: '.$email."\r\n".'No-Reply: ' . $email . "\r\n";
+        @mail($mail_to, $email_subject, $email_message, $headers);
+    } */
     public function registerstaff()
     {
         // check for posts
@@ -82,23 +96,12 @@ class Admins extends Controller
 
             if (empty($data['email_err']) && empty($data['password_err']) && empty($data['confirm_pass_err']) && empty($data['type_err'])) {
 
-                //sending mail to physician
-                // create email headers
-                $email = "koumadoulbaroud@gmail.com";
-                $email_subject = "Identifiants de compte au CHUY";
-                $email_message = "Bienvenue dans le système cher personnel du CHU Yaoundé. Voici vos identifiants 
-                                        pour avoir accès à votre espace :\n
-                                        adresse email" . $data['email'] . " et mot de passe" . $data['password'] . "\n
-                                        Ou bien cliquez sur ce lien afin de vous connecter" . URLROOT . "/users/login";
-                $headers = 'From: ' . $email . "\n" .
-                    'Reply-To: ' . $email . "\r\n" .
-                    'X-Mailer: PHP/' . phpversion();
-                @mail($data['email'], $email_subject, $email_message, $headers);
 
                 // hashing the password for security
                 $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
                 // register user
                 if ($this->adminModel->registerstaff($data)) {
+
                     flash('register_success', 'Un mail est a été envoyé au médecin, il est bien ajouté dans le système');
 
                     redirect('admins/staff');

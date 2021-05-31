@@ -152,4 +152,17 @@ class Patients extends Controller
       $this->view('patients/medoc', $data); 
     }
   }
+
+  public function consult($etat = '')
+  {
+    if ($_SESSION['userType'] != 'patient') {
+      notAuthorized();
+    } else {
+      $data = [
+        'consult' => $this->patientModel->consult($etat),
+        'patient' => $this->activeUser
+      ];
+      $this->view('patients/consultations', $data);
+    }
+  }
 }
