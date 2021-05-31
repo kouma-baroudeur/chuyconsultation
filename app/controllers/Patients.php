@@ -40,12 +40,8 @@ class Patients extends Controller
 
   public function dm()
   {
-    $data = [
-      'patient' => $this->activeUser,
-      'userId' => $_SESSION['userId'],
-      'dm' => $this->patientModel->dm()
-    ];
-    $this->view('patients/Pdf', $data);
+    $activeUser = $this->activeUser;
+    $this->view('patients/Pdf', $activeUser);
   }
   public function createProfile()
   {

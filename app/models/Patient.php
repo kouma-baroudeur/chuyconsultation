@@ -3,8 +3,6 @@
 class Patient
 {
     private $db;
-    /*   protected $col = 0; // Current column
-        protected $y0;      // Ordinate of column start */
 
     public function __construct()
     {
@@ -134,22 +132,5 @@ class Patient
         $rows = $this->db->resultSet();
         return $rows;
     }
-    public function dm()
-    {
-        $user = [
-            'id'    =>  $_SESSION['userId'],
-            'type'  =>  $_SESSION['userType'],
-            'email' => $_SESSION['userMail'],
-            'state' => $_SESSION['userState']
-        ];
-        $codePatient = $this->getPatientById($user)->IP;
-        $sql = "SELECT * ";
-        $sql .= "FROM patient,users,rendezvous,medecin,plannings,service ";
-        $sql .= "WHERE patient.userId = users.id ";
-
-        $this->db->query($sql);
-        $this->db->bind(':IP', $codePatient);
-        $rows = $this->db->resultSet();
-        return $rows;
-    }
+   
 }
