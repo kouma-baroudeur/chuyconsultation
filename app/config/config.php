@@ -3,15 +3,16 @@
 /** DB Params e;#bZcR7GO-**/
 
 define('DB_HOST', 'localhost');
-define('DB_USER', 'root');
-define('DB_PASS', '');
-define('DB_NAME', 'chuyconsultation');
+define('DB_USER', 'martinku_chuyaounde');
+define('DB_PASS', 'LwZi7Vd(P$j2');
+define('DB_NAME', 'martinku_chu');
 
-/* serveur distant http://chuyconsultation.metchoup.com/chuy */
+/* serveur distant http://chuyconsultation.metchoup.com/chuy 
+ mysql://NomdeDomaine.com/NomdelaBase*/
 // App Root
 define('APPROOT', dirname(dirname(__FILE__)));
 // URL Root
-define('URLROOT', 'http://' . $_SERVER['HTTP_HOST'] . '/chuyconsultation');
+define('URLROOT', 'http://chuyconsultation.metchoup.com/chuy'.'/chuyconsultation');
 // Site Name
 define('SITENAME', 'CHUY Consultation');
 //Patient portal name

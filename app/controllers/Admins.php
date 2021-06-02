@@ -42,20 +42,28 @@ class Admins extends Controller
             $this->view('admins/user', $data);
         }
     }
-    /* public function sendMail($mail_to, $pass)
+    /* public function sendMail()
     {
         //sending mail to physician
         // create email headers
-        $email = "koumadoulbaroud@gmail.com";
-        $email_subject = "Identifiants de compte au CHUY";
-        $email_message = "Bienvenue dans le système cher personnel du CHU Yaoundé.";
-        $email_message.="Voici vos identifiants pour avoir accès à votre espace :\n";
-        $email_message.="adresse email".$mail_to." et mot de passe" .$pass."\n";
-        
-        $headers = "MIME-Version: 1.0" . "\r\n";
-        $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-        $headers .= 'From: '.$email."\r\n".'No-Reply: ' . $email . "\r\n";
-        @mail($mail_to, $email_subject, $email_message, $headers);
+        //Create a new PHPMailer instance
+        $mail = new PHPMailer();
+        //Set PHPMailer to use the sendmail transport
+        $mail->isSendmail();
+        //Set who the message is to be sent from
+        $mail->setFrom('koumadoulbaroud@gmail.com');
+        //Set an alternative reply-to address
+        //$mail->addReplyTo('replyto@example.com', 'First Last');
+        //Set who the message is to be sent to
+        $mail->addAddress('kbad0097@gmail.com');
+        //Set the subject line
+        $mail->Subject = 'PHPMailer sendmail test';
+        //Read an HTML message body from an external file, convert referenced images to embedded,
+        //convert HTML into a basic plain-text alternative body
+        //$mail->msgHTML(file_get_contents('contents.html'), __DIR__);
+        //Replace the plain text body with one created manually
+        $mail->AltBody = 'This is a plain-text message body';
+        $mail->send();
     } */
     public function registerstaff()
     {
@@ -94,14 +102,18 @@ class Admins extends Controller
                     $data['confirm_pass_err'] = 'La confirmation ne correspond pas au mot de passe';
             }
 
+            
             if (empty($data['email_err']) && empty($data['password_err']) && empty($data['confirm_pass_err']) && empty($data['type_err'])) {
 
-
+                $dest = 'kbad0097@gmail.com';
+                $sujet = 'Email de test';
+                $corp = 'Salut ceci est un email de test envoyer par un script PHP';
+                $headers = 'From: koumadoulbaroud@gmail.com';
+                mail($dest, $sujet, $corp, $headers);
                 // hashing the password for security
                 $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
                 // register user
                 if ($this->adminModel->registerstaff($data)) {
-
                     flash('register_success', 'Un mail est a été envoyé au médecin, il est bien ajouté dans le système');
 
                     redirect('admins/staff');
