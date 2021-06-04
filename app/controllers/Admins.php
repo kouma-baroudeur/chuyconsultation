@@ -29,6 +29,17 @@ class Admins extends Controller
             $this->view('admins/home', $data);
         }
     }
+    public function editP()
+    {
+        if ($_SESSION['userType'] != 'admin') {
+        notAuthorized();
+        } else {
+        $data = [
+            'admin' => $this->activeUser
+        ];
+        $this->view('admins/editprofile', $data);
+        }
+    }
     public function staff()
     {
         if ($_SESSION['userType'] != 'admin') {
@@ -42,6 +53,7 @@ class Admins extends Controller
             $this->view('admins/user', $data);
         }
     }
+    
     /* public function sendMail()
     {
         //sending mail to physician

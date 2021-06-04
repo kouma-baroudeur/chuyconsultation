@@ -32,5 +32,16 @@
                 $this->view('medecins/home', $data);
             }
         }
+        public function editP()
+        {
+            if ($_SESSION['userType'] != 'medecin') {
+            notAuthorized();
+            } else {
+            $data = [
+                'medecin' => $this->activeUser
+            ];
+            $this->view('medecins/editprofile', $data);
+            }
+        }
 
     }

@@ -45,24 +45,71 @@ class Patients extends Controller
   }
   public function createProfile()
   {
-    if (isLoggedIn() && $_SESSION['userState'] == 'incomplet') {
+    if (isLoggedIn() && $_SESSION['userState'] == 'incomplet') 
+    {
       $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
       $data = [
-        'nom' => $_POST['nom'],
-        'prenom' => $_POST['prenom'],
-        'dateNaissance' => $_POST['dateNaissance'],
-        'lieuNaissance' => $_POST['lieuNaissance'],
+        'nom' => trim($_POST['nom']),
+        'prenom' => trim($_POST['prenom']),
+        'dateNaissance' => trim($_POST['dateNaissance']),
+        'lieuNaissance' => trim($_POST['lieuNaissance']),
         'sexe' => $_POST['sexe'],
-        'adresse' => $_POST['adresse'],
+        'adresse' => trim($_POST['adresse']),
+        'nom_err' => '',
+        'prenom_err' => '',
+        'date_err' => '',
+        'lieu_err' => '',
+        'adresse_err' =>''
       ];
 
-      if (!$this->patientModel->createProfile($data)) {
-        flash('ErrorProfileCreate', 'Erreur de création du profile!', 'alert alert-danger');
+      if(empty($data['nom'])){
+        $data['nom_err'] = 'Veuillez renseigner ce champ.';
       }
-    } else {
-      flash('ErrorProfileCreate', 'Erreur de création du profile!', 'alert alert-danger');
+      if(empty($data['prenom'])){
+          $data['prenom_err'] = 'Veuillez renseigner ce champ.';
+      }
+      if(empty($data['dateNaissance'])){
+          $data['date_err'] = 'Veuillez renseigner ce champ.';
+      }
+      if(empty($data['lieuNaissance'])){
+        $data['lieu_err'] = 'Veuillez renseigner ce champ.';
+      }
+      if(empty($data['adresse'])){
+        $data['adresse_err'] = 'Veuillez renseigner ce champ.';
+      }
+
+      if(empty($data['nom_err']) && empty($data['prenom_err']) && empty($data['date_err']) && empty($data['lieu_err']) && empty($data['adresse_err']))
+      {
+        // adding information into de table patient
+        if($this->patientModel->createProfile($data))
+        {
+          flash('register_success','Vous êtes bien inscrit');
+          redirect('patients/patient');
+        }else {
+          die('Quelque chose qui ne va pas bien!');
+        }      
+      }else{
+        $this->view('patients/initialForm',$data);
+      }
+    }else {
+      // Init data
+      $data = [
+        'nom' => '',
+        'prenom' => '',
+        'dateNaissance' => '',
+        'lieuNaissance' => '',
+        'sexe' => '',
+        'adresse' => '',
+        'nom_err' => '',
+        'prenom_err' => '',
+        'date_err' => '',
+        'lieu_err' => '',
+        'adresse_err' =>''
+      ];
+      
+      // load form
+      $this->view('patients/initialForm',$data);
     }
-    redirect('patients/' . $_SESSION['userType']);
   }
 
   public function profile()
@@ -85,6 +132,17 @@ class Patients extends Controller
         'patient' => $this->activeUser
       ];
       $this->view('patients/report', $data);
+    }
+  }
+  public function editP()
+  {
+    if ($_SESSION['userType'] != 'patient') {
+      notAuthorized();
+    } else {
+      $data = [
+        'patient' => $this->activeUser
+      ];
+      $this->view('patients/editprofile', $data);
     }
   }
 

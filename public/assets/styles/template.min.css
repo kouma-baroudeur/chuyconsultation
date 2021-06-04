@@ -2930,7 +2930,7 @@ body.off-canvas-sidebar-open .layout {
 .module-page-title,
 .module-sm.module-divider-bottom,
 .module.module-divider-bottom {
-    border-bottom: 1px solid #f2f2f2
+    border-bottom: 1px solid #ebf8ff
 }
 
 @media (max-width:767px) {
@@ -3020,7 +3020,7 @@ body.off-canvas-sidebar-open .layout {
 }
 
 .module-page-title {
-    background-color: #f7f7f7;
+   background-color: #ebf8ff;
     padding: 111px 0 30px
 }
 

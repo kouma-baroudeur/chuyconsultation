@@ -4,7 +4,7 @@
 
   <?php require APPROOT . '/views/includes/head.php'; ?>
   <main class="h-full pb-16 overflow-y-auto" id="dynamicContent">
-    <?= flash('EtatPostEditCons'); ?>
+    <?= flash('register_successs'); ?>
     <?php require APPROOT . '/views/includes/dashboard.php'; ?>
   </main>
 </div>

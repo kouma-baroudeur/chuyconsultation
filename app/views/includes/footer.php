@@ -106,6 +106,34 @@
 <script src="<?= URLROOT ?>/assets/scripts/charts.js"></script>
 <script src="<?= URLROOT ?>/assets/scripts/custom.min.js"></script>
 <script src="<?= URLROOT ?>/assets/scripts/script.js"></script>
+<script>
+    $(document).ready(function() {
+        $("#show_hide_password a").on('click', function(event) {
+            event.preventDefault();
+            if($('#show_hide_password input').attr("type") == "text"){
+                $('#show_hide_password input').attr('type', 'password');
+                $('#show_hide_password i').addClass( "fa-eye-slash" );
+                $('#show_hide_password i').removeClass( "fa-eye");
+            }else if($('#show_hide_password input').attr("type") == "password"){
+                $('#show_hide_password input').attr('type', 'text');
+                $('#show_hide_password i').removeClass( "fa-eye-slash" );
+                $('#show_hide_password i').addClass( "fa-eye" );
+            }
+        });
+		$("#show_hide_password_conf a").on('click', function(event) {
+            event.preventDefault();
+            if($('#show_hide_password_conf input').attr("type") == "text"){
+                $('#show_hide_password_conf input').attr('type', 'password');
+                $('#show_hide_password_conf i').addClass( "fa-eye-slash" );
+                $('#show_hide_password_conf i').removeClass( "fa-eye" );
+            }else if($('#show_hide_password_conf input').attr("type") == "password"){
+                $('#show_hide_password_conf input').attr('type', 'text');
+                $('#show_hide_password_conf i').removeClass( "fa-eye-slash" );
+                $('#show_hide_password_conf i').addClass( "fa-eye" );
+            }
+        });
+    });
+</script>
 </body>
 
 </html>

@@ -1,18 +1,16 @@
 <?php
 
 /** DB Params e;#bZcR7GO-**/
-
 define('DB_HOST', 'localhost');
-define('DB_USER', 'martinku_chuyaounde');
-define('DB_PASS', 'LwZi7Vd(P$j2');
-define('DB_NAME', 'martinku_chu');
+define('DB_USER', 'root');
+define('DB_PASS', '');
+define('DB_NAME', 'chuyconsultation');
 
-/* serveur distant http://chuyconsultation.metchoup.com/chuy 
- mysql://NomdeDomaine.com/NomdelaBase*/
+/* serveur distant http://chuyconsultation.metchoup.com/chuy */
 // App Root
 define('APPROOT', dirname(dirname(__FILE__)));
 // URL Root
-define('URLROOT', 'http://chuyconsultation.metchoup.com/chuy'.'/chuyconsultation');
+define('URLROOT', 'http://' . $_SERVER['HTTP_HOST'] . '/chuyconsultation');
 // Site Name
 define('SITENAME', 'CHUY Consultation');
 //Patient portal name
@@ -36,8 +34,10 @@ define('DOC', URLROOT . '/assets/images/doctor-icon.png');
 define('PAT', URLROOT . '/assets/images/patient-picture-default.png');
 //admin image
 define('ADM', URLROOT . '/assets/images/admin.jpg');
-//docu,ent header
+//document header
 define('DOCHEADER', URLROOT . '/assets/images/headerMOPH.png');
+//registration image on patient side
+define('REGIMG', URLROOT . '/assets/images/regimg.jpg');
 
 //some repetitive names
 define('DASHBOARD', 'Tableau de bord');
