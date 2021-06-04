@@ -23,7 +23,7 @@
           </svg>
         </div>
         <div>
-          <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
+          <p class="mb-2 text-sm font-medium text-black dark:text-gray-400">
             Profil
           </p>
         </div>
@@ -38,7 +38,7 @@
           </svg>
         </div>
         <div>
-          <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
+          <p class="mb-2 text-sm font-medium text-black dark:text-gray-400">
             Consulter le planning de la semaine
           </p>
         </div>
@@ -63,18 +63,18 @@
 
             <div class="flex items-center justify-between py-2 px-6">
               <div>
-                <span x-text="MONTH_NAMES[month]" class="text-lg font-bold text-gray-800"></span>
-                <span x-text="year" class="ml-1 text-lg text-gray-600 font-normal"></span>
+                <span x-text="MONTH_NAMES[month]" class="text-lg font-bold text-black"></span>
+                <span x-text="year" class="ml-1 text-lg text-black font-normal"></span>
               </div>
               <div class="border rounded-lg px-1" style="padding-top: 2px;">
                 <button type="button" class="leading-none rounded-lg transition ease-in-out duration-100 inline-flex cursor-pointer hover:bg-gray-200 p-1 items-center" :class="{'cursor-not-allowed opacity-25': month == 0 }" :disabled="month == 0 ? true : false" @click="month--; getNoOfDays()">
-                  <svg class="h-6 w-6 text-gray-500 inline-flex leading-none" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <svg class="h-6 w-6 text-black inline-flex leading-none" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
                   </svg>
                 </button>
                 <div class="border-r inline-flex h-6"></div>
                 <button type="button" class="leading-none rounded-lg transition ease-in-out duration-100 inline-flex items-center cursor-pointer hover:bg-gray-200 p-1" :class="{'cursor-not-allowed opacity-25': month == 11 }" :disabled="month == 11 ? true : false" @click="month++; getNoOfDays()">
-                  <svg class="h-6 w-6 text-gray-500 inline-flex leading-none" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <svg class="h-6 w-6 text-black inline-flex leading-none" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                   </svg>
                 </button>
@@ -96,7 +96,7 @@
                 </template>
                 <template x-for="(date, dateIndex) in no_of_days" :key="dateIndex">
                   <div style="width: 14.28%; height: 60px" class="px-4 pt-2 border-r border-b relative">
-                    <div @click="showEventModal(date)" x-text="date" class="inline-flex w-6 h-6 items-center justify-center cursor-pointer text-center leading-none rounded-full transition ease-in-out duration-100" :class="{'bg-blue-600 text-white': isToday(date) == true, 'text-gray-700 hover:bg-blue-300': isToday(date) == false }"></div>
+                    <div @click="showEventModal(date)" x-text="date" class="inline-flex w-6 h-6 items-center justify-center cursor-pointer text-center leading-none rounded-full transition ease-in-out duration-100" :class="{'bg-blue-600 text-white': isToday(date) == true, 'text-black hover:bg-blue-300': isToday(date) == false }"></div>
                     <div style="height: 80px;" class="overflow-y-auto mt-1">
                       <div class="absolute top-0 right-0 mt-2 mr-2 inline-flex items-center justify-center rounded-full text-sm w-6 h-6 bg-gray-700 text-white leading-none" x-show="events.filter(e => e.appointement_date === new Date(year, month, date).toDateString()).length" x-text="events.filter(e => e.appointement_date === new Date(year, month, date).toDateString()).length">
                       </div>

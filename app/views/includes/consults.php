@@ -5,14 +5,14 @@
 
   <?= flash('EtatPostEditCons') ?>
   <!-- With actions -->
-  <h4 class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300">
+  <h4 class="mb-4 text-lg font-semibold text-black dark:text-gray-300">
     Tableau des états
   </h4>
   <div class="w-full overflow-hidden rounded-lg shadow-xs">
     <div class="w-full overflow-x-auto">
       <table class="w-full whitespace-no-wrap">
         <thead>
-          <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
+          <tr class="text-xs font-semibold tracking-wide text-left text-black uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
             <th class="px-4 py-3">Médecin</th>
             <th class="px-4 py-3">Date</th>
             <th class="px-4 py-3">Contenu</th>
@@ -22,7 +22,7 @@
 
           <?php foreach ($data['consult'] as $id => $Consultation) : ?>
 
-            <tr class="text-gray-700 dark:text-gray-400">
+            <tr class="text-black dark:text-gray-400">
               <td class="px-4 py-3">
                 <div class="flex items-center text-sm">
                   <!-- Avatar with inset shadow -->
@@ -32,7 +32,7 @@
                   </div>
                   <div>
                     <p class="font-semibold"><?= $Consultation->nomMedecin . " " . $Consultation->prenomMedecin ?></p>
-                    <p class="text-xs text-gray-600 dark:text-gray-400">
+                    <p class="text-xs text-black dark:text-gray-400">
                       <?= $Consultation->nomService ?>
                     </p>
                   </div>
@@ -49,7 +49,7 @@
         </tbody>
       </table>
     </div>
-    <div class="grid px-4 py-3 text-xs font-semibold tracking-wide text-gray-500 uppercase border-t dark:border-gray-700 bg-gray-50 sm:grid-cols-9 dark:text-gray-400 dark:bg-gray-800">
+    <div class="grid px-4 py-3 text-xs font-semibold tracking-wide text-black uppercase border-t dark:border-gray-700 bg-gray-50 sm:grid-cols-9 dark:text-gray-400 dark:bg-gray-800">
 
       <span class="col-span-2"></span>
     </div>

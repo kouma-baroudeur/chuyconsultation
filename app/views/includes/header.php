@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <!-- Mirrored from themes.2the.me/Core/1.3.3/index-4.html by HTTrack Website Copier/3.x -->
 
