@@ -45,6 +45,16 @@ class Admin
         $answer = $this->db->resultSet();
         return $answer;
     }
+    public function profileuser()
+    {
+        $sql = "SELECT * ";
+        $sql .= "FROM medecin,service,users ";
+        $sql .= "WHERE medecin.codeService = service.codeService ";
+        $sql .= "AND medecin.userId = users.id ";
+        $this->db->query($sql);
+        $answer = $this->db->execute();
+        return $answer;
+    }
     public function registerstaff($data)
     {
         $this->db->query(REGISTERUSER);

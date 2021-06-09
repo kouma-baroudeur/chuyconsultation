@@ -42,7 +42,9 @@ class Patient
         $_SESSION['userState'] = 'complet';
         return $answer && $updateState;
     }
-
+    public function updateProfile($data){
+        
+    }
     public function rendezvous($etat)
     {
         $user = [
@@ -153,5 +155,23 @@ class Patient
         $rows = $this->db->resultSet();
         return $rows;
     }
+    /* public function editP($etat)
+    {
+        $user = [
+            'id'    =>  $_SESSION['userId'],
+            'type'  =>  $_SESSION['userType'],
+            'email' => $_SESSION['userMail'],
+            'state' => $_SESSION['userState']
+        ];
+        $codePatient = $this->getPatientById($user)->IP;
+        $sql = "SELECT * ";
+        $sql .= "FROM patient";
+        $sql .= "WHERE patient.IP = :IP  ";
+
+        $this->db->query($sql);
+        $this->db->bind(':IP', $codePatient);
+        $rows = $this->db->resultSet();
+        return $rows;
+    } */
    
 }

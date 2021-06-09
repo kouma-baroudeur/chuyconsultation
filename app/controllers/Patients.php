@@ -111,7 +111,6 @@ class Patients extends Controller
       $this->view('patients/initialForm',$data);
     }
   }
-
   public function profile()
   {
     if ($_SESSION['userType'] != 'patient') {
@@ -121,7 +120,11 @@ class Patients extends Controller
       $this->view('patients/profile', $activeUser);
     }
   }
-
+  public function editP()
+  {
+    $activeUser = $this->activeUser;
+    $this->view('patients/editprofile', $activeUser);
+  }
   public function rendezvous($etat = '')
   {
     if ($_SESSION['userType'] != 'patient') {
@@ -134,18 +137,52 @@ class Patients extends Controller
       $this->view('patients/report', $data);
     }
   }
-  public function editP()
-  {
-    if ($_SESSION['userType'] != 'patient') {
-      notAuthorized();
-    } else {
+  public function updateProfile(){
+    $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
       $data = [
-        'patient' => $this->activeUser
+        'nom' => trim($_POST['nom']),
+        'prenom' => trim($_POST['prenom']),
+        'dateNaissance' => trim($_POST['dateNaissance']),
+        'lieuNaissance' => trim($_POST['lieuNaissance']),
+        'sexe' => $_POST['sexe'],
+        'adresse' => trim($_POST['adresse']),
+        'nom_err' => '',
+        'prenom_err' => '',
+        'date_err' => '',
+        'lieu_err' => '',
+        'adresse_err' =>''
       ];
-      $this->view('patients/editprofile', $data);
-    }
-  }
 
+      if(empty($data['nom'])){
+        $data['nom_err'] = 'Veuillez renseigner ce champ.';
+      }
+      if(empty($data['prenom'])){
+          $data['prenom_err'] = 'Veuillez renseigner ce champ.';
+      }
+      if(empty($data['dateNaissance'])){
+          $data['date_err'] = 'Veuillez renseigner ce champ.';
+      }
+      if(empty($data['lieuNaissance'])){
+        $data['lieu_err'] = 'Veuillez renseigner ce champ.';
+      }
+      if(empty($data['adresse'])){
+        $data['adresse_err'] = 'Veuillez renseigner ce champ.';
+      }
+
+      if(empty($data['nom_err']) && empty($data['prenom_err']) && empty($data['date_err']) && empty($data['lieu_err']) && empty($data['adresse_err']))
+      {
+        // adding information into de table patient
+        if($this->patientModel->updateProfile($data))
+        {
+          flash('register_success','Vos informations ont été mis à jours');
+          redirect('patients/patient');
+        }else {
+          die('Quelque chose qui ne va pas bien!');
+        }      
+      }else{
+        $this->view('patients/editprofile',$data);
+      }
+  }
   public function askRdv()
   {
     if ($_SESSION['userType'] != 'patient') {
@@ -172,7 +209,7 @@ class Patients extends Controller
             'IP' => $id,
             'codeMedecin' => $_POST['codeMedecin'],
             'dateRdv' => $_POST['dateRdv'],
-            'heureRdv' => $_POST['heureRdv']
+            'heureRdv' => $_POST['heureRdv'] 
           ];
           if ($this->patientModel->askRdv($data)) {
             flash('EtatPostEditCons', "Votre rendez-vous a été crée avec succés!", 'alert alert-success');

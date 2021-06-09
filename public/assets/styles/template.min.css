@@ -1766,7 +1766,7 @@ body:after {
 .off-canvas-sidebar h3,
 .off-canvas-sidebar h4,
 .off-canvas-sidebar h5,
-.off-canvas-sidebar h6 {
+.off-canvas-sidebar h6 { 
     color: #fff
 }
 
@@ -1803,11 +1803,11 @@ body.off-canvas-sidebar-open:after {
     opacity: 1;
     top: 0
 }
-
+/* start preloader inline */
 .layout {
     position: relative;
-    -webkit-transition: left .2s cubic-bezier(.645, .045, .355, 1), 1.7s opacity ease;
-    transition: left .2s cubic-bezier(.645, .045, .355, 1), 1.7s opacity ease;
+    -webkit-transition: left 0.1s cubic-bezier(.645, .045, .355, 1), 0.1s opacity ease;
+    transition: left 0.1s cubic-bezier(.645, .045, .355, 1), 0.1s opacity ease;
     left: 0
 }
 
@@ -3020,7 +3020,7 @@ body.off-canvas-sidebar-open .layout {
 }
 
 .module-page-title {
-   background-color: #ebf8ff;
+   background-color: #ffffff;
     padding: 111px 0 30px
 }
 

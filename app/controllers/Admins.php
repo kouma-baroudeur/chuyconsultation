@@ -53,7 +53,17 @@ class Admins extends Controller
             $this->view('admins/user', $data);
         }
     }
-    
+    public function profilestaff()
+    {
+        if ($_SESSION['userType'] != 'admin') {
+            notAuthorized();
+        } else {
+            $data = [
+                'medecins' => $this->adminModel->profileuser()
+            ];
+            $this->view('admins/profileuser', $data);
+        }
+    }
     /* public function sendMail()
     {
         //sending mail to physician

@@ -56,7 +56,7 @@
                     </div>
                     <div class="col-md-2">
                         <label class="font-weight-bold labels">Sexe</label>
-                        <div class="px-4 py-2"><?= $data->sexePatient ?></div>
+                        <div class="px-4 py-2"><?= sexeIco($data->sexePatient).' '.$data->sexePatient ?></div>
                     </div>
                 </div>
             </div>
