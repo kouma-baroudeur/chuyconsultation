@@ -84,7 +84,7 @@ class Patients extends Controller
         if($this->patientModel->createProfile($data))
         {
           flash('register_success','Vous êtes bien inscrit');
-          redirect('patients/patient');
+          redirect('patients/contactUrgence');
         }else {
           die('Quelque chose qui ne va pas bien!');
         }      
@@ -104,6 +104,75 @@ class Patients extends Controller
         'prenom_err' => '',
         'date_err' => '',
         'lieu_err' => '',
+        'adresse_err' =>''
+      ];
+      
+      // load form
+      $this->view('patients/initialForm',$data);
+    }
+  }
+  public function urgence()
+  {
+    if (isLoggedIn()) 
+    {
+      $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+      $data = [
+        'nom' => trim($_POST['nomUrgence']),
+        'prenom' => trim($_POST['prenomUrgence']),
+        'sexe' => $_POST['sexeUrgence'],
+        'lien' => $_POST['lien'],
+        'tel' => $_POST['tel'],
+        'adresse' => trim($_POST['adresseUrgence']),
+        'nom_err' => '',
+        'tel_err' => '',
+        'prenom_err' => '',
+        'lien_err' => '',
+        'adresse_err' =>''
+      ];
+
+      //$tel_valid = '693553454';
+      if(empty($data['nom'])){
+        $data['nom_err'] = 'Veuillez renseigner ce champ.';
+      }
+      if(empty($data['tel']) || (!preg_match("/^[0-9]{9}$/", $data['tel']) ) ) {
+        $data['tel_err'] = 'Veuillez renseigner ce champ.';
+      }
+      if(empty($data['prenom'])){
+          $data['prenom_err'] = 'Veuillez renseigner ce champ.';
+      }
+      if(empty($data['lien'])){
+          $data['lien_err'] = 'Veuillez renseigner ce champ.';
+      }
+      if(empty($data['adresse'])){
+        $data['adresse_err'] = 'Veuillez renseigner ce champ.';
+      }
+
+      if(empty($data['nom_err']) && empty($data['prenom_err']) && empty($data['lien_err']) && empty($data['tel_err']) && empty($data['adresse_err']))
+      {
+        // adding information into de table
+        if($this->patientModel->urgence($data))
+        {
+          flash('register_success','Le contact d\'urgence a été enrégistré avec succès');
+          redirect('patients/patient');
+        }else {
+          die('Quelque chose qui ne va pas bien!');
+        }      
+      }else{
+        $this->view('patients/contactUrgence',$data);
+      }
+    }else {
+      // Init data
+      $data = [
+        'nom' => '',
+        'prenom' => '',
+        'tel' => '',
+        'lien' => '',
+        'sexe' => '',
+        'adresse' => '',
+        'nom_err' => '',
+        'prenom_err' => '',
+        'tel_err' => '',
+        'lien_err' => '',
         'adresse_err' =>''
       ];
       

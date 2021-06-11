@@ -70,13 +70,16 @@
                         <input type="text" name="prenomUrgence" class="form-control form-control-lg " id="prenomUrgence">
 
                         <label class="font-weight-bold labels">Genre :</label>
-                            <select name="sexe" class="form-control">
+                            <select name="sexeUrgence" class="form-control">
                                 <option value="F"> F&eacute;minin</option>
                                 <option value="M"> Masculin</option>
                             </select>
 
+                        <label class="font-weight-bold labels">Adresse :</label>
+                        <input type="text" name="adresseUrgence" class="form-control form-control-lg " id="adresseUrgence">
+
                         <label class="font-weight-bold labels">Téléphone :</label>
-                        <input name="tel" class="form-control form-control-lg" id="tel" type="text">
+                        <input name="telUrgence" class="form-control form-control-lg" id="telUrgence" type="text">
 
                         <label class="font-weight-bold labels">Lien :</label>
                         <input name="lien" class="form-control form-control-lg" id="lien" type="text">

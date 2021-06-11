@@ -1,3 +1,78 @@
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+* {box-sizing: border-box;}
+
+/* Button used to open the chat form - fixed at the bottom of the page */
+.open-button {
+  background-color: #2b6cb0;
+  color: white;
+  /* padding: 6px 2px; */
+  border: none;
+  cursor: pointer;
+  opacity: 1.8;
+  position: fixed;
+  bottom: 23px;
+  right: 10px;
+  width: 45px;
+  /* height: 45px; */
+}
+
+/* The popup chat - hidden by default */
+.chat-popup {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  right: 15px;
+  border: 3px solid #f1f1f1;
+  z-index: 9;
+}
+
+/* Add styles to the form container */
+.form-container {
+  max-width: 300px;
+  padding: 10px;
+  background-color: white;
+}
+
+/* Full-width textarea */
+.form-container textarea {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f1f1f1;
+  resize: none;
+  min-height: 200px;
+}
+
+/* When the textarea gets focus, do something */
+.form-container textarea:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Set a style for the submit/send button */
+.form-container .btn {
+  background-color: #04AA6D;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom:10px;
+  opacity: 0.8;
+}
+
+/* Add a red background color to the cancel button */
+.form-container .cancel {
+  background-color: red;
+}
+
+/* Add some hover effects to buttons */
+.form-container .btn:hover, .open-button:hover {
+  opacity: 1;
+}
+</style>
 <header class="z-10 py-4 bg-white shadow-md dark:bg-gray-800">
   <div class="container flex items-center justify-between h-full px-6 mx-auto text-blue-600 dark:text-blue-600">
     <!-- Mobile hamburger -->
@@ -129,3 +204,39 @@
     </ul>
   </div>
 </header>
+
+<button class="open-button" onclick="openForm()">
+  <img src="<?=MESSAGE?>">
+</button>
+
+<div class="chat-popup" id="myForm">
+  <form action="/action_page.php" class="form-container">
+    <section class="users">
+      <header>
+        <div class="flex content">
+          <img src="<?=PAT ?>" width="80px" height="80px" alt="Patient Pp">
+          <div class="details">
+            <span><?= $data['patient']->nomPatient . ' ' . $data['patient']->prenomPatient ?></span>
+            <span><?= $data['medecin']->nomMedecin . ' ' . $data['medecin']->prenomMedecin ?></span>
+            <span><?= $data['admin']->nomMedecin . ' ' . $data['admin']->prenomMedecin ?></span>
+            <p>Active</p>
+          </div>
+        </div>
+      </header>
+      <div class="search">
+        <span class="text">Chercher un utilisateur</span>
+        <input type="text" placeholder="Entrer le nom...">
+        <button><i class="fas fa-search"></i></button>
+      </div>
+      <div class="users-list">
+  
+      </div>
+    </section>
+
+    <label for="msg"><b>Message</b></label>
+    <textarea placeholder="Type message.." name="msg" required></textarea>
+
+    <button type="submit" class="btn">Send</button>
+    <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+  </form>
+</div>

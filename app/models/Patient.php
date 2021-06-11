@@ -42,6 +42,25 @@ class Patient
         $_SESSION['userState'] = 'complet';
         return $answer && $updateState;
     }
+    public function urgence($data)
+    {
+        if ($_SESSION['userType'] == 'patient') {
+            $sql = CREATEPATIENTPROFILE;
+        }
+        $this->db->query($sql);
+        $this->db->bind(':nom', $data['nom']);
+        $this->db->bind(':prenom', $data['prenom']);
+        $this->db->bind(':sexe', $data['sexe']);
+        $this->db->bind(':dateNaissance', $data['dateNaissance']);
+        $this->db->bind(':lieuNaissance', $data['lieuNaissance']);
+        $this->db->bind(':adresse', $data['adresse']);
+        $this->db->bind(':userId', $_SESSION['userId']);
+        $answer = $this->db->execute();
+        $this->db->query(UPDATESTATE . $_SESSION['userId']);
+        $updateState = $this->db->execute();
+        $_SESSION['userState'] = 'complet';
+        return $answer && $updateState;
+    }
     public function updateProfile($data){
         
     }

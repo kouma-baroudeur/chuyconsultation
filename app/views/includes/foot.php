@@ -1,5 +1,14 @@
 </body>
 <script>
+  function openForm() {
+    document.getElementById("myForm").style.display = "block";
+  }
+
+  function closeForm() {
+    document.getElementById("myForm").style.display = "none";
+  }
+</script>
+<!-- <script>
   window.watsonAssistantChatOptions = {
     integrationID: "11e3e2de-aead-4481-825a-5e1f3dcd75b4", // The ID of this integration.
     region: "eu-de", // The region your integration is hosted in.
@@ -13,7 +22,7 @@
     t.src = "https://web-chat.global.assistant.watson.appdomain.cloud/loadWatsonAssistantChat.js";
     document.head.appendChild(t);
   });
-</script>
+</script> -->
 <script src="<?= URLROOT ?>/assets/scripts/jquery-3.5.1.slim.min.js"></script>
 <script src="<?= URLROOT ?>/assets/scripts/Chart.min.js"></script>
 <script src="<?= URLROOT ?>/assets/scripts/charts-lines.js" defer></script>

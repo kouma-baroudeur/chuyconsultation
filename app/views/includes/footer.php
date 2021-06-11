@@ -79,7 +79,6 @@
 	</div>
 </div>
 <!-- Off canvas end-->
-
 <!-- Scripts-->
 <script>
 	window.watsonAssistantChatOptions = {

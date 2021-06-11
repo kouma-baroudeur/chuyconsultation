@@ -52,8 +52,10 @@ label {
                 <div class="flex flex-col flex-1 justify-center mb-8">
                     <div class="w-full pt-4">
                         <?= flash('ErrorProfileCreate') ?>
-                        <form class="container" action="<?= URLROOT ?>/patients/createProfile/" method="POST">
-
+                        <form class="container" action="<?= URLROOT ?>/patients/urgence/" method="POST">
+                            <div class="d-flex justify-content-between align-items-center experience">
+                                <h4 class="text-right">Personne à contacter en cas d'urgence</h4>
+                            </div>
                             <div class="row">
                                 <div class="col-25">
                                     <label for="nom"> Nom :</label>
@@ -74,21 +76,21 @@ label {
                             </div>
                             <div class="row">
                                 <div class="col-25">
-                                    <label for="prenom"> Date de naissance :</label>
+                                    <label for="prenom"> Téléphone :</label>
                                 </div>
                                 <div class="col-75">
-                                    <input type="date" name="dateNaissance" class="form-control form-control-lg <?= (!empty($data['date_err'])) ? 'is-invalid' : '' ?>" id="date" value="<?= $data['dateNaissance'] ?>">
+                                    <input type="number" name="tel" class="form-control form-control-lg <?= (!empty($data['tel_err'])) ? 'is-invalid' : '' ?>" id="tel" value="<?= $data['tel'] ?>">
                                 </div>
-                                <span class="invalid-feedback"><?php echo $data['date_err']; ?></span>
+                                <span class="invalid-feedback"><?php echo $data['tel_err']; ?></span>
                             </div>
                             <div class="row">
                                 <div class="col-25">
-                                    <label for="prenom"> Lieu de naissance :</label>
+                                    <label for="prenom"> Lien :</label>
                                 </div>
                                 <div class="col-75">
-                                    <input type="text" name="lieuNaissance" placeholder="lieu de naissance" class="form-control form-control-lg <?= (!empty($data['lieu_err'])) ? 'is-invalid' : '' ?>" id="lieu" value="<?= $data['lieuNaissance'] ?>">
+                                    <input type="text" name="lien" placeholder="lien de parenté" class="form-control form-control-lg <?= (!empty($data['lien_err'])) ? 'is-invalid' : '' ?>" id="lien" value="<?= $data['lien'] ?>">
                                 </div>
-                                <span class="invalid-feedback"><?php echo $data['lieu_err']; ?></span>
+                                <span class="invalid-feedback"><?php echo $data['lien_err']; ?></span>
                             </div>
                             <div class="row">
                                 <div class="col-25">
@@ -110,8 +112,8 @@ label {
                                 </div>
                                 <span class="invalid-feedback"><?php echo $data['adresse_err']; ?></span>
                             </div>
-                            <div class="form-group mt-5"></div>
-                            <button type="submit" class="btn btn-primary" onclick="confirmer()">Envoyer</button>
+                            <div class="form-group mt-2"></div>
+                            <button type="submit" class="btn btn-primary" onclick="confirmer()">Valider</button>
                         </form>
                     </div>
                 </div>

@@ -24,8 +24,13 @@ define('HOSPITAL', 'CHU Yaoundé');
 //patient profile name
 define('PATIENT', 'CHU Patient Profile');
 
+//chatapp
+/* define('CHATAPP', URLROOT . '/chatapp/'); */
+
 //logo for our site 
 define('SITELOGO', URLROOT . '/assets/images/logo.jpg');
+//message image 
+define('MESSAGE', URLROOT . '/assets/images/message.jpg');
 //icon for our site
 define('SITEICON', URLROOT . '/assets/icons/logo.ico');
 //doctor image

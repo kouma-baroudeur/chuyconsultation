@@ -22,10 +22,10 @@
 	<!-- Template core CSS-->
 	<link href="<?= URLROOT ?>/assets/styles/template.min.css" rel="stylesheet">
 	<link href="<?= URLROOT ?>/assets/styles/customv4.css" rel="stylesheet">
+	
 </head>
 
 <body>
-
 	<!-- Layout-->
 	<div class="layout">
 		<!-- Header-->
