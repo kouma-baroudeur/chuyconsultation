@@ -48,8 +48,7 @@ class Patients extends Controller
   }
   public function createProfile()
   {
-    if (isLoggedIn() && $_SESSION['userState'] == 'incomplet') 
-    {
+    if (isLoggedIn() && $_SESSION['userState'] == 'incomplet') {
       $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
       $data = [
         'nom' => trim($_POST['nom']),
@@ -62,39 +61,37 @@ class Patients extends Controller
         'prenom_err' => '',
         'date_err' => '',
         'lieu_err' => '',
-        'adresse_err' =>''
+        'adresse_err' => ''
       ];
 
-      if(empty($data['nom'])){
+      if (empty($data['nom'])) {
         $data['nom_err'] = 'Veuillez renseigner ce champ.';
       }
-      if(empty($data['prenom'])){
-          $data['prenom_err'] = 'Veuillez renseigner ce champ.';
+      if (empty($data['prenom'])) {
+        $data['prenom_err'] = 'Veuillez renseigner ce champ.';
       }
-      if(empty($data['dateNaissance'])){
-          $data['date_err'] = 'Veuillez renseigner ce champ.';
+      if (empty($data['dateNaissance'])) {
+        $data['date_err'] = 'Veuillez renseigner ce champ.';
       }
-      if(empty($data['lieuNaissance'])){
+      if (empty($data['lieuNaissance'])) {
         $data['lieu_err'] = 'Veuillez renseigner ce champ.';
       }
-      if(empty($data['adresse'])){
+      if (empty($data['adresse'])) {
         $data['adresse_err'] = 'Veuillez renseigner ce champ.';
       }
 
-      if(empty($data['nom_err']) && empty($data['prenom_err']) && empty($data['date_err']) && empty($data['lieu_err']) && empty($data['adresse_err']))
-      {
+      if (empty($data['nom_err']) && empty($data['prenom_err']) && empty($data['date_err']) && empty($data['lieu_err']) && empty($data['adresse_err'])) {
         // adding information into de table patient
-        if($this->patientModel->createProfile($data))
-        {
-          flash('register_success','Vous êtes bien inscrit');
+        if ($this->patientModel->createProfile($data)) {
+          flash('register_success', 'Vous êtes bien inscrit');
           redirect('patients/urgence');
-        }else {
+        } else {
           die('Quelque chose qui ne va pas bien!');
-        }      
-      }else{
-        $this->view('patients/initialForm',$data);
+        }
+      } else {
+        $this->view('patients/initialForm', $data);
       }
-    }else {
+    } else {
       // Init data
       $data = [
         'nom' => '',
@@ -107,17 +104,16 @@ class Patients extends Controller
         'prenom_err' => '',
         'date_err' => '',
         'lieu_err' => '',
-        'adresse_err' =>''
+        'adresse_err' => ''
       ];
-      
+
       // load form
-      $this->view('patients/initialForm',$data);
+      $this->view('patients/initialForm', $data);
     }
   }
   public function urgence()
   {
-    if (isLoggedIn()) 
-    {
+    if (isLoggedIn()) {
       $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
       $data = [
         'nomContact' => trim($_POST['nomContact']),
@@ -128,37 +124,35 @@ class Patients extends Controller
         'nomContact_err' => '',
         'telurgence_err' => '',
         'prenomContact_err' => '',
-        'adresseContact_err' =>''
+        'adresseContact_err' => ''
       ];
 
       //$tel_valid = '693553454';
-      if(empty($data['nomContact'])){
+      if (empty($data['nomContact'])) {
         $data['nomContact_err'] = 'Veuillez renseigner ce champ.';
       }
-      if(empty($data['telurgence']) || (!preg_match("/^[0-9]{9}$/", $data['telurgence']) ) ) {
+      if (empty($data['telurgence']) || (!preg_match("/^[0-9]{9}$/", $data['telurgence']))) {
         $data['telurgence_err'] = 'Veuillez renseigner ce champ.';
       }
-      if(empty($data['prenomContact'])){
-          $data['prenomContact_err'] = 'Veuillez renseigner ce champ.';
+      if (empty($data['prenomContact'])) {
+        $data['prenomContact_err'] = 'Veuillez renseigner ce champ.';
       }
-      if(empty($data['adresseContact'])){
+      if (empty($data['adresseContact'])) {
         $data['adresseContact_err'] = 'Veuillez renseigner ce champ.';
       }
 
-      if(empty($data['nomContact_err']) && empty($data['prenomContact_err']) && empty($data['telurgence_err']) && empty($data['adresseContact_err']))
-      {
+      if (empty($data['nomContact_err']) && empty($data['prenomContact_err']) && empty($data['telurgence_err']) && empty($data['adresseContact_err'])) {
         // adding information into de table
-        if($this->patientModel->urgence($data))
-        {
-          flash('register_success','Le contact d\'urgence a été enrégistré avec succès.');
+        if ($this->patientModel->urgence($data)) {
+          flash('register_success', 'Le contact d\'urgence a été enrégistré avec succès.');
           redirect('patients/patient');
-        }else {
+        } else {
           die('Quelque chose qui ne va pas bien!');
-        }      
-      }else{
-        $this->view('patients/contactUrgence',$data);
+        }
+      } else {
+        $this->view('patients/contactUrgence', $data);
       }
-    }else {
+    } else {
       // Init data
       $data = [
         'nomContact' => '',
@@ -169,11 +163,11 @@ class Patients extends Controller
         'nomContact_err' => '',
         'telurgence_err' => '',
         'prenomContact_err' => '',
-        'adresseContact_err' =>''
+        'adresseContact_err' => ''
       ];
-      
+
       // load form
-      $this->view('patients/contactUrgence',$data);
+      $this->view('patients/contactUrgence', $data);
     }
   }
   public function profile()
@@ -208,72 +202,71 @@ class Patients extends Controller
       $this->view('patients/report', $data);
     }
   }
-  public function updateProfile(){
-      $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-      $data = [
-        'nom' => trim($_POST['nom']),
-        'prenom' => trim($_POST['prenom']),
-        'dateNaissance' => trim($_POST['dateNaissance']),
-        'lieuNaissance' => trim($_POST['lieuNaissance']),
-        'sexe' => $_POST['sexe'],
-        'adresse' => trim($_POST['adresse']),
-        'nomContact' => trim($_POST['nomContact']),
-        'prenomContact' => trim($_POST['prenomContact']),
-        'sexeContact' => $_POST['sexeContact'],
-        'telurgence' => $_POST['telurgence'],
-        'adresseContact' => trim($_POST['adresseContact']),
-        'nomContact_err' => '',
-        'telurgence_err' => '',
-        'prenomContact_err' => '',
-        'adresseContact_err' =>'',
-        'nom_err' => '',
-        'prenom_err' => '',
-        'date_err' => '',
-        'lieu_err' => '',
-        'adresse_err' =>''
-      ];
+  public function updateProfile()
+  {
+    $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+    $data = [
+      'nom' => trim($_POST['nom']),
+      'prenom' => trim($_POST['prenom']),
+      'dateNaissance' => trim($_POST['dateNaissance']),
+      'lieuNaissance' => trim($_POST['lieuNaissance']),
+      'sexe' => $_POST['sexe'],
+      'adresse' => trim($_POST['adresse']),
+      'nomContact' => trim($_POST['nomContact']),
+      'prenomContact' => trim($_POST['prenomContact']),
+      'sexeContact' => $_POST['sexeContact'],
+      'telurgence' => $_POST['telurgence'],
+      'adresseContact' => trim($_POST['adresseContact']),
+      'nomContact_err' => '',
+      'telurgence_err' => '',
+      'prenomContact_err' => '',
+      'adresseContact_err' => '',
+      'nom_err' => '',
+      'prenom_err' => '',
+      'date_err' => '',
+      'lieu_err' => '',
+      'adresse_err' => ''
+    ];
 
-      if(empty($data['nom'])){
-        $data['nom_err'] = 'Veuillez renseigner ce champ.';
-      }
-      if(empty($data['prenom'])){
-          $data['prenom_err'] = 'Veuillez renseigner ce champ.';
-      }
-      if(empty($data['dateNaissance'])){
-          $data['date_err'] = 'Veuillez renseigner ce champ.';
-      }
-      if(empty($data['lieuNaissance'])){
-        $data['lieu_err'] = 'Veuillez renseigner ce champ.';
-      }
-      if(empty($data['adresse'])){
-        $data['adresse_err'] = 'Veuillez renseigner ce champ.';
-      }
-      if(empty($data['nomContact'])){
-        $data['nomContact_err'] = 'Veuillez renseigner ce champ.';
-      }
-      if(empty($data['telurgence']) || (!preg_match("/^[0-9]{9}$/", $data['telurgence']) ) ) {
-        $data['telurgence_err'] = 'Veuillez renseigner ce champ.';
-      }
-      if(empty($data['prenomContact'])){
-          $data['prenomContact_err'] = 'Veuillez renseigner ce champ.';
-      }
-      if(empty($data['adresseContact'])){
-        $data['adresseContact_err'] = 'Veuillez renseigner ce champ.';
-      }
+    if (empty($data['nom'])) {
+      $data['nom_err'] = 'Veuillez renseigner ce champ.';
+    }
+    if (empty($data['prenom'])) {
+      $data['prenom_err'] = 'Veuillez renseigner ce champ.';
+    }
+    if (empty($data['dateNaissance'])) {
+      $data['date_err'] = 'Veuillez renseigner ce champ.';
+    }
+    if (empty($data['lieuNaissance'])) {
+      $data['lieu_err'] = 'Veuillez renseigner ce champ.';
+    }
+    if (empty($data['adresse'])) {
+      $data['adresse_err'] = 'Veuillez renseigner ce champ.';
+    }
+    if (empty($data['nomContact'])) {
+      $data['nomContact_err'] = 'Veuillez renseigner ce champ.';
+    }
+    if (empty($data['telurgence']) || (!preg_match("/^[0-9]{9}$/", $data['telurgence']))) {
+      $data['telurgence_err'] = 'Veuillez renseigner ce champ.';
+    }
+    if (empty($data['prenomContact'])) {
+      $data['prenomContact_err'] = 'Veuillez renseigner ce champ.';
+    }
+    if (empty($data['adresseContact'])) {
+      $data['adresseContact_err'] = 'Veuillez renseigner ce champ.';
+    }
 
-      if(empty($data['nom_err']) && empty($data['prenom_err']) && empty($data['date_err']) && empty($data['lieu_err']) && empty($data['adresse_err']) && empty($data['nomContact_err']) && empty($data['prenomContact_err']) && empty($data['telurgence_err']) && empty($data['adresseContact_err']))
-      {
-        // updating data into de tables
-        if($this->patientModel->updateProfile($data))
-        {
-          flash('register_success','Vos informations ont été mis à jours');
-          redirect('patients/patient');
-        }else {
-          die('Quelque chose qui ne va pas bien!');
-        }      
-      }else{
-        $this->view('patients/editprofile',$data);
+    if (empty($data['nom_err']) && empty($data['prenom_err']) && empty($data['date_err']) && empty($data['lieu_err']) && empty($data['adresse_err']) && empty($data['nomContact_err']) && empty($data['prenomContact_err']) && empty($data['telurgence_err']) && empty($data['adresseContact_err'])) {
+      // updating data into de tables
+      if ($this->patientModel->updateProfile($data)) {
+        flash('register_success', 'Vos informations ont été mis à jours');
+        redirect('patients/patient');
+      } else {
+        die('Quelque chose qui ne va pas bien!');
       }
+    } else {
+      $this->view('patients/editprofile', $data);
+    }
   }
   public function askRdv()
   {
@@ -288,7 +281,15 @@ class Patients extends Controller
       $this->view('patients/askRdv', $data);
     }
   }
-
+  /* public function delRdv()
+  {
+    if ($_SESSION['userType'] != 'patient') {
+      notAuthorized();
+    } else {
+      $this->patientModel->deleteRdv();
+      $this->view('patients/report');
+    }
+  } */
   public function askRdvAction($id)
   {
     if ($_SESSION['userType'] != 'patient') {
@@ -301,7 +302,7 @@ class Patients extends Controller
             'IP' => $id,
             'codeMedecin' => $_POST['codeMedecin'],
             'dateRdv' => $_POST['dateRdv'],
-            'heureRdv' => $_POST['heureRdv'] 
+            'heureRdv' => $_POST['heureRdv']
           ];
           if ($this->patientModel->askRdv($data)) {
             flash('EtatPostEditCons', "Votre rendez-vous a été crée avec succés!", 'alert alert-success');
@@ -309,7 +310,7 @@ class Patients extends Controller
             flash('EtatPostEditCons', "oops! erreur inattendue!", 'alert alert-danger');
           }
         } else {
-          flash('EtatPostEditCons', "Veuiller remplir tous les champs requis!", 'alert alert-danger');
+          flash('EtatPostEditCons', "Veuillez remplir tous les champs requis!", 'alert alert-danger');
         }
       }
     }
@@ -336,7 +337,7 @@ class Patients extends Controller
         'medoc' => $this->patientModel->medoc($etat),
         'patient' => $this->activeUser
       ];
-      $this->view('patients/medoc', $data); 
+      $this->view('patients/medoc', $data);
     }
   }
 

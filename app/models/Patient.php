@@ -120,6 +120,14 @@ class Patient
         return $answer;
     }
 
+   /*  public function deleteRdv()
+    {
+        $rdv = $this-> rendezvous('')->numeroRdv;
+        $sql ="DELETE FROM rendezvous WHERE numeroRdv =".$rdv;
+        $this->db->query($sql);
+        return $this->db->execute();
+    } */
+
     public function listeMedecins()
     {
         $sql = "SELECT * ";

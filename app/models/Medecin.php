@@ -19,7 +19,36 @@ class Medecin
         $row->type = $user['type'];
         $row->email = $user['email'];
         $row->state = $user['state'];
-        $row = $this->db->single();
+        $row = $this->db->single(); 
         return $row;
+    }
+    public function medRdvAll($forMedecin,$filter){
+        $user=[
+            'id'    =>  $_SESSION['userId'],
+            'type'  =>  $_SESSION['userType'],
+            'email' => $_SESSION['userMail'],
+            'state' => $_SESSION['userState']
+             ];
+        $codeMedecin=$this->getMedecinById($user)->codeMedecin;
+        $sql = "SELECT * ";
+        $sql .="FROM patient,medecin,consultations,rendezvous,service ";
+        $sql .="WHERE medecin.codeService = service.codeService ";
+        $sql .="AND rendezvous.IP = patient.IP ";
+        $sql .="AND rendezvous.codeMedecin = medecin.codeMedecin ";
+        if($filter=="Attente"){
+            $sql .="AND rendezvous.etatRdv = 'Attente' ";
+        }elseif($filter=="Confirme"){
+            $sql .="AND rendezvous.etatRdv = 'Confirme' ";
+        }
+        if($forMedecin=="only"){
+            $sql .="AND medecin.codeMedecin = :codeMedecin ";
+        }
+        $sql .="ORDER BY rendezvous.numeroRdv DESC  ";
+        $this->db->query($sql);
+        if($forMedecin=="only"){
+            $this->db->bind(':codeMedecin',$codeMedecin);
+        }
+        $rows= $this->db->resultSet();
+        return $rows;
     }
 }
