@@ -61,43 +61,34 @@ label {
                                     <label for="nom"> Nom :</label>
                                 </div>
                                 <div class="col-75">
-                                    <input type="text" class="form-control form-control-lg <?= (!empty($data['nom_err'])) ? 'is-invalid' : '' ?>" id="nom" name="nom" placeholder="Nom" value="<?= $data['nom'] ?>">
+                                    <input type="text" class="form-control form-control-lg <?= (!empty($data['nomContact_err'])) ? 'is-invalid' : '' ?>" id="nomContact" name="nomContact" placeholder="Nom" value="<?= $data['nomContact'] ?>">
                                 </div>
-                                <span class="invalid-feedback"><?php echo $data['nom_err']; ?></span>
+                                <span class="invalid-feedback"><?php echo $data['nomContact_err']; ?></span>
                             </div>
                             <div class="row">
                                 <div class="col-25">
                                     <label for="prenom"> Pr&eacute;nom :</label>
                                 </div>
                                 <div class="col-75">
-                                    <input type="text" name="prenom" class="form-control form-control-lg <?= (!empty($data['prenom_err'])) ? 'is-invalid' : '' ?>" id="prenom" placeholder="prénom" value="<?= $data['prenom'] ?>">
+                                    <input type="text" name="prenomContact" class="form-control form-control-lg <?= (!empty($data['prenomContact_err'])) ? 'is-invalid' : '' ?>" id="prenomContact" placeholder="prénom" value="<?= $data['prenomContact'] ?>">
                                 </div>
-                                <span class="invalid-feedback"><?php echo $data['prenom_err']; ?></span>
+                                <span class="invalid-feedback"><?php echo $data['prenomContact_err']; ?></span>
                             </div>
                             <div class="row">
                                 <div class="col-25">
                                     <label for="prenom"> Téléphone :</label>
                                 </div>
                                 <div class="col-75">
-                                    <input type="number" name="tel" class="form-control form-control-lg <?= (!empty($data['tel_err'])) ? 'is-invalid' : '' ?>" id="tel" value="<?= $data['tel'] ?>">
+                                    <input type="number" name="telurgence" class="form-control form-control-lg <?= (!empty($data['telurgence_err'])) ? 'is-invalid' : '' ?>" id="telurgence" value="<?= $data['telurgence'] ?>">
                                 </div>
-                                <span class="invalid-feedback"><?php echo $data['tel_err']; ?></span>
-                            </div>
-                            <div class="row">
-                                <div class="col-25">
-                                    <label for="prenom"> Lien :</label>
-                                </div>
-                                <div class="col-75">
-                                    <input type="text" name="lien" placeholder="lien de parenté" class="form-control form-control-lg <?= (!empty($data['lien_err'])) ? 'is-invalid' : '' ?>" id="lien" value="<?= $data['lien'] ?>">
-                                </div>
-                                <span class="invalid-feedback"><?php echo $data['lien_err']; ?></span>
+                                <span class="invalid-feedback"><?php echo $data['telurgence_err']; ?></span>
                             </div>
                             <div class="row">
                                 <div class="col-25">
                                     <label for="sexe"> Sexe :</label>
                                 </div>
                                 <div class="col-75">
-                                    <select name="sexe" class="form-control">
+                                    <select name="sexeContact" class="form-control">
                                         <option value="F"> F&eacute;minin</option>
                                         <option value="M"> Masculin</option>
                                     </select>
@@ -108,9 +99,9 @@ label {
                                     <label for="adresse"> Adresse :</label>
                                 </div>
                                 <div class="col-75">
-                                    <input name="adresse" class="form-control form-control-lg <?= (!empty($data['adresse_err'])) ? 'is-invalid' : '' ?>" id="adresse" cols="25" rows="3" placeholder="adresse" value="<?= $data['adresse'] ?>">
+                                    <input name="adresseContact" class="form-control form-control-lg <?= (!empty($data['adresseContact_err'])) ? 'is-invalid' : '' ?>" id="adresseContact" cols="25" rows="3" placeholder="adresse d'urgence" value="<?= $data['adresseContact'] ?>">
                                 </div>
-                                <span class="invalid-feedback"><?php echo $data['adresse_err']; ?></span>
+                                <span class="invalid-feedback"><?php echo $data['adresseContact_err']; ?></span>
                             </div>
                             <div class="form-group mt-2"></div>
                             <button type="submit" class="btn btn-primary" onclick="confirmer()">Valider</button>

@@ -44,25 +44,43 @@ class Patient
     }
     public function urgence($data)
     {
+        $user = [
+            'id'    =>  $_SESSION['userId'],
+            'type'  =>  $_SESSION['userType'],
+            'email' => $_SESSION['userMail'],
+            'state' => $_SESSION['userState']
+        ];
+        $codePatient = $this->getPatientById($user)->IP;
         if ($_SESSION['userType'] == 'patient') {
-            $sql = CREATEPATIENTPROFILE;
+            $sql = ADDPATIENTEMERGENGYCONTACT;
         }
         $this->db->query($sql);
-        $this->db->bind(':nom', $data['nom']);
-        $this->db->bind(':prenom', $data['prenom']);
-        $this->db->bind(':sexe', $data['sexe']);
-        $this->db->bind(':dateNaissance', $data['dateNaissance']);
-        $this->db->bind(':lieuNaissance', $data['lieuNaissance']);
-        $this->db->bind(':adresse', $data['adresse']);
-        $this->db->bind(':userId', $_SESSION['userId']);
+        $this->db->bind(':nomContact', $data['nomContact']);
+        $this->db->bind(':prenomContact', $data['prenomContact']);
+        $this->db->bind(':sexeContact', $data['sexeContact']);
+        $this->db->bind(':telurgence', $data['telurgence']);
+        $this->db->bind(':adresseContact', $data['adresseContact']);
+        $this->db->bind(':IP', $codePatient);
         $answer = $this->db->execute();
-        $this->db->query(UPDATESTATE . $_SESSION['userId']);
-        $updateState = $this->db->execute();
-        $_SESSION['userState'] = 'complet';
-        return $answer && $updateState;
+        
+        return $answer;
     }
     public function updateProfile($data){
+        $sql1 = "UPDATE patient SET nomPatient='$data->nom',prenomPatient='$data->prenom',sexePatient='$data->sexe',adressePatient='$data->adresse',dateNaissancePatient='$data->date',lieuNaissancePatient='$data->lieu' WHERE userId=".$_SESSION['userId'];
+        $this->db->query($sql1);
+        $answer1 = $this->db->execute();
+
+       /*  $sql2 = "UPDATE contacturgence SET nomContact=':nomContact',prenomContact=':prenomContact',sexeContact=':sexeContact',adresseContact=':adresseContact',telurgence=':telurgence' WHERE IP=".$this->getPatientById($_SESSION['userId'])->IP;
+        $this->db->query($sql2);
+        $answer2 = $this->db->execute(); */
         
+        return $answer1 /* && $answer2 */;
+    }
+    public function recupurgence(){
+        $sql = "SELECT * FROM contacturgence,patient WHERE patient.IP=contacturgence.IP";
+        $this->db->query($sql);
+        $answer = $this->db->single();
+        return $answer;
     }
     public function rendezvous($etat)
     {

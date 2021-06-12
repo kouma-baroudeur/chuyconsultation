@@ -1806,8 +1806,8 @@ body.off-canvas-sidebar-open:after {
 /* start preloader inline */
 .layout {
     position: relative;
-    -webkit-transition: left 0.1s cubic-bezier(.645, .045, .355, 1), 0.1s opacity ease;
-    transition: left 0.1s cubic-bezier(.645, .045, .355, 1), 0.1s opacity ease;
+    -webkit-transition: left .7s cubic-bezier(.645, .045, .355, 1), 1.8s opacity ease;
+    transition: left .7s cubic-bezier(.645, .045, .355, 1), 1.8s opacity ease;
     left: 0
 }
 

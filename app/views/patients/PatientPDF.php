@@ -18,6 +18,10 @@ class PatientPDF extends FPDF
 
     function Footer()
     {
+        //set a default timezone
+        date_default_timezone_set('UTC+1');
+        //Date
+        $tDate = date('F j, Y, g:i:s a');
         // Position at 1.5 cm from bottom
         $this->SetY(-15);
         // Arial italic 8
@@ -26,18 +30,19 @@ class PatientPDF extends FPDF
         $this->SetTextColor(128);
         // Page number
         $this->Cell(0, 10,utf8_decode('Page ' . $this->PageNo().'   
-        CHU Yaoundé Consultation    
-        tel:+237 693 553 454    
-        Melen'.$this->Image(SITELOGO, 189, 280, 10, 10,'', URLROOT)), 0, 0, 'L');
+        CHUYC    
+        '.$tDate.'
+        +237 693 553 454
+        '.$this->Image(SITELOGO, 189, 280, 10, 10,'', URLROOT)), 0, 0, 'L');
     }
 
     function ChapterTitle($num, $label)
     {
-        // Arial 12
-        $this->SetFont('Arial', 'B', 20);
+        // Arial 18
+        $this->SetFont('Arial', 'B', 18);
         // Background color
         $this->SetFillColor(200, 220, 255);
-        // Title
+        // Title 
         $this->Cell(0, 15, "$num : $label", 0, 2, 'C', true);
         // Line break
         $this->Ln(10);
