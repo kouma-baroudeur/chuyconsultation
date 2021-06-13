@@ -11,6 +11,8 @@ define('DB_NAME', 'chuyconsultation');
 define('APPROOT', dirname(dirname(__FILE__)));
 // URL Root
 define('URLROOT', 'http://' . $_SERVER['HTTP_HOST'] . '/chuyconsultation');
+// URL login Root
+define('LOGINURLROOT', 'http://' . $_SERVER['HTTP_HOST'] . '/chuyconsultation/users/login');
 // Site Name
 define('SITENAME', 'CHUY Consultation');
 //Patient portal name

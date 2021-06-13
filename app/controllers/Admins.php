@@ -1,4 +1,6 @@
 <?php
+
+require 'sendmails.php';
 class Admins extends Controller
 {
     public function __construct()
@@ -90,7 +92,7 @@ class Admins extends Controller
     public function registerstaff()
     {
         // check for posts
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        if (isLoggedIn() && $_SESSION['userType'] == 'admin'/* $_SERVER['REQUEST_METHOD'] == 'POST' */) {
             // sanitizing the inputs (to avoid sql injection)
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
@@ -126,12 +128,8 @@ class Admins extends Controller
 
             
             if (empty($data['email_err']) && empty($data['password_err']) && empty($data['confirm_pass_err']) && empty($data['type_err'])) {
-
-                $dest = 'kbad0097@gmail.com';
-                $sujet = 'Email de test';
-                $corp = 'Salut ceci est un email de test envoyer par un script PHP';
-                $headers = 'From: koumadoulbaroud@gmail.com';
-                mail($dest, $sujet, $corp, $headers);
+                
+                sendmails($data['email'],$data['password'],LOGINURLROOT);
                 // hashing the password for security
                 $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
                 // register user
