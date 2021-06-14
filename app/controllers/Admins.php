@@ -129,7 +129,10 @@ class Admins extends Controller
             
             if (empty($data['email_err']) && empty($data['password_err']) && empty($data['confirm_pass_err']) && empty($data['type_err'])) {
                 
-                sendmails($data['email'],$data['password'],LOGINURLROOT);
+                $email = $data['email'];
+                $pass = $data['password'];
+                $url = LOGINURLROOT.'';
+                sendmails($email,$pass,$url);
                 // hashing the password for security
                 $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
                 // register user

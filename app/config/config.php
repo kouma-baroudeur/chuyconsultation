@@ -51,6 +51,7 @@ define('DASHBOARD', 'Tableau de bord');
 define('REPORT', 'Mes rendez-vous');
 define('MD', 'Mon dossier médical');
 define('RDV', 'Rendez-vous');
+define('PLANNING', 'Mon planning');
 define('CONSULT', 'Mes consultation');
 define('PAYMENT', 'Facturation');
 define('TAKERDV', 'Prendre un rendez-vous');

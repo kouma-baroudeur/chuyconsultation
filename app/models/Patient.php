@@ -1,5 +1,9 @@
 <?php
-/* model patient */
+/**
+ * model Patient
+ *
+ * @author KOUMADOUL Baroud (UY1-ICT4D) <koumadoulbaroud@gmail.com>
+ */
 class Patient
 {
     private $db;
@@ -11,7 +15,11 @@ class Patient
 
     public function getPatientById($user)
     {
-        // getPatientByUserId
+        /**
+         * getPatientByUserId
+         *
+         * @author KOUMADOUL Baroud (UY1-ICT4D) <koumadoulbaroud@gmail.com>
+         */
         if ($user['type'] == 'patient') {
             $sql1 = FINDPATIENTBYID;
         }

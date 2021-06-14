@@ -11,7 +11,7 @@
     require_once 'PHPMailer/src/PHPMailer.php';
     require_once 'PHPMailer/src/SMTP.php';
 
-    function sendmails($email, $motdepass, $url)
+    function sendmails($email, $motdepass='', $url='')
     {
         //encoding
         $mail->CharSet = 'UTF-8';
@@ -32,8 +32,8 @@
 
         //Recipients
         $mail->setFrom('contact@chuyconsultation.metchoup.com', utf8_decode('CHU Yaoundé Consultation'));
-        $mail->addAddress('koumadoulbaroud@gmail.com');     //Add a recipient
-        $mail->addReplyTo('contact@chuyconsultation.metchoup.com', 'Information');
+        $mail->addAddress($email,'Personnel CHUY');     //Add a recipient
+        $mail->addReplyTo('contact@chuyconsultation.metchoup.com', 'CHUYC Administrateur');
         $mail->addCC('contact@chuyconsultation.metchoup.com');
         $mail->addBCC('contact@chuyconsultation.metchoup.com');
 
@@ -41,14 +41,13 @@
         //Content
         $mail->isHTML(true);                                  //Set email format to HTML
         $mail->Subject = 'Identifiants de connexion';
-        $mail->Body    = 'Bienvenue ';
 
-        $body  = "Bienvenue , cher(e) personnel(le) sur  <b><font size=\"4\">CHUYConsultation</font></b> , <p>";
-        $body .= "plateforme de prise des rendez-vous en ligne pour une consultation au CHU Yaoundé.</p>";
+        $body  = "Bienvenue , cher personnel sur  <b><font size=\"3\">CHUYConsultation</font></b>, &nbsp;";
+        $body .= utf8_decode("plateforme de prise des rendez-vous en ligne pour une consultation au CHU Yaoundé.<br><br>");
         $body .= "Voici vos indentifiants de connexion en tant que personnel du CHUY : <br>";
         $body .= "<p><b>Email : ".$email."</b><br>";
-        $body .= "<b>Mot de passe : ".$motdepass.".</b></p><br>";
-        $body .= 'Ou bien veuillez cliquer <font size=\'3\'><a href='.$url.'>&nbsp; ici &nbsp;</a></font> afin de vous connecter.<br>';
+        $body .= "<b>Mot de passe : ".$motdepass."</b></p><br>";
+        $body .= 'Ou bien veuillez cliquer <font size=\'3\'><a href='.$url.'>&nbsp; ici &nbsp;</a></font> afin de vous authentifier.<br>';
         $body .= "Cordialement<br>";
         $body .= "Le Directeur <b>Dr. KOUMADOUL Baroud</b><br>";
 
@@ -57,3 +56,14 @@
 
         $mail->send();
     }
+
+    /* -ZlarHBVKR!c
+    contact@chuyconsultation.metchoup.com
+
+    Nom d’utilisateur :	contact@chuyconsultation.metchoup.com
+    Mot de passe :	Utilisez le mot de passe du compte de messagerie.
+    Serveur entrant :	chuyconsultation.metchoup.com
+    IMAP Port: 993 POP3 Port: 995
+    Serveur sortant :	chuyconsultation.metchoup.com
+    SMTP Port: 465
+    IMAP, POP3 et SMTP require authentication. */

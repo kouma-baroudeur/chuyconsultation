@@ -1,5 +1,9 @@
 <?php
-/* controller of our model Patient */
+/**
+ * controller of our model Patient
+ *
+ * @author KOUMADOUL Baroud (UY1-ICT4D) <koumadoulbaroud@gmail.com>
+ */
 class Patients extends Controller
 {
   public function __construct()
