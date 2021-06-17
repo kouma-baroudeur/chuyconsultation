@@ -104,7 +104,6 @@ class Medecins extends Controller
           'lieu_err' => '',
           'adresse_err' => ''
         ];
-  
         // load form
         $this->view('medecins/initialForm', $data);
       }

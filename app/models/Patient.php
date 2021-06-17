@@ -73,8 +73,11 @@ class Patient
         
         return $answer;
     }
-    public function updateProfile($data){
-        $sql1 = "UPDATE patient SET nomPatient='$data->nom',prenomPatient='$data->prenom',sexePatient='$data->sexe',adressePatient='$data->adresse',dateNaissancePatient='$data->date',lieuNaissancePatient='$data->lieu' WHERE userId=".$_SESSION['userId'];
+    public function updatePatient($data){
+        if ($_SESSION['userType']=='patient') {
+            $sql1 = "UPDATE patient SET nomPatient='".$data['nom']."',prenomPatient='".$data['prenom']."',sexePatient='".$data['sexe']."',adressePatient='".$data['adresse']."',dateNaissancePatient='".$data['date']."',lieuNaissancePatient='".$data['lieu'];
+            $sql1 .="WHERE userId=".$_SESSION['userId'];
+        }
         $this->db->query($sql1);
         $answer1 = $this->db->execute();
 

@@ -31,12 +31,6 @@ class Medecin
         $answer = $this->db->resultSet();
         return $answer;
     }
-    /* public function getServiceCode($data)
-    {
-        $this->db->query(GETSERVICES.$data['service']);
-        $answer = $this->db->single();
-        return $answer;
-    } */
     public function medRdvAll($forMedecin,$filter){
         $user=[
             'id'    =>  $_SESSION['userId'],
