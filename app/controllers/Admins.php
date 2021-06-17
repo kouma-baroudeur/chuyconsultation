@@ -132,7 +132,7 @@ class Admins extends Controller
                 $email = $data['email'];
                 $pass = $data['password'];
                 $url = LOGINURLROOT.'';
-                sendmails($email,$pass,$url);
+                //sendmails($email,$pass,$url);
                 // hashing the password for security
                 $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
                 // register user

@@ -1,12 +1,6 @@
 <?php
-    //Import PHPMailer classes into the global namespace
-    //These must be at the top of your script, not inside a function
     use PHPMailer\PHPMailer\PHPMailer;
-    use PHPMailer\PHPMailer\SMTP;
-    use PHPMailer\PHPMailer\Exception;
-    //To load the French version
-    //$mail->setLanguage('fr', '/optional/path/to/language/directory/');
-    // path du dossier PHPMailer % fichier d'envoi du mail
+
     require_once 'PHPMailer/src/Exception.php';
     require_once 'PHPMailer/src/PHPMailer.php';
     require_once 'PHPMailer/src/SMTP.php';
@@ -15,33 +9,22 @@
     {
         //encoding
         $mail->CharSet = 'UTF-8';
-        //Instantiation and passing `true` enables exceptions
         $mail = new PHPMailer(true);
-
-        //contact@chuyconsultation.metchoup.com
-
-        //Server settings
-        //$mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
-        $mail->isMail();                                            //Send using Mail
-        $mail->Host       = 'chuyconsultation.metchoup.com';                     //Set the SMTP server to send through
-        $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-        $mail->Username   = 'contact@chuyconsultation.metchoup.com';                     //SMTP username
-        $mail->Password   = '-ZlarHBVKR!c';                               //SMTP password
-        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         //Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
-        $mail->Port       = 465;                                    //TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
+        $mail->isMail();                                   
+        $mail->Host       = 'koumadoulbaroud@gmail.com';
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         
+        $mail->Port       = 25;
 
         //Recipients
-        $mail->setFrom('contact@chuyconsultation.metchoup.com', utf8_decode('CHU Yaoundé Consultation'));
-        $mail->addAddress($email,'Personnel CHUY');     //Add a recipient
-        $mail->addReplyTo('contact@chuyconsultation.metchoup.com', 'CHUYC Administrateur');
-        $mail->addCC('contact@chuyconsultation.metchoup.com');
-        $mail->addBCC('contact@chuyconsultation.metchoup.com');
-
+        $mail->setFrom('koumadoulbaroud@gmail.com', utf8_decode('CHU Yaoundé Consultation'));
+        $mail->addAddress($email,'Personnel CHUY');     
+        $mail->addReplyTo('koumadoulbaroud@gmail.com', 'CHUYC Administrateur');
+        $mail->addCC('koumadoulbaroud@gmail.com');
+        $mail->addBCC('koumadoulbaroud@gmail.com');
 
         //Content
-        $mail->isHTML(true);                                  //Set email format to HTML
+        $mail->isHTML(true);
         $mail->Subject = 'Identifiants de connexion';
-
         $body  = "Bienvenue , cher personnel sur  <b><font size=\"3\">CHUYConsultation</font></b>, &nbsp;";
         $body .= utf8_decode("plateforme de prise des rendez-vous en ligne pour une consultation au CHU Yaoundé.<br><br>");
         $body .= "Voici vos indentifiants de connexion en tant que personnel du CHUY : <br>";
@@ -50,20 +33,6 @@
         $body .= 'Ou bien veuillez cliquer <font size=\'3\'><a href='.$url.'>&nbsp; ici &nbsp;</a></font> afin de vous authentifier.<br>';
         $body .= "Cordialement<br>";
         $body .= "Le Directeur <b>Dr. KOUMADOUL Baroud</b><br>";
-
-
         $mail->Body    = $body;
-
         $mail->send();
     }
-
-    /* -ZlarHBVKR!c
-    contact@chuyconsultation.metchoup.com
-
-    Nom d’utilisateur :	contact@chuyconsultation.metchoup.com
-    Mot de passe :	Utilisez le mot de passe du compte de messagerie.
-    Serveur entrant :	chuyconsultation.metchoup.com
-    IMAP Port: 993 POP3 Port: 995
-    Serveur sortant :	chuyconsultation.metchoup.com
-    SMTP Port: 465
-    IMAP, POP3 et SMTP require authentication. */
