@@ -73,7 +73,7 @@ class Patient
         
         return $answer;
     }
-    public function updatePatient($data){
+    public function updateProfile($data){
         if ($_SESSION['userType']=='patient') {
             $sql1 = "UPDATE patient SET nomPatient='".$data['nom']."',prenomPatient='".$data['prenom']."',sexePatient='".$data['sexe']."',adressePatient='".$data['adresse']."',dateNaissancePatient='".$data['date']."',lieuNaissancePatient='".$data['lieu'];
             $sql1 .="WHERE userId=".$_SESSION['userId'];

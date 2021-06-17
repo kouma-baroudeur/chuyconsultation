@@ -206,7 +206,7 @@ class Patients extends Controller
       $this->view('patients/report', $data);
     }
   }
-  public function updatePatient()
+  public function infpers()
   {
     $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
     $data = [
@@ -241,14 +241,14 @@ class Patients extends Controller
 
     if (empty($data['nom_err']) && empty($data['prenom_err']) && empty($data['date_err']) && empty($data['lieu_err']) && empty($data['adresse_err'])) {
       // updating data into de tables
-      if ($this->patientModel->updatePatient($data)) {
+      if ($this->patientModel->updateProfile($data)) {
         flash('register_success', 'Vos informations ont été mis à jours');
         redirect('patients/profile');
       } else {
         die('Quelque chose qui ne va pas bien!');
       }
     } else {
-      $this->view('patients/editprofile', $data);
+      $this->view('patients/editinfpers', $data);
     }
   }
   public function askRdv()

@@ -62,10 +62,10 @@
 			<!-- Navmenu widget-->
 			<aside class="widget widget_nav_menu">
 				<ul class="menu">
-					<li class="menu-item menu-item-has-children"><a href="#">Accueil</a></li>
-					<li class="menu-item"><a href="#">A propos</a></li>
-					<li class="menu-item"><a href="#">Nos services</a></li>
-					<li class="menu-item"><a href="#">Contacts</a></li>
+					<li class="menu-item menu-item-has-children"><a href="<?=URLROOT?>">Accueil</a></li>
+					<li class="menu-item"><a href="<?= URLROOT.'/pages/about'?>">A propos</a></li>
+					<li class="menu-item"><a href="<?= URLROOT.'/pages/service'?>">Nos services</a></li>
+					<li class="menu-item"><a href="<?= URLROOT.'/pages/contact'?>">Contacts</a></li>
 					<li class="menu-item"><a href="#"></a></li>
 					<li class="menu-item"><a href="#"></a></li>
 				</ul>
@@ -73,7 +73,7 @@
 			<ul class="social-icons">
 				<li><a href="#"><i class="fa fa-facebook"></i></a></li>
 				<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-				<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+				<li><a href=""><i class="fa fa-linkedin"></i></a></li>
 			</ul>
 		</div>
 	</div>
@@ -132,6 +132,37 @@
             }
         });
     });
+</script>
+<script>
+	const modal = document.querySelector('.main-modal');
+	const closeButton = document.querySelectorAll('.modal-close');
+
+	const modalClose = () => {
+		modal.classList.remove('fadeIn');
+		modal.classList.add('fadeOut');
+		setTimeout(() => {
+			modal.style.display = 'none';
+		}, 500);
+	}
+
+	const openModal = () => {
+		modal.classList.remove('fadeOut');
+		modal.classList.add('fadeIn');
+		modal.style.display = 'flex';
+	}
+
+	for (let i = 0; i < closeButton.length; i++) {
+
+		const elements = closeButton[i];
+
+		elements.onclick = (e) => modalClose();
+
+		modal.style.display = 'none';
+
+		window.onclick = function (event) {
+			if (event.target == modal) modalClose();
+		}
+	}
 </script>
 </body>
 
