@@ -2,17 +2,17 @@
 /**
  * model Patient
  *
- * @author KOUMADOUL Baroud (UY1-ICT4D) <koumadoulbaroud@gmail.com>
+ * @author KOUMADOUL Baroud (UY1-ICT4D 2020-2021) <koumadoulbaroud@gmail.com>
  */
 class Patient
 {
-    private $db;
-
+    private $db; //variable de connection a la BD
+    /** Contructeur du modele */
     public function __construct()
     {
-        $this->db = new Database;
+        $this->db = new Database; // creation d'une connection a la BD
     }
-
+    /** recuperation des patient par Id  */
     public function getPatientById($user)
     {
         /**
@@ -31,6 +31,7 @@ class Patient
         $row = $this->db->single();
         return $row;
     }
+    /** traitement pour la creation du profile du patient  */
     public function createProfile($data)
     {
         if ($_SESSION['userType'] == 'patient') {
@@ -73,22 +74,37 @@ class Patient
         
         return $answer;
     }
-    public function updateProfile($data){
-        if ($_SESSION['userType']=='patient') {
-            $sql1 = "UPDATE patient SET nomPatient='".$data['nom']."',prenomPatient='".$data['prenom']."',sexePatient='".$data['sexe']."',adressePatient='".$data['adresse']."',dateNaissancePatient='".$data['date']."',lieuNaissancePatient='".$data['lieu'];
-            $sql1 .="WHERE userId=".$_SESSION['userId'];
-        }
-        $this->db->query($sql1);
-        $answer1 = $this->db->execute();
-
-       /*  $sql2 = "UPDATE contacturgence SET nomContact=':nomContact',prenomContact=':prenomContact',sexeContact=':sexeContact',adresseContact=':adresseContact',telurgence=':telurgence' WHERE IP=".$this->getPatientById($_SESSION['userId'])->IP;
-        $this->db->query($sql2);
-        $answer2 = $this->db->execute(); */
+    /** edition des informations personnelles */
+    public function editPersInfo($data){
+        $sql = "UPDATE patient SET nomPatient='".$data['nom']."',prenomPatient='".$data['prenom']."',sexePatient='".$data['sexe']."',adressePatient='". $data['adresse']."',dateNaissancePatient='".$data['dateNaissance']."',lieuNaissancePatient='".$data['lieuNaissance']."' WHERE userId=".$_SESSION['userId'];
+        $this->db->query($sql);
+        $answer = $this->db->execute();    
+        return $answer ;
+    }
+    /** edition des informations sur le contact d'urgence */
+    public function editEmerInfo($data){
+        $user = [
+            'id'    =>  $_SESSION['userId'],
+            'type'  =>  $_SESSION['userType'],
+            'email' => $_SESSION['userMail'],
+            'state' => $_SESSION['userState']
+        ];
+        $codePatient = $this->getPatientById($user)->IP;
         
-        return $answer1 /* && $answer2 */;
+        $sql = "UPDATE contacturgence SET nomContact='".$data['nomContact']."',prenomContact='".$data['prenomContact']."',sexeContact='".$data['sexeContact']."',adresseContact='".$data['adresseContact']."',telurgence='".$data['telurgence']."' WHERE IP=".$codePatient;
+        $this->db->query($sql);
+        $answer = $this->db->execute();   
+        return $answer;
     }
     public function recupurgence(){
-        $sql = "SELECT * FROM contacturgence,patient WHERE patient.IP=contacturgence.IP";
+        $user = [
+            'id'    =>  $_SESSION['userId'],
+            'type'  =>  $_SESSION['userType'],
+            'email' => $_SESSION['userMail'],
+            'state' => $_SESSION['userState']
+        ];
+        $codePatient = $this->getPatientById($user)->IP;
+        $sql = "SELECT * FROM contacturgence,patient WHERE contacturgence.IP=".$codePatient;
         $this->db->query($sql);
         $answer = $this->db->single();
         return $answer;
@@ -130,15 +146,7 @@ class Patient
         $answer = $this->db->execute();
         return $answer;
     }
-
-   /*  public function deleteRdv()
-    {
-        $rdv = $this-> rendezvous('')->numeroRdv;
-        $sql ="DELETE FROM rendezvous WHERE numeroRdv =".$rdv;
-        $this->db->query($sql);
-        return $this->db->execute();
-    } */
-
+    /** liste tous les medecins du systeme */
     public function listeMedecins()
     {
         $sql = "SELECT * ";
@@ -149,7 +157,6 @@ class Patient
         $answer = $this->db->resultSet();
         return $answer;
     }
-
     public function planning($etat)
     {
         $user = [
@@ -211,23 +218,5 @@ class Patient
         $rows = $this->db->resultSet();
         return $rows;
     }
-    /* public function editP($etat)
-    {
-        $user = [
-            'id'    =>  $_SESSION['userId'],
-            'type'  =>  $_SESSION['userType'],
-            'email' => $_SESSION['userMail'],
-            'state' => $_SESSION['userState']
-        ];
-        $codePatient = $this->getPatientById($user)->IP;
-        $sql = "SELECT * ";
-        $sql .= "FROM patient";
-        $sql .= "WHERE patient.IP = :IP  ";
-
-        $this->db->query($sql);
-        $this->db->bind(':IP', $codePatient);
-        $rows = $this->db->resultSet();
-        return $rows;
-    } */
    
 }

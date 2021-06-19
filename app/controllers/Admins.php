@@ -136,4 +136,5 @@ class Admins extends Controller
             $this->view('admins/registerstaff', $data);
         }
     }
+    
 }

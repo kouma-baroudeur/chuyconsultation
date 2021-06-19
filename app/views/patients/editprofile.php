@@ -31,7 +31,7 @@
                     <div class="row mt-2">
                         <div class="col-md-6">
                             <label class="font-weight-bold labels">Date de naissance</label>
-                            <input name="date" class="form-control form-control-lg <?= (!empty($data['date_err'])) ? 'is-invalid' : '' ?>" id="date" type="text" value="<?= $data['patient']->dateNaissancePatient ?>">
+                            <input name="date" class="form-control form-control-lg <?= (!empty($data['date_err'])) ? 'is-invalid' : '' ?>" id="date" type="date" value="<?= $data['patient']->dateNaissancePatient ?>">
                         </div>
                         <span class="invalid-feedback"><?php echo $data['date_err']; ?></span>
                         <div class="col-md-6">
