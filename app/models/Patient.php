@@ -3,6 +3,7 @@
  * model Patient
  *
  * @author KOUMADOUL Baroud (UY1-ICT4D) <koumadoulbaroud@gmail.com>
+ * @author MOYOPO FOTSO Michelle (UY1-ICT4D) <michellefosto2@gmail.com>
  */
 class Patient
 {

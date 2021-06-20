@@ -51,4 +51,11 @@ class Medecin
         $rows= $this->db->resultSet();
         return $rows;
     }
+    public function patient()
+    {
+        $sql = "SELECT * FROM patient,users WHERE patient.userId = users.id "; 
+        $this->db->query($sql);
+        $answer = $this->db->resultSet();
+        return $answer;
+    }
 }
