@@ -27,7 +27,7 @@
 
 <body>
 	<!-- Layout-->
-	<div class="layout">
+	<div class="">
 		<!-- Header-->
 		<header class="header header-center undefined">
 			<div class="container-fluid">

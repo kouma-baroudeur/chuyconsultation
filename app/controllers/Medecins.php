@@ -132,5 +132,16 @@ class Medecins extends Controller
         $this->view('medecins/allmedrdvs', $data);
         }
     }
+    public function patient()
+    {
+        if ($_SESSION['userType'] != 'medecin') {
+            notAuthorized();
+        } else {
+            $data = [
+                'patient' => $this->medecinModel->patient()
+            ];
+            $this->view('medecins/patient', $data);
+        }
+    }
    
 }

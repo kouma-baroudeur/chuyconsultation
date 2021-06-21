@@ -57,9 +57,15 @@ class Medecin
         if($forMedecin=="only"){
             $this->db->bind(':codeMedecin',$codeMedecin);
         }
-        $rows= $this->db->resultSet();
+    $rows= $this->db->resultSet();
         return $rows;
     }
+    public function patient()
+    {
+        $sql = "SELECT * FROM patient,users WHERE patient.userId = users.id "; 
+        $this->db->query($sql);
+        $answer = $this->db->resultSet();
+        return $answer;
     public function createProfile($data)
     {
         $sql = CREATEMEDECINPROFILE;

@@ -45,16 +45,49 @@ class Admin
         $answer = $this->db->resultSet();
         return $answer;
     }
-    public function profileuser()
+     public function patient()
     {
-        $sql = "SELECT * ";
-        $sql .= "FROM medecin,service,users ";
-        $sql .= "WHERE medecin.codeService = service.codeService ";
-        $sql .= "AND medecin.userId = users.id ";
+        $sql = "SELECT * FROM patient,users WHERE patient.userId = users.id "; 
         $this->db->query($sql);
-        $answer = $this->db->execute();
+        $answer = $this->db->resultSet();
         return $answer;
     }
+    public function rendezvous($etat)
+    {
+        $user = [
+            'id'    =>  $_SESSION['userId'],
+            'type'  =>  $_SESSION['userType'],
+            'email' => $_SESSION['userMail'],
+            'state' => $_SESSION['userState']
+        ];
+        $codeMedecin = $this->getAdminById($user)->codeMedecin;
+        $sql = "SELECT * ";
+        $sql .= "FROM patient,medecin,rendezvous ";
+        $sql .= "WHERE rendezvous.codeMedecin = medecin.codeMedecin ";
+        $sql .= "AND rendezvous.IP = patient.IP ";
+        if ($etat == "Attente") {
+            $sql .= RDVETATATTENTE;
+        } elseif ($etat == "Confirme") {
+            $sql .= RDVETATCONFIRME;
+        }
+        $sql .= "AND medecin.codeMedecin =:codeMedecin ";
+        $sql .= RDVORDRE;
+        $this->db->query($sql);
+        $this->db->bind(':codeMedecin', $codeMedecin);
+        $rows = $this->db->resultSet();
+        return $rows;
+    }
+   
+    // public function profileuser()
+    // {
+    //     $sql = "SELECT * ";
+    //     $sql .= "FROM medecin,service,users ";
+    //     $sql .= "WHERE medecin.codeService = service.codeService ";
+    //     $sql .= "AND medecin.userId = users.id ";
+    //     $this->db->query($sql);
+    //     $answer = $this->db->execute();
+    //     return $answer;
+    // }
     public function registerstaff($data)
     {
         $this->db->query(REGISTERUSER);
@@ -66,5 +99,83 @@ class Admin
 
         // excecute and return the stat
         return $this->db->execute();
+    }
+    public function profileStaff($id){
+        $sql = "SELECT * FROM medecin,users WHERE userId = $id AND medecin.userId = users.id";
+          $this->db->query($sql);
+          $data = $this->db->resultSet();
+          return $data;
+
+    }
+    public function profilePatient($id){
+        $sql = "SELECT * FROM patient,users WHERE userId=$id AND patient.userId=users.id";
+          $this->db->query($sql);
+          $data = $this->db->resultSet();
+          return $data;
+
+    }
+    public function modifierStaff($id, $data){
+        $sql ="UPDATE medecin SET nomMedecin =:nom,prenomMedecin = :prenom,codeService = :service,sexeMedecin = :sexe,adresseMedecin = :adresse,dateNaissanceMedecin = :dateNaissance,lieuNaissanceMedecin = :lieuNaissance,telMedecin =:tel  WHERE userId= $id";
+        $this->db->bind(':nom', $data['nom']);
+        $this->db->bind(':prenom', $data['prenom']);
+        $this->db->bind(':service', $data['service']);
+        $this->db->bind(':sexe', $data['sexe']);
+        $this->db->bind(':adresse', $data['adresse']);
+        $this->db->bind(':dateNaissance', $data['dateNaissance']);
+        $this->db->bind(':lieuNaissance', $data['lieuNaissance']);
+        $this->db->bind(':tel', $data['tel']);
+        $this->db->bind(':email', $data['email']);
+        return $this->db->execute();
+
+    }
+    public function supprPatient($id){
+        $sql = "DELETE FROM patient,users WHERE userId=$id AND patient.userId=users.id";
+          $this->db->query($sql);
+          $data = $this->db->resultSet();
+          return $data;
+    }
+    public function supprStaff($id){
+        $sql = "DELETE FROM medecin WHERE userId=$id";
+            $this->db->query($sql);
+            return $this->db->execute();
+    }
+    public function statutC($id)
+    {
+        $conf = 'Confirmé';
+        $sql ="UPDATE rendezvous SET etatRdv=:statut WHERE numeroRdv=:id";
+        $this->db->query($sql); 
+        $this->db->bind(':statut', $conf);
+        $this->db->bind(':id', $id);
+        return $this->db->execute();
+    }
+    public function statutA($id)
+    {
+        $conf = 'Annulé';
+        $sql ="UPDATE rendezvous SET etatRdv=:statut WHERE numeroRdv=:id";
+        $this->db->query($sql); 
+        $this->db->bind(':statut', $conf);
+        $this->db->bind(':id', $id);
+        return $this->db->execute();
+    }
+     public function consultAdmin()
+    {
+        $user = [
+            'id'    =>  $_SESSION['userId'],
+            'type'  =>  $_SESSION['userType'],
+            'email' => $_SESSION['userMail'],
+            'state' => $_SESSION['userState']
+        ];
+        $codeMedecin = $this->getAdminById($user)->codeMedecin;
+        $sql = "SELECT * ";
+        $sql .= "FROM patient,medecin,rendezvous ";
+        $sql .= "WHERE rendezvous.codeMedecin = medecin.codeMedecin ";
+        $sql .= "AND rendezvous.IP = patient.IP ";
+        $sql .= RDVETATCONFIRME;
+        $sql .= "AND medecin.codeMedecin =:codeMedecin ";
+        $sql .= RDVORDRE;
+        $this->db->query($sql);
+        $this->db->bind(':codeMedecin', $codeMedecin);
+        $rows = $this->db->resultSet();
+        return $rows;
     }
 }
