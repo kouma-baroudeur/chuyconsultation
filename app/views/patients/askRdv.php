@@ -12,12 +12,12 @@
             <form method="post" name="askRdv" action="<?= URLROOT ?>/patients/askRdvAction/<?= $data['patient']->IP ?>">
                 <div class="mb-4">
                     <label class="form-group text-gray-800 block mb-1 font-bold text-sm tracking-wide">Date</label>
-                    <input name="dateRdv" class="form-control form-control-lg" type="date">
+                    <input name="dateRdv" class="form-control form-control-lg" id="txtDate" type="date" min="<?php echo date("Y-m-d"); ?>">
                 </div>
 
                 <div class="mb-4">
                     <label class="text-gray-800 block mb-1 font-bold text-sm tracking-wide">Heure</label>
-                    <input name="heureRdv" class="bg-gray-200 appearance-none border-2 border-gray-200 rounded-lg w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500" type="time">
+                    <input name="heureRdv" class="bg-gray-200 appearance-none border-2 border-gray-200 rounded-lg w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500" type="time" min="08:30" max="18:00">
                 </div>
 
                 <div class="inline-block w-64 mb-4">
@@ -26,14 +26,10 @@
                         <select name="codeMedecin" id="inputMedecin" class="form-control selectpicker" data-style="btn btn-link">
                             <?php foreach ($data['medecins'] as $medecin) : ?>
                                 <option value="<?= $medecin->codeMedecin ?>">
-                                    <?= $medecin->nomMedecin . " " . $medecin->prenomMedecin . " ( " . $medecin->nomService . " )" ?></option>
+                                    <?= $medecin->nomMedecin . " " . $medecin->prenomMedecin . " ( " . $medecin->nomService . " )" ?>
+                                </option>
                             <?php endforeach; ?>
                         </select>
-                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                            <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                            </svg>
-                        </div>
                     </div>
                 </div>
 

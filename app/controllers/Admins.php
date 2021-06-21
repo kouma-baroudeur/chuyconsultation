@@ -24,7 +24,6 @@ class Admins extends Controller
             notAuthorized();
         } else {
             $data = [
-                // parametres utilisees pour les sous panneau
                 'params' => $page,
                 'admin' => $this->activeUser
             ];
@@ -94,10 +93,9 @@ class Admins extends Controller
     public function registerstaff()
     {
         // check for posts
-        if (isLoggedIn() && $_SESSION['userType'] == 'admin'/* $_SERVER['REQUEST_METHOD'] == 'POST' */) {
+        if (isLoggedIn() && $_SESSION['userType'] == 'admin') {
             // sanitizing the inputs (to avoid sql injection)
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-
             // init data
             $data = [
                 'email' => trim($_POST['email']),
@@ -126,9 +124,7 @@ class Admins extends Controller
             } else {
                 if ($data['password'] != $data['confirm_pass'])
                     $data['confirm_pass_err'] = 'La confirmation ne correspond pas au mot de passe';
-            }
-
-            
+            }    
             if (empty($data['email_err']) && empty($data['password_err']) && empty($data['confirm_pass_err']) && empty($data['type_err'])) {
                 
                 $email = $data['email'];
@@ -161,7 +157,6 @@ class Admins extends Controller
                 'confirm_pass_err' => '',
                 'type_err' => ''
             ];
-
             // load form
             $this->view('admins/registerstaff', $data);
         }
@@ -349,5 +344,5 @@ class Admins extends Controller
       }
     }
 
-  
+    
 }

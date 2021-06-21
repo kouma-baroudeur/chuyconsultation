@@ -75,11 +75,21 @@ label {
                                 <span class="invalid-feedback"><?php echo $data['email_err']; ?></span>
                             </div>
                             <div class="form-group">
-                                <input name="password" class="form-control form-control-lg <?= (!empty($data['password_err'])) ? 'is-invalid' : '' ?>" type="password" placeholder="Mot de passe" value="<?= $data['password'] ?>">
+                                <div class="input-group" id="show_hide_password">
+                                    <input name="password" class="form-control form-control-lg <?= (!empty($data['password_err'])) ? 'is-invalid' : '' ?>" type="password" placeholder="Mot de passe" value="<?= $data['password'] ?>">
+                                    <div class="input-group-addon">
+                                        <a href=""><i class="fa fa-eye-slash" aria-hidden="true"></i></a>
+                                    </div>
+                                </div>
                                 <span class="invalid-feedback"><?php echo $data['password_err']; ?></span>
                             </div>
                             <div class="form-group">
+                                <div class="input-group" id="show_hide_password_conf">
                                 <input name="confirm_pass" class="form-control form-control-lg <?= (!empty($data['confirm_pass_err'])) ? 'is-invalid' : '' ?>" type="password" placeholder="Confirmer le mot de passe" value="<?= $data['confirm_pass'] ?>">
+                                    <div class="input-group-addon">
+                                        <a href=""><i class="fa fa-eye-slash" aria-hidden="true"></i></a>
+                                    </div>
+                                </div>
                                 <span class="invalid-feedback"><?php echo $data['confirm_pass_err']; ?></span>
                             </div>
                             <div class="form-group">

@@ -1,11 +1,15 @@
 <?php
 /**
  * controller of our model Patient
+ * C'est dans ce controlleur qu'on traite toutes les données des
+ * formulaires du patient et on renvoit des données qui seront afficher à la vue
+ * en invoquant le modèle qui fait les différents traitements (requêtes, accès à la BD, etc.)
  *
- * @author KOUMADOUL Baroud (UY1-ICT4D) <koumadoulbaroud@gmail.com>
+ * @author KOUMADOUL Baroud (UY1-ICT4D 2020-2021) <koumadoulbaroud@gmail.com>
  */
 class Patients extends Controller
 {
+  //the constructor
   public function __construct()
   {
     if (!isLoggedIn())
@@ -20,18 +24,17 @@ class Patients extends Controller
     if ($_SESSION['userType'] == 'patient')
       $this->activeUser = $this->patientModel->getPatientById($user);
   }
-
-  public function index()
-  {
-    /* this->patient("patient"); */
-  }
+  /** première page et la principale, considéré comme index du controlleur patient
+   * c'est ici que lorsque le pqtient se connecte pour la première fois, l'on décide
+   * où le rediriger grâce à son état
+   * 
+  */
   public function patient($page = "home")
   {
     if ($_SESSION['userType'] != 'patient') {
       notAuthorized();
     } else {
       $data = [
-        // parametres utilisees pour les sous panneau
         'params' => $page,
         'patient' => $this->activeUser
       ];
@@ -41,7 +44,7 @@ class Patients extends Controller
         $this->view('patients/home', $data);
     }
   }
-
+  /** fonction appelant le dossier médicale en pdf afin de permettre le telechargement */
   public function dm()
   {
     $data = [
@@ -50,6 +53,9 @@ class Patients extends Controller
     ];
     $this->view('patients/Pdf', $data);
   }
+  /** création du profile d'un patient, juste après son enrégistrement
+   *les données sont récupérées de la vue initialForm
+  */
   public function createProfile()
   {
     if (isLoggedIn() && $_SESSION['userState'] == 'incomplet') {
@@ -115,6 +121,7 @@ class Patients extends Controller
       $this->view('patients/initialForm', $data);
     }
   }
+  /** enrégistrement du contact d'urgence */
   public function urgence()
   {
     if (isLoggedIn()) {
@@ -174,6 +181,7 @@ class Patients extends Controller
       $this->view('patients/contactUrgence', $data);
     }
   }
+  /**  affichage du profile du patient */
   public function profile()
   {
     if ($_SESSION['userType'] != 'patient') {
@@ -186,6 +194,9 @@ class Patients extends Controller
       $this->view('patients/profile', $data);
     }
   }
+  /** ceci renvoit le formulaire pour éditer les données personnelles
+   * et celles du contact d'urgence du patient
+  */
   public function editP()
   {
     $data = [
@@ -194,6 +205,7 @@ class Patients extends Controller
     ];
     $this->view('patients/editprofile', $data);
   }
+  /** affiche les rendez-vous pris par le patient  */
   public function rendezvous($etat = '')
   {
     if ($_SESSION['userType'] != 'patient') {
@@ -206,14 +218,17 @@ class Patients extends Controller
       $this->view('patients/report', $data);
     }
   }
+  /** mise à jour du profile du patient  */
   public function updateProfile()
   {
     $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
     $data = [
+      'patient' => $this->activeUser,
+      'urgence' => $this->patientModel->recupurgence(),
       'nom' => trim($_POST['nom']),
       'prenom' => trim($_POST['prenom']),
-      'dateNaissance' => trim($_POST['dateNaissance']),
-      'lieuNaissance' => trim($_POST['lieuNaissance']),
+      'dateNaissance' => trim($_POST['date']),
+      'lieuNaissance' => trim($_POST['lieu']),
       'sexe' => $_POST['sexe'],
       'adresse' => trim($_POST['adresse']),
       'nomContact' => trim($_POST['nomContact']),
@@ -262,9 +277,9 @@ class Patients extends Controller
 
     if (empty($data['nom_err']) && empty($data['prenom_err']) && empty($data['date_err']) && empty($data['lieu_err']) && empty($data['adresse_err']) && empty($data['nomContact_err']) && empty($data['prenomContact_err']) && empty($data['telurgence_err']) && empty($data['adresseContact_err'])) {
       // updating data into de tables
-      if ($this->patientModel->updateProfile($data)) {
+      if ($this->patientModel->editPersInfo($data) && $this->patientModel->editEmerInfo($data)) {
         flash('register_success', 'Vos informations ont été mis à jours');
-        redirect('patients/patient');
+        redirect('patients/profile');
       } else {
         die('Quelque chose qui ne va pas bien!');
       }
@@ -272,6 +287,7 @@ class Patients extends Controller
       $this->view('patients/editprofile', $data);
     }
   }
+  /** demande rendez-vous, for,ulaire et traitement  */
   public function askRdv()
   {
     if ($_SESSION['userType'] != 'patient') {
@@ -285,15 +301,7 @@ class Patients extends Controller
       $this->view('patients/askRdv', $data);
     }
   }
-  /* public function delRdv()
-  {
-    if ($_SESSION['userType'] != 'patient') {
-      notAuthorized();
-    } else {
-      $this->patientModel->deleteRdv();
-      $this->view('patients/report');
-    }
-  } */
+  /** action acconpagnant la prise de rendew-vous  */
   public function askRdvAction($id)
   {
     if ($_SESSION['userType'] != 'patient') {
@@ -318,8 +326,9 @@ class Patients extends Controller
         }
       }
     }
-    redirect('patients/patient');
+    redirect($this->rendezvous($etat = ''));
   }
+  /** affichage du planning hebdomadaire des medecins */
   public function planning($etat = '')
   {
     if ($_SESSION['userType'] != 'patient') {
@@ -332,6 +341,7 @@ class Patients extends Controller
       $this->view('patients/planning', $data);
     }
   }
+  /** affichage de la page du dossier medical */
   public function medoc($etat = '')
   {
     if ($_SESSION['userType'] != 'patient') {
@@ -344,7 +354,7 @@ class Patients extends Controller
       $this->view('patients/medoc', $data);
     }
   }
-
+  /** affichage des consultations */
   public function consult($etat = '')
   {
     if ($_SESSION['userType'] != 'patient') {

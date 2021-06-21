@@ -22,6 +22,15 @@ class Medecin
         $row = $this->db->single(); 
         return $row;
     }
+    public function listeService()
+    {
+        $sql = "SELECT * ";
+        $sql .= "FROM service ";
+        $sql .= "GROUP BY service.codeService ";
+        $this->db->query($sql);
+        $answer = $this->db->resultSet();
+        return $answer;
+    }
     public function medRdvAll($forMedecin,$filter){
         $user=[
             'id'    =>  $_SESSION['userId'],
@@ -48,7 +57,7 @@ class Medecin
         if($forMedecin=="only"){
             $this->db->bind(':codeMedecin',$codeMedecin);
         }
-        $rows= $this->db->resultSet();
+    $rows= $this->db->resultSet();
         return $rows;
     }
     public function patient()
@@ -57,5 +66,24 @@ class Medecin
         $this->db->query($sql);
         $answer = $this->db->resultSet();
         return $answer;
+    public function createProfile($data)
+    {
+        $sql = CREATEMEDECINPROFILE;
+        
+        $this->db->query($sql);
+        $this->db->bind(':nom', $data['nom']);
+        $this->db->bind(':prenom', $data['prenom']);
+        $this->db->bind(':codeService', $data['service']);
+        $this->db->bind(':userId', $_SESSION['userId']);
+        $this->db->bind(':sexe', $data['sexe']);
+        $this->db->bind(':adresse', $data['adresse']);
+        $this->db->bind(':dateNaissance', $data['dateNaissance']);
+        $this->db->bind(':lieuNaissance', $data['lieuNaissance']);
+        $this->db->bind(':tel', $data['tel']);
+        $answer = $this->db->execute();
+        $this->db->query(UPDATESTATE . $_SESSION['userId']);
+        $updateState = $this->db->execute();
+        $_SESSION['userState'] = 'complet';
+        return $answer && $updateState;
     }
 }

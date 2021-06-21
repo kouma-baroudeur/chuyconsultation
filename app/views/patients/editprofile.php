@@ -9,7 +9,7 @@
     </div>
 </section>
 <div class="text-dark container rounded bg-white mt-1 mb-5">
-    <form class="container" action="<?= URLROOT ?>/patients/updateProfile" method="POST">
+    <form class="container" action="<?= URLROOT ?>/patients/updateProfile/" method="POST">
         <div class="row">
             <div class="col-md-6 border-right mb-2">
                 <div class="p-3 py-5">
@@ -31,7 +31,7 @@
                     <div class="row mt-2">
                         <div class="col-md-6">
                             <label class="font-weight-bold labels">Date de naissance</label>
-                            <input name="date" class="form-control form-control-lg <?= (!empty($data['date_err'])) ? 'is-invalid' : '' ?>" id="date" type="text" value="<?= $data['patient']->dateNaissancePatient ?>">
+                            <input name="date" class="form-control form-control-lg <?= (!empty($data['date_err'])) ? 'is-invalid' : '' ?>" id="date" type="date" value="<?= $data['patient']->dateNaissancePatient ?>">
                         </div>
                         <span class="invalid-feedback"><?php echo $data['date_err']; ?></span>
                         <div class="col-md-6">
