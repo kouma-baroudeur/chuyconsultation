@@ -302,31 +302,36 @@ class Patients extends Controller
     }
   }
   /** action acconpagnant la prise de rendew-vous  */
-  public function askRdvAction($id)
+  public function askRdvAction()
   {
     if ($_SESSION['userType'] != 'patient') {
       notAuthorized();
     } else {
-      if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        if (!empty($_POST['dateRdv']) && isset($_POST['codeMedecin'])) {
-          $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-          $data = [
-            'IP' => $id,
-            'codeMedecin' => $_POST['codeMedecin'],
-            'dateRdv' => $_POST['dateRdv'],
-            'heureRdv' => $_POST['heureRdv']
-          ];
+        $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+        $data = [
+          'medecins' => $this->patientModel->listeMedecins(),
+          'codeMedecin' => $_POST['codeMedecin'],
+          'dateRdv' => $_POST['dateRdv'],
+          'heureRdv' => $_POST['heureRdv']
+        ];
+
+        if (empty($data['dateRdv'])) {
+          $data['dateRdv_err'] = 'Veuillez renseigner ce champ.';
+        }
+        if (empty($data['heureRdv'])) {
+          $data['heureRdv_err'] = 'Veuillez renseigner ce champ.';
+        }
+
+        if (empty($data['heureRdv_err']) && empty($data['dateRdv_err']))
+        {
           if ($this->patientModel->askRdv($data)) {
             flash('EtatPostEditCons', "Votre rendez-vous a été crée avec succés!", 'alert alert-success');
-          } else {
-            flash('EtatPostEditCons', "oops! erreur inattendue!", 'alert alert-danger');
+            redirect($this->rendezvous($etat = ''));
           }
-        } else {
-          flash('EtatPostEditCons', "Veuillez remplir tous les champs requis!", 'alert alert-danger');
+        }else{
+          $this->view('patients/askRdv', $data);
         }
       }
-    }
-    redirect($this->rendezvous($etat = ''));
   }
   /** affichage du planning hebdomadaire des medecins */
   public function planning($etat = '')

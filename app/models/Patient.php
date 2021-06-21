@@ -137,12 +137,20 @@ class Patient
     }
     public function askRdv($data)
     {
+        $user = [
+            'id'    =>  $_SESSION['userId'],
+            'type'  =>  $_SESSION['userType'],
+            'email' => $_SESSION['userMail'],
+            'state' => $_SESSION['userState']
+        ];
+        $codePatient = $this->getPatientById($user)->IP;
+        
         $sql = ASKRDV;
         $this->db->query($sql);
-        $this->db->bind(':IP', $data['IP']);
-        $this->db->bind(':codeMedecin', $data['codeMedecin']);
         $this->db->bind(':dateRdv', $data['dateRdv']);
         $this->db->bind(':heureRdv', $data['heureRdv']);
+        $this->db->bind(':IP', $codePatient);
+        $this->db->bind(':codeMedecin', $data['codeMedecin']);
         $answer = $this->db->execute();
         return $answer;
     }

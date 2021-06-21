@@ -1,6 +1,18 @@
 <link href="<?= URLROOT ?>/assets/styles/styles.css" rel="stylesheet" type="text/css" media="all">
 <link href="<?= URLROOT ?>/assets/styles/tailwind.min.css" rel="stylesheet" type="text/css">
+<style>
+    input:invalid+span:after {
+    position: absolute;
+    content: '✖';
+    padding-left: 5px;
+    }
 
+    input:valid+span:after {
+    position: absolute;
+    content: '✓';
+    padding-left: 5px;
+    }
+</style>
 <!-- Modal -->
 <div class="bg-blue-300 fixed z-40 top-0 right-0 left-0 bottom-0 h-full w-full" x-show.transition.opacity="openEventModal">
     <div class="p-4 max-w-xl mx-auto relative absolute left-0 right-0 overflow-hidden mt-24">
@@ -9,15 +21,17 @@
 
             <h2 class="font-bold text-2xl mb-6 text-gray-800 border-b pb-2">Les détails du rendez-vous</h2>
 
-            <form method="post" name="askRdv" action="<?= URLROOT ?>/patients/askRdvAction/<?= $data['patient']->IP ?>">
+            <form method="post" name="askRdv" action="<?= URLROOT ?>/patients/askRdvAction/">
                 <div class="mb-4">
                     <label class="form-group text-gray-800 block mb-1 font-bold text-sm tracking-wide">Date</label>
-                    <input name="dateRdv" class="form-control form-control-lg" id="txtDate" type="date" min="<?php echo date("Y-m-d"); ?>">
+                    <input name="dateRdv" class="form-control form-control-lg <?= (!empty($data['dateRdv_err'])) ? 'is-invalid' : '' ?>" type="date" min="<?php echo date("Y-m-d"); ?>" value="<?= $data['dateRdv'] ?>">
+                    <span class="validity invalid-feedback"><?php echo $data['dateRdv_err']; ?></span>
                 </div>
 
                 <div class="mb-4">
                     <label class="text-gray-800 block mb-1 font-bold text-sm tracking-wide">Heure</label>
-                    <input name="heureRdv" class="bg-gray-200 appearance-none border-2 border-gray-200 rounded-lg w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500" type="time" min="08:30" max="18:00">
+                    <input name="heureRdv" class="form-control form-control-lg <?= (!empty($data['heureRdv_err'])) ? 'is-invalid' : '' ?>" type="time" min="08:30" max="18:00" value="<?= $data['heureRdv'] ?>">
+                    <span class="validity"><?php echo $data['heureRdv_err']; ?></span>
                 </div>
 
                 <div class="inline-block w-64 mb-4">
@@ -34,7 +48,7 @@
                 </div>
 
                 <div class="mt-8 text-right">
-                    <a href="patient">
+                    <a href="<?= URLROOT ?>/patients/patient">
                         <button type="button" class="bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 border border-gray-300 rounded-lg shadow-sm mr-2">
                             Annuler
                         </button>

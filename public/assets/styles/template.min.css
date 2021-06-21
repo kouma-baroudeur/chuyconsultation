@@ -1820,11 +1820,11 @@ body.off-canvas-sidebar-open:after {
 @keyframes change_last_circle{
     50%{transform:rotateX(360deg) scale(.8)}
 } */
-/* start preloader inline */
+/* start preloader inline .1s cubic-bezier(.645, .045, .355, 1)*/
 .layout {
     position: relative;
-    -webkit-transition: left .1s cubic-bezier(.645, .045, .355, 1), 0.1s opacity ease;
-    transition: left .1s cubic-bezier(.645, .045, .355, 1), 0.1s opacity ease;
+    -webkit-transition: left 0.1s cubic-bezier(.17,.67,.83,.67), 0.1s opacity ease;
+    transition: left 0.1s cubic-bezier(.17,.67,.83,.67), 0.1s opacity ease;
     left: 0
 }
 
