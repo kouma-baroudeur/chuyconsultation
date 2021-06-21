@@ -22,7 +22,6 @@ class Medecins extends Controller
             notAuthorized();
         } else {
             $data = [
-                // parametres utilisees pour les sous panneau
                 'params' => $page,
                 'services'=>$this->medecinModel->listeService(),
                 'medecin' => $this->activeUser
@@ -142,6 +141,18 @@ class Medecins extends Controller
             ];
             $this->view('medecins/patient', $data);
         }
+    }
+
+    public function planning()
+    {
+      if ($_SESSION['userType'] != 'medecin') {
+        notAuthorized();
+      } else {
+          $data = [
+              'planning' => $this->medecinModel->planning(),
+          ];
+          $this->view('medecins/programme', $data);
+      }
     }
    
 }

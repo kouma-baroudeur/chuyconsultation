@@ -7,7 +7,6 @@ class Medecin
     {
         $this->db = new Database;
     }
-
     public function getMedecinById($user)
     {
         // getMedecinByUserId
@@ -66,6 +65,7 @@ class Medecin
         $this->db->query($sql);
         $answer = $this->db->resultSet();
         return $answer;
+    }
     public function createProfile($data)
     {
         $sql = CREATEMEDECINPROFILE;
@@ -85,5 +85,13 @@ class Medecin
         $updateState = $this->db->execute();
         $_SESSION['userState'] = 'complet';
         return $answer && $updateState;
+    }
+
+    public function planning()
+    {
+        $sql = "SELECT * FROM service,plannings,medecin WHERE plannings.codeMedecin = medecin.codeMedecin AND medecin.codeService=service.codeService";
+        $this->db->query($sql);
+        $answer = $this->db->resultSet();
+        return $answer;
     }
 }

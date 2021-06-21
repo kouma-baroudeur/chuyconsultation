@@ -1,4 +1,4 @@
 <?php
-    $routes = [
+    'routes' = [
         'a'=>URLROOT
     ];

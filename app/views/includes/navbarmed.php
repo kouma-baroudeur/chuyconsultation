@@ -65,7 +65,7 @@
               <span class="ml-4"></?= MD ?></span>
             </a>
           </li> -->
-          <!-- <li class="relative px-6 py-3 mb-2">
+          <li class="relative px-6 py-3 mb-2">
             <span class="absolute inset-y-0 left-0 w-1 bg-blue-600 rounded-tr-lg rounded-br-lg" aria-hidden="true"></span>
             <a class="inline-flex items-center w-full text-sm font-semibold text-gray-800 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100" href="rdvs">
               <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
@@ -76,12 +76,12 @@
                   <path id="Stroke_4" data-name="Stroke 4" d="M12.158,0,4.469,0A4.251,4.251,0,0,0,0,4.607v9.2A4.254,4.254,0,0,0,4.506,18.41l7.689,0a4.252,4.252,0,0,0,4.47-4.6v-9.2A4.255,4.255,0,0,0,12.158,0Z" />
                 </g>
               </svg>
-              <span class="ml-4"></?= REPORT ?></span>
+              <span class="ml-4"><?= REPORT ?></span>
             </a>
-          </li> -->
+          </li>
           <li class="relative px-6 py-3 mb-2">
             <span class="absolute inset-y-0 left-0 w-1 bg-blue-600 rounded-tr-lg rounded-br-lg" aria-hidden="true"></span>
-            <a class="inline-flex items-center w-full text-sm font-semibold text-gray-800 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100" href="rdvs">
+            <a class="inline-flex items-center w-full text-sm font-semibold text-gray-800 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100" href="planning">
               <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
                 <g id="Calendar" transform="translate(3 2)">
                   <path id="Line_200" d="M0,.473H17.824" transform="translate(0.093 6.931)" />
@@ -171,7 +171,7 @@
               <span class="ml-4"><?= PERS ?></span>
             </a>
           </li>
-          <li class="relative px-6 py-3 mb-2">
+          <!-- <li class="relative px-6 py-3 mb-2">
             <span class="absolute inset-y-0 left-0 w-1 bg-blue-600 rounded-tr-lg rounded-br-lg" aria-hidden="true"></span>
             <a class="inline-flex items-center w-full text-sm font-semibold text-gray-800 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100" href="medoc">
               <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
@@ -184,12 +184,12 @@
                   </g>
                 </g>
               </svg>
-              <span class="ml-4"><?= MD ?></span>
+              <span class="ml-4"></?= MD ?></span>
             </a>
-          </li>
+          </li> -->
           <li class="relative px-6 py-3 mb-2">
             <span class="absolute inset-y-0 left-0 w-1 bg-blue-600 rounded-tr-lg rounded-br-lg" aria-hidden="true"></span>
-            <a class="inline-flex items-center w-full text-sm font-semibold text-gray-800 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100" href="rendezvous">
+            <a class="inline-flex items-center w-full text-sm font-semibold text-gray-800 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100" href="rdvs">
               <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
                 <g id="Document" transform="translate(3.751 2.75)">
                   <path id="Stroke_1" data-name="Stroke 1" d="M7.22.5H0" transform="translate(4.746 12.974)" />
@@ -203,7 +203,7 @@
           </li>
           <li class="relative px-6 py-3 mb-2">
             <span class="absolute inset-y-0 left-0 w-1 bg-blue-600 rounded-tr-lg rounded-br-lg" aria-hidden="true"></span>
-            <a class="inline-flex items-center w-full text-sm font-semibold text-gray-800 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100" href="rendezvous">
+            <a class="inline-flex items-center w-full text-sm font-semibold text-gray-800 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100" href="planning">
               <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
                 <g id="Calendar" transform="translate(3 2)">
                   <path id="Line_200" d="M0,.473H17.824" transform="translate(0.093 6.931)" />
@@ -218,7 +218,7 @@
                   <path id="Path" d="M13.238,0H4.771C1.834,0,0,1.636,0,4.643v9.05c0,3.054,1.834,4.728,4.771,4.728h8.458c2.946,0,4.771-1.645,4.771-4.652V4.643C18.009,1.636,16.184,0,13.238,0Z" transform="translate(0 1.579)" />
                 </g>
               </svg>
-              <span class="ml-4"><?= RDV ?></span>
+              <span class="ml-4"><?= PLANNING ?></span>
             </a>
           </li>
           <li class="relative px-6 py-3 mb-2">
@@ -233,13 +233,13 @@
               <span class="ml-4"><?= CHAT ?></span>
             </a>
           </li>
-          <li class="relative px-6 py-3 mb-2">
+          <!-- <li class="relative px-6 py-3 mb-2">
             <span class="absolute inset-y-0 left-0 w-1 bg-blue-600 rounded-tr-lg rounded-br-lg" aria-hidden="true"></span>
             <a class="inline-flex items-center w-full text-sm font-semibold text-gray-800 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100" href="consultations">
               <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
                 <path d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
               </svg>
-              <span class="ml-4"><?= CONSULT ?></span>
+              <span class="ml-4"></?= CONSULT ?></span>
             </a>
           </li>
           <li class="relative px-6 py-3 mb-2">
@@ -248,9 +248,9 @@
               <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
               </svg>
-              <span class="ml-4"><?= PAYMENT ?></span>
+              <span class="ml-4"></?= PAYMENT ?></span>
             </a>
-          </li>
+          </li> -->
         </ul>
 
       </div>

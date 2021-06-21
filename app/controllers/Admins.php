@@ -168,7 +168,6 @@ class Admins extends Controller
         notAuthorized();
       } else {
        $id= $_GET['id'];
-       echo $id;
         $data = [   
         'medecins' => $this->adminModel->profileStaff($id)];
 
