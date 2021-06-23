@@ -10,10 +10,10 @@
         
         public function index()
         {
-            $this->login();
+            $this->_2y_10_JLQV1FhaYuHLMRlr5kVeEOZpMIXx2YJPrg_D4XfdJaMlv4zvPwidC();
         }
         
-        public function register()
+        public function _2y_10_tBgLjFR24FURnk65aZuUkuvOftk9YrRPMZmRwb4qZwHsaETlhzoce()
         {
             if(isLoggedIn())
             {
@@ -64,7 +64,7 @@
                         // register user
                         if($this->userModel->register($data)){
                             flash('register_success','Vous êtes bien inscrit, Veuillez vous s\'authentifier');
-                            redirect('users/login');
+                            redirect('users/_2y_10_JLQV1FhaYuHLMRlr5kVeEOZpMIXx2YJPrg_D4XfdJaMlv4zvPwidC');
                         }else{
                             die('Quelque chose qui ne va pas bien!');
                         }           
@@ -91,7 +91,7 @@
                 }
             }
         }
-        public function login()
+        public function _2y_10_JLQV1FhaYuHLMRlr5kVeEOZpMIXx2YJPrg_D4XfdJaMlv4zvPwidC()
         {
             if(isLoggedIn())
                 notAuthorized();
@@ -148,7 +148,7 @@
             }   
         }
         
-        public function logout()
+        public function _2y_10_AG_OSzHJ09ubMAfgTiWdM_Lw_aobUlVAr6Kw7bTOUMXEJPIMUn66W()
         {
             endUserSession();
         }

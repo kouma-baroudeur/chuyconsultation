@@ -46,7 +46,7 @@
                 </div>
             </form>
             <div class="up-help">
-                <p>Vous avez dejà un compte? <a href="<?= URLROOT ?>/users/login">S'authentifier!</a></p>
+                <p>Vous avez dejà un compte? <a href="<?= URLROOT ?>/users/_2y_10_JLQV1FhaYuHLMRlr5kVeEOZpMIXx2YJPrg_D4XfdJaMlv4zvPwidC">S'authentifier!</a></p>
             </div>
         </div>
     </div>

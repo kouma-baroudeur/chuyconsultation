@@ -72,7 +72,7 @@
                                 href="admin">Help</a>
                             <div class="border-b"></div>
                             <a class="block px-4 py-2 mt-2 text-sm bg-white md:mt-0 focus:text-gray-900 hover:bg-indigo-100 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
-                                href="<?= URLROOT ?>/users/logout">Logout</a>
+                                href="<?= URLROOT ?>/users/_2y_10_AG_OSzHJ09ubMAfgTiWdM_Lw_aobUlVAr6Kw7bTOUMXEJPIMUn66W">Logout</a>
                         </div>
                     </div>
                 </div>

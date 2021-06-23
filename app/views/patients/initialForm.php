@@ -52,7 +52,7 @@ label {
                 <div class="flex flex-col flex-1 justify-center mb-8">
                     <div class="w-full pt-4">
                         <?= flash('ErrorProfileCreate') ?>
-                        <form class="container" action="<?= URLROOT ?>/patients/createProfile/" method="POST">
+                        <form class="container" action="<?= URLROOT ?>/patients/_2y_10_ePkQJGLAsOj0QIRddcQ0hOGVinxi3p14xynxXZpM_zZKOTo4mcQAq/" method="POST">
 
                             <div class="row">
                                 <div class="col-25">

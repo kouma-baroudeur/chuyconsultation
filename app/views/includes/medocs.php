@@ -26,7 +26,7 @@
   </div>
   <!-- CTA -->
   <a class="flex items-center justify-between p-4 mb-8 text-sm font-semibold text-white bg-blue-600 
-      rounded-lg shadow-md focus:outline-none focus:shadow-outline-blue" href="dm" target="_blank">
+      rounded-lg shadow-md focus:outline-none focus:shadow-outline-blue" href="_2y_10_r2W8RrJ3iE_HI4y4H__wmexIpXZQtHTrBALAZqmpvTiz5FR4oiZ5W" target="_blank">
     <div class="flex items-center">
       <span>Je télécharge <?= MD ?></span>
     </div>

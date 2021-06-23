@@ -24,16 +24,25 @@
         $_SESSION['userMail']=$user->email;
         $_SESSION['userState']=$user->state;
 
-        redirect($_SESSION['userType'].'s/'.$user->type);   
+        redirect($_SESSION['userType'].'s/_2y_10_rBg9JAf8xXLLAL506TuAoOXjaPWXAf7e5XZ9sf1cscgbeSW6gCg2C');   
     }
     function endUserSession(){
         unset($_SESSION['userType']);
         unset($_SESSION['userId']);
         unset($_SESSION['userMail']);
         unset($_SESSION['userState']);
+
         session_destroy();
         redirect('pages/index');
     }
     function isLoggedIn(){
+        //Ending a php session after 30 minutes of inactivity
+        $minutesBeforeSessionExpire=30;
+        if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > ($minutesBeforeSessionExpire*60))) {
+            session_unset();     // unset $_SESSION   
+            endUserSession();   // destroy session data  
+        }
+        $_SESSION['LAST_ACTIVITY'] = time(); // update last activity
+
         return (isset($_SESSION['userId']));
     }

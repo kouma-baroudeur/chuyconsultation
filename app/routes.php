@@ -1,4 +1,0 @@
-<?php
-    'routes' = [
-        'a'=>URLROOT
-    ];

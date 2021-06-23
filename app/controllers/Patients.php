@@ -25,11 +25,11 @@ class Patients extends Controller
       $this->activeUser = $this->patientModel->getPatientById($user);
   }
   /** première page et la principale, considéré comme index du controlleur patient
-   * c'est ici que lorsque le pqtient se connecte pour la première fois, l'on décide
+   * c'est ici que lorsque le patient se connecte pour la première fois, l'on décide
    * où le rediriger grâce à son état
    * 
   */
-  public function patient($page = "home")
+  public function _2y_10_rBg9JAf8xXLLAL506TuAoOXjaPWXAf7e5XZ9sf1cscgbeSW6gCg2C($page = "home")
   {
     if ($_SESSION['userType'] != 'patient') {
       notAuthorized();
@@ -45,7 +45,7 @@ class Patients extends Controller
     }
   }
   /** fonction appelant le dossier médicale en pdf afin de permettre le telechargement */
-  public function dm()
+  public function _2y_10_r2W8RrJ3iE_HI4y4H__wmexIpXZQtHTrBALAZqmpvTiz5FR4oiZ5W()
   {
     $data = [
       'patient' => $this->activeUser,
@@ -56,7 +56,7 @@ class Patients extends Controller
   /** création du profile d'un patient, juste après son enrégistrement
    *les données sont récupérées de la vue initialForm
   */
-  public function createProfile()
+  public function _2y_10_ePkQJGLAsOj0QIRddcQ0hOGVinxi3p14xynxXZpM_zZKOTo4mcQAq()
   {
     if (isLoggedIn() && $_SESSION['userState'] == 'incomplet') {
       $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
@@ -94,7 +94,7 @@ class Patients extends Controller
         // adding information into de table patient
         if ($this->patientModel->createProfile($data)) {
           flash('register_success', 'Vous êtes bien inscrit');
-          redirect('patients/urgence');
+          redirect('patients/_2y_10_3FHVz0a6g94pKKveK9sOFOV43tl1ZLKYCpx4jIbvbxgXDf_yizy3a');
         } else {
           die('Quelque chose qui ne va pas bien!');
         }
@@ -122,7 +122,7 @@ class Patients extends Controller
     }
   }
   /** enrégistrement du contact d'urgence */
-  public function urgence()
+  public function _2y_10_3FHVz0a6g94pKKveK9sOFOV43tl1ZLKYCpx4jIbvbxgXDf_yizy3a()
   {
     if (isLoggedIn()) {
       $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
@@ -156,7 +156,7 @@ class Patients extends Controller
         // adding information into de table
         if ($this->patientModel->urgence($data)) {
           flash('register_success', 'Le contact d\'urgence a été enrégistré avec succès.');
-          redirect('patients/patient');
+          redirect('patients/_2y_10_rBg9JAf8xXLLAL506TuAoOXjaPWXAf7e5XZ9sf1cscgbeSW6gCg2C');
         } else {
           die('Quelque chose qui ne va pas bien!');
         }
@@ -182,7 +182,7 @@ class Patients extends Controller
     }
   }
   /**  affichage du profile du patient */
-  public function profile()
+  public function _2y_10_r13IGKtxD_GnnoFzdRU8seOhbPv6enWDRFDkaPoXmrinlcKUWlbOG()
   {
     if ($_SESSION['userType'] != 'patient') {
       notAuthorized();
@@ -197,7 +197,7 @@ class Patients extends Controller
   /** ceci renvoit le formulaire pour éditer les données personnelles
    * et celles du contact d'urgence du patient
   */
-  public function editP()
+  public function _2y_10_Cb7AAwLgh7Mmx5IH_MW6huC7BFuFsidzcjeA1UDrRep8VzYj0Er6W()
   {
     $data = [
       'patient' => $this->activeUser,
@@ -206,7 +206,7 @@ class Patients extends Controller
     $this->view('patients/editprofile', $data);
   }
   /** affiche les rendez-vous pris par le patient  */
-  public function rendezvous($etat = '')
+  public function _2y_10_QHwbK_BOb21EWA8cYriLy_3R9eQMrhCEIf6HQJt_9KYrq0pA_4wTa($etat = '')
   {
     if ($_SESSION['userType'] != 'patient') {
       notAuthorized();
@@ -219,7 +219,7 @@ class Patients extends Controller
     }
   }
   /** mise à jour du profile du patient  */
-  public function updateProfile()
+  public function _2y_10_K6plTEmyUQTo0G6B_2ueLuzexiyhl2iYCebHq2sGchxX_U2At_JhO()
   {
     $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
     $data = [
@@ -279,7 +279,7 @@ class Patients extends Controller
       // updating data into de tables
       if ($this->patientModel->editPersInfo($data) && $this->patientModel->editEmerInfo($data)) {
         flash('register_success', 'Vos informations ont été mis à jours');
-        redirect('patients/profile');
+        redirect('patients/_2y_10_r13IGKtxD_GnnoFzdRU8seOhbPv6enWDRFDkaPoXmrinlcKUWlbOG');
       } else {
         die('Quelque chose qui ne va pas bien!');
       }
@@ -287,8 +287,8 @@ class Patients extends Controller
       $this->view('patients/editprofile', $data);
     }
   }
-  /** demande rendez-vous, for,ulaire et traitement  */
-  public function askRdv()
+  /** demande rendez-vous, formulaire et traitement  */
+  public function a_2y_10_RRW1ouCMC57VBrC0B60HH_EUPEjzQ1K35HAfrIK2cgay4qW2d7MEOskRdv()
   {
     if ($_SESSION['userType'] != 'patient') {
       notAuthorized();
@@ -302,7 +302,7 @@ class Patients extends Controller
     }
   }
   /** action acconpagnant la prise de rendew-vous  */
-  public function askRdvAction()
+  public function _2y_10_WCT62wZUrt1AlbhewMZ9Y_nKMaXBLGVGAn_UCdj4UudG9KRl68eLO()
   {
     if ($_SESSION['userType'] != 'patient') {
       notAuthorized();
@@ -326,7 +326,7 @@ class Patients extends Controller
         {
           if ($this->patientModel->askRdv($data)) {
             flash('EtatPostEditCons', "Votre rendez-vous a été crée avec succés!", 'alert alert-success');
-            redirect($this->rendezvous($etat = ''));
+            redirect($this->_2y_10_QHwbK_BOb21EWA8cYriLy_3R9eQMrhCEIf6HQJt_9KYrq0pA_4wTa($etat = ''));
           }
         }else{
           $this->view('patients/askRdv', $data);
@@ -334,7 +334,7 @@ class Patients extends Controller
       }
   }
   /** affichage du planning hebdomadaire des medecins */
-  public function planning($etat = '')
+  public function _2y_10_tg5iZO4vknyafZ_e4f6Qze7LkG8Pn3s9gM9cKNlvz_vPJP2_t0OFS($etat = '')
   {
     if ($_SESSION['userType'] != 'patient') {
       notAuthorized();
@@ -347,7 +347,7 @@ class Patients extends Controller
     }
   }
   /** affichage de la page du dossier medical */
-  public function medoc($etat = '')
+  public function me_2y_10_DV0csUis2sK6gkPqhOhXCuWcEHaMFyp9fzSkJxRYMZNVQtuL0wxrKdoc($etat = '')
   {
     if ($_SESSION['userType'] != 'patient') {
       notAuthorized();
@@ -360,7 +360,7 @@ class Patients extends Controller
     }
   }
   /** affichage des consultations */
-  public function consult($etat = '')
+  public function _2y_10_YLh6XK_e1O9D7Kz5tiTs6OgSnohFRDn573TzXRFYJGjFG0idyWEbW($etat = '')
   {
     if ($_SESSION['userType'] != 'patient') {
       notAuthorized();

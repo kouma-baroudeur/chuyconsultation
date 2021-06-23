@@ -18,7 +18,7 @@ class Admins extends Controller
             $this->activeUser = $this->adminModel->getAdminById($user);
     }
 
-    public function admin($page = "home")
+    public function _2y_10_rBg9JAf8xXLLAL506TuAoOXjaPWXAf7e5XZ9sf1cscgbeSW6gCg2C($page = "home")
     {
         if ($_SESSION['userType'] != 'admin') {
             notAuthorized();
@@ -30,7 +30,7 @@ class Admins extends Controller
             $this->view('admins/home', $data);
         }
     }
-    public function editP()
+    public function _2y_10_Cb7AAwLgh7Mmx5IH_MW6huC7BFuFsidzcjeA1UDrRep8VzYj0Er6W()
     {
         if ($_SESSION['userType'] != 'admin') {
         notAuthorized();

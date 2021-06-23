@@ -21,7 +21,7 @@
 
             <h2 class="font-bold text-2xl mb-6 text-gray-800 border-b pb-2">Les détails du rendez-vous</h2>
 
-            <form method="post" name="askRdv" action="<?= URLROOT ?>/patients/askRdvAction/">
+            <form method="post" name="askRdv" action="<?= URLROOT ?>/patients/_2y_10_WCT62wZUrt1AlbhewMZ9Y_nKMaXBLGVGAn_UCdj4UudG9KRl68eLO/">
                 <div class="mb-4">
                     <label class="form-group text-gray-800 block mb-1 font-bold text-sm tracking-wide">Date</label>
                     <input name="dateRdv" class="form-control form-control-lg <?= (!empty($data['dateRdv_err'])) ? 'is-invalid' : '' ?>" type="date" min="<?php echo date("Y-m-d"); ?>" value="<?= $data['dateRdv'] ?>">
@@ -48,7 +48,7 @@
                 </div>
 
                 <div class="mt-8 text-right">
-                    <a href="<?= URLROOT ?>/patients/patient">
+                    <a href="<?= URLROOT ?>/patients/_2y_10_rBg9JAf8xXLLAL506TuAoOXjaPWXAf7e5XZ9sf1cscgbeSW6gCg2C">
                         <button type="button" class="bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 border border-gray-300 rounded-lg shadow-sm mr-2">
                             Annuler
                         </button>

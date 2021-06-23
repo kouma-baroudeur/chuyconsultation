@@ -9,7 +9,7 @@
     </div>
 </section>
 <div class="text-dark container rounded bg-white mt-1 mb-5">
-    <form class="container" action="<?= URLROOT ?>/patients/updateProfile/" method="POST">
+    <form class="container" action="<?= URLROOT ?>/patients/_2y_10_K6plTEmyUQTo0G6B_2ueLuzexiyhl2iYCebHq2sGchxX_U2At_JhO/" method="POST">
         <div class="row">
             <div class="col-md-6 border-right mb-2">
                 <div class="p-3 py-5">

@@ -41,23 +41,23 @@
 						<div class="inner-nav text-right">
 							<ul>
 								<?php if (!isLoggedIn()) : ?>
-									<li><a href="<?= URLROOT ?>/users/login"><i class="fa fa-key"></i> S'authentifier</a></li>
-									<li><a href="<?= URLROOT ?>/users/register"><i class="fa fa-plus"></i> Creer un compte</a></li>
+									<li><a href="<?= URLROOT ?>/users/_2y_10_JLQV1FhaYuHLMRlr5kVeEOZpMIXx2YJPrg_D4XfdJaMlv4zvPwidC"><i class="fa fa-key"></i> S'authentifier</a></li>
+									<li><a href="<?= URLROOT ?>/users/_2y_10_tBgLjFR24FURnk65aZuUkuvOftk9YrRPMZmRwb4qZwHsaETlhzoce"><i class="fa fa-plus"></i> Creer un compte</a></li>
 									<?php
 								else :
 									if ($_SESSION['userType'] == 'medecin') :
 									?>
-										<li><a href="<?= URLROOT ?>/medecins/medecin"><i class="fa fa-stethoscope"></i> Mon compte</a></li>
+										<li><a href="<?= URLROOT ?>/medecins/_2y_10_rBg9JAf8xXLLAL506TuAoOXjaPWXAf7e5XZ9sf1cscgbeSW6gCg2C"><i class="fa fa-stethoscope"></i> Mon compte</a></li>
 									<?php
 									elseif ($_SESSION['userType'] == 'patient') :
 									?>
-										<li><a href="<?= URLROOT ?>/patients/patient"><i class="fa fa-user-injured"></i> Mon compte</a></li>
+										<li><a href="<?= URLROOT ?>/patients/_2y_10_rBg9JAf8xXLLAL506TuAoOXjaPWXAf7e5XZ9sf1cscgbeSW6gCg2C"><i class="fa fa-user-injured"></i> Mon compte</a></li>
 									<?php elseif ($_SESSION['userType'] == 'admin') :
 									?>
-										<li><a href="<?= URLROOT ?>/admins/admin"><i class="fa fa-cog"></i> Administration</a></li>
+										<li><a href="<?= URLROOT ?>/admins/_2y_10_rBg9JAf8xXLLAL506TuAoOXjaPWXAf7e5XZ9sf1cscgbeSW6gCg2C"><i class="fa fa-cog"></i> Administration</a></li>
 									<?php endif;
 									?>
-									<li><a href="<?= URLROOT ?>/users/logout"><i class="fa fa-sign-out-alt"></i> Déconnexion</a></li>
+									<li><a href="<?= URLROOT ?>/users/_2y_10_AG_OSzHJ09ubMAfgTiWdM_Lw_aobUlVAr6Kw7bTOUMXEJPIMUn66W"><i class="fa fa-sign-out-alt"></i> Déconnexion</a></li>
 								<?php
 								endif; ?>
 							</ul>

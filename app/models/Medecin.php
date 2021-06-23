@@ -1,4 +1,5 @@
 <?php
+
 /** model medecin */
 class Medecin
 {
@@ -18,7 +19,7 @@ class Medecin
         $row->type = $user['type'];
         $row->email = $user['email'];
         $row->state = $user['state'];
-        $row = $this->db->single(); 
+        $row = $this->db->single();
         return $row;
     }
     public function listeService()
@@ -30,38 +31,39 @@ class Medecin
         $answer = $this->db->resultSet();
         return $answer;
     }
-    public function medRdvAll($forMedecin,$filter){
-        $user=[
+    public function medRdvAll($forMedecin, $filter)
+    {
+        $user = [
             'id'    =>  $_SESSION['userId'],
             'type'  =>  $_SESSION['userType'],
             'email' => $_SESSION['userMail'],
             'state' => $_SESSION['userState']
-             ];
-        $codeMedecin=$this->getMedecinById($user)->codeMedecin;
+        ];
+        $codeMedecin = $this->getMedecinById($user)->codeMedecin;
         $sql = "SELECT * ";
-        $sql .="FROM patient,medecin,consultations,rendezvous,service ";
-        $sql .="WHERE medecin.codeService = service.codeService ";
-        $sql .="AND rendezvous.IP = patient.IP ";
-        $sql .="AND rendezvous.codeMedecin = medecin.codeMedecin ";
-        if($filter=="Attente"){
-            $sql .="AND rendezvous.etatRdv = 'Attente' ";
-        }elseif($filter=="Confirme"){
-            $sql .="AND rendezvous.etatRdv = 'Confirme' ";
+        $sql .= "FROM patient,medecin,consultations,rendezvous,service ";
+        $sql .= "WHERE medecin.codeService = service.codeService ";
+        $sql .= "AND rendezvous.IP = patient.IP ";
+        $sql .= "AND rendezvous.codeMedecin = medecin.codeMedecin ";
+        if ($filter == "Attente") {
+            $sql .= "AND rendezvous.etatRdv = 'Attente' ";
+        } elseif ($filter == "Confirme") {
+            $sql .= "AND rendezvous.etatRdv = 'Confirme' ";
         }
-        if($forMedecin=="only"){
-            $sql .="AND medecin.codeMedecin = :codeMedecin ";
+        if ($forMedecin == "only") {
+            $sql .= "AND medecin.codeMedecin = :codeMedecin ";
         }
-        $sql .="ORDER BY rendezvous.numeroRdv DESC  ";
+        $sql .= "ORDER BY rendezvous.numeroRdv DESC  ";
         $this->db->query($sql);
-        if($forMedecin=="only"){
-            $this->db->bind(':codeMedecin',$codeMedecin);
+        if ($forMedecin == "only") {
+            $this->db->bind(':codeMedecin', $codeMedecin);
         }
-    $rows= $this->db->resultSet();
+        $rows = $this->db->resultSet();
         return $rows;
     }
     public function patient()
     {
-        $sql = "SELECT * FROM patient,users WHERE patient.userId = users.id "; 
+        $sql = "SELECT * FROM patient,users WHERE patient.userId = users.id ";
         $this->db->query($sql);
         $answer = $this->db->resultSet();
         return $answer;
@@ -69,7 +71,7 @@ class Medecin
     public function createProfile($data)
     {
         $sql = CREATEMEDECINPROFILE;
-        
+
         $this->db->query($sql);
         $this->db->bind(':nom', $data['nom']);
         $this->db->bind(':prenom', $data['prenom']);
@@ -86,10 +88,27 @@ class Medecin
         $_SESSION['userState'] = 'complet';
         return $answer && $updateState;
     }
-
     public function planning()
     {
         $sql = "SELECT * FROM service,plannings,medecin WHERE plannings.codeMedecin = medecin.codeMedecin AND medecin.codeService=service.codeService";
+        $this->db->query($sql);
+        $answer = $this->db->resultSet();
+        return $answer;
+    }
+    public function search()
+    {
+        $outgoing_id = $_SESSION['userId'];
+        $searchTerm = $this->listeUsers();
+
+        $sql = "SELECT * FROM users,patient,medecin WHERE NOT users.id = {$outgoing_id} AND (nomMedecin LIKE '%{$searchTerm}%' OR nomPatient LIKE '%{$searchTerm}%') ";
+        
+        $this->db->query($sql);
+        $answer = $this->db->execute();
+        return $answer;
+    }
+    public function listeUsers()
+    {
+        $sql = "SELECT nomPatient,prenomPatient,nomMedecin,prenomMedecin,userId FROM users,patient,medecin WHERE patient.userId = users.id AND medecin.userId = users.id";
         $this->db->query($sql);
         $answer = $this->db->resultSet();
         return $answer;

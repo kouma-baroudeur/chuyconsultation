@@ -19,14 +19,14 @@
 					<div class="col-md-4 m-auto">
 						<div class="alert alert-danger" > <?=$data['message']?> </div>
 						<div class="form-group">
-						<a class="btn btn-block btn-lg btn-round btn-brand" href="<?=URLROOT?>/users/login"><i class="fa fa-key"></i> S'authentifier</a>
+						<a class="btn btn-block btn-lg btn-round btn-brand" href="<?=URLROOT?>/users/_2y_10_JLQV1FhaYuHLMRlr5kVeEOZpMIXx2YJPrg_D4XfdJaMlv4zvPwidC"><i class="fa fa-key"></i> S'authentifier</a>
 						</div>
 						<div class="form-group">
 						<a class="btn btn-block btn-lg btn-round btn-brand" href="<?=URLROOT?>/pages/index"><i class="fa fa-home"></i> Acceuil</a>
 						</div>
 					</div>
 						<div class="up-help">
-							<p>Vous n'avez pas encore un compte? <a href="<?=URLROOT?>/users/register">Creer un compte!</a></p>
+							<p>Vous n'avez pas encore un compte? <a href="<?=URLROOT?>/users/_2y_10_tBgLjFR24FURnk65aZuUkuvOftk9YrRPMZmRwb4qZwHsaETlhzoce">Creer un compte!</a></p>
 						</div>
 			</div>
 		</section>

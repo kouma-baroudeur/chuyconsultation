@@ -52,7 +52,7 @@ label {
                 <div class="flex flex-col flex-1 justify-center mb-8">
                     <div class="w-full pt-4">
                         <?= flash('ErrorProfileCreate') ?>
-                        <form class="container" action="<?= URLROOT ?>/patients/urgence/" method="POST">
+                        <form class="container" action="<?= URLROOT ?>/patients/_2y_10_3FHVz0a6g94pKKveK9sOFOV43tl1ZLKYCpx4jIbvbxgXDf_yizy3a/" method="POST">
                             <div class="d-flex justify-content-between align-items-center experience">
                                 <h4 class="text-right">Personne à contacter en cas d'urgence</h4>
                             </div>
