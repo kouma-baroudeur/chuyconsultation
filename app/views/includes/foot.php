@@ -16,5 +16,4 @@
 <script src="<?= URLROOT ?>/assets/scripts/alpine.min.js" defer></script>
 <script src="<?= URLROOT ?>/assets/scripts/init-alpine.js"></script>
 <script src="<?= URLROOT ?>/assets/scripts/core.min.js"></script>
-<script src="<?= URLROOT ?>/assets/scripts/messagerie.js"></script>
 </html>

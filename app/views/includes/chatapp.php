@@ -27,7 +27,10 @@
             </button>
         </div>
         <div class="users-list">
-
+            <?php foreach ($data['userlist'] as $id => $users) : ?>
+                <div><?=$users->nomMedecin ?></div>
+                <div><?=$users->nomPatient ?></div>
+            <?php endforeach; ?>
         </div>
     </section>
 </div>

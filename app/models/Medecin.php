@@ -106,9 +106,10 @@ class Medecin
         $answer = $this->db->execute();
         return $answer;
     }
-    public function listeUsers()
+    public function userlist()
     {
-        $sql = "SELECT nomPatient,prenomPatient,nomMedecin,prenomMedecin,userId FROM users,patient,medecin WHERE patient.userId = users.id AND medecin.userId = users.id";
+        $outgoing_id = $_SESSION['userId'];
+        $sql = "SELECT nomPatient,prenomPatient,nomMedecin,prenomMedecin FROM users,patient,medecin WHERE NOT patient.userId =".$outgoing_id." OR medecin.userId =".$outgoing_id;
         $this->db->query($sql);
         $answer = $this->db->resultSet();
         return $answer;

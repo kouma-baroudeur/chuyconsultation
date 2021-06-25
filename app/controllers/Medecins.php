@@ -159,9 +159,10 @@ class Medecins extends Controller
       notAuthorized();
     } else {
       $data = [
-        'medecin' => $this->activeUser
+        'medecin' => $this->activeUser,
+        'userlist' => $this->medecinModel->userlist()
       ];
-      $this->view('medecins/messagerie', $data);
+      redirect('chuychat');
     }
   }
 }
