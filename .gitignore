@@ -5,3 +5,5 @@ Modelisation*
 DB*
 PDF*
 app/helpers/sql_requests.php
+chuychat/public/images/*
+chuychat/app/core/DB.php
