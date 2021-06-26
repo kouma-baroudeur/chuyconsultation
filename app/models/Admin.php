@@ -78,16 +78,6 @@ class Admin
         return $rows;
     }
    
-    // public function profileuser()
-    // {
-    //     $sql = "SELECT * ";
-    //     $sql .= "FROM medecin,service,users ";
-    //     $sql .= "WHERE medecin.codeService = service.codeService ";
-    //     $sql .= "AND medecin.userId = users.id ";
-    //     $this->db->query($sql);
-    //     $answer = $this->db->execute();
-    //     return $answer;
-    // }
     public function registerstaff($data)
     {
         $this->db->query(REGISTERUSER);
@@ -154,6 +144,14 @@ class Admin
         $sql ="UPDATE rendezvous SET etatRdv=:statut WHERE numeroRdv=:id";
         $this->db->query($sql); 
         $this->db->bind(':statut', $conf);
+        $this->db->bind(':id', $id);
+        return $this->db->execute();
+    }
+    /** recuperation des donnees necessaire pour l'envoi des mails de confirmation ou d'annulation au patient*/
+    public function patientRdv($id)
+    {
+        $sql ="SELECT * FROM rendezvous,patient,users  WHERE rendezvous.numeroRdv=:id AND rendezvous.IP=patient.IP AND patient.userId=users.id";
+        $this->db->query($sql);
         $this->db->bind(':id', $id);
         return $this->db->execute();
     }

@@ -50,22 +50,6 @@
               <span class="ml-4"><?= PERS ?></span>
             </a>
           </li>
-         <!--  <li class="relative px-6 py-3 mb-2">
-            <span class="absolute inset-y-0 left-0 w-1 bg-blue-600 rounded-tr-lg rounded-br-lg" aria-hidden="true"></span>
-            <a class="inline-flex items-center w-full text-sm font-semibold text-gray-800 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100" href="medoc">
-              <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
-                <g id="Iconly_Light_Folder" data-name="Iconly/Light/Folder" transform="translate(1 1)">
-                  <g id="Folder">
-                    <path id="Path_33957" d="M19.169,13.482c0,3.578-2.109,5.687-5.687,5.687H5.7c-3.587,0-5.7-2.109-5.7-5.687v-7.8C0,2.109,1.314,0,4.893,0h2A2.282,2.282,0,0,1,8.717.913L9.63,2.127a2.291,2.291,0,0,0,1.826.913h2.83c3.587,0,4.911,1.826,4.911,5.477Z" />
-                  </g>
-                  <g id="Heart" transform="translate(6.224 7.771)">
-                    <path id="Path_33961" d="M3.412,5.951A12.753,12.753,0,0,1,1.193,4.388,3.965,3.965,0,0,1,.137,2.865,2.067,2.067,0,0,1,1.5.1,2.4,2.4,0,0,1,3.412.732h0A2.783,2.783,0,0,1,5.5.1,2.069,2.069,0,0,1,6.863,2.865,3.965,3.965,0,0,1,5.807,4.388,12.753,12.753,0,0,1,3.589,5.951L3.5,6Z" transform="translate(0 -0.047)" />
-                  </g>
-                </g>
-              </svg>
-              <span class="ml-4"></?= MD ?></span>
-            </a>
-          </li> -->
           <li class="relative px-6 py-3 mb-2">
             <span class="absolute inset-y-0 left-0 w-1 bg-blue-600 rounded-tr-lg rounded-br-lg" aria-hidden="true"></span>
             <a class="inline-flex items-center w-full text-sm font-semibold text-gray-800 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100" href="rdvs">
@@ -102,7 +86,7 @@
           </li>
           <li class="relative px-6 py-3 mb-2">
             <span class="absolute inset-y-0 left-0 w-1 bg-blue-600 rounded-tr-lg rounded-br-lg" aria-hidden="true"></span>
-            <a class="inline-flex items-center w-full text-sm font-semibold text-gray-800 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100" href="chatapp">
+            <a class="inline-flex items-center w-full text-sm font-semibold text-gray-800 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100" target="_blank" href="chatapp">
               <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
                 <g id="Chat" transform="translate(2 2)">
                   <path id="Combined_Shape" data-name="Combined Shape" d="M9.085,1.166a1.169,1.169,0,1,1,1.169,1.169A1.169,1.169,0,0,1,9.085,1.166Zm-4.542,0A1.168,1.168,0,1,1,5.711,2.336,1.169,1.169,0,0,1,4.543,1.166ZM0,1.166A1.169,1.169,0,1,1,1.168,2.336,1.169,1.169,0,0,1,0,1.166Z" transform="translate(4.527 9.056)" fill="true" />
@@ -112,24 +96,6 @@
               <span class="ml-4"><?= CHAT ?></span>
             </a>
           </li>
-          <!-- <li class="relative px-6 py-3 mb-2">
-            <span class="absolute inset-y-0 left-0 w-1 bg-blue-600 rounded-tr-lg rounded-br-lg" aria-hidden="true"></span>
-            <a class="inline-flex items-center w-full text-sm font-semibold text-gray-800 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100" href="consultations">
-              <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
-                <path d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
-              </svg>
-              <span class="ml-4"></?= CONSULT ?></span>
-            </a>
-          </li> -->
-          <!-- <li class="relative px-6 py-3 mb-2">
-            <span class="absolute inset-y-0 left-0 w-1 bg-blue-600 rounded-tr-lg rounded-br-lg" aria-hidden="true"></span>
-            <a class="inline-flex items-center w-full text-sm font-semibold text-gray-800 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100" href="payment">
-              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
-              </svg>
-              <span class="ml-4"></?= PAYMENT ?></span>
-            </a>
-          </li> -->
         </ul>
 
       </div>
@@ -172,22 +138,6 @@
               <span class="ml-4"><?= PERS ?></span>
             </a>
           </li>
-          <!-- <li class="relative px-6 py-3 mb-2">
-            <span class="absolute inset-y-0 left-0 w-1 bg-blue-600 rounded-tr-lg rounded-br-lg" aria-hidden="true"></span>
-            <a class="inline-flex items-center w-full text-sm font-semibold text-gray-800 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100" href="medoc">
-              <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
-                <g id="Iconly_Light_Folder" data-name="Iconly/Light/Folder" transform="translate(1 1)">
-                  <g id="Folder">
-                    <path id="Path_33957" d="M19.169,13.482c0,3.578-2.109,5.687-5.687,5.687H5.7c-3.587,0-5.7-2.109-5.7-5.687v-7.8C0,2.109,1.314,0,4.893,0h2A2.282,2.282,0,0,1,8.717.913L9.63,2.127a2.291,2.291,0,0,0,1.826.913h2.83c3.587,0,4.911,1.826,4.911,5.477Z" />
-                  </g>
-                  <g id="Heart" transform="translate(6.224 7.771)">
-                    <path id="Path_33961" d="M3.412,5.951A12.753,12.753,0,0,1,1.193,4.388,3.965,3.965,0,0,1,.137,2.865,2.067,2.067,0,0,1,1.5.1,2.4,2.4,0,0,1,3.412.732h0A2.783,2.783,0,0,1,5.5.1,2.069,2.069,0,0,1,6.863,2.865,3.965,3.965,0,0,1,5.807,4.388,12.753,12.753,0,0,1,3.589,5.951L3.5,6Z" transform="translate(0 -0.047)" />
-                  </g>
-                </g>
-              </svg>
-              <span class="ml-4"></?= MD ?></span>
-            </a>
-          </li> -->
           <li class="relative px-6 py-3 mb-2">
             <span class="absolute inset-y-0 left-0 w-1 bg-blue-600 rounded-tr-lg rounded-br-lg" aria-hidden="true"></span>
             <a class="inline-flex items-center w-full text-sm font-semibold text-gray-800 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100" href="rdvs">
@@ -224,7 +174,7 @@
           </li>
           <li class="relative px-6 py-3 mb-2">
             <span class="absolute inset-y-0 left-0 w-1 bg-blue-600 rounded-tr-lg rounded-br-lg" aria-hidden="true"></span>
-            <a class="inline-flex items-center w-full text-sm font-semibold text-gray-800 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100" href="chatapp">
+            <a class="inline-flex items-center w-full text-sm font-semibold text-gray-800 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100" target="_blank" href="chatapp">
               <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
                 <g id="Chat" transform="translate(2 2)">
                   <path id="Combined_Shape" data-name="Combined Shape" d="M9.085,1.166a1.169,1.169,0,1,1,1.169,1.169A1.169,1.169,0,0,1,9.085,1.166Zm-4.542,0A1.168,1.168,0,1,1,5.711,2.336,1.169,1.169,0,0,1,4.543,1.166ZM0,1.166A1.169,1.169,0,1,1,1.168,2.336,1.169,1.169,0,0,1,0,1.166Z" transform="translate(4.527 9.056)" fill="true" />
@@ -234,25 +184,6 @@
               <span class="ml-4"><?= CHAT ?></span>
             </a>
           </li>
-          <!-- <li class="relative px-6 py-3 mb-2">
-            <span class="absolute inset-y-0 left-0 w-1 bg-blue-600 rounded-tr-lg rounded-br-lg" aria-hidden="true"></span>
-            <a class="inline-flex items-center w-full text-sm font-semibold text-gray-800 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100" href="consultations">
-              <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
-                <path d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
-              </svg>
-              <span class="ml-4"></?= CONSULT ?></span>
-            </a>
-          </li>
-          <li class="relative px-6 py-3 mb-2">
-            <span class="absolute inset-y-0 left-0 w-1 bg-blue-600 rounded-tr-lg rounded-br-lg" aria-hidden="true"></span>
-            <a class="inline-flex items-center w-full text-sm font-semibold text-gray-800 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100" href="payment">
-              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
-              </svg>
-              <span class="ml-4"></?= PAYMENT ?></span>
-            </a>
-          </li> -->
         </ul>
-
       </div>
     </aside>

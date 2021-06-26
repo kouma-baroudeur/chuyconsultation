@@ -31,7 +31,7 @@
 		<header class="header header-center undefined">
 			<div class="container-fluid">
 				<!-- Logos-->
-				<div class="inner-header"><a class="inner-brand" href="<?= URLROOT ?>"><img class="brand-dark" src="<?= SITELOGO ?>" width="77px" alt=""><img class="brand-light" src="<?= SITELOGO ?>" width="77px" alt="">
+				<div class="inner-header"><a class="inner-brand" href="<?= URLROOT ?>"><img class="brand-dark" src="<?= SITELOGO ?>" width="77" alt=""><img class="brand-light" src="<?= SITELOGO ?>" width="77" alt="">
 						<!-- Or simple text-->
 						<!-- Core-->
 					</a></div>

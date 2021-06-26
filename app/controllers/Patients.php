@@ -1,4 +1,5 @@
 <?php
+
 /**
  * controller of our model Patient
  * C'est dans ce controlleur qu'on traite toutes les données des
@@ -28,7 +29,7 @@ class Patients extends Controller
    * c'est ici que lorsque le patient se connecte pour la première fois, l'on décide
    * où le rediriger grâce à son état
    * 
-  */
+   */
   public function _2y_10_rBg9JAf8xXLLAL506TuAoOXjaPWXAf7e5XZ9sf1cscgbeSW6gCg2C($page = "home")
   {
     if ($_SESSION['userType'] != 'patient') {
@@ -55,7 +56,7 @@ class Patients extends Controller
   }
   /** création du profile d'un patient, juste après son enrégistrement
    *les données sont récupérées de la vue initialForm
-  */
+   */
   public function _2y_10_ePkQJGLAsOj0QIRddcQ0hOGVinxi3p14xynxXZpM_zZKOTo4mcQAq()
   {
     if (isLoggedIn() && $_SESSION['userState'] == 'incomplet') {
@@ -196,7 +197,7 @@ class Patients extends Controller
   }
   /** ceci renvoit le formulaire pour éditer les données personnelles
    * et celles du contact d'urgence du patient
-  */
+   */
   public function _2y_10_Cb7AAwLgh7Mmx5IH_MW6huC7BFuFsidzcjeA1UDrRep8VzYj0Er6W()
   {
     $data = [
@@ -307,31 +308,30 @@ class Patients extends Controller
     if ($_SESSION['userType'] != 'patient') {
       notAuthorized();
     } else {
-        $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-        $data = [
-          'medecins' => $this->patientModel->listeMedecins(),
-          'codeMedecin' => $_POST['codeMedecin'],
-          'dateRdv' => $_POST['dateRdv'],
-          'heureRdv' => $_POST['heureRdv']
-        ];
+      $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+      $data = [
+        'medecins' => $this->patientModel->listeMedecins(),
+        'codeMedecin' => $_POST['codeMedecin'],
+        'dateRdv' => $_POST['dateRdv'],
+        'heureRdv' => $_POST['heureRdv']
+      ];
 
-        if (empty($data['dateRdv'])) {
-          $data['dateRdv_err'] = 'Veuillez renseigner ce champ.';
-        }
-        if (empty($data['heureRdv'])) {
-          $data['heureRdv_err'] = 'Veuillez renseigner ce champ.';
-        }
-
-        if (empty($data['heureRdv_err']) && empty($data['dateRdv_err']))
-        {
-          if ($this->patientModel->askRdv($data)) {
-            flash('EtatPostEditCons', "Votre rendez-vous a été crée avec succés!", 'alert alert-success');
-            redirect($this->_2y_10_QHwbK_BOb21EWA8cYriLy_3R9eQMrhCEIf6HQJt_9KYrq0pA_4wTa($etat = ''));
-          }
-        }else{
-          $this->view('patients/askRdv', $data);
-        }
+      if (empty($data['dateRdv'])) {
+        $data['dateRdv_err'] = 'Veuillez renseigner ce champ.';
       }
+      if (empty($data['heureRdv'])) {
+        $data['heureRdv_err'] = 'Veuillez renseigner ce champ.';
+      }
+
+      if (empty($data['heureRdv_err']) && empty($data['dateRdv_err'])) {
+        if ($this->patientModel->askRdv($data)) {
+          flash('EtatPostEditCons', "Votre rendez-vous a été crée avec succés!", 'alert alert-success');
+          redirect($this->_2y_10_QHwbK_BOb21EWA8cYriLy_3R9eQMrhCEIf6HQJt_9KYrq0pA_4wTa($etat = ''));
+        }
+      } else {
+        $this->view('patients/askRdv', $data);
+      }
+    }
   }
   /** affichage du planning hebdomadaire des medecins */
   public function _2y_10_tg5iZO4vknyafZ_e4f6Qze7LkG8Pn3s9gM9cKNlvz_vPJP2_t0OFS($etat = '')
@@ -372,4 +372,17 @@ class Patients extends Controller
       $this->view('patients/consultations', $data);
     }
   }
+  /**fonction redirigeant vers le module de la messagerie instantanée  */
+  public function chatapp()
+  {
+    if ($_SESSION['userType'] != 'patient') {
+      notAuthorized();
+    } else {
+      $data = [
+        'patient' => $this->activeUser
+      ];
+      redirect('chuychat/Login');
+    }
+  }
+
 }

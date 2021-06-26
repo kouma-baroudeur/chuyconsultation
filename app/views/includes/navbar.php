@@ -57,6 +57,18 @@
               </svg>
               <span class="ml-4"><?= CONSULT ?></span>
             </a>
+          </li>   
+          <li class="relative px-6 py-3 mb-2">
+            <span class="absolute inset-y-0 left-0 w-1 bg-blue-600 rounded-tr-lg rounded-br-lg" aria-hidden="true"></span>
+            <a class="inline-flex items-center w-full text-sm font-semibold text-gray-800 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100" target="_blank" href="chatapp">
+              <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                <g id="Chat" transform="translate(2 2)">
+                  <path id="Combined_Shape" data-name="Combined Shape" d="M9.085,1.166a1.169,1.169,0,1,1,1.169,1.169A1.169,1.169,0,0,1,9.085,1.166Zm-4.542,0A1.168,1.168,0,1,1,5.711,2.336,1.169,1.169,0,0,1,4.543,1.166ZM0,1.166A1.169,1.169,0,1,1,1.168,2.336,1.169,1.169,0,0,1,0,1.166Z" transform="translate(4.527 9.056)" fill="true" />
+                  <path id="Stroke_7" data-name="Stroke 7" d="M10.02,0A10.006,10.006,0,0,0,0,10.015a10.584,10.584,0,0,0,1.35,5,1.051,1.051,0,0,1,.07.9L.75,18.157a.624.624,0,0,0,.82.78l2.02-.6a1.7,1.7,0,0,1,1.49.361A10,10,0,1,0,10.02,0Z" />
+                </g>
+              </svg>
+              <span class="ml-4"><?= CHAT ?></span>
+            </a>
           </li>
         </ul>
         <a href="<?= URLROOT ?>/patients/a_2y_10_RRW1ouCMC57VBrC0B60HH_EUPEjzQ1K35HAfrIK2cgay4qW2d7MEOskRdv">
@@ -115,6 +127,18 @@
                 <path d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
               </svg>
               <span class="ml-4"><?= CONSULT ?></span>
+            </a>
+          </li>  
+          <li class="relative px-6 py-3 mb-2">
+            <span class="absolute inset-y-0 left-0 w-1 bg-blue-600 rounded-tr-lg rounded-br-lg" aria-hidden="true"></span>
+            <a class="inline-flex items-center w-full text-sm font-semibold text-gray-800 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100" target="_blank" href="chatapp">
+              <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                <g id="Chat" transform="translate(2 2)">
+                  <path id="Combined_Shape" data-name="Combined Shape" d="M9.085,1.166a1.169,1.169,0,1,1,1.169,1.169A1.169,1.169,0,0,1,9.085,1.166Zm-4.542,0A1.168,1.168,0,1,1,5.711,2.336,1.169,1.169,0,0,1,4.543,1.166ZM0,1.166A1.169,1.169,0,1,1,1.168,2.336,1.169,1.169,0,0,1,0,1.166Z" transform="translate(4.527 9.056)" fill="true" />
+                  <path id="Stroke_7" data-name="Stroke 7" d="M10.02,0A10.006,10.006,0,0,0,0,10.015a10.584,10.584,0,0,0,1.35,5,1.051,1.051,0,0,1,.07.9L.75,18.157a.624.624,0,0,0,.82.78l2.02-.6a1.7,1.7,0,0,1,1.49.361A10,10,0,1,0,10.02,0Z" />
+                </g>
+              </svg>
+              <span class="ml-4"><?= CHAT ?></span>
             </a>
           </li>
         </ul>

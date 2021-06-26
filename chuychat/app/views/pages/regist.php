@@ -4,9 +4,15 @@ if (isset($_SESSION['unique_id'])) {
 }
 ?>
 <div class="wrapper">
-  <section class="form signup">
+  <section class="form">
     <header>CHUY messagerie instantanée </header>
-    <span>Créer un compte ou connecter vous afin d'entrer en contact avec plusieurs</span>
+  </section>
+  <section class="form signup">
+    <header style="font-size: medium;">Afin de pouvoir l'utiliser, veuillez
+      <b style="color: black;">créer un compte de messagerie instantanée ou connecter si vous en avez un, </b>
+      <span>afin d'entrer en contact avec tout le personnel et d'autres patients.</span>
+    </header>
+
     <form action="#" method="POST" enctype="multipart/form-data" autocomplete="off">
       <div class="error-text"></div>
       <div class="field input">
@@ -23,14 +29,14 @@ if (isset($_SESSION['unique_id'])) {
         <i class="fas fa-eye"></i>
       </div>
       <div class="field image">
-        <label>Selectionner une image</label>
+        <label>Selectionner une photo de profile</label>
         <input type="file" name="image" accept="image/x-png,image/gif,image/jpeg,image/jpg" required>
       </div>
       <div class="field button">
-        <input type="submit" name="submit" value="Continue to Chat">
+        <input style="color: black; font-size: larger;" type="submit" name="submit" value="Continuer">
       </div>
     </form>
-    <div class="link">Avez-vous déjà un compte de messagerie ? <a href="Login">Connectez-vous maintenant</a></div>
+    <div class="link">Avez-vous déjà un compte de messagerie instantanée ? <a href="Login">Connectez-vous maintenant</a></div>
   </section>
 </div>
 

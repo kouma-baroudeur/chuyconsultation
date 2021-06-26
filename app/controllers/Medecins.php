@@ -162,7 +162,7 @@ class Medecins extends Controller
       $data = [
         'medecin' => $this->activeUser
       ];
-      redirect('chuychat');
+      redirect('chuychat/Login');
     }
   }
 }
