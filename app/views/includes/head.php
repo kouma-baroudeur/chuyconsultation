@@ -205,8 +205,8 @@ body {font-family: Arial, Helvetica, sans-serif;}
   </div>
 </header>
 
-<button class="open-button" onclick="openForm()">
-  <img src="<?=MESSAGE?>">
+<!-- <button class="open-button" onclick="openForm()">
+  <img src="</?=MESSAGE?>">
 </button>
 
 <div class="chat-popup" id="myForm">
@@ -214,11 +214,11 @@ body {font-family: Arial, Helvetica, sans-serif;}
     <section class="users">
       <header>
         <div class="flex content">
-          <img src="<?=PAT ?>" width="80px" height="80px" alt="Patient Pp">
+          <img src="</?=PAT ?>" width="80px" height="80px" alt="Patient Pp">
           <div class="details">
-            <span><?= $data['patient']->nomPatient . ' ' . $data['patient']->prenomPatient ?></span>
-            <span><?= $data['medecin']->nomMedecin . ' ' . $data['medecin']->prenomMedecin ?></span>
-            <span><?= $data['admin']->nomMedecin . ' ' . $data['admin']->prenomMedecin ?></span>
+            <span></?= $data['patient']->nomPatient . ' ' . $data['patient']->prenomPatient ?></span>
+            <span></?= $data['medecin']->nomMedecin . ' ' . $data['medecin']->prenomMedecin ?></span>
+            <span></?= $data['admin']->nomMedecin . ' ' . $data['admin']->prenomMedecin ?></span>
             <p>Active</p>
           </div>
         </div>
@@ -239,4 +239,4 @@ body {font-family: Arial, Helvetica, sans-serif;}
     <button type="submit" class="btn">Send</button>
     <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
   </form>
-</div>
+</div> -->

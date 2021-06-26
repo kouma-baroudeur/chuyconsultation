@@ -63,7 +63,7 @@
                         $data['password']=password_hash($data['password'],PASSWORD_DEFAULT);
                         // register user
                         if($this->userModel->register($data)){
-                            flash('register_success','Vous êtes bien inscrit, Veuillez vous s\'authentifier');
+                            flash('register_success','Vous êtes bien inscrit, Veuillez vous authentifier');
                             redirect('users/_2y_10_JLQV1FhaYuHLMRlr5kVeEOZpMIXx2YJPrg_D4XfdJaMlv4zvPwidC');
                         }else{
                             die('Quelque chose qui ne va pas bien!');

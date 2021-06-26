@@ -1,5 +1,5 @@
 </body>
-<script>
+<!-- <script>
   function openForm() {
     document.getElementById("myForm").style.display = "block";
   }
@@ -7,7 +7,7 @@
   function closeForm() {
     document.getElementById("myForm").style.display = "none";
   }
-</script>
+</script> -->
 <script src="<?= URLROOT ?>/assets/scripts/jquery-3.5.1.slim.min.js"></script>
 <script src="<?= URLROOT ?>/assets/scripts/Chart.min.js"></script>
 <script src="<?= URLROOT ?>/assets/scripts/charts-lines.js" defer></script>

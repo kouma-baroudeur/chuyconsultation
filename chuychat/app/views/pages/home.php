@@ -15,7 +15,7 @@ $row = $data['list'];
           <p><?php echo $row[0]['status']; ?></p>
         </div>
       </div>
-      <a href="Home/logout/<?php echo $row[0]['unique_id']; ?>" class="logout">Quitter</a>
+      <a href="Home/logout/<?php echo $row[0]['unique_id']; ?>" class="logout">Déconnexion</a>
     </header>
     <div class="search">
       <span class="text">Select an user to start chat</span>

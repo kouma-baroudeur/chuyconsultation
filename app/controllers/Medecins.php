@@ -77,7 +77,7 @@ class Medecins extends Controller
         // adding information into de table patient
         if ($this->medecinModel->createProfile($data)) {
           flash('register_success', 'Vous êtes bien inscrit');
-          redirect('medecins/medecin');
+          redirect('medecins/_2y_10_rBg9JAf8xXLLAL506TuAoOXjaPWXAf7e5XZ9sf1cscgbeSW6gCg2C');
           //$this->view('medecins/home', $data);
         } else {
           die('Quelque chose qui ne va pas bien!');
@@ -153,14 +153,14 @@ class Medecins extends Controller
       $this->view('medecins/programme', $data);
     }
   }
+  /**fonction redirigeant vers le module de la messagerie instantanée  */
   public function chatapp()
   {
     if ($_SESSION['userType'] != 'medecin') {
       notAuthorized();
     } else {
       $data = [
-        'medecin' => $this->activeUser,
-        'userlist' => $this->medecinModel->userlist()
+        'medecin' => $this->activeUser
       ];
       redirect('chuychat');
     }

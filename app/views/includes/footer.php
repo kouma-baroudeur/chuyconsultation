@@ -73,7 +73,7 @@
 			<ul class="social-icons">
 				<li><a href="#"><i class="fa fa-facebook"></i></a></li>
 				<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-				<li><a href=""><i class="fa fa-linkedin"></i></a></li>
+				<li><a href="https://td.linkedin.com/in/koumadoul-baroud-a93b1619a"><i class="fa fa-linkedin"></i></a></li>
 			</ul>
 		</div>
 	</div>
@@ -163,6 +163,7 @@
 			if (event.target == modal) modalClose();
 		}
 	}
+	openModal=false;
 </script>
 </body>
 

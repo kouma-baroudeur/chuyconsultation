@@ -171,7 +171,7 @@ class Admins extends Controller
         $data = [   
         'medecins' => $this->adminModel->profileStaff($id)];
 
-       $this->view('admins/profileUser', $data);
+       $this->view('admins/profileuser', $data);
       }
     }
     //affiche la page de modification
@@ -238,7 +238,7 @@ class Admins extends Controller
             if($this->patientModel->modifierStaff($data, $id))
             {
               flash('modifier_success','Vos informations ont été mis à jours');
-              redirect('admins/admin');
+              redirect('admins/staff');
             }else {
               die('Quelque chose qui ne va pas bien!');
             }      

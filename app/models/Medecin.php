@@ -88,28 +88,17 @@ class Medecin
         $_SESSION['userState'] = 'complet';
         return $answer && $updateState;
     }
+    /** planning hebdomadaire d'un medecin*/
     public function planning()
     {
-        $sql = "SELECT * FROM service,plannings,medecin WHERE plannings.codeMedecin = medecin.codeMedecin AND medecin.codeService=service.codeService";
-        $this->db->query($sql);
-        $answer = $this->db->resultSet();
-        return $answer;
-    }
-    public function search()
-    {
-        $outgoing_id = $_SESSION['userId'];
-        $searchTerm = $this->listeUsers();
-
-        $sql = "SELECT * FROM users,patient,medecin WHERE NOT users.id = {$outgoing_id} AND (nomMedecin LIKE '%{$searchTerm}%' OR nomPatient LIKE '%{$searchTerm}%') ";
-        
-        $this->db->query($sql);
-        $answer = $this->db->execute();
-        return $answer;
-    }
-    public function userlist()
-    {
-        $outgoing_id = $_SESSION['userId'];
-        $sql = "SELECT nomPatient,prenomPatient,nomMedecin,prenomMedecin FROM users,patient,medecin WHERE NOT patient.userId =".$outgoing_id." OR medecin.userId =".$outgoing_id;
+        $user = [
+            'id'    =>  $_SESSION['userId'],
+            'type'  =>  $_SESSION['userType'],
+            'email' => $_SESSION['userMail'],
+            'state' => $_SESSION['userState']
+        ];
+        $codeMedecin = $this->getMedecinById($user)->codeMedecin;
+        $sql = "SELECT * FROM service,plannings,medecin WHERE plannings.codeMedecin = medecin.codeMedecin AND medecin.codeService=service.codeService AND medecin.codeMedecin=".$codeMedecin;
         $this->db->query($sql);
         $answer = $this->db->resultSet();
         return $answer;
