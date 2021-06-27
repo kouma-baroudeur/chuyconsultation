@@ -6,6 +6,7 @@
   <main class="h-full pb-16 overflow-y-auto" id="dynamicContent">
     <?= flash('EtatPostEditCons'); ?>
     <?php require APPROOT . '/views/includes/rdvAdmin.php'; ?>
+    
   </main>
 </div>
 <!-- Mobile sidebar -->

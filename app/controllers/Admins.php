@@ -306,17 +306,17 @@ class Admins extends Controller
       notAuthorized();
     } else {
       $id = $_GET['id'];
+      $patientRdv = $this->adminModel->patientRdv($id);
       $data = [
-        'rdv' => $this->adminModel->statutC($id),
-        'patientRdv' =>$this->adminModel->patientRdv($id)
+        'rdv' => $this->adminModel->statutC($id)
       ];
       $etat = "Confirmé";
-      $email = $data['patientRdv']->email;
-      $patient = $data['patientRdv']->nomPatient.' '.$data['patientRdv']->prenomPatient;
-      $medecin = $data['patientRdv']->nomMedecin.' '.$data['patientRdv']->prenomMedecin;
-      $service = $data['patientRdv']->codeService;
-      $date = $data['patientRdv']->dateRdv;
-      $heure = $data['patientRdv']->heureRdv;
+      $email = $patientRdv->email;
+      $patient = $patientRdv->nomPatient.' '.$patientRdv->prenomPatient;
+      $medecin = $patientRdv->nomMedecin.' '.$patientRdv->prenomMedecin;
+      $service = $patientRdv->codeService;
+      $date = $patientRdv->dateRdv;
+      $heure = $patientRdv->heureRdv;
       //appel de ma fonction d'envoie de mail
       sendnotifbymail($etat,$email,$patient,$medecin,$service,$date,$heure);
       $this->view($this->rendezvous($etat = ''), $data);
@@ -328,17 +328,17 @@ class Admins extends Controller
       notAuthorized();
     } else {
       $id = $_GET['id'];
+      $patientRdv = $this->adminModel->patientRdv($id);
       $data = [
-        'rdv' => $this->adminModel->statutA($id),
-        'patientRdv' =>$this->adminModel->patientRdv($id)
+        'rdv' => $this->adminModel->statutA($id)
       ];
       $etat = "Annulé";
-      $email = $data['patientRdv']->email;
-      $patient = $data['patientRdv']->nomPatient.' '.$data['patientRdv']->prenomPatient;
-      $medecin = $data['patientRdv']->nomMedecin.' '.$data['patientRdv']->prenomMedecin;
-      $service = $data['patientRdv']->codeService;
-      $date = $data['patientRdv']->dateRdv;
-      $heure = $data['patientRdv']->heureRdv;
+      $email = $patientRdv->email;
+      $patient = $patientRdv->nomPatient.' '.$patientRdv->prenomPatient;
+      $medecin = $patientRdv->nomMedecin.' '.$patientRdv->prenomMedecin;
+      $service = $patientRdv->codeService;
+      $date = $patientRdv->dateRdv;
+      $heure = $patientRdv->heureRdv;
       //appel de ma fonction d'envoie de mail
       sendnotifbymail($etat,$email,$patient,$medecin,$service,$date,$heure);
       $this->view($this->rendezvous($etat = ''), $data);

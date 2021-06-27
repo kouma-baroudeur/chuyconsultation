@@ -25,9 +25,9 @@
         //Content
         $mail->isHTML(true);
         $mail->Subject = 'CHUY Confirmation/Annulation de rendez-vous';
-        $body  = utf8_decode("Bonjour M./Mme/Mlle...  <b><font size=\"3\">".strtoupper($patient).".</font></b>, &nbsp;");
-        $body .= utf8_decode("Votre rendez vous avec Dr".strtoupper($medecin)."du service ".$service.", prévu pour le ".$date." à ".$heure);
-        $body .= utf8_decode("a été ".$etat.".<br>");
+        $body  = utf8_decode("Bonjour M./Mme/Mlle...  <b><font size=\"2\">".strtoupper($patient).".</font></b> &nbsp;");
+        $body .= utf8_decode("Votre rendez vous avec Dr  &nbsp;<b><font size=\"2\">".strtoupper($medecin)." &nbsp;</font></b>  du service &nbsp;<b><font size=\"2\">".$service.",&nbsp;</font></b> prévu pour le ".$date." à ".$heure);
+        $body .= utf8_decode(" &nbsp; a été ".$etat.".<br>");
         $body .= utf8_decode("<p>Nous espérons vous voir très bientôt.<br>");
         $body .= utf8_decode("<b>Prenez soin de vous, car la santé n'a pas de prix.</b></p><br><br>");
         $body .= "Cordialement<br>";

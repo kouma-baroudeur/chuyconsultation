@@ -150,10 +150,10 @@ class Admin
     /** recuperation des donnees necessaire pour l'envoi des mails de confirmation ou d'annulation au patient*/
     public function patientRdv($id)
     {
-        $sql ="SELECT * FROM rendezvous,patient,users  WHERE rendezvous.numeroRdv=:id AND rendezvous.IP=patient.IP AND patient.userId=users.id";
+        $sql =PATGETRDVINF;
         $this->db->query($sql);
         $this->db->bind(':id', $id);
-        return $this->db->execute();
+        return $this->db->single();
     }
      public function consultAdmin()
     {
