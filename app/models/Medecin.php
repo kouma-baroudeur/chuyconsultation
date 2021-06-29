@@ -22,11 +22,22 @@ class Medecin
         $row = $this->db->single();
         return $row;
     }
+    /** lister tous les services de l'hosto */
     public function listeService()
     {
         $sql = "SELECT * ";
         $sql .= "FROM service ";
         $sql .= "GROUP BY service.codeService ";
+        $this->db->query($sql);
+        $answer = $this->db->resultSet();
+        return $answer;
+    }
+    /** lister tous les jours de la semaine */
+    public function listeJour()
+    {
+        $sql = "SELECT * ";
+        $sql .= "FROM jours ";
+        $sql .= "GROUP BY jours.codeJour DESC";
         $this->db->query($sql);
         $answer = $this->db->resultSet();
         return $answer;
@@ -101,6 +112,25 @@ class Medecin
         $sql = "SELECT * FROM service,plannings,medecin WHERE plannings.codeMedecin = medecin.codeMedecin AND medecin.codeService=service.codeService AND medecin.codeMedecin=".$codeMedecin;
         $this->db->query($sql);
         $answer = $this->db->resultSet();
+        return $answer;
+    }
+    /** planning hebdomadaire d'un medecin*/
+    public function planningAction($data)
+    {
+        $user = [
+            'id'    =>  $_SESSION['userId'],
+            'type'  =>  $_SESSION['userType'],
+            'email' => $_SESSION['userMail'],
+            'state' => $_SESSION['userState']
+        ];
+        $codeMedecin = $this->getMedecinById($user)->codeMedecin;
+        $sql = ADDPLANNING;
+
+        $this->db->query($sql);
+        $this->db->bind(':jours', $data['jour']);
+        $this->db->bind(':disponibilites', $data['disponibilites']);
+        $this->db->bind(':codeMedecin', $codeMedecin);
+        $answer = $this->db->execute();
         return $answer;
     }
 }

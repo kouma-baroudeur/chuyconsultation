@@ -142,6 +142,7 @@ class Medecins extends Controller
       $this->view('medecins/patient', $data);
     }
   }
+  /** mise a jour hebdomadaire du planning des medecins */
   public function planning()
   {
     if ($_SESSION['userType'] != 'medecin') {
@@ -149,8 +150,50 @@ class Medecins extends Controller
     } else {
       $data = [
         'planning' => $this->medecinModel->planning(),
+        'jours' => $this->medecinModel->listeJour()
       ];
       $this->view('medecins/programme', $data);
+    }
+  }
+  /** formulaire permettant d'emerger son planning */
+  public function addPlanning()
+  {
+    if ($_SESSION['userType'] != 'medecin') {
+      notAuthorized();
+    } else {
+      $data = [
+        'planning' => $this->medecinModel->planning(),
+        'jours' => $this->medecinModel->listeJour()
+      ];
+      $this->view('medecins/planning', $data);
+    }
+  }
+  /** control for planning fullfiling input */
+  public function planningControl()
+  {
+    if ($_SESSION['userType'] != 'medecin') {
+      notAuthorized();
+    } else {
+      $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+      $data = [
+        'jour' => trim($_POST['jours']),
+        'disponibilites' => trim($_POST['disponibilites']),
+        'jours' => $this->medecinModel->listeJour()
+      ];
+      if (empty($data['disponibilites'])) {
+        $data['disponibilites_err'] = 'Veuillez renseigner ce champ.';
+      }
+      if (empty($data['disponibilites_err'])) {
+        // adding information into de table planning
+        if ($this->medecinModel->planningAction($data)) {
+          flash('register_success', 'Planning ajouté avec succès');
+          redirect('medecins/planning');
+        } else {
+          die('Quelque chose qui ne va pas bien!');
+        }
+      } else {
+        $this->view('medecins/planning', $data);
+      }
     }
   }
   /**fonction redirigeant vers le module de la messagerie instantanée  */
