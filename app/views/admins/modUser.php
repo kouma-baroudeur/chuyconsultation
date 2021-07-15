@@ -1,4 +1,4 @@
-<?php require APPROOT . '/views/includes/header.php'; ?>
+<!--?php require APPROOT . '/views/includes/header.php'; ?-->
 <?php foreach ($data['medecins'] as $id => $personnel) : ?>
 <!doctype html>
 <html lang="en">
@@ -23,19 +23,22 @@
 			<div class="flex justify-center px-6 my-12">
 
 			 <form  method="post" action="modifStaff?id=<?= $personnel->id?>">
+			 <h3  class="pt-4 text-2xl text-center font-bold text-blue-500 ">MODIFIER MEDECIN</h3>
 				<!-- Row -->
 				 <div class="w-500 xl:w-3/4 lg:w-11/12 flex">
 					<!-- Col -->
 					<div class="w-full  bg-white lg:w-1/2 p-5 rounded-lg  lg:rounded-l">
-						<h3  class="pt-4 text-2xl text-center font-bold text-blue-500 ">MODIFIER MEDECIN</h3>
-						<div class="mb-4">
+
+						   <div class="mb-4">
 								<label class="block mb-2 text-sm font-bold text-gray-700" for="nom">
 									Nom
 								</label>
+			
 								<input
 									class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-									id="nom" type="text" name="nom" value="<?= $personnel->nomMedecin ?>"
+									id="nom" type="text" name="nom" <?= (!empty($data['nom_err'])) ? 'is-invalid' : '' ?> value="<?= $personnel->nomMedecin ?>"
 								/>
+								<span class="invalid-feedback"><?php echo $data['nom_err']; ?></span>
 							</div>
 							<div class="mb-4">
 								<label class="block mb-2 text-sm font-bold text-gray-700" for="prenom">
@@ -43,7 +46,8 @@
 								</label>
 								<input
 									class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-									id="prenom" type="text" name="prenom" value="<?= $personnel->prenomMedecin ?>"/>
+									id="prenom" type="text" name="prenom" <?= (!empty($data['prenom_err'])) ? 'is-invalid' : '' ?> value="<?= $personnel->prenomMedecin ?>"/>
+									<span class="invalid-feedback"><?php echo $data['prenom_err']; ?></span>
 							</div>
 							<div class="mb-4">
 								<label class="block mb-2 text-sm font-bold text-gray-700" for="dateNaissancee">
@@ -51,7 +55,8 @@
 								</label>
 								<input
 									class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-									id="dateNaissance" type="date" name="dateNaissance" value="<?= $personnel->dateNaissanceMedecin ?>"/>
+									id="dateNaissance" type="date" name="dateNaissance" <?= (!empty($data['dateNaissance_err'])) ? 'is-invalid' : '' ?> value="<?= $personnel->dateNaissanceMedecin ?>"/>
+									<span class="invalid-feedback"><?php echo $data['dateNaissance_err']; ?></span>
 							</div>
 							<div class="mb-4">
 								<label class="block mb-2 text-sm font-bold text-gray-700" for="username">
@@ -59,7 +64,8 @@
 								</label>
 								<input
 									class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-									id="lieuNaissance" type="text" name="lieuNaissance" value="<?= $personnel->lieuNaissanceMedecin ?>"/>
+									id="lieuNaissance" type="text" name="lieuNaissance" <?= (!empty($data['lieuNaissance_err'])) ? 'is-invalid' : '' ?> value="<?= $personnel->lieuNaissanceMedecin ?>"/>
+									<span class="invalid-feedback"><?php echo $data['lieuNaissance_err']; ?></span>
 							</div>
 							<div class="mb-4">
 								<label class="block mb-2 text-sm font-bold text-gray-700" for="sexe">
@@ -67,7 +73,8 @@
 								</label>
 								<input
 									class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-									id="sexe" type="text" name="sexe" value="<?= $personnel->sexeMedecin ?>"/>
+									id="sexe" type="text" name="sexe" <?= (!empty($data['sexe_err'])) ? 'is-invalid' : '' ?> value="<?= $personnel->sexeMedecin ?>"/>
+									<span class="invalid-feedback"><?php echo $data['sexe_err']; ?></span>
 							</div>
 						</div>
 					<!-- Col -->
@@ -78,39 +85,28 @@
 								</label>
 								<input
 									class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-									id="service" type="text" name="service" value="<?= $personnel->codeService ?>"/>
+									id="service" type="text" name="service" <?= (!empty($data['service_err'])) ? 'is-invalid' : '' ?> value="<?= $personnel->codeService ?>"/>
+									<span class="invalid-feedback"><?php echo $data['service_err']; ?></span>
 							</div>
-							<div class="mb-4">
-								<label class="block mb-2 text-sm font-bold text-gray-700" for="matricule">
-									Matricule
-								</label>
-								<input
-									class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-									id="matricule" type="text" name="matricule" value="<?= $personnel->codeMedecin ?>"/>
-							</div>
+							
 							<div class="mb-4">
 								<label class="block mb-2 text-sm font-bold text-gray-700" for="adresse">
 									adresse actuelle
 								</label>
 								<input
 									class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-									id="adresse" type="text" name="adresse" value="<?= $personnel->adresseMedecin ?>"/>
+									id="adresse" type="text" name="adresse" <?= (!empty($data['adresse_err'])) ? 'is-invalid' : '' ?> value="<?= $personnel->adresseMedecin ?>"/>
+									<span class="invalid-feedback"><?php echo $data['adresse_err']; ?></span>
 							</div>
-							<div class="mb-4">
-								<label class="block mb-2 text-sm font-bold text-gray-700" for="email">
-									Email
-								</label>
-								<input
-									class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-									id="email" type="text" name="email" value="<?= $personnel->email?>"/>
-							</div>
+							
 						    <div class="mb-4">
 								<label class="block mb-2 text-sm font-bold text-gray-700" for="contact">
 									N° contact
 								</label>
 								<input
 									class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-									id="contact" type="text" name="tel" value="<?= $personnel->telMedecin ?>"/>
+									id="contact" type="text" name="tel" <?= (!empty($data['tel_err'])) ? 'is-invalid' : '' ?> value="<?= $personnel->telMedecin ?>"/>
+									<span class="invalid-feedback"><?php echo $data['tel_err']; ?></span>
 							</div>
 							<div class="mb-6 text-center">
 								<a href=""><button
@@ -132,4 +128,4 @@
 </body>
 </html>
 <?php endforeach?>
-<?php require APPROOT . '/views/includes/footer.php'; ?>
+<!--?php require APPROOT . '/views/includes/footer.php'; ?-->

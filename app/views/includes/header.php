@@ -8,7 +8,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="Site de prise de rendez-vous pour les consultations au le CHU Yaoundé-Cameroun">
 	<meta name="author" content="KOUMADOUL Baroud Le Baroudeur koumadoulbaroud@gmail.com">
-	<title><?= SITENAME ."/".$data['title']?></title>
+	<title><?= SITENAME . "/" . $data['title'] ?></title>
 	<!-- Favicons-->
 	<link rel="icon" href="<?= SITEICON ?>" type="image/gif">
 	<!-- Web Fonts-->
@@ -22,6 +22,8 @@
 	<!-- Template core CSS-->
 	<link href="<?= URLROOT ?>/assets/styles/template.min.css" rel="stylesheet">
 	<link href="<?= URLROOT ?>/assets/styles/customv4.css" rel="stylesheet">
+	<!--rapport-->
+	<link href="<?= URLROOT ?>/Rapport/sample/css/sample.css" rel="stylesheet" media="screen" />
 </head>
 
 <body>

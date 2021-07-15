@@ -1,135 +1,105 @@
 <?php require APPROOT . '/views/includes/header.php'; ?>
 <?php foreach ($data['patient'] as $id => $personnel) : ?>
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="<?= URLROOT ?>/assets/styles/style.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="<?= URLROOT ?>/assets/styles/tailwind.output.css" />
-    <link rel="stylesheet" href="<?= URLROOT ?>/assets/styles/Chart.min.css"/>
-    <link rel="icon" href="<?= SITEICON ?>" type="image/gif"/>
-    <title>Modifier User</title>
-    <link href="<?= URLROOT ?>/assets/styles/tailwind.min.css" rel="stylesheet">
-    <script src="<?= URLROOT ?>/assets/scripts/alpine.min.js" defer></script>
-</head>
-<body class="h-screen overflow-hidden flex items-center justify-center" style="background: #edf2f7;">
-    <body class="font-mono bg-gray-400">
-	
-		<!-- Container -->
-		<div class="container mx-auto">
-		
-			<div class="flex justify-center px-6 my-12">
+<section class="module-page-title">
+    <div class=" container">
+        <div class="row-page-title">
+            <div class="page-title-secondary">
+                <h5 class="h5 text-center">&nbsp; <?= $data['patient']->prenomPatient ?></h5>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="text-dark container rounded bg-white mt-1 mb-5">
+    <form class="container" action="modifierPatient?id=<?=$personnel->IP ?>" method="POST">
+        <div class="row">
+            <div class="col-md-6 border-right mb-2">
+                <div class="p-3 py-5">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h4 class="text-right"></h4>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-6">
+                            <label class="font-weight-bold labels">Nom</label>
+                            <input name="nom" class="form-control form-control-lg <?= (!empty($data['nom_err'])) ? 'is-invalid' : '' ?>" id="nom" type="text" value="<?= $personnel->nomPatient ?>">
+                        </div>
+                        <span class="invalid-feedback"><?php echo $data['nom_err']; ?></span>
+                        <div class="col-md-6">
+                            <label class="font-weight-bold labels">Pr&eacute;nom </label>
+                            <input type="text" name="prenom" class="form-control form-control-lg <?= (!empty($data['prenom_err'])) ? 'is-invalid' : '' ?>" id="prenom"  value="<?= $personnel->nomPatient ?>">
+                        </div>
+                        <span class="invalid-feedback"><?php echo $data['prenom_err']; ?></span>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-6">
+                            <label class="font-weight-bold labels">Date de naissance</label>
+                            <input name="date" class="form-control form-control-lg <?= (!empty($data['date_err'])) ? 'is-invalid' : '' ?>" id="date" type="date" value="<?=$personnel->dateNaissancePatient ?>">
+                        </div>
+                        <span class="invalid-feedback"><?php echo $data['date_err']; ?></span>
+                        <div class="col-md-6">
+                            <label class="font-weight-bold labels">Lieu de naissance</label>
+                            <input type="text" name="lieu" class="form-control form-control-lg <?= (!empty($data['lieu_err'])) ? 'is-invalid' : '' ?>" id="lieu"  value="<?=  $personnel->lieuNaissancePatient ?>">
+                        </div>
+                        <span class="invalid-feedback"><?php echo $data['lieu_err']; ?></span>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-6">
+                            <label class="font-weight-bold labels">Adresse</label>
+                            <input type="text" name="adresse" class="form-control form-control-lg <?= (!empty($data['adresse_err'])) ? 'is-invalid' : '' ?>" id="adresse"  value="<?=$personnel->adressePatient ?>">
+                        </div>
+                        <span class="invalid-feedback"><?php echo $data['adresse_err']; ?></span>
+                        <div class="col-md-6">
+                            <label class="font-weight-bold labels">Genre</label>
+                            <select name="sexe" class="form-control">
+                                <option value="F"> F&eacute;minin</option>
+                                <option value="M"> Masculin</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-dark col-md-4 border border-danger bg-info">
+                <div class="p-3 py-5">
+                    <div class="d-flex justify-content-between align-items-center experience">
+                        <h4 class="text-right">Contact d'urgence</h4>
+                    </div>
+                    <div class="col-md-12">
+                        <label class="font-weight-bold labels">Nom :</label>
+                        <input type="text" name="nomContact" class="form-control form-control-lg <?= (!empty($data['nomContact_err'])) ? 'is-invalid' : '' ?>" id="nomContact" value="<?=$personnel->nomContact ?>">
+                        <span class="invalid-feedback"><?php echo $data['nomContact_err']; ?></span>
 
-			 <form class="w-full xl:w-3/4 lg:w-11/12 flex" method="post">
-				<!-- Row -->
-				 
-					<!-- Col -->
-					<div class="w-full  bg-white lg:w-1/2 p-5 rounded-lg  lg:rounded-l">
-						<h3  class="pt-4 text-2xl text-center font-bold text-blue-500 ">MODIFIER PATIENT</h3>
-						<div class="mb-4">
-								<label class="block mb-2 text-sm font-bold text-gray-700" for="nom">
-									Nom
-								</label>
-								<input
-									class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-									id="nom" type="text" name="nom" value="<?= $personnel->nomPatient ?>"
-								/>
-							</div>
-							<div class="mb-4">
-								<label class="block mb-2 text-sm font-bold text-gray-700" for="prenom">
-									Prenom
-								</label>
-								<input
-									class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-									id="prenom" type="text" name="prenom" value="<?= $personnel->prenomPatient ?>"/>
-							</div>
-							<div class="mb-4">
-								<label class="block mb-2 text-sm font-bold text-gray-700" for="dateNaissancee">
-									Date de Naissance
-								</label>
-								<input
-									class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-									id="dateNaissance" type="date" name="dateNaissance" value="<?= $personnel->dateNaissancePatient ?>"/>
-							</div>
-							<div class="mb-4">
-								<label class="block mb-2 text-sm font-bold text-gray-700" for="username">
-									Lieu de Naissance
-								</label>
-								<input
-									class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-									id="lieuNaissance" type="text" name="lieuNaissance" value="<?= $personnel->lieuNaissancePatient ?>"/>
-							</div>
-							<div class="mb-4">
-								<label class="block mb-2 text-sm font-bold text-gray-700" for="sexe">
-									sexe
-								</label>
-								<input
-									class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-									id="sexe" type="text" name="sexe" value="<?= $personnel->sexePatient ?>"/>
-							</div>
-						</div>
-					<!-- Col -->
-					<div class="w-full lg:w-1/2 bg-white p-5 rounded-lg lg:rounded-l-none">
-							<div class="mb-4">
-								<label class="block mb-2 text-sm font-bold text-gray-700" for="service">
-									Service
-								</label>
-								<input
-									class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-									id="service" type="text" name="service" value="<?= $personnel->codeService ?>"/>
-							</div>
-							<div class="mb-4">
-								<label class="block mb-2 text-sm font-bold text-gray-700" for="matricule">
-									Matricule
-								</label>
-								<input
-									class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-									id="matricule" type="text" name="matricule" value="<?= $personnel->codeMedecin ?>"/>
-							</div>
-							<div class="mb-4">
-								<label class="block mb-2 text-sm font-bold text-gray-700" for="adresse">
-									adresse actuelle
-								</label>
-								<input
-									class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-									id="adresse" type="text" name="adresse" value="<?= $personnel->adresseMedecin ?>"/>
-							</div>
-							<div class="mb-4">
-								<label class="block mb-2 text-sm font-bold text-gray-700" for="email">
-									Email
-								</label>
-								<input
-									class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-									id="email" type="text" name="email" value="<?= $personnel->email?>"/>
-							</div>
-						    <div class="mb-4">
-								<label class="block mb-2 text-sm font-bold text-gray-700" for="contact">
-									N° contact
-								</label>
-								<input
-									class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-									id="contact" type="text" name="tel" value="<?= $personnel->tePatient ?>"/>
-							</div>
-							<div class="mb-6 text-center">
-								<a href="modifierPatient?id=<?= $personnel->id?>"><button
-									class="w-full px-4 py-2 font-bold text-white bg-blue-500 rounded-full hover:bg-blue-700  focus:shadow-outline"
-									type="submit"
-								>
-									Modifier
-								</button></a>
-							</div>
-							<hr class="mb-6 border-t" />
-							
-						
-					</div>
-				
-				</form>
-			</div>
-		</div>
-	</body>
-</body>
-</html>
+                        <label class="font-weight-bold labels">Prénom :</label>
+                        <input type="text" name="prenomContact" class="form-control form-control-lg <?= (!empty($data['prenomContact_err'])) ? 'is-invalid' : '' ?>" id="prenomContact" value="<?=$personnel->prenomContact ?>">
+                        <span class="invalid-feedback"><?php echo $data['prenomContact_err']; ?></span>
+
+                        <label class="font-weight-bold labels">Genre :</label>
+                            <select name="sexeContact" class="form-control">
+                                <option value="F"> F&eacute;minin</option>
+                                <option value="M"> Masculin</option>
+                            </select>
+
+                        <label class="font-weight-bold labels">Adresse :</label>
+                        <input type="text" name="adresseContact" class="form-control form-control-lg <?= (!empty($data['adresseContact_err'])) ? 'is-invalid' : '' ?>" id="adresseContact" value="<?=$personnel->adresseContact ?>">
+                        <span class="invalid-feedback"><?php echo $data['adresseContact_err']; ?></span>
+
+                        <label class="font-weight-bold labels">Téléphone :</label>
+                        <input name="telurgence" class="form-control form-control-lg <?= (!empty($data['telurgence_err'])) ? 'is-invalid' : '' ?>" id="telurgence" type="text" value="<?=$personnel->telurgence ?>">
+                        <span class="invalid-feedback"><?php echo $data['telurgence_err']; ?></span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 border-right text-center">
+                <div class="row mt-4">
+                    <div class="col-md-12 mb-2">
+                       <a href="">
+                        <button type="submit" class="btn btn-primary" >Valider</button>
+                    </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+</div>
+</div>
 <?php endforeach?>
 <?php require APPROOT . '/views/includes/footer.php'; ?>
