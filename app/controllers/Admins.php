@@ -274,6 +274,7 @@ class Admins extends Controller
       $this->view('admins/profilePatient', $data);
     }
   }
+
   public function modPatient()
   {
     if ($_SESSION['userType'] != 'admin') {
@@ -287,19 +288,78 @@ class Admins extends Controller
       $this->view('admins/modPatient', $data);
     }
   }
+
+  /** mise à jour du profile du patient  */
   public function modifierPatient()
   {
-    if ($_SESSION['userType'] != 'admin') {
-      notAuthorized();
-    } else {
-      $id = $_GET['id'];
+    $id = $_GET['id'];
+    
+    $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+    $data = [
+      //'urgence' => $this->patientModel->recupurgence(),
+      'nom' => trim($_POST['nom']),
+      'prenom' => trim($_POST['prenom']),
+      'dateNaissance' => trim($_POST['date']),
+      'lieuNaissance' => trim($_POST['lieu']),
+      'sexe' => $_POST['sexe'],
+      'adresse' => trim($_POST['adresse']),
+      'nomContact' => trim($_POST['nomContact']),
+      'prenomContact' => trim($_POST['prenomContact']),
+      'sexeContact' => $_POST['sexeContact'],
+      'telurgence' => $_POST['telurgence'],
+      'adresseContact' => trim($_POST['adresseContact']),
+      'nomContact_err' => '',
+      'telurgence_err' => '',
+      'prenomContact_err' => '',
+      'adresseContact_err' => '',
+      'nom_err' => '',
+      'prenom_err' => '',
+      'date_err' => '',
+      'lieu_err' => '',
+      'adresse_err' => ''
+    ];
 
-      $data = [
-        'patient' => $this->adminModel->profilePatient($id)
-      ];
-      $this->view('admins/modPatient', $data);
+    if (empty($data['nom'])) {
+      $data['nom_err'] = 'Veuillez renseigner ce champ.';
+    }
+    if (empty($data['prenom'])) {
+      $data['prenom_err'] = 'Veuillez renseigner ce champ.';
+    }
+    if (empty($data['dateNaissance'])) {
+      $data['date_err'] = 'Veuillez renseigner ce champ.';
+    }
+    if (empty($data['lieuNaissance'])) {
+      $data['lieu_err'] = 'Veuillez renseigner ce champ.';
+    }
+    if (empty($data['adresse'])) {
+      $data['adresse_err'] = 'Veuillez renseigner ce champ.';
+    }
+    if (empty($data['nomContact'])) {
+      $data['nomContact_err'] = 'Veuillez renseigner ce champ.';
+    }
+    if (empty($data['telurgence']) || (!preg_match("/^[0-9]{9}$/", $data['telurgence']))) {
+      $data['telurgence_err'] = 'Veuillez renseigner ce champ.';
+    }
+    if (empty($data['prenomContact'])) {
+      $data['prenomContact_err'] = 'Veuillez renseigner ce champ.';
+    }
+    if (empty($data['adresseContact'])) {
+      $data['adresseContact_err'] = 'Veuillez renseigner ce champ.';
+    }
+    
+    if (empty($data['nom_err']) && empty($data['prenom_err']) && empty($data['date_err']) && empty($data['lieu_err']) && empty($data['adresse_err']) && empty($data['nomContact_err']) && empty($data['prenomContact_err']) && empty($data['telurgence_err']) && empty($data['adresseContact_err'])) {
+      // updating data into de tables
+      if ($this->adminModel->editPersInfo($id, $data) && $this->adminModel->editEmerInfo($id, $data)) {
+        flash('register_success', 'Vos informations ont été mis à jours');
+        redirect('patients/profile');
+      } else {
+        die('Quelque chose qui ne va pas bien!');
+      }
+    } else {
+      $this->view('patients/editprofile', $data);
     }
   }
+
   public function statutC()
   {
     if ($_SESSION['userType'] != 'admin') {
@@ -312,13 +372,13 @@ class Admins extends Controller
       ];
       $etat = "Confirmé";
       $email = $patientRdv->email;
-      $patient = $patientRdv->nomPatient.' '.$patientRdv->prenomPatient;
-      $medecin = $patientRdv->nomMedecin.' '.$patientRdv->prenomMedecin;
+      $patient = $patientRdv->nomPatient . ' ' . $patientRdv->prenomPatient;
+      $medecin = $patientRdv->nomMedecin . ' ' . $patientRdv->prenomMedecin;
       $service = $patientRdv->codeService;
       $date = $patientRdv->dateRdv;
       $heure = $patientRdv->heureRdv;
       //appel de ma fonction d'envoie de mail
-      sendnotifbymail($etat,$email,$patient,$medecin,$service,$date,$heure);
+      sendnotifbymail($etat, $email, $patient, $medecin, $service, $date, $heure);
       $this->view($this->rendezvous($etat = ''), $data);
     }
   }
@@ -334,13 +394,13 @@ class Admins extends Controller
       ];
       $etat = "Annulé";
       $email = $patientRdv->email;
-      $patient = $patientRdv->nomPatient.' '.$patientRdv->prenomPatient;
-      $medecin = $patientRdv->nomMedecin.' '.$patientRdv->prenomMedecin;
+      $patient = $patientRdv->nomPatient . ' ' . $patientRdv->prenomPatient;
+      $medecin = $patientRdv->nomMedecin . ' ' . $patientRdv->prenomMedecin;
       $service = $patientRdv->codeService;
       $date = $patientRdv->dateRdv;
       $heure = $patientRdv->heureRdv;
       //appel de ma fonction d'envoie de mail
-      sendnotifbymail($etat,$email,$patient,$medecin,$service,$date,$heure);
+      sendnotifbymail($etat, $email, $patient, $medecin, $service, $date, $heure);
       $this->view($this->rendezvous($etat = ''), $data);
     }
   }
@@ -369,6 +429,4 @@ class Admins extends Controller
       redirect('chuychat/Login');
     }
   }
-
-  
 }

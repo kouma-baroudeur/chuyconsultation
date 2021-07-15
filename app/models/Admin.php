@@ -105,16 +105,8 @@ class Admin
 
     }
     public function modifierStaff($id, $data){
-        $sql ="UPDATE medecin SET nomMedecin =:nom,prenomMedecin = :prenom,codeService = :service,sexeMedecin = :sexe,adresseMedecin = :adresse,dateNaissanceMedecin = :dateNaissance,lieuNaissanceMedecin = :lieuNaissance,telMedecin =:tel  WHERE userId= $id";
-        $this->db->bind(':nom', $data['nom']);
-        $this->db->bind(':prenom', $data['prenom']);
-        $this->db->bind(':service', $data['service']);
-        $this->db->bind(':sexe', $data['sexe']);
-        $this->db->bind(':adresse', $data['adresse']);
-        $this->db->bind(':dateNaissance', $data['dateNaissance']);
-        $this->db->bind(':lieuNaissance', $data['lieuNaissance']);
-        $this->db->bind(':tel', $data['tel']);
-        $this->db->bind(':email', $data['email']);
+       $sql ="UPDATE medecin SET nomMedecin ='".$data['nom']."',prenomMedecin ='".$data['prenom']."',codeService = '".$data['service']."',sexeMedecin = '".$data['sexe']."',adresseMedecin = '".$data['adresse']."',dateNaissanceMedecin = '".$data['dateNaissance']."',lieuNaissanceMedecin = '".$data['lieuNaissance']."',telMedecin ='".$data['tel']."'  WHERE userId= $id";
+       $this->db->query($sql);
         return $this->db->execute();
 
     }
@@ -171,6 +163,42 @@ class Admin
         $sql .= RDVETATCONFIRME;
         $sql .= "AND medecin.codeMedecin =:codeMedecin ";
         $sql .= RDVORDRE;
+        $this->db->query($sql);
+        $this->db->bind(':codeMedecin', $codeMedecin);
+        $rows = $this->db->resultSet();
+        return $rows;
+    }
+        /** edition des informations personnelles */
+       public function editPersInfo($id,$data){
+        $sql = "UPDATE patient SET nomPatient='".$data['nom']."',prenomPatient='".$data['prenom']."',sexePatient='".$data['sexe']."',adressePatient='". $data['adresse']."',dateNaissancePatient='".$data['dateNaissance']."',lieuNaissancePatient='".$data['lieuNaissance']."' WHERE IP= $id";
+        $this->db->query($sql);
+        $answer = $this->db->execute();    
+        return $answer ;
+    }
+    /** edition des informations sur le contact d'urgence */
+    public function editEmerInfo($id,$data){
+        
+        $sql = "UPDATE contacturgence SET nomContact='".$data['nomContact']."',prenomContact='".$data['prenomContact']."',sexeContact='".$data['sexeContact']."',adresseContact='".$data['adresseContact']."',telurgence='".$data['telurgence']."' WHERE IP=$id";
+        $this->db->query($sql);
+        $answer = $this->db->execute();   
+        return $answer;
+    }
+       public function registerRapport($id)
+    {
+        $user = [
+            'id'    =>  $_SESSION['userId'],
+            'type'  =>  $_SESSION['userType'],
+            'email' => $_SESSION['userMail'],
+            'state' => $_SESSION['userState']
+        ];
+        $codeMedecin = $this->getAdminById($user)->codeMedecin;
+        $sql = "SELECT * ";
+        $sql .= "FROM patient,medecin,rendezvous ";
+        $sql .= "WHERE rendezvous.codeMedecin = medecin.codeMedecin ";
+        $sql .= "AND rendezvous.IP = patient.IP ";
+        $sql .= RDVETATCONFIRME;
+        $sql .= "AND medecin.codeMedecin =:codeMedecin ";
+        
         $this->db->query($sql);
         $this->db->bind(':codeMedecin', $codeMedecin);
         $rows = $this->db->resultSet();
