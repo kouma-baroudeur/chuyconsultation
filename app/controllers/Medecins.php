@@ -115,7 +115,7 @@ class Medecins extends Controller
       $data = [
         'medecin' => $this->activeUser
       ];
-      $this->view('medecins/editprofile', $data);
+      $this->view('medecins/profile', $data);
     }
   }
   public function rdvs($filter = "only", $etat = "")
