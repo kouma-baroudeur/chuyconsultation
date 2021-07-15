@@ -147,7 +147,7 @@ class Admin
         $this->db->bind(':id', $id);
         return $this->db->execute();
     }
-    /** recuperation des donnees necessaire pour l'envoi des mails de confirmation ou d'annulation au patient*/
+    /** recuperation des donnees nécessaire pour l'envoi des mails de confirmation ou d'annulation au patient*/
     public function patientRdv($id)
     {
         $sql =PATGETRDVINF;
@@ -155,7 +155,7 @@ class Admin
         $this->db->bind(':id', $id);
         return $this->db->single();
     }
-     public function consultAdmin()
+    public function consultAdmin()
     {
         $user = [
             'id'    =>  $_SESSION['userId'],

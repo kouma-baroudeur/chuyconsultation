@@ -33,7 +33,7 @@
 
                 <div class="mb-4">
                     <label class="text-gray-800 block mb-1 font-bold text-sm tracking-wide">Heure</label>
-                    <input name="heureRdv" class="form-control form-control-lg <?= (!empty($data['heureRdv_err'])) ? 'is-invalid' : '' ?>" type="time" min="08:30" max="18:00" value="<?= $data['heureRdv'] ?>">
+                    <input name="heureRdv" class="form-control form-control-lg <?= (!empty($data['heureRdv_err'])) ? 'is-invalid' : '' ?>" type="time" min="<?= (date('08:30:00') >= date('H:i:s')) ? date('08:30:30') : date('H:i:s') ; ?>" max="<?=date('18:00:30')?>" value="<?= $data['heureRdv'] ?>">
                     <span class="validity"><?php echo $data['heureRdv_err']; ?></span>
                 </div>
 

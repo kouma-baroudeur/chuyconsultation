@@ -18,7 +18,7 @@ class Admins extends Controller
     if ($_SESSION['userType'] == 'admin')
       $this->activeUser = $this->adminModel->getAdminById($user);
   }
-
+  /*Fonction renvoyant le main du dashbord admin */
   public function _2y_10_rBg9JAf8xXLLAL506TuAoOXjaPWXAf7e5XZ9sf1cscgbeSW6gCg2C($page = "home")
   {
     if ($_SESSION['userType'] != 'admin') {

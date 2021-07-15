@@ -5,15 +5,15 @@
 <link rel="icon" href="<?= SITEICON ?>" type="image/gif">
 <style>
     input:invalid+span:after {
-    position: absolute;
-    content: '✖';
-    padding-left: 5px;
+        position: absolute;
+        content: '✖';
+        padding-left: 5px;
     }
 
     input:valid+span:after {
-    position: absolute;
-    content: '✓';
-    padding-left: 5px;
+        position: absolute;
+        content: '✓';
+        padding-left: 5px;
     }
 </style>
 <!-- Modal -->
@@ -24,8 +24,36 @@
 
             <h2 class="font-bold text-2xl mb-6 text-gray-800 border-b pb-2">Les détails de la journée disponible</h2>
 
-            <form method="post"  action="<?= URLROOT ?>/medecins/planningControl/">
-              
+            <form method="post" action="<?= URLROOT ?>/medecins/planningControl/">
+
+                <div class="mb-4 md:flex md:justify-between">
+                    <div class="mb-4 md:mr-2 md:mb-0">
+                        <label class="block mb-2 text-sm font-bold text-gray-700" for="firstName">
+                            Jours
+                        </label>
+                        <input value="LUNDI" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" id="firstName" type="text" disabled />
+                    </div>
+                    <div class="md:ml-2">
+                        <label class="block mb-2 text-sm font-bold text-gray-700" for="lastName">
+                            Disponibilités
+                        </label>
+                        <fieldset class="relative z-0 w-full p-px mb-5">
+                            <div class="block pt-3 pb-2 space-x-4">
+                                <label>
+                                    <input type="radio" name="radio" value="1" class="mr-2 text-black border-2 border-gray-300 focus:border-gray-300 focus:ring-black" />
+                                    08h30-10h30
+                                </label>
+                                <label>
+                                    <input type="radio" name="radio" value="2" class="mr-2 text-black border-2 border-gray-300 focus:border-gray-300 focus:ring-black" />
+                                    11h30-14h30
+                                </label>
+                            </div>
+                            <span class="text-sm text-red-600 hidden" id="error">Option has to be selected</span>
+                        </fieldset>
+                    </div>
+                </div>
+                <hr />
+
                 <div class="mb-4">
                     <label class="text-gray-800 block mb-1 font-bold text-sm tracking-wide">Disponibilité :</label>
                     <input name="disponibilites" class="form-control form-control-lg <?= (!empty($data['disponibilites_err'])) ? 'is-invalid' : '' ?>" id="disponibilites" placeholder="ex: 08h30-18h" value="<?= $data['disponibilites'] ?>">
