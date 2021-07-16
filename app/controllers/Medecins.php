@@ -107,7 +107,7 @@ class Medecins extends Controller
       $this->view('medecins/initialForm', $data);
     }
   }
-  public function _2y_10_Cb7AAwLgh7Mmx5IH_MW6huC7BFuFsidzcjeA1UDrRep8VzYj0Er6W()
+  public function profile()
   {
     if ($_SESSION['userType'] != 'medecin') {
       notAuthorized();
@@ -239,7 +239,7 @@ class Medecins extends Controller
   }
   public function profilePatient()
   {
-    if ($_SESSION['userType'] != 'admin') {
+    if ($_SESSION['userType'] != 'medecin') {
       notAuthorized();
     } else {
       $id = $_GET['id'];
@@ -250,4 +250,64 @@ class Medecins extends Controller
       $this->view('medecins/profilePatient', $data);
     }
   }
+  // fonction editer profile medecin.
+  public function editProfile()
+ {
+    if ($_SESSION['userType'] != 'medecin') {
+      notAuthorized();
+    } else {
+      
+      if (isset($_POST["submit"])) {
+        $data = [
+          'nom' => trim($_POST['nom']),
+          'prenom' => trim($_POST['prenom']),
+          'dateNaissance' => trim($_POST['dateNaissance']),
+          'lieuNaissance' => trim($_POST['lieuNaissance']),
+          'sexe' => $_POST['sexe'],
+          'adresse' => trim($_POST['adresse']),
+          'tel' => trim($_POST['tel']),
+          'nom_err' => '',
+          'prenom_err' => '',
+          'date_err' => '',
+          'lieu_err' => '',
+          'adresse_err' => '',
+          'service_err' => '',
+          'tel_err' => '',
+          'email_err' => ''
+        ];
+
+        if (empty($data['nom'])) {
+          $data['nom_err'] = 'Veuillez renseigner ce champ.';
+        }
+        if (empty($data['prenom'])) {
+          $data['prenom_err'] = 'Veuillez renseigner ce champ.';
+        }
+        if (empty($data['dateNaissance'])) {
+          $data['date_err'] = 'Veuillez renseigner ce champ.';
+        }
+        if (empty($data['lieuNaissance'])) {
+          $data['lieu_err'] = 'Veuillez renseigner ce champ.';
+        }
+        if (empty($data['adresse'])) {
+          $data['adresse_err'] = 'Veuillez renseigner ce champ.';
+        }
+        if (empty($data['tel']) || (!preg_match("/^[0-9]{9}$/", $data['tel']))) {
+          $data['tel_err'] = 'Veuillez renseigner ce champ.';
+        }
+
+        if (empty($data['nom_err']) && empty($data['prenom_err']) && empty($data['date_err']) && empty($data['lieu_err']) && empty($data['adresse_err']) && empty($data['date_err'])) {
+          // adding information into de table patient
+          if ($this->medecinModel->editProfile($data)) {
+            flash('modifier_success', 'Vos informations ont été mis à jours');
+            redirect('medecins/home');
+          } else {
+            die('Quelque chose qui ne va pas bien!');
+          }
+        } else {
+          $this->view('admins/home', $data);
+        }
+      }
+    }
+
+ }
 }

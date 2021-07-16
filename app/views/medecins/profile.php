@@ -33,7 +33,7 @@
                                 </a>
                             </li>
                             <li class="nav-item pt-2">
-                                <a class="nav-link text-body" data-scroll="" href="#basic-info">
+                                <a class="nav-link text-body" data-scroll="" href="">
                                     <div class="icon me-2">
                                         <svg class="text-dark mb-1" width="16px" height="16px" viewBox="0 0 40 44" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                                             <title>document</title>
@@ -138,13 +138,13 @@
                                     <div class="col-12 col-sm-6">
                                         <label class="form-label">Nom</label>
                                         <div class="input-group">
-                                            <input id="firstName" name="firstName" maxlength="55" value="<?= $data['medecin']->nomMedecin ?>" class="form-control" type="text" placeholder="Alec" required>
+                                            <input id="firstName" name="firstName" maxlength="55" value="<?= $data['medecin']->nomMedecin ?>" class="form-control" type="text" required>
                                         </div>
                                     </div>
                                     <div class="col-12 col-sm-6">
                                         <label class="form-label">Prenom</label>
                                         <div class="input-group">
-                                            <input id="lastName" name="lastName" maxlength="55" value="<?= $data['medecin']->prenomMedecin ?>" class="form-control" type="text" placeholder="Thompson" required>
+                                            <input id="lastName" name="lastName" maxlength="55" value="<?= $data['medecin']->prenomMedecin ?>" class="form-control" type="text" required>
                                         </div>
                                     </div>
                                 </div>
@@ -165,10 +165,10 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                <div class="col-12 col-sm-6">
+                                    <div class="col-12 col-sm-6">
                                         <label class="form-label mt-4">Lieu de Naissance</label>
                                         <div class="input-group">
-                                            <input id="lieuNaissance" name="lieuNaissance" maxlength="55" value="<?= $data['medecin']->lieuNaissanceMedecin ?>" class="form-control" type="text" placeholder="Alec" required>
+                                            <input id="lieuNaissance" name="lieuNaissance" maxlength="55" value="<?= $data['medecin']->lieuNaissanceMedecin ?>" class="form-control" type="text" required>
                                         </div>
                                     </div>
                                     <div class="col-12 col-sm-6">
@@ -182,13 +182,13 @@
                                     <div class="col-6">
                                         <label class="form-label mt-4">Email</label>
                                         <div class="input-group">
-                                            <input id="email" name="email" maxlength="55" value="<?= $_SESSION['userMail'] ?>" class="form-control" type="email" placeholder="example@email.com">
+                                            <input id="email" name="email" maxlength="55" value="<?= $_SESSION['userMail'] ?>" class="form-control" type="email">
                                         </div>
                                     </div>
                                     <div class="col-6">
                                         <label class="form-label mt-4">Confirmation Email</label>
                                         <div class="input-group">
-                                            <input id="confirmation" value="<?= $_SESSION['userMail'] ?>" name="confirmation" class="form-control" type="email" placeholder="example@email.com">
+                                            <input id="confirmation" value="<?= $_SESSION['userMail'] ?>" name="confirmation" class="form-control" type="email">
                                         </div>
                                     </div>
                                 </div>
@@ -196,13 +196,13 @@
                                     <div class="col-12 col-sm-6">
                                         <label class="form-label mt-4">Votre Adresse</label>
                                         <div class="input-group">
-                                            <input id="location" name="location" maxlength="55" value="<?= $data['medecin']->adresseMedecin ?>" class="form-control" type="text" placeholder="Sydney, A">
+                                            <input id="location" name="location" maxlength="55" value="<?= $data['medecin']->adresseMedecin ?>" class="form-control" type="text">
                                         </div>
                                     </div>
                                     <div class="col-12 col-sm-6">
                                         <label class="form-label mt-4">Numéro de Telephone</label>
                                         <div class="input-group">
-                                            <input id="phone" name="phone" data-maxlength="9" oninput="this.value=this.value.slice(0,this.dataset.maxlength)" value="<?= $data['medecin']->telMedecin ?>" class="form-control" type="number" placeholder="6xx xx xx xx">
+                                            <input id="phone" name="phone" data-maxlength="9" oninput="this.value=this.value.slice(0,this.dataset.maxlength)" value="<?= $data['medecin']->telMedecin ?>" class="form-control" type="number">
                                         </div>
                                     </div>
                                 </div>
