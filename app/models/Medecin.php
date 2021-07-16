@@ -133,4 +133,11 @@ class Medecin
         $answer = $this->db->execute();
         return $answer;
     }
+    public function profilePatient($id)
+    {
+        $sql = "SELECT * FROM patient,users WHERE userId=$id AND patient.userId=users.id";
+        $this->db->query($sql);
+        $data = $this->db->resultSet();
+        return $data;
+    }
 }

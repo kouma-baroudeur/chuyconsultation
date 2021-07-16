@@ -208,4 +208,17 @@ class Medecins extends Controller
       redirect('chuychat/Login');
     }
   }
+  public function profilePatient()
+  {
+    if ($_SESSION['userType'] != 'admin') {
+      notAuthorized();
+    } else {
+      $id = $_GET['id'];
+
+      $data = [
+        'patient' => $this->medecinModel->profilePatient($id)
+      ];
+      $this->view('medecins/profilePatient', $data);
+    }
+  }
 }
