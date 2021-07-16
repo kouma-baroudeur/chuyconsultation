@@ -189,10 +189,10 @@ class Patients extends Controller
       notAuthorized();
     } else {
       $data = [
-        'patient' => $this->activeUser,
-        'urgence' => $this->patientModel->recupurgence()
+        'urgence' => $this->patientModel->recupurgence(),
+        'patient' => $this->activeUser
       ];
-      $this->view('patients/profile', $data);
+      $this->view('patients/profileSettings', $data);
     }
   }
   /** ceci renvoit le formulaire pour éditer les données personnelles
@@ -219,28 +219,22 @@ class Patients extends Controller
       $this->view('patients/report', $data);
     }
   }
-  /** mise à jour du profile du patient  */
+
+  /** LES FONCTION DE MISE A JOUR DU COTE PATIENT*/
+
+  /** mise à jour des infos de base du patient  */
   public function _2y_10_K6plTEmyUQTo0G6B_2ueLuzexiyhl2iYCebHq2sGchxX_U2At_JhO()
   {
     $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
     $data = [
-      'patient' => $this->activeUser,
       'urgence' => $this->patientModel->recupurgence(),
+      'patient' => $this->activeUser,
       'nom' => trim($_POST['nom']),
       'prenom' => trim($_POST['prenom']),
       'dateNaissance' => trim($_POST['date']),
       'lieuNaissance' => trim($_POST['lieu']),
       'sexe' => $_POST['sexe'],
       'adresse' => trim($_POST['adresse']),
-      'nomContact' => trim($_POST['nomContact']),
-      'prenomContact' => trim($_POST['prenomContact']),
-      'sexeContact' => $_POST['sexeContact'],
-      'telurgence' => $_POST['telurgence'],
-      'adresseContact' => trim($_POST['adresseContact']),
-      'nomContact_err' => '',
-      'telurgence_err' => '',
-      'prenomContact_err' => '',
-      'adresseContact_err' => '',
       'nom_err' => '',
       'prenom_err' => '',
       'date_err' => '',
@@ -263,6 +257,37 @@ class Patients extends Controller
     if (empty($data['adresse'])) {
       $data['adresse_err'] = 'Veuillez renseigner ce champ.';
     }
+
+    if (empty($data['nom_err']) && empty($data['prenom_err']) && empty($data['date_err']) && empty($data['lieu_err']) && empty($data['adresse_err'])) {
+      // updating data into de tables
+      if ($this->patientModel->editPersInfo($data)) {
+        flash('register_success', 'Vos informations ont été mis à jours');
+        redirect('patients/_2y_10_r13IGKtxD_GnnoFzdRU8seOhbPv6enWDRFDkaPoXmrinlcKUWlbOG');
+      } else {
+        die('Quelque chose qui ne va pas bien!');
+      }
+    } else {
+      $this->view('patients/profileSettings', $data);
+    }
+  }
+  /** Mise à jour du contact d'urgence */
+  public function _2y_10_19TvXOOjpZf4uamNxoOMweyPY6knWiIcoUCTiPXmXcEbbdOZRi8eq()
+  {
+    $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+    $data = [
+      'urgence' => $this->patientModel->recupurgence(),
+      'patient' => $this->activeUser,
+      'nomContact' => trim($_POST['nomContact']),
+      'prenomContact' => trim($_POST['prenomContact']),
+      'sexeContact' => $_POST['sexeContact'],
+      'telurgence' => $_POST['telurgence'],
+      'adresseContact' => trim($_POST['adresseContact']),
+      'nomContact_err' => '',
+      'telurgence_err' => '',
+      'prenomContact_err' => '',
+      'adresseContact_err' => '',
+    ];
+
     if (empty($data['nomContact'])) {
       $data['nomContact_err'] = 'Veuillez renseigner ce champ.';
     }
@@ -275,19 +300,66 @@ class Patients extends Controller
     if (empty($data['adresseContact'])) {
       $data['adresseContact_err'] = 'Veuillez renseigner ce champ.';
     }
-
-    if (empty($data['nom_err']) && empty($data['prenom_err']) && empty($data['date_err']) && empty($data['lieu_err']) && empty($data['adresse_err']) && empty($data['nomContact_err']) && empty($data['prenomContact_err']) && empty($data['telurgence_err']) && empty($data['adresseContact_err'])) {
+    if (empty($data['nomContact_err']) && empty($data['prenomContact_err']) && empty($data['telurgence_err']) && empty($data['adresseContact_err'])) {
       // updating data into de tables
-      if ($this->patientModel->editPersInfo($data) && $this->patientModel->editEmerInfo($data)) {
-        flash('register_success', 'Vos informations ont été mis à jours');
+      if ($this->patientModel->editEmergencyInfo($data)) {
         redirect('patients/_2y_10_r13IGKtxD_GnnoFzdRU8seOhbPv6enWDRFDkaPoXmrinlcKUWlbOG');
       } else {
         die('Quelque chose qui ne va pas bien!');
       }
     } else {
-      $this->view('patients/editprofile', $data);
+      $this->view('patients/profileSettings', $data);
     }
   }
+  /** Mise à jours des identifiants */
+  public function _2y_10_4DhxZuGwU8BfItgECn24mOjbo4GvW7GJdyg4DHq5MQUNS7Ftx50DG()
+  {
+    $data = [
+      'email' => trim($_POST['email']),
+      'confirmation' => trim($_POST['confirmation']),
+      'password' => trim($_POST['password']),
+      'confirm_pass' => trim($_POST['confirm_pass']),
+      'email_err' => '',
+      'confirm_email_err' => '',
+      'password_err' => '',
+      'confirm_pass_err' => ''
+    ];
+    if (empty($data['email'])) { // checking email in server side
+      $data['email_err'] = 'Veuillez entrer votre adresse e-mail.';
+    } else {
+      if ($this->userModel->findUserByEmail($data['email'])) {
+        $data['email_err'] = 'Email déja enregistré, veuillez vous connecter';
+      }
+    }
+    if (empty($data['password'])) {
+      $data['password_err'] = 'Veuillez entrer votre mot de passe.';
+    } elseif (strlen($data['password']) < 6) {
+      $data['password_err'] .= 'Votre mot de passe doit être au moins 6 caracteres';
+    }
+    if (empty($data['confirm_pass'])) {
+      $data['confirm_pass_err'] = 'Veuillez confirmer votre mot de passe.';
+    } else {
+      if ($data['password'] != $data['confirm_pass'])
+        $data['confirm_pass_err'] = 'La confirmation ne correspond pas au mot de passe';
+    }
+
+    if (empty($data['email_err']) && empty($data['password_err']) && empty($data['confirm_pass_err']) && empty($data['type_err'])) {
+      // hashing the password for security
+      $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
+      // register user
+      if ($this->userModel->register($data)) {
+        flash('register_success', 'Vous êtes bien inscrit, Veuillez vous authentifier');
+        redirect('users/_2y_10_JLQV1FhaYuHLMRlr5kVeEOZpMIXx2YJPrg_D4XfdJaMlv4zvPwidC');
+      } else {
+        die('Quelque chose qui ne va pas bien!');
+      }
+    } else {
+
+      $this->view('users/register', $data);
+    }
+  }
+
+
   /** demande rendez-vous, formulaire et traitement  */
   public function a_2y_10_RRW1ouCMC57VBrC0B60HH_EUPEjzQ1K35HAfrIK2cgay4qW2d7MEOskRdv()
   {
@@ -384,5 +456,4 @@ class Patients extends Controller
       redirect('chuychat/Login');
     }
   }
-
 }
