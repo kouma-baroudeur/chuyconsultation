@@ -118,6 +118,19 @@ class Medecins extends Controller
       $this->view('medecins/profile', $data);
     }
   }
+
+  public function addPatient()
+  {
+    if ($_SESSION['userType'] != 'medecin') {
+      notAuthorized();
+    } else {
+      $data = [
+        'medecin' => $this->activeUser
+      ];
+      $this->view('medecins/add-patient', $data);
+    }
+  }
+
   public function rdvs($filter = "only", $etat = "")
   {
     if ($_SESSION['userType'] != 'medecin') {
@@ -131,17 +144,33 @@ class Medecins extends Controller
       $this->view('medecins/allmedrdvs', $data);
     }
   }
-  public function patient()
+
+  public function patients()
   {
     if ($_SESSION['userType'] != 'medecin') {
       notAuthorized();
     } else {
       $data = [
-        'patient' => $this->medecinModel->patient()
+        'patients' => $this->medecinModel->patients(),
+        'medecin' => $this->activeUser
       ];
-      $this->view('medecins/patient', $data);
+      $this->view('medecins/all-patients', $data);
     }
   }
+
+  public function patientProfil()
+  {
+    if ($_SESSION['userType'] != 'medecin') {
+      notAuthorized();
+    } else {
+      $data = [
+        //'patients' => $this->medecinModel->patients(),
+        'medecin' => $this->activeUser
+      ];
+      $this->view('medecins/patient-profil', $data);
+    }
+  }
+  
   /** mise a jour hebdomadaire du planning des medecins */
   public function planning()
   {

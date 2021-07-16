@@ -72,7 +72,7 @@ class Medecin
         $rows = $this->db->resultSet();
         return $rows;
     }
-    public function patient()
+    public function patients()
     {
         $sql = "SELECT * FROM patient,users WHERE patient.userId = users.id ";
         $this->db->query($sql);
