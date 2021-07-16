@@ -7,7 +7,7 @@
     <?php require APPROOT . '/views/includes/medSideMenu.php'; ?>
 
     <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
-
+        
         <?php require APPROOT . '/views/includes/medNavbar.php'; ?>
 
         <div class="container-fluid py-4">
@@ -100,13 +100,10 @@
     <?php require APPROOT . '/views/includes/ui-custom.php'; ?>
     </div>
     <!--   Core JS Files   -->
-    <script src="../../../assets/js/core/popper.min.js"></script>
-    <script src="../../../assets/js/core/bootstrap.min.js"></script>
-    <script src="../../../assets/js/plugins/perfect-scrollbar.min.js"></script>
-    <script src="../../../assets/js/plugins/smooth-scrollbar.min.js"></script>
-    <!-- Kanban scripts -->
-    <script src="../../../assets/js/plugins/dragula/dragula.min.js"></script>
-    <script src="../../../assets/js/plugins/jkanban/jkanban.js"></script>
+    <script src="<?= URLROOT ?>/assets/js/core/bootstrap.min.js"></script>
+    <script src="<?= URLROOT ?>/assets/js/plugins/perfect-scrollbar.min.js"></script>
+    <script src="<?= URLROOT ?>/assets/js/plugins/smooth-scrollbar.min.js"></script>
+
     <script src="<?= URLROOT ?>/assets/js/plugins/datatables.js"></script>
     <script>
         const dataTableSearch = new simpleDatatables.DataTable("#datatable-search", {

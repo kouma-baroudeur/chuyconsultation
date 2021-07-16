@@ -73,26 +73,6 @@
                                     <span class="text-sm">Changer Mot de Passe</span>
                                 </a>
                             </li>
-                            <li class="nav-item pt-2">
-                                <a class="nav-link text-body" data-scroll="" href="#delete">
-                                <div class="icon me-2">
-                                    <svg class="text-dark mb-1" width="16px" height="16px" viewBox="0 0 45 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                                    <title>shop </title>
-                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                        <g transform="translate(-1716.000000, -439.000000)" fill="#FFFFFF" fill-rule="nonzero">
-                                        <g transform="translate(1716.000000, 291.000000)">
-                                            <g transform="translate(0.000000, 148.000000)">
-                                            <path class="color-background" d="M46.7199583,10.7414583 L40.8449583,0.949791667 C40.4909749,0.360605034 39.8540131,0 39.1666667,0 L7.83333333,0 C7.1459869,0 6.50902508,0.360605034 6.15504167,0.949791667 L0.280041667,10.7414583 C0.0969176761,11.0460037 -1.23209662e-05,11.3946378 -1.23209662e-05,11.75 C-0.00758042603,16.0663731 3.48367543,19.5725301 7.80004167,19.5833333 L7.81570833,19.5833333 C9.75003686,19.5882688 11.6168794,18.8726691 13.0522917,17.5760417 C16.0171492,20.2556967 20.5292675,20.2556967 23.494125,17.5760417 C26.4604562,20.2616016 30.9794188,20.2616016 33.94575,17.5760417 C36.2421905,19.6477597 39.5441143,20.1708521 42.3684437,18.9103691 C45.1927731,17.649886 47.0084685,14.8428276 47.0000295,11.75 C47.0000295,11.3946378 46.9030823,11.0460037 46.7199583,10.7414583 Z" opacity="0.598981585"></path>
-                                            <path class="color-foreground" d="M39.198,22.4912623 C37.3776246,22.4928106 35.5817531,22.0149171 33.951625,21.0951667 L33.92225,21.1107282 C31.1430221,22.6838032 27.9255001,22.9318916 24.9844167,21.7998837 C24.4750389,21.605469 23.9777983,21.3722567 23.4960833,21.1018359 L23.4745417,21.1129513 C20.6961809,22.6871153 17.4786145,22.9344611 14.5386667,21.7998837 C14.029926,21.6054643 13.533337,21.3722507 13.0522917,21.1018359 C11.4250962,22.0190609 9.63246555,22.4947009 7.81570833,22.4912623 C7.16510551,22.4842162 6.51607673,22.4173045 5.875,22.2911849 L5.875,44.7220845 C5.875,45.9498589 6.7517757,46.9451667 7.83333333,46.9451667 L19.5833333,46.9451667 L19.5833333,33.6066734 L27.4166667,33.6066734 L27.4166667,46.9451667 L39.1666667,46.9451667 C40.2482243,46.9451667 41.125,45.9498589 41.125,44.7220845 L41.125,22.2822926 C40.4887822,22.4116582 39.8442868,22.4815492 39.198,22.4912623 Z"></path>
-                                            </g>
-                                        </g>
-                                        </g>
-                                    </g>
-                                    </svg>
-                                </div>
-                                <span class="text-sm">Supprimer mon Compte</span>
-                                </a>
-                            </li>
                         </ul>
                     </div>
                 </div>
@@ -101,7 +81,7 @@
                     <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl position-sticky blur shadow-blur mt-4 left-auto top-1 z-index-sticky" id="navbarBlur" data-scroll="true">
                         <div class="container-fluid py-1 px-3">
                             <nav aria-label="breadcrumb">
-                            <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
+                                <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
                                     <li class="breadcrumb-item text-sm text-dark active" aria-current="page"><a href="javascript:history.go(-1)">Retour</a></li>
                                 </ol>
                                 <h6 class="font-weight-bolder mb-0">Parametres du Profil</h6>
@@ -136,10 +116,10 @@
                             <div class="col-sm-auto col-8 my-auto">
                                 <div class="h-100">
                                     <h5 class="mb-1 font-weight-bolder">
-                                        <?= $data['patient']->nomPatient . " " . $data['patient']->prenomPatient ?>
+                                        <?= $data['medecin']->nomMedecin . " " . $data['medecin']->prenomMedecin ?>
                                     </h5>
                                     <p class="mb-0 font-weight-bold text-sm">
-                                        Patient / <?= $data['patient']->codeService ?>
+                                        Medecin / <?= $data['medecin']->codeService ?>
                                     </p>
                                 </div>
                             </div>
@@ -147,7 +127,7 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Card Patient Basic Info -->
+                    <!-- Card Basic Info -->
                     <form action="editProfile" method="post" class="m-4">
                         <div class="card mt-4" id="basic-info">
                             <div class="card-header">
@@ -158,13 +138,13 @@
                                     <div class="col-12 col-sm-6">
                                         <label class="form-label">Nom</label>
                                         <div class="input-group">
-                                            <input id="firstName" name="firstName" maxlength="55" value="<?= $data['patient']->nomPatient ?>" class="form-control" type="text" placeholder="Alec" required>
+                                            <input id="firstName" name="firstName" maxlength="55" value="<?= $data['medecin']->nomMedecin ?>" class="form-control" type="text" placeholder="Alec" required>
                                         </div>
                                     </div>
                                     <div class="col-12 col-sm-6">
                                         <label class="form-label">Prenom</label>
                                         <div class="input-group">
-                                            <input id="lastName" name="lastName" maxlength="55" value="<?= $data['patient']->prenomPatient ?>" class="form-control" type="text" placeholder="Thompson" required>
+                                            <input id="lastName" name="lastName" maxlength="55" value="<?= $data['medecin']->prenomMedecin ?>" class="form-control" type="text" placeholder="Thompson" required>
                                         </div>
                                     </div>
                                 </div>
@@ -173,7 +153,7 @@
                                         <label class="form-label mt-4">Sexe</label>
                                         <select class="form-control" name="choices-gender" id="choices-gender" required>
                                             <?php
-                                            if ($data['patient']->sexePatient == 'M') {
+                                            if ($data['medecin']->sexeMedecin == 'M') {
                                                 echo '<option value="M" selected>Homme</option>
                                                         <option value="F">Femme</option>';
                                             } else {
@@ -188,13 +168,13 @@
                                 <div class="col-12 col-sm-6">
                                         <label class="form-label mt-4">Lieu de Naissance</label>
                                         <div class="input-group">
-                                            <input id="lieuNaissance" name="lieuNaissance" maxlength="55" value="<?= $data['patient']->lieuNaissancePatient ?>" class="form-control" type="text" placeholder="Alec" required>
+                                            <input id="lieuNaissance" name="lieuNaissance" maxlength="55" value="<?= $data['medecin']->lieuNaissanceMedecin ?>" class="form-control" type="text" placeholder="Alec" required>
                                         </div>
                                     </div>
                                     <div class="col-12 col-sm-6">
                                         <label class="form-label mt-4">Date de Naissance</label>
                                         <div class="input-group">
-                                            <input id="dateNaissance" name="dateNaissance" value="<?= $data['patient']->dateNaissancePatient ?>" class="form-control" type="Date" value="" max="<?php echo date('Y-m-d'); ?>">
+                                            <input id="dateNaissance" name="dateNaissance" value="<?= $data['medecin']->dateNaissanceMedecin ?>" class="form-control" type="Date" value="" max="<?php echo date('Y-m-d'); ?>">
                                         </div>
                                     </div>
                                 </div>
@@ -208,7 +188,7 @@
                                     <div class="col-6">
                                         <label class="form-label mt-4">Confirmation Email</label>
                                         <div class="input-group">
-                                            <input id="confirmation" maxlength="55" value="<?= $_SESSION['userMail'] ?>" name="confirmation" class="form-control" type="email" placeholder="example@email.com">
+                                            <input id="confirmation" value="<?= $_SESSION['userMail'] ?>" name="confirmation" class="form-control" type="email" placeholder="example@email.com">
                                         </div>
                                     </div>
                                 </div>
@@ -216,62 +196,13 @@
                                     <div class="col-12 col-sm-6">
                                         <label class="form-label mt-4">Votre Adresse</label>
                                         <div class="input-group">
-                                            <input id="location" name="location" maxlength="55" value="<?= $data['patient']->adressePatient ?>" class="form-control" type="text" placeholder="Sydney, A">
-                                        </div>
-                                    </div>
-                                </div>
-                                <button class="btn bg-gradient-dark btn-sm float-end mt-6 mb-0">Mettre à jour</button>
-                            </div>
-                        </div>
-                    </form>
-                    <!-- Card Patient Emergency Info -->
-                    <form action="editContactUrgence" method="post" class="m-4">
-                        <div class="card mt-4" id="basic-info">
-                            <div class="card-header">
-                                <h5>Contact d'Urgence</h5>
-                            </div>
-                            <div class="card-body pt-0">
-                                <div class="row">
-                                    <div class="col-12 col-sm-6">
-                                        <label class="form-label">Nom du contact</label>
-                                        <div class="input-group">
-                                            <input id="firstName" name="firstName" maxlength="55" value="<?= $data['patient']->nomPatient ?>" class="form-control" type="text" placeholder="Alec" required>
+                                            <input id="location" name="location" maxlength="55" value="<?= $data['medecin']->adresseMedecin ?>" class="form-control" type="text" placeholder="Sydney, A">
                                         </div>
                                     </div>
                                     <div class="col-12 col-sm-6">
-                                        <label class="form-label">Prenom du contact</label>
+                                        <label class="form-label mt-4">Numéro de Telephone</label>
                                         <div class="input-group">
-                                            <input id="lastName" name="lastName" maxlength="55" value="<?= $data['patient']->prenomPatient ?>" class="form-control" type="text" placeholder="Thompson" required>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-12 col-sm-6">
-                                        <label class="form-label mt-4">Sexe</label>
-                                        <select class="form-control" name="choices-gender" id="choices-gender" required>
-                                            <?php
-                                            if ($data['patient']->sexePatient == 'M') {
-                                                echo '<option value="M" selected>Homme</option>
-                                                        <option value="F">Femme</option>';
-                                            } else {
-                                                echo '<option value="M">Homme</option>
-                                                        <option value="F" selected>Femme</option>';
-                                            }
-                                            ?>
-                                        </select>
-                                    </div>
-                                    <div class="col-12 col-sm-6">
-                                        <label class="form-label mt-4">Adresse du contact</label>
-                                        <div class="input-group">
-                                            <input id="location" name="location" maxlength="55" value="<?= $data['patient']->adressePatient ?>" class="form-control" type="text" placeholder="Sydney, A">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-12 col-sm-6">
-                                        <label class="form-label mt-4">Numéro de Telephone à contacter en cas d'urgence</label>
-                                        <div class="input-group">
-                                            <input id="phone" name="phone" data-maxlength="9" oninput="this.value=this.value.slice(0,this.dataset.maxlength)" value="<?= $data['patient']->telPatient ?>" class="form-control" type="number" placeholder="6xx xx xx xx">
+                                            <input id="phone" name="phone" data-maxlength="9" oninput="this.value=this.value.slice(0,this.dataset.maxlength)" value="<?= $data['medecin']->telMedecin ?>" class="form-control" type="number" placeholder="6xx xx xx xx">
                                         </div>
                                     </div>
                                 </div>
@@ -320,30 +251,6 @@
                             </div>
                         </div>
                     </form>
-                    <!-- Card Delete Account -->
-                    <form action="deleteAccount" method="post" class="m-4">
-                        <div class="card mt-4" id="delete">
-                            <div class="card-header">
-                            <h5>Supprimer mon Compte</h5>
-                            <p class="text-sm mb-0">Si vous decidez de supprimer votre compte, il sera suspendu et vous ne pourez plus vous connecter, ni avoir des consultations, ni creer un compte avec cette email.
-                                Neamoins vous pourriez toute fois recuperer votre compte si vous le souhaiter.</p>
-                            </div>
-                            <div class="card-body d-sm-flex pt-0">
-                            <div class="d-flex align-items-center mb-sm-0 mb-4">
-                                <div>
-                                <div class="form-check form-switch mb-0">
-                                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault0" required>
-                                </div>
-                                </div>
-                                <div class="ms-2">
-                                <span class="text-dark font-weight-bold d-block text-sm">Confirmer</span>
-                                <span class="text-xs d-block">Oui, je voudrais supprimmer mon compte.</span>
-                                </div>
-                            </div>
-                            <button class="btn bg-gradient-danger mb-0 ms-auto" name="button">Delete Account</button>
-                            </div>
-                        </div>
-                    </form>
                 </div>
             </div>
             <?php require APPROOT . '/views/includes/copyright-ui.php'; ?>
@@ -355,8 +262,100 @@
     <script src="<?= URLROOT ?>/assets/js/plugins/perfect-scrollbar.min.js"></script>
     <script src="<?= URLROOT ?>/assets/js/plugins/smooth-scrollbar.min.js"></script>
     <script src="<?= URLROOT ?>/assets/js/plugins/choices.min.js"></script>
-    
     <script>
+        if (document.getElementById('choices-gender')) {
+            var gender = document.getElementById('choices-gender');
+            const example = new Choices(gender);
+        }
+
+        if (document.getElementById('choices-language')) {
+            var language = document.getElementById('choices-language');
+            const example = new Choices(language);
+        }
+
+        if (document.getElementById('choices-skills')) {
+            var skills = document.getElementById('choices-skills');
+            const example = new Choices(skills, {
+                delimiter: ',',
+                editItems: true,
+                maxItemCount: 5,
+                removeItemButton: true,
+                addItems: true
+            });
+        }
+
+        if (document.getElementById('choices-year')) {
+            var year = document.getElementById('choices-year');
+            setTimeout(function() {
+                const example = new Choices(year);
+            }, 1);
+
+            for (y = 1900; y <= 2020; y++) {
+                var optn = document.createElement("OPTION");
+                optn.text = y;
+                optn.value = y;
+
+                if (y == 2020) {
+                    optn.selected = true;
+                }
+
+                year.options.add(optn);
+            }
+        }
+
+        if (document.getElementById('choices-day')) {
+            var day = document.getElementById('choices-day');
+            setTimeout(function() {
+                const example = new Choices(day);
+            }, 1);
+
+
+            for (y = 1; y <= 31; y++) {
+                var optn = document.createElement("OPTION");
+                optn.text = y;
+                optn.value = y;
+
+                if (y == 1) {
+                    optn.selected = true;
+                }
+
+                day.options.add(optn);
+            }
+
+        }
+
+        if (document.getElementById('choices-month')) {
+            var month = document.getElementById('choices-month');
+            setTimeout(function() {
+                const example = new Choices(month);
+            }, 1);
+
+            var d = new Date();
+            var monthArray = new Array();
+            monthArray[0] = "January";
+            monthArray[1] = "February";
+            monthArray[2] = "March";
+            monthArray[3] = "April";
+            monthArray[4] = "May";
+            monthArray[5] = "June";
+            monthArray[6] = "July";
+            monthArray[7] = "August";
+            monthArray[8] = "September";
+            monthArray[9] = "October";
+            monthArray[10] = "November";
+            monthArray[11] = "December";
+            for (m = 0; m <= 11; m++) {
+                var optn = document.createElement("OPTION");
+                optn.text = monthArray[m];
+                // server side month start from one
+                optn.value = (m + 1);
+                // if june selected
+                if (m == 1) {
+                    optn.selected = true;
+                }
+                month.options.add(optn);
+            }
+        }
 
         function visible() {
             var elem = document.getElementById('profileVisibility');
@@ -391,7 +390,6 @@
             Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
         }
     </script>
-    
 </body>
 
 </html>

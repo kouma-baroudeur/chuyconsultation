@@ -115,6 +115,18 @@ class Medecins extends Controller
       $data = [
         'medecin' => $this->activeUser
       ];
+      $this->view('medecins/profileSettings', $data);
+    }
+  }
+
+  public function profil()
+  {
+    if ($_SESSION['userType'] != 'medecin') {
+      notAuthorized();
+    } else {
+      $data = [
+        'medecin' => $this->activeUser
+      ];
       $this->view('medecins/profile', $data);
     }
   }
