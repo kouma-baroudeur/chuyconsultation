@@ -1,31 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="apple-touch-icon" sizes="76x76" href="<?= URLROOT ?>/assets/img/apple-icon.png">
-    <link rel="icon" type="image/png" href="<?= URLROOT ?>/assets/img/favicon.png">
-    <title>
-        Paramettre du Profil
-    </title>
-    <!--     Fonts and icons     -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
-    <!-- Nucleo Icons -->
-    <link href="<?= URLROOT ?>/assets/css/nucleo-icons.css" rel="stylesheet" />
-    <link href="<?= URLROOT ?>/assets/css/nucleo-svg.css" rel="stylesheet" />
-    <!-- Font Awesome Icons -->
-    <script src="<?= URLROOT ?>/kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
-    <link href="<?= URLROOT ?>/assets/css/nucleo-svg.css" rel="stylesheet" />
-    <!-- CSS Files -->
-    <link id="pagestyle" href="<?= URLROOT ?>/assets/css/soft-ui-dashboard.min2c70.css?v=1.0.3" rel="stylesheet" />
-
-    <style>
-        .async-hide {
-            opacity: 0 !important
-        }
-    </style>
-</head>
+<?php require APPROOT . '/views/includes/header-ui.php'; ?>
 
 <body class="g-sidenav-show bg-gray-100">
     <main class="main-content max-height-vh-100 h-full">
@@ -106,9 +82,9 @@
                         <div class="container-fluid py-1 px-3">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
-                                    <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Parametres du Profil</li>
+                                    <li class="breadcrumb-item text-sm text-dark active" aria-current="page"><a href="javascript:history.go(-1)">Retour</a></li>
                                 </ol>
-                                <h6 class="font-weight-bolder mb-0"><a href="javascript:history.go(-1)" >Retour</a></h6>
+                                <h6 class="font-weight-bolder mb-0">Parametres du Profil</h6>
                             </nav>
                             <div class="mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                                 <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -186,6 +162,14 @@
                                             }
                                             ?>
                                         </select>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                <div class="col-12 col-sm-6">
+                                        <label class="form-label mt-4">Lieu de Naissance</label>
+                                        <div class="input-group">
+                                            <input id="lieuNaissance" name="lieuNaissance" maxlength="55" value="<?= $data['medecin']->lieuNaissanceMedecin ?>" class="form-control" type="text" placeholder="Alec" required>
+                                        </div>
                                     </div>
                                     <div class="col-12 col-sm-6">
                                         <label class="form-label mt-4">Date de Naissance</label>
@@ -269,34 +253,15 @@
                     </form>
                 </div>
             </div>
-            <footer class="footer pt-3  ">
-                <div class="container-fluid">
-                    <div class="row align-items-center justify-content-lg-between">
-                        <div class="col-lg-6 mb-lg-0 mb-4">
-                            <div class="copyright text-center text-sm text-muted text-lg-start">
-                                © <script data-cfasync="false" src="<?= URLROOT ?>/../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
-                                <script>
-                                    document.write(new Date().getFullYear())
-                                </script>,
-                                made with love<i class="fa fa-heart"></i> by
-                                <a href="" class="font-weight-bold" target="_blank">Optimists & Hardworkers</a>
-                                for a better web.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </footer>
+            <?php require APPROOT . '/views/includes/copyright-ui.php'; ?>
         </div>
     </main>
-    <!--   Core JS Files   -->
+
     <script src="<?= URLROOT ?>/assets/js/core/popper.min.js"></script>
     <script src="<?= URLROOT ?>/assets/js/core/bootstrap.min.js"></script>
     <script src="<?= URLROOT ?>/assets/js/plugins/perfect-scrollbar.min.js"></script>
     <script src="<?= URLROOT ?>/assets/js/plugins/smooth-scrollbar.min.js"></script>
     <script src="<?= URLROOT ?>/assets/js/plugins/choices.min.js"></script>
-    <!-- Kanban scripts -->
-    <script src="<?= URLROOT ?>/assets/js/plugins/dragula/dragula.min.js"></script>
-    <script src="<?= URLROOT ?>/assets/js/plugins/jkanban/jkanban.js"></script>
     <script>
         if (document.getElementById('choices-gender')) {
             var gender = document.getElementById('choices-gender');
@@ -425,10 +390,6 @@
             Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
         }
     </script>
-    <!-- Github buttons -->
-    <script async defer src="<?= URLROOT ?>/../../buttons.github.io/buttons.js"></script>
-    <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
-    <script src="<?= URLROOT ?>/assets/js/soft-ui-dashboard.min2c70.js?v=1.0.3"></script>
 </body>
 
 </html>
