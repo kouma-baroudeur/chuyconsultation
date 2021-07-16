@@ -204,7 +204,7 @@ class Patients extends Controller
       'patient' => $this->activeUser,
       'urgence' => $this->patientModel->recupurgence()
     ];
-    $this->view('patients/editprofile', $data);
+    $this->view('patients/profileSettings', $data);
   }
   /** affiche les rendez-vous pris par le patient  */
   public function _2y_10_QHwbK_BOb21EWA8cYriLy_3R9eQMrhCEIf6HQJt_9KYrq0pA_4wTa($etat = '')
