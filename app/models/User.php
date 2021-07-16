@@ -46,4 +46,12 @@ class User
             return false;
         }
     }
+    /** update user */
+    public function updateUser($data)
+    {
+        $sql = "UPDATE users SET email=".$data['email']."password = ".$data['password'];
+        $this->db->query($sql);
+        $answer = $this->db->execute();    
+        return $answer ;
+    }
 }

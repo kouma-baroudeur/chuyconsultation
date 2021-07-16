@@ -42,7 +42,7 @@
                         $data['email_err'] = 'Veuillez entrer votre adresse e-mail.';
                     }else
                     {
-                        if($this->userModel->findUserByEmail($data['email'])){
+                        if(){
                             $data['email_err'] = 'Email déja enregistré, veuillez vous connecter';
                         }
                     }
@@ -123,7 +123,7 @@
                     }
                     if(empty($data['email_err']) && empty($data['password_err']) )
                     {
-                        // if no error
+                        // if no error during checking
                         $loggedIn=$this->userModel->login($data['email'],$data['password']); // returns the row of the user if the password matches, else return false
                         if($loggedIn)
                         {
@@ -147,7 +147,7 @@
                 }
             }   
         }
-        
+        /**Fonction econnexion */
         public function _2y_10_AG_OSzHJ09ubMAfgTiWdM_Lw_aobUlVAr6Kw7bTOUMXEJPIMUn66W()
         {
             endUserSession();
