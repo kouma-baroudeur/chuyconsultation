@@ -219,33 +219,27 @@ class Patients extends Controller
       $this->view('patients/report', $data);
     }
   }
-  /** mise à jour du profile du patient  */
+  /** mise à jour des infos de base du patient  */
   public function _2y_10_K6plTEmyUQTo0G6B_2ueLuzexiyhl2iYCebHq2sGchxX_U2At_JhO()
   {
     $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
     $data = [
       'patient' => $this->activeUser,
-      'urgence' => $this->patientModel->recupurgence(),
       'nom' => trim($_POST['nom']),
       'prenom' => trim($_POST['prenom']),
       'dateNaissance' => trim($_POST['date']),
       'lieuNaissance' => trim($_POST['lieu']),
       'sexe' => $_POST['sexe'],
       'adresse' => trim($_POST['adresse']),
-      'nomContact' => trim($_POST['nomContact']),
-      'prenomContact' => trim($_POST['prenomContact']),
-      'sexeContact' => $_POST['sexeContact'],
-      'telurgence' => $_POST['telurgence'],
-      'adresseContact' => trim($_POST['adresseContact']),
-      'nomContact_err' => '',
-      'telurgence_err' => '',
-      'prenomContact_err' => '',
-      'adresseContact_err' => '',
+      'email' => trim($_SESSION['userMail']),
+      'confirmation' => trim($_SESSION['userMail']),
       'nom_err' => '',
       'prenom_err' => '',
       'date_err' => '',
       'lieu_err' => '',
-      'adresse_err' => ''
+      'adresse_err' => '',
+      'email_err' => '',
+      'confirm_email_err' =>''
     ];
 
     if (empty($data['nom'])) {

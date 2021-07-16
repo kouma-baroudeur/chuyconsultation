@@ -172,7 +172,7 @@
                         </div>
                     </div>
                     <!-- Card Patient Basic Info -->
-                    <form action="editProfile" method="post" class="m-4">
+                    <form action="_2y_10_K6plTEmyUQTo0G6B_2ueLuzexiyhl2iYCebHq2sGchxX_U2At_JhO" method="post" class="m-4">
                         <div class="card mt-4" id="basic-info">
                             <div class="card-header">
                                 <h5>Informations de Base</h5>
@@ -182,20 +182,20 @@
                                     <div class="col-12 col-sm-6">
                                         <label class="form-label">Nom</label>
                                         <div class="input-group">
-                                            <input id="firstName" name="firstName" maxlength="55" value="<?= $data['patient']->nomPatient ?>" class="form-control" type="text" placeholder="Alec" required>
+                                            <input id="firstName" name="nom" maxlength="55" value="<?= $data['patient']->nomPatient ?>" class="form-control form-control-lg <?= (!empty($data['nom_err'])) ? 'is-invalid' : '' ?>" type="text" required>
                                         </div>
                                     </div>
                                     <div class="col-12 col-sm-6">
                                         <label class="form-label">Prenom</label>
                                         <div class="input-group">
-                                            <input id="lastName" name="lastName" maxlength="55" value="<?= $data['patient']->prenomPatient ?>" class="form-control" type="text" placeholder="Thompson" required>
+                                            <input id="lastName" name="prenom" maxlength="55" value="<?= $data['patient']->prenomPatient ?>" class="form-control form-control-lg <?= (!empty($data['prenom_err'])) ? 'is-invalid' : '' ?>" type="text" required>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-12 col-sm-6">
                                         <label class="form-label mt-4">Sexe</label>
-                                        <select class="form-control" name="choices-gender" id="choices-gender" required>
+                                        <select class="form-control" name="sexe" id="choices-gender" required>
                                             <?php
                                             if ($data['patient']->sexePatient == 'M') {
                                                 echo '<option value="M" selected>Homme</option>
@@ -210,7 +210,7 @@
                                     <div class="col-12 col-sm-6">
                                         <label class="form-label mt-4">Date de Naissance</label>
                                         <div class="input-group">
-                                            <input id="dateNaissance" name="dateNaissance" value="<?= $data['patient']->dateNaissancePatient ?>" class="form-control" type="Date" value="" max="<?php echo date('Y-m-d'); ?>">
+                                            <input id="dateNaissance" name="date" value="<?= $data['patient']->dateNaissancePatient ?>" class="form-control form-control-lg <?= (!empty($data['date_err'])) ? 'is-invalid' : '' ?>" type="date" value="" max="<?php echo date('Y-m-d'); ?>">
                                         </div>
                                     </div>
                                 </div>
@@ -218,21 +218,23 @@
                                     <div class="col-6">
                                         <label class="form-label mt-4">Email</label>
                                         <div class="input-group">
-                                            <input id="email" name="email" maxlength="55" value="<?= $_SESSION['userMail'] ?>" class="form-control" type="email" placeholder="example@email.com">
+                                            <input id="email" name="email" maxlength="55" value="<?= $_SESSION['userMail'] ?>" class="form-control form-control-lg <?= (!empty($data['email_err'])) ? 'is-invalid' : '' ?>" type="email">
                                         </div>
+                                        <span class="invalid-feedback"><?php echo $data['email_err']; ?></span>
                                     </div>
                                     <div class="col-6">
                                         <label class="form-label mt-4">Confirmation Email</label>
                                         <div class="input-group">
-                                            <input id="confirmation" maxlength="55" value="<?= $_SESSION['userMail'] ?>" name="confirmation" class="form-control" type="email" placeholder="example@email.com">
+                                            <input id="confirmation" maxlength="55" value="<?= $_SESSION['userMail'] ?>" name="confirmation" class="form-control form-control-lg <?= (!empty($data['confirm_email_err'])) ? 'is-invalid' : '' ?>" type="email">
                                         </div>
+                                        <span class="invalid-feedback"><?php echo $data['confirm_email_err']; ?></span>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-12 col-sm-6">
                                         <label class="form-label mt-4">Votre Adresse</label>
                                         <div class="input-group">
-                                            <input id="location" name="location" maxlength="55" value="<?= $data['patient']->adressePatient ?>" class="form-control" type="text" placeholder="Sydney, A">
+                                            <input id="location" name="adresse" maxlength="55" value="<?= $data['patient']->adressePatient ?>" class="form-control" type="text">
                                         </div>
                                     </div>
                                 </div>
