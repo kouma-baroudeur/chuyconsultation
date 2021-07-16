@@ -36,8 +36,8 @@
         redirect('pages/index');
     }
     function isLoggedIn(){
-        //Ending a php session after 30 minutes of inactivity
-        $minutesBeforeSessionExpire=30;
+        //Ending a php session after 10 minutes of inactivity
+        $minutesBeforeSessionExpire=10;
         if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > ($minutesBeforeSessionExpire*60))) {
             session_unset();     // unset $_SESSION   
             endUserSession();   // destroy session data  
