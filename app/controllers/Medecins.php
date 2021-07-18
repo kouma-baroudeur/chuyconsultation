@@ -165,7 +165,7 @@ class Medecins extends Controller
         'medecin' => $this->activeUser,
         'idPatient' => $idPatient
       ];
-      $this->view('medecins/add-consultaion', $data);
+      $this->view('medecins/add-consultation', $data);
     }
   }
 
@@ -205,7 +205,8 @@ class Medecins extends Controller
         'medecin' => $this->activeUser,
         'patient' => $this->medecinModel->profilePatient($id),
         'premiereinfo'=>$this->medecinModel->premiereInfo($id),
-        'contacturgence'=>$this->medecinModel->recupurgence($id)
+        'contacturgence'=>$this->medecinModel->recupurgence($id),
+        'id'=>$id
       ];
       $this->view('medecins/patient-profil', $data);
     }

@@ -23,7 +23,7 @@
                         <input type="text" class="form-control" name="medecin" value="<?= $data['medecin']->codeMedecin ?>" hidden>
                         
                         <select class="form-control" name="patient">
-                            <option value="Choice 1" selected>Patient <?= $data['idPatient'] != null ? $data['idPatient'] : '1' ?></option>
+                            <option value="Choice 1" selected>Patient <?= $data['idPatient'] ?></option>
                             <option value="Choice 2">Patient 2</option>
                             <option value="Choice 3">Patient 3</option>
                             <option value="Choice 4">Patient 4</option>
