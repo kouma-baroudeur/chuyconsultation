@@ -22,22 +22,29 @@
 
                         <input type="text" class="form-control" name="medecin" value="<?= $data['medecin']->codeMedecin ?>" hidden>
                         
-                        <select class="form-control" name="patient">
-                            <option value="Choice 1" selected>Patient <?= $data['idPatient'] ?></option>
-                            <option value="Choice 2">Patient 2</option>
-                            <option value="Choice 3">Patient 3</option>
-                            <option value="Choice 4">Patient 4</option>
+                        
+                            <?php
+                                if ($data['idPatient']!=null) {
+                                    echo '<select class="form-control" name="patient" disabled>';
+                                    echo '<option value="'.$data['idPatient'].'" selected>'.$data['patient']->nomPatient. ' '.$data['patient']->prenomPatient.'</option>';
+                                }else {
+                                    echo '<select class="form-control" name="patient">';
+                                    foreach ($data['patients'] as $id => $patient) {
+                                        echo '<option value="'.$patient->IP.'">'.$patient->nomPatient. ' '.$patient->prenomPatient.'</option>';
+                                    }
+                                }
+                            ?>
                         </select>
-                        <label class="mt-4">Description de la consultaion</label>
+                        <label class="mt-4">Description de la consultation</label>
                         
                         <div id="contenuText" class="h-100">
-                            <p>Hello World!</p>
-                            <p>Some initial <strong>bold</strong> text</p>
+                            <p>Consultation chez CHUY</p>
+                            <p>Melen, BP XXXX, <strong>tel +237 6XX XXX XXX</strong>, Rue XXXX</p><br>
                             <p><br></p>
                         </div>
                         <input type="text" class="form-control" id="contenu" hidden>
                         <label class="mt-4 form-label">Symptômes du Patient</label>
-                        <select class="form-control" name="symptomes" id="choices-multiple-remove-button" multiple>
+                        <select class="form-control" name="symptomes[]" id="choices-multiple-remove-button" multiple>
                             <option value="Choice 1" selected>symptome 1</option>
                             <option value="Choice 2">symptome 2</option>
                             <option value="Choice 3">symptome 3</option>
@@ -46,19 +53,6 @@
                         <div class="row">
                             <div class="col-6">
                                 <label class="form-label">Date de consultaion: </label><span class="text-sm">&nbsp;&nbsp;<?php echo date('d/m/Y'); ?></span>
-                            </div>
-                            <input type="text" class="form-control" id="contenu" hidden>
-                            <label class="mt-4 form-label">Symptômes du Patient</label>
-                            <select class="form-control" name="symptomes" id="choices-multiple-remove-button" multiple>
-                                <option value="Choice 1" selected>symptome 1</option>
-                                <option value="Choice 2">symptome 2</option>
-                                <option value="Choice 3">symptome 3</option>
-                                <option value="Choice 4">symptome 4</option>
-                            </select>
-                            <div class="row">
-                                <div class="col-6">
-                                    <label class="form-label">Date de consultaion: </label><span class="text-sm">&nbsp;&nbsp;<?php echo date('d/m/Y'); ?></span>
-                                </div>
                             </div>
                             <label class="mt-4 form-label">Ajouter des documents</label>
                             <div class="form-control dropzone" id="dropzone">
@@ -106,27 +100,6 @@
             const example = new Choices(element, {
                 removeItemButton: true
             });
-
-            example.setChoices(
-                [{
-                        value: 'One',
-                        label: 'Label One',
-                        disabled: true
-                    },
-                    {
-                        value: 'Two',
-                        label: 'Label Two',
-                        selected: true
-                    },
-                    {
-                        value: 'Three',
-                        label: 'Label Three'
-                    },
-                ],
-                'value',
-                'label',
-                false,
-            );
         }
 
         if (document.querySelector('.datetimepicker')) {

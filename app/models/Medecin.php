@@ -133,6 +133,13 @@ class Medecin
         $answer = $this->db->execute();
         return $answer;
     }
+    /**liste tous les patients */
+    public function listePatient(){
+        $sql = "SELECT * FROM patient";
+          $this->db->query($sql);
+          $response = $this->db->resultSet();
+          return $response;
+    }
     public function profilePatient($id){
         $sql = "SELECT * FROM patient WHERE IP=".$id;
           $this->db->query($sql);
