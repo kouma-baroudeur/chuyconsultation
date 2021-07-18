@@ -89,7 +89,7 @@
                             <h2 class="text-white mb-0 up">Prenoms</h2>
                             <span class="badge badge-lg bg-gradient-dark mb-2 up text-md">Homme</span>
                             <h4 class="text-white mb-0 up">adresse</h4>
-                            <a href="javascript:;" class="btn btn-outline-white mb-2 px-5 up text-lg">Envoyer Message</a>
+                            <a href="<?= URLROOT ?>/medecins/chatapp" class="btn btn-outline-white mb-2 px-5 up text-lg">Envoyer Message</a>
                         </div>
                     </div>
                 </div>
@@ -101,7 +101,7 @@
                                     <h6 class="mb-0 text-dark">Premières Observations</h6>
                                 </div>
                                 <div class="col-md-4 text-end">
-                                    <a href="javascript:;">
+                                    <a href="<?= URLROOT ?>/medecins/premiereObservation/<?= $data['patient'] ?>">
                                         <span class="fas fa-user-edit text-secondary text-sm">EDIT</span>
                                     </a>
                                 </div>

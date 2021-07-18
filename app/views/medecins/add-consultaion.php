@@ -14,51 +14,52 @@
             <div class="row">
                 <div class="col-lg-9 col-12 mx-auto">
                     <form action="<?= URLROOT ?>/medecins/ajouterConsultation" method="post" onsubmit="return getContenu();">
-                    <div class="card card-body mt-4">
-                        <h6 class="mb-0">Nouvelle consultaion</h6>
-                        <p class="text-sm mb-0">Veuillez remplir les champs</p>
-                        <hr class="horizontal dark my-3">
-                        <label for="projectName" class="form-label">Patient</label>
+                        <div class="card card-body mt-4">
+                            <h6 class="mb-0">Nouvelle consultaion</h6>
+                            <p class="text-sm mb-0">Veuillez remplir les champs</p>
+                            <hr class="horizontal dark my-3">
+                            <label for="projectName" class="form-label">Patient</label>
 
-                        <input type="text" class="form-control" name="medecin" value="<?= $data['medecin']->codeMedecin ?>" hidden>
-                        
-                        <select class="form-control" name="patient">
-                            <option value="Choice 1" selected>Patient <?= $data['idPatient'] != null ? $data['idPatient'] : '1' ?></option>
-                            <option value="Choice 2">Patient 2</option>
-                            <option value="Choice 3">Patient 3</option>
-                            <option value="Choice 4">Patient 4</option>
-                        </select>
-                        <label class="mt-4">Description de la consultaion</label>
-                        
-                        <div id="contenuText" class="h-100">
-                            <p>Hello World!</p>
-                            <p>Some initial <strong>bold</strong> text</p>
-                            <p><br></p>
-                        </div>
-                        <input type="text" class="form-control" id="contenu" hidden>
-                        <label class="mt-4 form-label">Symptômes du Patient</label>
-                        <select class="form-control" name="symptomes" id="choices-multiple-remove-button" multiple>
-                            <option value="Choice 1" selected>symptome 1</option>
-                            <option value="Choice 2">symptome 2</option>
-                            <option value="Choice 3">symptome 3</option>
-                            <option value="Choice 4">symptome 4</option>
-                        </select>
-                        <div class="row">
-                            <div class="col-6">
-                                <label class="form-label">Date de consultaion: </label><span class="text-sm">&nbsp;&nbsp;<?php echo date('d/m/Y'); ?></span>
+                            <input type="text" class="form-control" name="medecin" value="<?= $data['medecin']->codeMedecin ?>" hidden>
+
+                            <select class="form-control" name="patient">
+                                <option value="Choice 1" selected>Patient <?= $data['idPatient'] != null ? $data['idPatient'] : '1' ?></option>
+                                <option value="Choice 2">Patient 2</option>
+                                <option value="Choice 3">Patient 3</option>
+                                <option value="Choice 4">Patient 4</option>
+                            </select>
+                            <label class="mt-4">Description de la consultaion</label>
+
+                            <div id="contenuText" class="h-100">
+                                <p>Hello World!</p>
+                                <p>Some initial <strong>bold</strong> text</p>
+                                <p><br></p>
+                            </div>
+                            <input type="text" class="form-control" id="contenu" hidden>
+                            <label class="mt-4 form-label">Symptômes du Patient</label>
+                            <select class="form-control" name="symptomes" id="choices-multiple-remove-button" multiple>
+                                <option value="Choice 1" selected>symptome 1</option>
+                                <option value="Choice 2">symptome 2</option>
+                                <option value="Choice 3">symptome 3</option>
+                                <option value="Choice 4">symptome 4</option>
+                            </select>
+                            <div class="row">
+                                <div class="col-6">
+                                    <label class="form-label">Date de consultaion: </label><span class="text-sm">&nbsp;&nbsp;<?php echo date('d/m/Y'); ?></span>
+                                </div>
+                            </div>
+                            <label class="mt-4 form-label">Ajouter des documents</label>
+                            <div class="form-control dropzone" id="dropzone">
+                                <div class="fallback">
+                                    <input name="file" type="file" multiple />
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-end mt-4">
+                                <button type="submit" name="button" class="btn bg-gradient-info m-0">Ajouter la Consultation</button>
+                                <button type="button" name="button" class="btn btn-light m-0  ms-2">Cancel</button>
                             </div>
                         </div>
-                        <label class="mt-4 form-label">Ajouter des documents</label>
-                        <div class="form-control dropzone" id="dropzone">
-                            <div class="fallback">
-                                <input name="file" type="file" multiple />
-                            </div>
-                        </div>
-                        <div class="d-flex justify-content-end mt-4">
-                            <button type="submit" name="button" class="btn bg-gradient-info m-0">Ajouter la Consultation</button>
-                            <button type="button" name="button" class="btn btn-light m-0  ms-2">Cancel</button>
-                        </div>
-                    </div>
+                    </form>
                 </div>
             </div>
             <?php require APPROOT . '/views/includes/copyright-ui.php'; ?>
@@ -75,13 +76,13 @@
     <script src="<?= URLROOT ?>/assets/js/plugins/flatpickr.min.js"></script>
     <script src="<?= URLROOT ?>/assets/js/plugins/dropzone.min.js"></script>
     <script>
-        function getContenu(){
+        function getContenu() {
             var contenu = document.getElementById('contenuText').innerHTML;
             document.getElementById('contenu').value = contenu;
 
             return true;
         }
-        
+
         if (document.getElementById('contenuText')) {
             var quill = new Quill('#contenuText', {
                 theme: 'snow' // Specify theme in configuration

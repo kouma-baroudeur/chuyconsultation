@@ -221,6 +221,20 @@ class Medecins extends Controller
       $this->view('medecins/patient-profil', $data);
     }
   }
+
+  public function premiereObservation($patient)
+  {
+    if ($_SESSION['userType'] != 'medecin') {
+      notAuthorized();
+    } else {
+      $data = [
+        //'patients' => $this->medecinModel->patients(),
+        'medecin' => $this->activeUser,
+        'patient' => $patient,
+      ];
+      $this->view('medecins/premiere-observation', $data);
+    }
+  }
   
   /** mise a jour hebdomadaire du planning des medecins */
   public function planning()
