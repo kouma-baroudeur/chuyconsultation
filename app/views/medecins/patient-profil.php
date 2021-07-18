@@ -121,7 +121,7 @@
                                 <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Taille:</strong> &nbsp; <?= $data['premiereinfo']->taille ?><span class="text-dark text-sm ms-2"><strong>cm</strong></span></li>
                                 <hr class="horizontal dark my-0">
                                 <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Préssion Arterielle:</strong> &nbsp; <?= $data['premiereinfo']->PA ?><span class="text-dark text-sm ms-2"><strong>mmHG</strong></span></li>
-                                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Pouls:</strong> &nbsp; <?= $data['premiereinfo']->pouls ?><span class="text-dark text-sm ms-2"><strong>/mn</strong></span></li>
+                                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Pouls:</strong> &nbsp; <?= $data['premiereinfo']->pouls ?><span class="text-dark text-sm ms-2"><strong>hb/mn</strong></span></li>
                                 <hr class="horizontal dark my-0">
                                 <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Groupe Sanguin:</strong> &nbsp; <?= $data['premiereinfo']->groupeSanguin ?></li>
                                 <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Rhesus:</strong> &nbsp; <?= $data['premiereinfo']->rhesus ?></li>
