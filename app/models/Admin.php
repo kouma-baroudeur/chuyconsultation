@@ -45,7 +45,7 @@ class Admin
         $answer = $this->db->resultSet();
         return $answer;
     }
-     public function patient()
+    public function patient()
     {
         $sql = "SELECT * FROM patient,users WHERE patient.userId = users.id "; 
         $this->db->query($sql);

@@ -25,10 +25,10 @@
                     <div class="col-auto my-auto">
                         <div class="h-100">
                             <h5 class="mb-1">
-                                Nom et prenom ici<?= $patient->nomPatient . " " . $patient->prenomPatient ?>
+                                <?= $data['patient']->nomPatient . " " . $data['patient']->prenomPatient ?>
                             </h5>
                             <p class="mb-0 font-weight-bold text-sm">
-                                PATIENT / N° <?= $data['patient'] ?>
+                                PATIENT / N° <?= $data['patient']->IP ?>
                             </p>
                         </div>
                     </div>
@@ -51,7 +51,7 @@
                                                 </g>
                                             </g>
                                         </svg>
-                                        <span class="ms-1">Consultaion</span>
+                                        <span class="ms-1">Consultation</span>
                                     </a>
                                 </li>
                                 <li class="nav-item">
@@ -85,11 +85,19 @@
                     <div class="card card-background align-content-center card-background-mask-info h-100 tilt" data-tilt="" style="will-change: transform; transform: perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1);">
                         <div class="full-background" style="background-image: url('<?= URLROOT ?>/assets/img/curved-images/curved7.jpg')"></div>
                         <div class="card-body m-auto my-5 text-center">
-                            <h2 class="text-white mb-0 up">Noms</h2>
-                            <h2 class="text-white mb-0 up">Prenoms</h2>
-                            <span class="badge badge-lg bg-gradient-dark mb-2 up text-md">Homme</span>
-                            <h4 class="text-white mb-0 up">adresse</h4>
-                            <a href="javascript:;" class="btn btn-outline-white mb-2 px-5 up text-lg">Envoyer Message</a>
+                            <h2 class="text-white mb-0 up"><?= $data['patient']->nomPatient ?></h2>
+                            <h2 class="text-white mb-0 up"><?= $data['patient']->prenomPatient ?></h2>
+                            <span class="badge badge-lg bg-gradient-dark mb-2 up text-md">
+                                <?php
+                                    if ($data['patient']->sexePatient == 'M') {
+                                        echo 'Homme';
+                                    } else {
+                                        echo 'Femme';
+                                    }
+                                ?>
+                            </span>
+                            <h4 class="text-white mb-0 up"><?= $data['patient']->adressePatient ?></h4>
+                            <a href="<?= URLROOT ?>/medecins/chatapp" target="_blank" class="btn btn-outline-white mb-2 px-5 up text-lg">Envoyer Message</a>
                         </div>
                     </div>
                 </div>
@@ -109,19 +117,19 @@
                         </div>
                         <div class="card-body p-3">
                             <ul class="list-group">
-                                <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">Poids:</strong> &nbsp; RAS</li>
-                                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Taille:</strong> &nbsp; RAS</li>
+                                <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">Poids:</strong> &nbsp; <?= $data['premiereinfo']->poids ?><span class="text-dark text-sm ms-2"><strong>kg</strong></span></li>
+                                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Taille:</strong> &nbsp; <?= $data['premiereinfo']->taille ?><span class="text-dark text-sm ms-2"><strong>cm</strong></span></li>
                                 <hr class="horizontal dark my-0">
-                                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Préssion Arterielle:</strong> &nbsp; RAS</li>
-                                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Pouls:</strong> &nbsp; RAS</li>
+                                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Préssion Arterielle:</strong> &nbsp; <?= $data['premiereinfo']->PA ?><span class="text-dark text-sm ms-2"><strong>mmHG</strong></span></li>
+                                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Pouls:</strong> &nbsp; <?= $data['premiereinfo']->pouls ?><span class="text-dark text-sm ms-2"><strong>/mn</strong></span></li>
                                 <hr class="horizontal dark my-0">
-                                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Groupe Sanguin:</strong> &nbsp; RAS</li>
-                                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Rhesus:</strong> &nbsp; RAS</li>
+                                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Groupe Sanguin:</strong> &nbsp; <?= $data['premiereinfo']->groupeSanguin ?></li>
+                                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Rhesus:</strong> &nbsp; <?= $data['premiereinfo']->rhesus ?></li>
                                 <hr class="horizontal dark my-0">
-                                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Allergies:</strong> &nbsp; RAS</li>
-                                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Examen Physiques:</strong> &nbsp; RAS</li>
-                                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Antecedent Medicaux:</strong> &nbsp; RAS</li>
-                                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Antecedent Familiaux:</strong> &nbsp; RAS</li>
+                                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Allergies:</strong> &nbsp; <?= $data['premiereinfo']->allergies ?></li>
+                                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Examen Physiques:</strong> &nbsp; <?= $data['premiereinfo']->examenPhysique ?></li>
+                                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Antecedent Medicaux:</strong> &nbsp; <?= $data['premiereinfo']->antecedantMedicaux ?></li>
+                                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Antecedent Familiaux:</strong> &nbsp; <?= $data['premiereinfo']->antecedantFamiliaux ?></li>
                             </ul>
                         </div>
                     </div>
@@ -136,12 +144,20 @@
                                 Les informations suivantes servent à contact un proche du patient en cas d'urgence medical ou informations relative au suivie du patient.
                             </p>
                             <ul class="list-group">
-                                <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">Nom:</strong> &nbsp; RAS</li>
-                                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Prenom:</strong> &nbsp; RAS</li>
-                                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Sexe:</strong> &nbsp; RAS</li>
+                                <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">Nom:</strong> &nbsp; <?= $data['contacturgence']->nomContact ?></li>
+                                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Prenom:</strong> &nbsp; <?= $data['contacturgence']->prenomContact ?></li>
+                                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Sexe:</strong> &nbsp; 
+                                    <?php
+                                        if ($data['contacturgence']->sexeContact == 'M') {
+                                            echo 'Homme';
+                                        } else {
+                                            echo 'Femme';
+                                        }
+                                    ?>
+                                </li>
                                 <hr class="horizontal dark my-2">
-                                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Telephone:</strong> &nbsp; RAS</li>
-                                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Adrese:</strong> &nbsp; RAS</li>
+                                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Telephone:</strong> &nbsp; <?= $data['contacturgence']->telurgence ?></li>
+                                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Adrese:</strong> &nbsp; <?= $data['contacturgence']->adresseContact ?></li>
                             </ul>
                         </div>
                     </div>
@@ -349,7 +365,7 @@
                             <div class="timeline timeline-one-side">
                                 <div class="timeline-block mb-3">
                                     <span class="timeline-step">
-                                    <i class="ni ni-check-bold text-info text-gradient"></i>
+                                        <i class="ni ni-check-bold text-info text-gradient"></i>
                                     </span>
                                     <div class="timeline-content">
                                         <h6 class="text-white text-xs font-weight-bold mb-0">$2400, Design changes</h6>
@@ -358,7 +374,7 @@
                                 </div>
                                 <div class="timeline-block mb-3">
                                     <span class="timeline-step">
-                                    <i class="ni ni-check-bold text-info text-gradient"></i>
+                                        <i class="ni ni-check-bold text-info text-gradient"></i>
                                     </span>
                                     <div class="timeline-content">
                                         <h6 class="text-white text-xs font-weight-bold mb-0">New order #1832412</h6>
@@ -367,7 +383,7 @@
                                 </div>
                                 <div class="timeline-block mb-3">
                                     <span class="timeline-step">
-                                    <i class="ni ni-check-bold text-info text-gradient"></i>
+                                        <i class="ni ni-check-bold text-info text-gradient"></i>
                                     </span>
                                     <div class="timeline-content">
                                         <h6 class="text-white text-xs font-weight-bold mb-0">Server payments for April</h6>
@@ -376,7 +392,7 @@
                                 </div>
                                 <div class="timeline-block mb-3">
                                     <span class="timeline-step">
-                                    <i class="ni ni-check-bold text-info text-gradient"></i>
+                                        <i class="ni ni-check-bold text-info text-gradient"></i>
                                     </span>
                                     <div class="timeline-content">
                                         <h6 class="text-white text-xs font-weight-bold mb-0">New card added for order #4395133</h6>
@@ -390,26 +406,26 @@
             </div>
             <?php require APPROOT . '/views/includes/copyright-ui.php'; ?>
         </div>
-    </div>
-    <!--   Core JS Files   -->
-    <script src="<?= URLROOT ?>/assets/js/core/bootstrap.min.js"></script>
-    <script src="<?= URLROOT ?>/assets/js/plugins/perfect-scrollbar.min.js"></script>
-    <script src="<?= URLROOT ?>/assets/js/plugins/smooth-scrollbar.min.js"></script>
-    <!-- Kanban scripts -->
-    <script src="<?= URLROOT ?>/assets/js/plugins/multistep-form.js"></script>
-    <script src="<?= URLROOT ?>/assets/js/plugins/tilt.min.js"></script>
+        </div>
+        <!--   Core JS Files   -->
+        <script src="<?= URLROOT ?>/assets/js/core/bootstrap.min.js"></script>
+        <script src="<?= URLROOT ?>/assets/js/plugins/perfect-scrollbar.min.js"></script>
+        <script src="<?= URLROOT ?>/assets/js/plugins/smooth-scrollbar.min.js"></script>
+        <!-- Kanban scripts -->
+        <script src="<?= URLROOT ?>/assets/js/plugins/multistep-form.js"></script>
+        <script src="<?= URLROOT ?>/assets/js/plugins/tilt.min.js"></script>
 
-    <script>
-        var win = navigator.platform.indexOf('Win') > -1;
-        if (win && document.querySelector('#sidenav-scrollbar')) {
-            var options = {
-                damping: '0.5'
+        <script>
+            var win = navigator.platform.indexOf('Win') > -1;
+            if (win && document.querySelector('#sidenav-scrollbar')) {
+                var options = {
+                    damping: '0.5'
+                }
+                Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
             }
-            Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
-        }
-    </script>
-    <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
-    <script src="<?= URLROOT ?>/assets/js/soft-ui-dashboard.min2c70.js?v=1.0.3"></script>
+        </script>
+        <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
+        <script src="<?= URLROOT ?>/assets/js/soft-ui-dashboard.min2c70.js?v=1.0.3"></script>
 </body>
 
 

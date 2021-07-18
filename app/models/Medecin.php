@@ -133,4 +133,23 @@ class Medecin
         $answer = $this->db->execute();
         return $answer;
     }
+    public function profilePatient($id){
+        $sql = "SELECT * FROM patient WHERE IP=".$id;
+          $this->db->query($sql);
+          $response = $this->db->single();
+          return $response;
+    }
+    public function premiereInfo($id)
+    {
+        $sql = "SELECT * FROM premiereobservation WHERE IP=".$id;
+          $this->db->query($sql);
+          $response = $this->db->single();
+          return $response;
+    }
+    public function recupurgence($id){
+        $sql = "SELECT * FROM contacturgence WHERE IP=".$id;
+        $this->db->query($sql);
+        $answer = $this->db->single();
+        return $answer;
+    }
 }
