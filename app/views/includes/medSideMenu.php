@@ -103,7 +103,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="<?= URLROOT ?>/medecins/addConsultation">
+                <a class="nav-link" href="<?= URLROOT ?>/medecins/addConsultationNew">
                   <span class="sidenav-mini-icon"> N </span>
                   <span class="sidenav-normal"> Nouvelle Consultation </span>
                 </a>

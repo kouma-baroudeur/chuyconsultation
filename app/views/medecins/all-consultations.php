@@ -14,8 +14,7 @@
             <div class="d-sm-flex justify-content-between">
                 <div class="ms-auto my-auto mt-lg-4 mt-4 mb-4">
                     <div class="ms-auto my-auto">
-                        <a href="<?= URLROOT ?>/medecins/addPatient" class="btn bg-gradient-info btn-sm mb-0">+&nbsp; Nouveau Patient</a>
-                        <button class="btn btn-outline-dark btn-sm export mb-0 mt-sm-0 mt-1" data-type="csv" type="button" name="button">Exporter</button>
+                        <a href="<?= URLROOT ?>/medecins/addConsultationNew" class="btn bg-gradient-info btn-sm mb-0">+&nbsp; Nouvelle Consultation</a>
                     </div>
                 </div>
             </div>
@@ -26,38 +25,32 @@
                             <table class="table table-flush" id="datatable-search">
                                 <thead class="thead-light">
                                     <tr>
-                                        <th>NOMS & PRENOMS</th>
-                                        <th>SEXE</th>
-                                        <th>ADRESSE</th>
-                                        <th>STATUT</th>
+                                        <th>NOMS DU PATIENT</th>
+                                        <th>DATE DE CONSULTATION</th>
+                                        <th>DERNIERE MODIFICATION LE</th>
                                         <th>OPTIONS</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php foreach ($data['patients'] as $id => $patient) : ?>
+                                    <?php foreach ($data['consultations'] as $id => $consult) : ?>
                                         <tr>
                                             <td class="text-xs font-weight-bold">
                                                 <div class="d-flex align-items-center">
                                                     <div class="avatar avatar-xs me-2 bg-gradient-info">
-                                                        <span><?= $patient->nomPatient[0] ?></span>
+                                                        <span><?= $consult->nomPatient[0] ?></span>
                                                     </div>
-                                                    <a href="patientProfil/<?= $patient->IP ?>"><?= $patient->nomPatient . " " . $patient->prenomPatient ?></a>
+                                                    <span><?= $consult->nomPatient . " " . $consult->prenomPatient ?></span>
                                                 </div>
                                             </td>
                                             <td class="font-weight-bold">
-                                                <span class="my-2 text-xs"><?= $patient->sexePatient ?></span>
+                                                <span class="my-2 text-xs"><?= $consult->dateConsultation ?></span>
                                             </td>
                                             <td class="font-weight-bold">
-                                                <span class="my-2 text-xs"><?= $patient->adressePatient ?></span>
-                                            </td>
-                                            <td>
-                                                <div class="d-flex align-items-center">
-                                                    <span class="badge badge-sm bg-gradient-success">Guéri</span>
-                                                </div>
+                                                <span class="my-2 text-xs"><?= $consult->dateEdition ?></span>
                                             </td>
                                             <td class="text-xs font-weight-bold">
                                                 <div class="d-flex align-items-center">
-                                                    <a href="patientProfil/<?= $patient->IP ?>" class="btn bg-gradient-dark btn-sm mb-0">voir</a>
+                                                    <a href="detailConsultation/<?= $consult->numeroConsultation ?>" class="btn bg-gradient-dark btn-sm mb-0">voir</a>
                                                 </div>
                                             </td>
                                         </tr>
