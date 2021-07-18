@@ -128,7 +128,7 @@
                         </div>
                     </div>
                     <!-- Card Basic Info -->
-                    <form action="editProfile" method="post" class="m-4">
+                    <form action="editProfile" method="post" class="m-4" onsubmit="return compareEmails();">
                         <div class="card mt-4" id="basic-info">
                             <div class="card-header">
                                 <h5>Informations de Base</h5>
@@ -165,7 +165,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                <div class="col-12 col-sm-6">
+                                    <div class="col-12 col-sm-6">
                                         <label class="form-label mt-4">Lieu de Naissance</label>
                                         <div class="input-group">
                                             <input id="lieuNaissance" name="lieuNaissance" maxlength="55" value="<?= $data['medecin']->lieuNaissanceMedecin ?>" class="form-control" type="text" placeholder="Alec" required>
@@ -219,15 +219,15 @@
                             <div class="card-body pt-0">
                                 <label class="form-label">Mot de passe actuel</label>
                                 <div class="form-group">
-                                    <input class="form-control" type="password" placeholder="Current password" required>
+                                    <input class="form-control" name="password" type="password" placeholder="Current password" required>
                                 </div>
                                 <label class="form-label">Nouveau mot de passe</label>
                                 <div class="form-group">
-                                    <input class="form-control" type="password" placeholder="New password" required>
+                                    <input class="form-control" name="newpassword" type="password" placeholder="New password" required>
                                 </div>
                                 <label class="form-label">Confirmer nouveau mot de passe</label>
                                 <div class="form-group">
-                                    <input class="form-control" type="password" placeholder="Confirm password" required>
+                                    <input class="form-control" name="confirmnewpassword" type="password" placeholder="Confirm password" required>
                                 </div>
                                 <h5 class="mt-5">Recommendations du mot de passe</h5>
                                 <p class="text-muted mb-2">
@@ -253,7 +253,6 @@
                     </form>
                 </div>
             </div>
-            <?php require APPROOT . '/views/includes/copyright-ui.php'; ?>
         </div>
     </main>
 
@@ -262,7 +261,61 @@
     <script src="<?= URLROOT ?>/assets/js/plugins/perfect-scrollbar.min.js"></script>
     <script src="<?= URLROOT ?>/assets/js/plugins/smooth-scrollbar.min.js"></script>
     <script src="<?= URLROOT ?>/assets/js/plugins/choices.min.js"></script>
+    <script src="<?= URLROOT ?>/assets/js/toastr.js"></script>
     <script>
+        function presentToast() {
+            $('.counter').counterUp({
+                delay : 10,
+                time: 100
+            });
+
+            toastr.options = {
+                "closeButton": true,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": false,
+                "positionClass": "toast-top",
+                "preventDuplicate": false,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut",
+            }
+            toastr["warning"]("Emails incorrect!");
+        }
+
+        function compareEmails() {
+            var email1 = document.getElementById("email").value;
+            var email2 = document.getElementById("confirmation").value;
+            var result = email1.localeCompare(email2);
+            presentToast("warning","Emails incorrect!");
+            if (result != 0) {
+                document.getElementById("confirmation").value = "";
+                presentToast("warning","Emails incorrect!");
+                return false;
+            }
+
+            return true;
+        }
+
+        function compareNewPasswords() {
+            var email1 = document.getElementById("newpassword").value;
+            var email2 = document.getElementById("confirmnewpassword").value;
+            var result = email1.localeCompare(email2);
+
+            if (result != 0) {
+                document.getElementById("confirmnewpassword").value = "";
+                return false;
+            }
+
+            return true;
+        }
+
         if (document.getElementById('choices-gender')) {
             var gender = document.getElementById('choices-gender');
             const example = new Choices(gender);

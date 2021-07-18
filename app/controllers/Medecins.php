@@ -143,6 +143,18 @@ class Medecins extends Controller
     }
   }
 
+  public function addConsultation()
+  {
+    if ($_SESSION['userType'] != 'medecin') {
+      notAuthorized();
+    } else {
+      $data = [
+        'medecin' => $this->activeUser
+      ];
+      $this->view('medecins/add-consultaion', $data);
+    }
+  }
+
   public function rdvs($filter = "only", $etat = "")
   {
     if ($_SESSION['userType'] != 'medecin') {
@@ -170,14 +182,15 @@ class Medecins extends Controller
     }
   }
 
-  public function patientProfil()
+  public function patientProfil($patient)
   {
     if ($_SESSION['userType'] != 'medecin') {
       notAuthorized();
     } else {
       $data = [
         //'patients' => $this->medecinModel->patients(),
-        'medecin' => $this->activeUser
+        'medecin' => $this->activeUser,
+        'patient' => $patient,
       ];
       $this->view('medecins/patient-profil', $data);
     }

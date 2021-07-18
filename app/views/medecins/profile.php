@@ -100,12 +100,12 @@
                         <div class="card-body p-3">
                             <hr class="horizontal dark my-2">
                             <ul class="list-group">
-                                <li class="list-group-item border-0 ps-0 pt-0 text-sm w-full"><strong class="text-dark align-start">Nom complet:</strong> &nbsp; <?= $data['medecin']->sexeMedecin ? 'M.' : 'Mme.' ?> <?= $data['medecin']->nomMedecin . " " . $data['medecin']->prenomMedecin ?></li>
-                                <li class="list-group-item border-0 ps-0 text-sm w-full"><strong class="text-dark align-start">Telephone:</strong> &nbsp; <?= $data['medecin']->telMedecin ?></li>
-                                <li class="list-group-item border-0 ps-0 text-sm w-full"><strong class="text-dark align-start">Email:</strong> &nbsp; <?= $_SESSION['userMail'] ?></li>
-                                <li class="list-group-item border-0 ps-0 text-sm w-full"><strong class="text-dark align-start">Adresse:</strong> &nbsp; <?= $data['medecin']->adresseMedecin ?></li>
-                                <li class="list-group-item border-0 ps-0 text-sm w-full"><strong class="text-dark align-start">Date de Naissance:</strong> &nbsp; <?= $data['medecin']->dateNaissanceMedecin ?></li>
-                                <li class="list-group-item border-0 ps-0 text-sm w-full"><strong class="text-dark align-start">Lieu de Naissance:</strong> &nbsp; <?= $data['medecin']->lieuNaissanceMedecin ?></li>
+                                <li class="list-group-item border-0 ps-0 pt-0 text-sm w-full"><strong class="text-dark">Nom complet:</strong> &nbsp; <?= $data['medecin']->sexeMedecin ? 'M.' : 'Mme.' ?> <?= $data['medecin']->nomMedecin . " " . $data['medecin']->prenomMedecin ?></li>
+                                <li class="list-group-item border-0 ps-0 text-sm w-full"><strong class="text-dark">Telephone:</strong> &nbsp; <?= $data['medecin']->telMedecin ?></li>
+                                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Email:</strong> &nbsp; <?= $_SESSION['userMail'] ?></li>
+                                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Adresse:</strong> &nbsp; <?= $data['medecin']->adresseMedecin ?></li>
+                                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Date de Naissance:</strong> &nbsp; <?= $data['medecin']->dateNaissanceMedecin ?></li>
+                                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Lieu de Naissance:</strong> &nbsp; <?= $data['medecin']->lieuNaissanceMedecin ?></li>
                             </ul>
                             <hr class="horizontal dark my-4">
                             <ul class="list-group">
@@ -115,17 +115,14 @@
                     </div>
                 </div>
                 <div class="col-12 col-xl-4 mt-xl-0 mt-4">
-                    <div class="card h-100">
-                        <div class="card-header pb-0 p-3">
+                    <div class="card h-100 bg-light">
+                        <div class="card-header pb-0 p-3 bg-light">
                             <h6 class="mb-0">Demande de Rendez-vous</h6>
                         </div>
                         <div class="card-body p-3">
                             <ul class="list-group">
-                                <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
+                                <li class="list-group-item border-0 d-flex justify-content-between ps-3 mb-2 border-radius-lg">
                                     <div class="d-flex align-items-center">
-                                        <div class="icon icon-shape icon-sm me-3 bg-gradient-dark shadow text-center">
-                                            <span class="mx-auto my-3 text-white">P<?= $patient->nomPatient[0] ?></span>
-                                        </div>
                                         <div class="d-flex flex-column">
                                             <h6 class="mb-1 text-dark text-sm">Patient X</h6>
                                             <span class="text-xs">Bonjour Dr, besoin d'un rdv urgent svp..</span>
@@ -143,7 +140,6 @@
             <?php require APPROOT . '/views/includes/copyright-ui.php'; ?>
         </div>
     </main>
-    <?php require APPROOT . '/views/includes/ui-custom.php'; ?>
     </div>
     <!--   Core JS Files   -->
     <script src="<?= URLROOT ?>/assets/js/core/bootstrap.min.js"></script>

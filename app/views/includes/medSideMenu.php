@@ -1,4 +1,4 @@
-<aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 " id="sidenav-main">
+<aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 ps bg-white" id="sidenav-main" data-color="info">
     <div class="sidenav-header">
       <div class="navbar-brand m-0 sidenav-toggler sidenav-toggler-inner row">
         <a href="javascript:;" class="nav-link text-body p-0 row">
@@ -12,11 +12,11 @@
       </div>
     </div>
     <hr class="horizontal dark mt-0">
-    <div class="collapse navbar-collapse  w-auto h-auto max-height-vh-100 h-100" id="sidenav-collapse-main">
+    <div class="collapse navbar-collapse w-auto h-auto max-height-vh-100 h-100" id="sidenav-collapse-main">
       <ul class="navbar-nav">
         <li class="nav-item">
   
-          <a href="_2y_10_rBg9JAf8xXLLAL506TuAoOXjaPWXAf7e5XZ9sf1cscgbeSW6gCg2C" class="nav-link " role="button">
+          <a href="<?= URLROOT ?>/medecins/_2y_10_rBg9JAf8xXLLAL506TuAoOXjaPWXAf7e5XZ9sf1cscgbeSW6gCg2C" class="nav-link " role="button">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
               <svg width="12px" height="12px" viewBox="0 0 45 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <title>Dash </title>
@@ -35,7 +35,7 @@
             <span class="nav-link-text ms-1">Dashboard</span>
           </a>
         </li>
-        <li class="nav-item mt-3">
+        <li class="nav-item mt-2">
         <hr class="horizontal dark" />
         </li>
         <li class="nav-item">
@@ -61,13 +61,13 @@
           <div class="collapse show" id="pagesExamples">
             <ul class="nav ms-4 ps-3">
               <li class="nav-item ">
-                <a class="nav-link " href="patients">
+                <a class="nav-link " href="<?= URLROOT ?>/medecins/patients">
                   <span class="sidenav-mini-icon"> L </span>
                   <span class="sidenav-normal"> Liste des Patients </span>
                 </a>
               </li>
               <li class="nav-item active">
-                <a class="nav-link active" href="addPatient">
+                <a class="nav-link active" href="<?= URLROOT ?>/medecins/addPatient">
                   <span class="sidenav-mini-icon"> N </span>
                   <span class="sidenav-normal"> Nouveau Patient </span>
                 </a>
@@ -97,13 +97,13 @@
           <div class="collapse" id="applicationsExamples">
             <ul class="nav ms-4 ps-3">
               <li class="nav-item ">
-                <a class="nav-link " href="kanban.html">
+                <a class="nav-link " href="<?= URLROOT ?>/medecins/consultations">
                   <span class="sidenav-mini-icon"> M </span>
                   <span class="sidenav-normal"> Mes Consultations </span>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="wizard.html">
+                <a class="nav-link" href="<?= URLROOT ?>/medecins/addConsultation">
                   <span class="sidenav-mini-icon"> N </span>
                   <span class="sidenav-normal"> Nouvelle Consultation </span>
                 </a>
@@ -111,8 +111,8 @@
             </ul>
           </div>
         </li>
-        <li class="nav-item mt-3">
-        <hr class="horizontal dark" />
+        <li class="nav-item mt-1">
+        <hr class="horizontal dark my-2" />
         </li>
         <li class="nav-item">
           <a data-bs-toggle="collapse" href="#ecommerceExamples" class="nav-link " aria-controls="ecommerceExamples" role="button" aria-expanded="false">
@@ -136,19 +136,19 @@
           <div class="collapse " id="ecommerceExamples">
             <ul class="nav ms-4 ps-3">
               <li class="nav-item ">
-                <a class="nav-link " href="rdvAvenir">
+                <a class="nav-link " href="<?= URLROOT ?>/medecins/rdvAvenir">
                   <span class="sidenav-mini-icon"> A </span>
                   <span class="sidenav-normal"> A Venir </span>
                 </a>
               </li>
               <li class="nav-item ">
-                <a class="nav-link " href="rdvEnAttente">
+                <a class="nav-link " href="<?= URLROOT ?>/medecins/rdvEnAttente">
                   <span class="sidenav-mini-icon"> E </span>
                   <span class="sidenav-normal"> En Attente <b class="caret"></b></span>
                 </a>
               </li>
               <li class="nav-item ">
-                <a class="nav-link " href="newRdv">
+                <a class="nav-link " href="<?= URLROOT ?>/medecins/newRdv">
                   <span class="sidenav-mini-icon"> N </span>
                   <span class="sidenav-normal"> Nouveau Rendez-vous <b class="caret"></b></span>
                 </a>
@@ -178,13 +178,13 @@
           <div class="collapse " id="authExamples">
             <ul class="nav ms-4 ps-3">
               <li class="nav-item ">
-                <a class="nav-link " href="medPlanning">
+                <a class="nav-link " href="<?= URLROOT ?>/medecins/medPlanning">
                   <span class="sidenav-mini-icon"> M </span>
                   <span class="sidenav-normal"> Mon Planning <b class="caret"></b></span>
                 </a>
               </li>
               <li class="nav-item ">
-                <a class="nav-link " href="newPlanning">
+                <a class="nav-link " href="<?= URLROOT ?>/medecins/newPlanning">
                   <span class="sidenav-mini-icon"> MAJ </span>
                   <span class="sidenav-normal"> Mettre A Jour <b class="caret"></b></span>
                 </a>
@@ -193,10 +193,10 @@
           </div>
         </li>
         <li class="nav-item">
-          <hr class="horizontal dark" />
+          <hr class="horizontal dark my-2" />
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="chatapp" target="_blank">
+          <a class="nav-link" href="<?= URLROOT ?>/medecins/chatapp" target="_blank">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center  me-2 d-flex align-items-center justify-content-center">
               <svg width="12px" height="12px" viewBox="0 0 43 36" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <title>credit-card</title>

@@ -72,7 +72,6 @@
             <?php require APPROOT . '/views/includes/copyright-ui.php'; ?>
         </div>
     </main>
-    <?php require APPROOT . '/views/includes/ui-custom.php'; ?>
     </div>
     <!--   Core JS Files   -->
     <script src="<?= URLROOT ?>/assets/js/core/bootstrap.min.js"></script>

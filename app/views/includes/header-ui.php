@@ -17,6 +17,7 @@
     <!-- Font Awesome Icons -->
     <script src="<?= URLROOT ?>/kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
     <link href="<?= URLROOT ?>/assets/css/nucleo-svg.css" rel="stylesheet" />
+    <link href="<?= URLROOT ?>/assets/css/toastr.scss" rel="stylesheet" />
     <!-- CSS Files -->
     <link id="pagestyle" href="<?= URLROOT ?>/assets/css/soft-ui-dashboard.min2c70.css?v=1.0.3" rel="stylesheet" />
     <!-- Anti-flicker snippet (recommended)  -->
