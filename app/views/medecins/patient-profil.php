@@ -36,7 +36,7 @@
                         <div class="nav-wrapper position-relative end-0">
                             <ul class="nav nav-pills nav-fill p-1 bg-transparent" role="tablist">
                                 <li class="nav-item">
-                                    <a class="nav-link mb-0 px-0 py-1 active " data-bs-toggle="tab" href="consultation:;" role="tab" aria-selected="true">
+                                    <a class="nav-link mb-0 px-0 py-1 active " href="<?= URLROOT ?>/medecins/addConsultation/<?= $data['patient'] ?>" role="tab" aria-selected="true">
                                         <svg class="text-dark" width="16px" height="16px" viewBox="0 0 40 44" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                                             <title>consultation</title>
                                             <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -55,7 +55,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link ml-4 mb-0 px-0 py-1 " data-bs-toggle="tab" href="chatapp" role="tab" aria-selected="false">
+                                    <a class="nav-link ml-4 mb-0 px-0 py-1 " href="<?= URLROOT ?>/medecins/chatapp" role="tab" aria-selected="false">
                                         <svg class="text-dark" width="22px" height="22px" viewBox="0 0 46 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                                             <title>message</title>
                                             <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -136,12 +136,12 @@
                                 Les informations suivantes servent à contact un proche du patient en cas d'urgence medical ou informations relative au suivie du patient.
                             </p>
                             <ul class="list-group">
-                                <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">Nom:</strong> &nbsp; RAS</li>
-                                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Prenom:</strong> &nbsp; RAS</li>
-                                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Sexe:</strong> &nbsp; RAS</li>
+                                <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-danger">Nom:</strong> &nbsp; RAS</li>
+                                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-danger">Prenom:</strong> &nbsp; RAS</li>
+                                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-danger">Sexe:</strong> &nbsp; RAS</li>
                                 <hr class="horizontal dark my-2">
-                                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Telephone:</strong> &nbsp; RAS</li>
-                                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Adrese:</strong> &nbsp; RAS</li>
+                                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-danger">Telephone:</strong> &nbsp; RAS</li>
+                                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-danger">Adrese:</strong> &nbsp; RAS</li>
                             </ul>
                         </div>
                     </div>

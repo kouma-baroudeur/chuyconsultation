@@ -38,8 +38,8 @@
                                 </div>
                             </a>
                         </li>
-                        <li class="mb-2">
-                            <a class="dropdown-item border-radius-md" href="chatapp">
+                        <li>
+                            <a class="dropdown-item border-radius-md" href="<?= URLROOT ?>/medecins/chatapp">
                                 <div class="d-flex py-1">
                                     <div class="d-flex flex-column justify-content-center">
                                         <h6 class="text-sm font-weight-normal mb-1">
@@ -61,7 +61,7 @@
                             </a>
                         </li>
                         <li>
-                            <a class="dropdown-item border-radius-md" href="_2y_10_Cb7AAwLgh7Mmx5IH_MW6huC7BFuFsidzcjeA1UDrRep8VzYj0Er6W">
+                            <a class="dropdown-item border-radius-md" href="<?= URLROOT ?>/medecins/_2y_10_Cb7AAwLgh7Mmx5IH_MW6huC7BFuFsidzcjeA1UDrRep8VzYj0Er6W">
                                 <div class="d-flex py-1">
                                     <div class="d-flex flex-column justify-content-center">
                                         <h6 class="text-sm font-weight-normal mb-1">

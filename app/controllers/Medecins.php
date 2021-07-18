@@ -143,13 +143,26 @@ class Medecins extends Controller
     }
   }
 
-  public function addConsultation()
+  public function addConsultationNew()
   {
     if ($_SESSION['userType'] != 'medecin') {
       notAuthorized();
     } else {
       $data = [
         'medecin' => $this->activeUser
+      ];
+      $this->view('medecins/add-consultaion', $data);
+    }
+  }
+
+  public function addConsultation($idPatient)
+  {
+    if ($_SESSION['userType'] != 'medecin') {
+      notAuthorized();
+    } else {
+      $data = [
+        'medecin' => $this->activeUser,
+        'idPatient' => $idPatient
       ];
       $this->view('medecins/add-consultaion', $data);
     }
@@ -179,6 +192,19 @@ class Medecins extends Controller
         'medecin' => $this->activeUser
       ];
       $this->view('medecins/all-patients', $data);
+    }
+  }
+
+  public function consultations()
+  {
+    if ($_SESSION['userType'] != 'medecin') {
+      notAuthorized();
+    } else {
+      $data = [
+        'medecin' => $this->activeUser,
+        'consultations' => 'consultations'
+      ];
+      $this->view('medecins/all-consultations', $data);
     }
   }
 
