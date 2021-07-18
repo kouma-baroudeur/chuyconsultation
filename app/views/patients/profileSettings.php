@@ -311,15 +311,19 @@
                                 </div>
                                 <label class="form-label">Mot de passe actuel</label>
                                 <div class="form-group">
-                                    <input class="form-control" type="password" required>
+                                <?php echo $_SESSION['userPassword'].'t'?>
+                                    <input name="password_actu" oninput="" class="form-control form-control-lg <?= (!empty($data['password_actu_err'])) ? 'is-invalid' : '' ?>" type="password" required>
+                                    <span class="invalid-feedback"><?php echo $data['password_actu_err']; ?></span>
                                 </div>
                                 <label class="form-label">Nouveau mot de passe</label>
                                 <div class="form-group">
-                                    <input class="form-control" type="password" required>
+                                    <input name="password" class="form-control form-control-lg <?= (!empty($data['password_err'])) ? 'is-invalid' : '' ?>" type="password" required>
+                                    <span class="invalid-feedback"><?php echo $data['password_err']; ?></span>
                                 </div>
                                 <label class="form-label">Confirmer nouveau mot de passe</label>
                                 <div class="form-group">
-                                    <input class="form-control" type="password" required>
+                                    <input name="confirm_pass" class="form-control form-control-lg <?= (!empty($data['confirm_pass_err'])) ? 'is-invalid' : '' ?>" type="password" required>
+                                    <span class="invalid-feedback"><?php echo $data['confirm_pass_err']; ?></span>
                                 </div>
                                 <h5 class="mt-5">Recommendations du mot de passe</h5>
                                 <p class="text-muted mb-2">
