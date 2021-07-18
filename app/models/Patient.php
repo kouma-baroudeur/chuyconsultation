@@ -33,7 +33,7 @@ class Patient
         $row = $this->db->single();
         return $row;
     }
-    /** traitement pour la creation du profile du patient  */
+    /** traitement pour la creation du profile du patient */
     public function createProfile($data)
     {
         if ($_SESSION['userType'] == 'patient') {

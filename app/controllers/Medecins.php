@@ -12,6 +12,7 @@ class Medecins extends Controller
       'state' => $_SESSION['userState']
     ];
     $this->medecinModel = $this->model('Medecin');
+    $this->adminModel = $this->model('Admin');
     if ($_SESSION['userType'] == 'medecin')
       $this->activeUser = $this->medecinModel->getMedecinById($user);
   }
@@ -164,7 +165,7 @@ class Medecins extends Controller
         'medecin' => $this->activeUser,
         'idPatient' => $idPatient
       ];
-      $this->view('medecins/add-consultaion', $data);
+      $this->view('medecins/add-consultation', $data);
     }
   }
 
@@ -195,28 +196,17 @@ class Medecins extends Controller
     }
   }
 
-  public function consultations()
+  public function patientProfil($id)
   {
     if ($_SESSION['userType'] != 'medecin') {
       notAuthorized();
     } else {
       $data = [
         'medecin' => $this->activeUser,
-        'consultations' => 'consultations'
-      ];
-      $this->view('medecins/all-consultations', $data);
-    }
-  }
-
-  public function patientProfil($patient)
-  {
-    if ($_SESSION['userType'] != 'medecin') {
-      notAuthorized();
-    } else {
-      $data = [
-        //'patients' => $this->medecinModel->patients(),
-        'medecin' => $this->activeUser,
-        'patient' => $patient,
+        'patient' => $this->medecinModel->profilePatient($id),
+        'premiereinfo'=>$this->medecinModel->premiereInfo($id),
+        'contacturgence'=>$this->medecinModel->recupurgence($id),
+        'id'=>$id
       ];
       $this->view('medecins/patient-profil', $data);
     }

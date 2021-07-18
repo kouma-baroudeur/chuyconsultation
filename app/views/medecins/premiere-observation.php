@@ -55,6 +55,24 @@
                             <input class="form-control" type="text" placeholder="Enter your answer">
                         </div>
                     </div>
+                    <div class="col-12 col-sm-6">
+                        <label class="mt-4 form-label">Symptômes du Patient</label>
+                        <select class="form-control" name="symptomes" id="choices-multiple-remove-button" multiple>
+                            <option value="Choice 1" selected>symptome 1</option>
+                            <option value="Choice 2">symptome 2</option>
+                            <option value="Choice 3">symptome 3</option>
+                            <option value="Choice 4">symptome 4</option>
+                        </select>
+                    </div>
+                    <div class="col-12 col-sm-6">
+                        <label class="mt-4 form-label">Symptômes du Patient</label>
+                        <select class="form-control" name="symptomes" id="choices-multiple-remove-button" multiple>
+                            <option value="Choice 1" selected>symptome 1</option>
+                            <option value="Choice 2">symptome 2</option>
+                            <option value="Choice 3">symptome 3</option>
+                            <option value="Choice 4">symptome 4</option>
+                        </select>
+                    </div>
                     <hr class="horizontal dark my-3">
                 </div>
             </form>
