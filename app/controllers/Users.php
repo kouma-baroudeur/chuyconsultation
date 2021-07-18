@@ -42,9 +42,11 @@
                         $data['email_err'] = 'Veuillez entrer votre adresse e-mail.';
                     }else
                     {
+                        /*
                         if(){
                             $data['email_err'] = 'Email déja enregistré, veuillez vous connecter';
                         }
+                        */
                     }
                     if(empty($data['password'])){
                         $data['password_err'] = 'Veuillez entrer votre mot de passe.';
