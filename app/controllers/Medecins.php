@@ -150,12 +150,13 @@ class Medecins extends Controller
       notAuthorized();
     } else {
       $data = [
-        'medecin' => $this->activeUser
+        'medecin' => $this->activeUser,
+        'patients' => $this->medecinModel->listePatient()
       ];
-      $this->view('medecins/add-consultaion', $data);
+      $this->view('medecins/add-consultation', $data);
     }
   }
-
+  /** redirige vers la page*/
   public function addConsultation($idPatient)
   {
     if ($_SESSION['userType'] != 'medecin') {
@@ -163,10 +164,17 @@ class Medecins extends Controller
     } else {
       $data = [
         'medecin' => $this->activeUser,
+        'patient' => $this->medecinModel->profilePatient($idPatient),
         'idPatient' => $idPatient
       ];
       $this->view('medecins/add-consultation', $data);
     }
+  }
+  /**traitement d'ajout de consultation */
+  public function ajouterConsultation()
+  {
+    if ($_POST)
+      var_dump($_POST['symptomes'][0]);
   }
 
   public function rdvs($filter = "only", $etat = "")
@@ -204,9 +212,9 @@ class Medecins extends Controller
       $data = [
         'medecin' => $this->activeUser,
         'patient' => $this->medecinModel->profilePatient($id),
-        'premiereinfo'=>$this->medecinModel->premiereInfo($id),
-        'contacturgence'=>$this->medecinModel->recupurgence($id),
-        'id'=>$id
+        'premiereinfo' => $this->medecinModel->premiereInfo($id),
+        'contacturgence' => $this->medecinModel->recupurgence($id),
+        'id' => $id
       ];
       $this->view('medecins/patient-profil', $data);
     }
@@ -225,7 +233,7 @@ class Medecins extends Controller
       $this->view('medecins/premiere-observation', $data);
     }
   }
-  
+
   /** mise a jour hebdomadaire du planning des medecins */
   public function planning()
   {
