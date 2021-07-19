@@ -54,7 +54,7 @@
                                 <div class="d-flex py-1">
                                     <div class="d-flex flex-column justify-content-center">
                                         <h6 class="text-sm font-weight-normal mb-1">
-                                        <span class="font-weight-bold">Notifications</span>
+                                        <span class="font-weight-bold">Notifications</span><span class="ms-4 badge bg-info-soft shadow text-dark text-xs h-4 text-center border-radius-xl shadow-none">15</span>
                                         </h6>
                                     </div>
                                 </div>

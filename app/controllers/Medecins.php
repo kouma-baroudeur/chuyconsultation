@@ -144,6 +144,18 @@ class Medecins extends Controller
     }
   }
 
+  public function consultations()
+  {
+    if ($_SESSION['userType'] != 'medecin') {
+      notAuthorized();
+    } else {
+      $data = [
+        'medecin' => $this->activeUser
+      ];
+      $this->view('medecins/all-consultations', $data);
+    }
+  }
+
   public function addConsultationNew()
   {
     if ($_SESSION['userType'] != 'medecin') {
@@ -174,7 +186,7 @@ class Medecins extends Controller
   public function ajouterConsultation()
   {
     if ($_POST)
-      var_dump($_POST['symptomes'][0]);
+      var_dump($_POST['symptomes']);
   }
 
   public function rdvs($filter = "only", $etat = "")
@@ -244,6 +256,61 @@ class Medecins extends Controller
         'medecin' => $this->activeUser,
       ];
       $this->view('medecins/rdvAttenteMed', $data);
+    }
+  }
+
+  public function validerRdv()
+  {
+    if ($_SESSION['userType'] != 'medecin') {
+      notAuthorized();
+    } else {
+      $data = [
+        //'patients' => $this->medecinModel->patients(),
+        'medecin' => $this->activeUser,
+        'msg' => 'success-message'
+      ];
+      $this->view('medecins/rdvAttenteMed', $data);
+    }
+  }
+
+  public function annulerRdv()
+  {
+    if ($_SESSION['userType'] != 'medecin') {
+      notAuthorized();
+    } else {
+      $data = [
+        //'patients' => $this->medecinModel->patients(),
+        'medecin' => $this->activeUser,
+        'msg' => 'success-message'
+      ];
+      $this->view('medecins/rdvAvenirMed', $data);
+    }
+  }
+
+  public function supprimmerRdv()
+  {
+    if ($_SESSION['userType'] != 'medecin') {
+      notAuthorized();
+    } else {
+      $data = [
+        //'patients' => $this->medecinModel->patients(),
+        'medecin' => $this->activeUser,
+        'msg' => 'delete-message'
+      ];
+      $this->view('medecins/rdvAttenteMed', $data);
+    }
+  }
+
+  public function rdvAvenir()
+  {
+    if ($_SESSION['userType'] != 'medecin') {
+      notAuthorized();
+    } else {
+      $data = [
+        //'patients' => $this->medecinModel->patients(),
+        'medecin' => $this->activeUser,
+      ];
+      $this->view('medecins/rdvAvenirMed', $data);
     }
   }
 

@@ -142,7 +142,7 @@
                 </a>
               </li>
               <li class="nav-item ">
-                <a class="nav-link " href="<?= URLROOT ?>/medecins/rdvEnAttente">
+                <a class="nav-link " href="<?= URLROOT ?>/medecins/rdvAttente">
                   <span class="sidenav-mini-icon"> E </span>
                   <span class="sidenav-normal"> En Attente <b class="caret"></b></span>
                 </a>

@@ -14,53 +14,58 @@
             <div class="row">
                 <div class="col-lg-9 col-12 mx-auto">
                     <form action="<?= URLROOT ?>/medecins/ajouterConsultation" method="post" onsubmit="return getContenu();">
-                    <div class="card card-body mt-4">
-                        <h6 class="mb-0">Nouvelle consultaion</h6>
-                        <p class="text-sm mb-0">Veuillez remplir les champs</p>
-                        <hr class="horizontal dark my-3">
-                        <label for="projectName" class="form-label">Patient</label>
+                        <div class="card card-body mt-4">
+                            <h6 class="mb-0">Nouvelle consultaion</h6>
+                            <p class="text-sm mb-0">Veuillez remplir les champs</p>
+                            <hr class="horizontal dark my-3">
+                            <label for="projectName" class="form-label">Patient</label>
 
-                        <input type="text" class="form-control" name="medecin" value="<?= $data['medecin']->codeMedecin ?>" hidden>
-                        
-                        
+                            <input type="text" class="form-control" name="medecin" value="<?= $data['medecin']->codeMedecin ?>" hidden>
+
+
                             <?php
-                                if ($data['idPatient']!=null) {
-                                    echo '<select class="form-control" name="patient" disabled>';
-                                    echo '<option value="'.$data['idPatient'].'" selected>'.$data['patient']->nomPatient. ' '.$data['patient']->prenomPatient.'</option>';
-                                }else {
-                                    echo '<select class="form-control" name="patient">';
-                                    foreach ($data['patients'] as $id => $patient) {
-                                        echo '<option value="'.$patient->IP.'">'.$patient->nomPatient. ' '.$patient->prenomPatient.'</option>';
-                                    }
+                            if ($data['idPatient'] != null) {
+                                echo '<select class="form-control" name="patient" disabled>';
+                                echo '<option value="' . $data['idPatient'] . '" selected>' . $data['patient']->nomPatient . ' ' . $data['patient']->prenomPatient . '</option>';
+                            } else {
+                                echo '<select class="form-control" name="patient">';
+                                foreach ($data['patients'] as $id => $patient) {
+                                    echo '<option value="' . $patient->IP . '">' . $patient->nomPatient . ' ' . $patient->prenomPatient . '</option>';
                                 }
+                            }
                             ?>
-                        </select>
-                        <label class="mt-4">Description de la consultation</label>
-                        
-                        <div id="contenuText" class="h-100">
-                            <p>Consultation chez CHUY</p>
-                            <p>Melen, BP XXXX, <strong>tel +237 6XX XXX XXX</strong>, Rue XXXX</p><br>
-                            <p><br></p>
-                        </div>
-                        <input type="text" class="form-control" id="contenu" hidden>
-                        <label class="mt-4 form-label">Symptômes du Patient</label>
-                        <select class="form-control" name="symptomes[]" id="choices-multiple-remove-button" multiple>
-                            <option value="Choice 1" selected>symptome 1</option>
-                            <option value="Choice 2">symptome 2</option>
-                            <option value="Choice 3">symptome 3</option>
-                            <option value="Choice 4">symptome 4</option>
-                        </select>
-                        <div class="row">
-                            <div class="col-6">
-                                <label class="form-label">Date de consultaion: </label><span class="text-sm">&nbsp;&nbsp;<?php echo date('d/m/Y'); ?></span>
+                            </select>
+                            <label class="mt-4">Description de la consultation</label>
+
+                            <div id="contenuText" class="h-100">
+                                <p>Consultation chez CHUY</p>
+                                <p>Melen, BP XXXX, <strong>tel +237 6XX XXX XXX</strong>, Rue XXXX</p><br>
+                                <p><br></p>
                             </div>
-                            <label class="mt-4 form-label">Ajouter des documents</label>
-                            <div class="form-control dropzone" id="dropzone">
-                                <div class="fallback">
-                                    <input name="file" type="file" multiple />
+                            <input type="text" class="form-control" id="contenu" hidden>
+                            <label class="mt-4 form-label">Symptômes du Patient</label>
+                            <select class="form-control" name="symptomes[]" id="choices-multiple-remove-button" multiple>
+                                <option value="Choice 1" selected>symptome 1</option>
+                                <option value="Choice 2">symptome 2</option>
+                                <option value="Choice 3">symptome 3</option>
+                                <option value="Choice 4">symptome 4</option>
+                            </select>
+                            <div class="row">
+                                <div class="col-6">
+                                    <label class="form-label">Date de consultaion: </label><span class="text-sm">&nbsp;&nbsp;<?php echo date('d/m/Y'); ?></span>
+                                </div>
+                                <label class="mt-4 form-label">Ajouter des documents</label>
+                                <div class="form-control dropzone" id="dropzone">
+                                    <div class="fallback">
+                                        <input name="file" type="file" multiple />
+                                    </div>
+                                </div>
+                                <div class="button-row d-flex mt-4">
+                                    <button class="btn bg-gradient-info ms-auto mb-0 js-btn">
+                                        Ajouter Consultation
+                                    </button>
                                 </div>
                             </div>
-                        </div>
                     </form>
                 </div>
             </div>

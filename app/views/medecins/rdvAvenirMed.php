@@ -19,33 +19,33 @@
                     <div class="col-sm-6 col-lg-4 mt-lg-4 mt-4">
                         <div class="card overflow-hidden">
                             <div class="card-body p-3">
-                                <div class="d-flex align-items-center">
-                                    <div class="icon icon-shape bg-info-soft shadow text-center border-radius-md shadow-none">
-                                        <i class="ni ni-bell-55 text-lg text-info text-gradient opacity-10" aria-hidden="true"></i>
+                                <a class="d-flex align-items-center">
+                                    <div class="col-3 icon icon-shape bg-gradient-info shadow text-center border-radius-md">
+                                        <i class="ni ni-calendar-grid-58 text-lg opacity-10" aria-hidden="true"></i>
                                     </div>
-                                    <div class="ms-3">
-                                        <p class="text-sm text-capitalize mb-0 font-weight-bold">Nom du Patient</p>
+                                    <div class="col-5 ms-3">
+                                        <p class="text-sm text-capitalize mb-0 font-weight-bold" >Nom du Patient</p>
                                         <h5 class="font-weight-bolder text-sm mb-0">
                                             Date de consultation
                                         </h5>
                                     </div>
-                                    <div class="progress-wrapper ms-auto w-auto">
+                                    <div class="col-4 progress-wrapper">
                                         <div class="d-flex">
-                                            <form class="form-check form-switch ms-auto" id="1" action="validerRdv" method="post">
+                                        <form class="form-check form-switch ms-auto" id="1" action="annulerRdv" method="post">
                                                 <input name="idConsultation" value="<?= $rdv->numeroRdv ?>" type="text" hidden>
-                                                <button type="button" class=" btn btn-default btn-xs bg-white text-xs text-info font-weight-bold border-radius-md shadow-none" for="statut" onclick="javascript: showAlert('action',1);">action</button>
+                                                <button type="button" class="btn btn-default btn-xs bg-white text-xs text-info font-weight-bold border-radius-md shadow-none" for="statut" onclick="javascript: showAlert('action',1);">annuler</button>
                                                 <!--<button class="text-xs text-info btn btn-default btn-xs bg-white" for="statut" onclick="javascript: showAlert('warning-message-and-confirmation',1);">action</button>-->
-                                            </form>
-                                            <form name="1" action="supprimmerRdv" method="post" hidden>
-                                                <input name="idConsultation" value="<?= $rdv->numeroRdv ?>" type="text" hidden>
                                             </form>
                                         </div>
                                     </div>
-                                </div>
+                                </a>
                             </div>
                         </div>
                     </div>
                 <?php endfor; ?>
+                <hr class="horizontal dark mt-4" />
+                <h6>Aujourd'hui</h6>
+                <hr class="horizontal dark my-1" />
             </div>
             <?php require APPROOT . '/views/includes/copyright-ui.php'; ?>
         </div>
@@ -69,9 +69,9 @@
 
         function showMessage(e) {
             if ("success-message" == e)
-                Swal.fire("Confirmation!", "Le rendez-vous a été confirmé", "success");
+                Swal.fire("Annulation!", "Le rendez-vous a été annulé", "success");
             else if ("delete-message" == e)
-                Swal.fire("Suppression", "La demande a été supprimmer", "error");
+                Swal.fire("Suppression", "La rendez-vous a été supprimmer", "error");
         }
 
         function showAlert(e, id) {
@@ -97,6 +97,7 @@
                         e.dismiss === Swal.DismissReason.cancel;
                 });
             }
+            return false;
         }
 
         var win = navigator.platform.indexOf('Win') > -1;
