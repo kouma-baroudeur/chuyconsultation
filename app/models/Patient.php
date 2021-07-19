@@ -33,7 +33,7 @@ class Patient
         $row = $this->db->single();
         return $row;
     }
-    /** traitement pour la creation du profile du patient  */
+    /** traitement pour la creation du profile du patient */
     public function createProfile($data)
     {
         if ($_SESSION['userType'] == 'patient') {
@@ -83,20 +83,7 @@ class Patient
         $answer = $this->db->execute();    
         return $answer ;
     }
-    /** edit user email */
-    public function editMail($data)
-    {
-        $user = [
-            'id'    =>  $_SESSION['userId'],
-            'type'  =>  $_SESSION['userType'],
-            'email' => $_SESSION['userMail'],
-            'state' => $_SESSION['userState']
-        ];
-        $sql = "UPDATE users SET email=".$data['email'];
-        $this->db->query($sql);
-        $answer = $this->db->execute();    
-        return $answer ;
-    }
+   
     /** edition des informations sur le contact d'urgence */
     public function editEmergencyInfo($data){
         $user = [

@@ -22,6 +22,7 @@ class Patients extends Controller
       'state' => $_SESSION['userState']
     ];
     $this->patientModel = $this->model('Patient');
+    $this->userModel = $this->model('User');
     if ($_SESSION['userType'] == 'patient')
       $this->activeUser = $this->patientModel->getPatientById($user);
   }
@@ -314,13 +315,16 @@ class Patients extends Controller
   /** Mise à jours des identifiants */
   public function _2y_10_4DhxZuGwU8BfItgECn24mOjbo4GvW7GJdyg4DHq5MQUNS7Ftx50DG()
   {
+
     $data = [
       'email' => trim($_POST['email']),
       'confirmation' => trim($_POST['confirmation']),
+      'password_actu' => trim($_POST['password_actu']),
       'password' => trim($_POST['password']),
       'confirm_pass' => trim($_POST['confirm_pass']),
       'email_err' => '',
       'confirm_email_err' => '',
+      'password_actu_err' =>'',
       'password_err' => '',
       'confirm_pass_err' => ''
     ];
@@ -331,10 +335,26 @@ class Patients extends Controller
         $data['email_err'] = 'Email déja enregistré, veuillez vous connecter';
       }
     }
+    if (empty($data['confirm_email'])) {
+      $data['confirm_email_err'] = 'Veuillez confirmer votre mot email.';
+    } else {
+      if ($data['email'] != $data['confirm_email'])
+        $data['confirm_pass_err'] = 'La confirmation ne correspond pas';
+    }
+    if (empty($data['password_actu'])) {
+      $data['password_err'] = 'Veuillez entrer votre mot de passe actuel.';
+    } else{
+        $check = $this->userModel->login($data['email'],$data['password']);
+        if ($check) {
+          
+        }else{
+          $data['password_err'] .= 'Mauvais mot de passe';
+        }
+    }
     if (empty($data['password'])) {
       $data['password_err'] = 'Veuillez entrer votre mot de passe.';
-    } elseif (strlen($data['password']) < 6) {
-      $data['password_err'] .= 'Votre mot de passe doit être au moins 6 caracteres';
+    } elseif (!preg_match("/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[*.!@$%^&(){}[]:;<>,.?/~_+-=|\]).{8,32}$/", $data['password'])) {
+      $data['password_err'] .= 'Votre mot de passe doit respecter les critères ci-dessous';
     }
     if (empty($data['confirm_pass'])) {
       $data['confirm_pass_err'] = 'Veuillez confirmer votre mot de passe.';
@@ -343,19 +363,18 @@ class Patients extends Controller
         $data['confirm_pass_err'] = 'La confirmation ne correspond pas au mot de passe';
     }
 
-    if (empty($data['email_err']) && empty($data['password_err']) && empty($data['confirm_pass_err']) && empty($data['type_err'])) {
+    if (empty($data['email_err']) && empty($data['confirm_email_err']) && empty($data['password_err']) && empty($data['confirm_pass_err']) && empty($data['password_actu_err'])) {
       // hashing the password for security
       $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
       // register user
-      if ($this->userModel->register($data)) {
-        flash('register_success', 'Vous êtes bien inscrit, Veuillez vous authentifier');
-        redirect('users/_2y_10_JLQV1FhaYuHLMRlr5kVeEOZpMIXx2YJPrg_D4XfdJaMlv4zvPwidC');
+      if ($this->userModel->updateUser($data)) {
+        redirect('users/_2y_10_AG_OSzHJ09ubMAfgTiWdM_Lw_aobUlVAr6Kw7bTOUMXEJPIMUn66W');
       } else {
         die('Quelque chose qui ne va pas bien!');
       }
     } else {
 
-      $this->view('users/register', $data);
+      $this->view('patients/profileSettings', $data);
     }
   }
 

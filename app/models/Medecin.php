@@ -133,6 +133,7 @@ class Medecin
         $answer = $this->db->execute();
         return $answer;
     }
+<<<<<<< HEAD
     public function profilePatient($id)
     {
         $sql = "SELECT * FROM patient,users WHERE userId=$id AND patient.userId=users.id";
@@ -210,3 +211,32 @@ class Medecin
 
 
 }
+=======
+    /**liste tous les patients */
+    public function listePatient(){
+        $sql = "SELECT * FROM patient";
+          $this->db->query($sql);
+          $response = $this->db->resultSet();
+          return $response;
+    }
+    public function profilePatient($id){
+        $sql = "SELECT * FROM patient WHERE IP=".$id;
+          $this->db->query($sql);
+          $response = $this->db->single();
+          return $response;
+    }
+    public function premiereInfo($id)
+    {
+        $sql = "SELECT * FROM premiereobservation WHERE IP=".$id;
+          $this->db->query($sql);
+          $response = $this->db->single();
+          return $response;
+    }
+    public function recupurgence($id){
+        $sql = "SELECT * FROM contacturgence WHERE IP=".$id;
+        $this->db->query($sql);
+        $answer = $this->db->single();
+        return $answer;
+    }
+}
+>>>>>>> d3b17ef6a8b39e1ad153e4e5460d97dffa4516dd

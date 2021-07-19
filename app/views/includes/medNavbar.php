@@ -3,7 +3,7 @@
     <div class="container-fluid py-1 px-3">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
-                <li class="breadcrumb-item text-sm text-dark active" aria-current="page"><a href="javascript:history.go(-1)">Retour</a></li>
+                <li class="breadcrumb-item text-sm text-info active" aria-current="page"><a href="javascript:history.go(-1)" class="text-info">Retour</a></li>
             </ol>
             <h6 class="font-weight-bolder mb-0">Ajouter un Patient</h6>
         </nav>
@@ -25,7 +25,7 @@
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
                         <li class="mb-2">
-                            <a class="dropdown-item border-radius-md" href="javascript:;">
+                            <a class="dropdown-item border-radius-md" href="profil">
                                 <div class="d-flex py-1">
                                     <div class="my-auto">
                                         <img src="<?= URLROOT ?>/assets/img/team-2.jpg" class="avatar avatar-sm  me-3 " alt="user image">
@@ -38,8 +38,8 @@
                                 </div>
                             </a>
                         </li>
-                        <li class="mb-2">
-                            <a class="dropdown-item border-radius-md" href="chatapp">
+                        <li>
+                            <a class="dropdown-item border-radius-md" href="<?= URLROOT ?>/medecins/chatapp">
                                 <div class="d-flex py-1">
                                     <div class="d-flex flex-column justify-content-center">
                                         <h6 class="text-sm font-weight-normal mb-1">
@@ -54,14 +54,14 @@
                                 <div class="d-flex py-1">
                                     <div class="d-flex flex-column justify-content-center">
                                         <h6 class="text-sm font-weight-normal mb-1">
-                                        <span class="font-weight-bold">Notifications</span>
+                                        <span class="font-weight-bold">Notifications</span><span class="ms-4 badge bg-info-soft shadow text-dark text-xs h-4 text-center border-radius-xl shadow-none">15</span>
                                         </h6>
                                     </div>
                                 </div>
                             </a>
                         </li>
                         <li>
-                            <a class="dropdown-item border-radius-md" href="_2y_10_Cb7AAwLgh7Mmx5IH_MW6huC7BFuFsidzcjeA1UDrRep8VzYj0Er6W">
+                            <a class="dropdown-item border-radius-md" href="<?= URLROOT ?>/medecins/_2y_10_Cb7AAwLgh7Mmx5IH_MW6huC7BFuFsidzcjeA1UDrRep8VzYj0Er6W">
                                 <div class="d-flex py-1">
                                     <div class="d-flex flex-column justify-content-center">
                                         <h6 class="text-sm font-weight-normal mb-1">

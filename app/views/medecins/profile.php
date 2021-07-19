@@ -3,6 +3,7 @@
 
 <?php require APPROOT . '/views/includes/header-ui.php'; ?>
 
+<<<<<<< HEAD
 <body class="g-sidenav-show bg-gray-100">
     <main class="main-content max-height-vh-100 h-full">
         <div class="container-fluid my-3 py-3">
@@ -36,97 +37,119 @@
                                 <a class="nav-link text-body" data-scroll="" href="">
                                     <div class="icon me-2">
                                         <svg class="text-dark mb-1" width="16px" height="16px" viewBox="0 0 40 44" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+=======
+<body class="g-sidenav-show  bg-gray-100">
+    <?php require APPROOT . '/views/includes/medSideMenu.php'; ?>
+
+    <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+
+        <?php require APPROOT . '/views/includes/medNavbar.php'; ?>
+
+        <!-- End Navbar -->
+        <div class="container-fluid">
+            <div class="page-header min-height-300 border-radius-xl mt-4" style="background-image: url('<?= URLROOT ?>/assets/img/curved-images/curved0.jpg'); background-position-y: 50%;">
+                <span class="mask bg-gradient-primary opacity-6"></span>
+            </div>
+            <div class="card card-body blur shadow-blur mx-4 mt-n6 overflow-hidden">
+                <div class="row gx-4">
+                    <div class="col-auto">
+                        <div class="avatar avatar-xl position-relative">
+                            <img src="<?= URLROOT ?>/assets/img/bruce-mars.jpg" alt="profile_image" class="w-100 border-radius-lg shadow-sm">
+                        </div>
+                    </div>
+                    <div class="col-auto my-auto">
+                        <div class="h-100">
+                            <h5 class="mb-1 font-weight-bolder">
+                                <?= $data['medecin']->nomMedecin . " " . $data['medecin']->prenomMedecin ?>
+                            </h5>
+                            <p class="mb-0 font-weight-bold text-sm">
+                                Medecin / <?= $data['medecin']->codeService ?>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 my-sm-auto ms-sm-auto me-sm-0 mx-auto mt-3">
+                        <div class="nav-wrapper position-relative end-0">
+                            <ul class="nav nav-pills nav-fill p-1 bg-transparent" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link mb-0 px-0 py-1 active" href="chatapp">
+                                        <svg class="text-dark" width="16px" height="16px" viewBox="0 0 40 44" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+>>>>>>> d3b17ef6a8b39e1ad153e4e5460d97dffa4516dd
                                             <title>document</title>
                                             <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                                                 <g transform="translate(-1870.000000, -591.000000)" fill="#FFFFFF" fill-rule="nonzero">
                                                     <g transform="translate(1716.000000, 291.000000)">
                                                         <g transform="translate(154.000000, 300.000000)">
                                                             <path class="color-background" d="M40,40 L36.3636364,40 L36.3636364,3.63636364 L5.45454545,3.63636364 L5.45454545,0 L38.1818182,0 C39.1854545,0 40,0.814545455 40,1.81818182 L40,40 Z" opacity="0.603585379"></path>
-                                                            <path class="color-background" d="M30.9090909,7.27272727 L1.81818182,7.27272727 C0.814545455,7.27272727 0,8.08727273 0,9.09090909 L0,41.8181818 C0,42.8218182 0.814545455,43.6363636 1.81818182,43.6363636 L30.9090909,43.6363636 C31.9127273,43.6363636 32.7272727,42.8218182 32.7272727,41.8181818 L32.7272727,9.09090909 C32.7272727,8.08727273 31.9127273,7.27272727 30.9090909,7.27272727 Z M18.1818182,34.5454545 L7.27272727,34.5454545 L7.27272727,30.9090909 L18.1818182,30.9090909 L18.1818182,34.5454545 Z M25.4545455,27.2727273 L7.27272727,27.2727273 L7.27272727,23.6363636 L25.4545455,23.6363636 L25.4545455,27.2727273 Z M25.4545455,20 L7.27272727,20 L7.27272727,16.3636364 L25.4545455,16.3636364 L25.4545455,20 Z"></path>
+                                                            <path class="color-background" d="M30.9090909,7.27272727 L1.81818182,7.27272727 C0.814545455,7.27272727 0,8.08727273 0,9.09090909 L0,41.8181818 C0,42.8218182 0.814545455,43.6363636 1.81818182,43.6363636 L30.9090909,43.6363636 C31.9127273,43.6363636 32.7272727,42.8218182 32.7272727,41.8181818 L32.7272727,9.09090909 C32.7272727,8.08727273 31.9127273,7.27272727 30.9090909,7.27272727 Z M18.1818182,34.5454545 L7.27272727,34.5454545 L7.27272727,30.9090909 L18.1818182,30.9090909 L18.1818182,34.5454545 Z M25.4545455,27.2727273 L7.27272727,27.2727273 L7.27272727,23.6363636 L25.4545455,23.6363636 L25.4545455,27.2727273 Z M25.4545455,20 L7.27272727,20 L7.27272727,16.3636364 L25.4545455,16.3636364 L25.4545455,20 Z">
+                                                            </path>
                                                         </g>
                                                     </g>
                                                 </g>
                                             </g>
                                         </svg>
-                                    </div>
-                                    <span class="text-sm">Informations de Base</span>
-                                </a>
-                            </li>
-                            <li class="nav-item pt-2">
-                                <a class="nav-link text-body" data-scroll="" href="#password">
-                                    <div class="icon me-2">
-                                        <svg class="text-dark mb-1" width="16px" height="16px" viewBox="0 0 42 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                                            <title>box-3d-50</title>
+                                        <span class="ms-1">Messages</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link mb-0 px-0 py-1 active" href="_2y_10_Cb7AAwLgh7Mmx5IH_MW6huC7BFuFsidzcjeA1UDrRep8VzYj0Er6W">
+                                        <svg class="text-dark" width="16px" height="16px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                            <title>settings</title>
                                             <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                                <g transform="translate(-2319.000000, -291.000000)" fill="#FFFFFF" fill-rule="nonzero">
+                                                <g transform="translate(-2020.000000, -442.000000)" fill="#FFFFFF" fill-rule="nonzero">
                                                     <g transform="translate(1716.000000, 291.000000)">
-                                                        <g transform="translate(603.000000, 0.000000)">
-                                                            <path class="color-background" d="M22.7597136,19.3090182 L38.8987031,11.2395234 C39.3926816,10.9925342 39.592906,10.3918611 39.3459167,9.89788265 C39.249157,9.70436312 39.0922432,9.5474453 38.8987261,9.45068056 L20.2741875,0.1378125 L20.2741875,0.1378125 C19.905375,-0.04725 19.469625,-0.04725 19.0995,0.1378125 L3.1011696,8.13815822 C2.60720568,8.38517662 2.40701679,8.98586148 2.6540352,9.4798254 C2.75080129,9.67332903 2.90771305,9.83023153 3.10122239,9.9269862 L21.8652864,19.3090182 C22.1468139,19.4497819 22.4781861,19.4497819 22.7597136,19.3090182 Z"></path>
-                                                            <path class="color-background" d="M23.625,22.429159 L23.625,39.8805372 C23.625,40.4328219 24.0727153,40.8805372 24.625,40.8805372 C24.7802551,40.8805372 24.9333778,40.8443874 25.0722402,40.7749511 L41.2741875,32.673375 L41.2741875,32.673375 C41.719125,32.4515625 42,31.9974375 42,31.5 L42,14.241659 C42,13.6893742 41.5522847,13.241659 41,13.241659 C40.8447549,13.241659 40.6916418,13.2778041 40.5527864,13.3472318 L24.1777864,21.5347318 C23.8390024,21.7041238 23.625,22.0503869 23.625,22.429159 Z" opacity="0.7"></path>
-                                                            <path class="color-background" d="M20.4472136,21.5347318 L1.4472136,12.0347318 C0.953235098,11.7877425 0.352562058,11.9879669 0.105572809,12.4819454 C0.0361450918,12.6208008 6.47121774e-16,12.7739139 0,12.929159 L0,30.1875 L0,30.1875 C0,30.6849375 0.280875,31.1390625 0.7258125,31.3621875 L19.5528096,40.7750766 C20.0467945,41.0220531 20.6474623,40.8218132 20.8944388,40.3278283 C20.963859,40.1889789 21,40.0358742 21,39.8806379 L21,22.429159 C21,22.0503869 20.7859976,21.7041238 20.4472136,21.5347318 Z" opacity="0.7"></path>
+                                                        <g transform="translate(304.000000, 151.000000)">
+                                                            <polygon class="color-background" opacity="0.596981957" points="18.0883333 15.7316667 11.1783333 8.82166667 13.3333333 6.66666667 6.66666667 0 0 6.66666667 6.66666667 13.3333333 8.82166667 11.1783333 15.315 17.6716667">
+                                                            </polygon>
+                                                            <path class="color-background" d="M31.5666667,23.2333333 C31.0516667,23.2933333 30.53,23.3333333 30,23.3333333 C29.4916667,23.3333333 28.9866667,23.3033333 28.48,23.245 L22.4116667,30.7433333 L29.9416667,38.2733333 C32.2433333,40.575 35.9733333,40.575 38.275,38.2733333 L38.275,38.2733333 C40.5766667,35.9716667 40.5766667,32.2416667 38.275,29.94 L31.5666667,23.2333333 Z" opacity="0.596981957"></path>
+                                                            <path class="color-background" d="M33.785,11.285 L28.715,6.215 L34.0616667,0.868333333 C32.82,0.315 31.4483333,0 30,0 C24.4766667,0 20,4.47666667 20,10 C20,10.99 20.1483333,11.9433333 20.4166667,12.8466667 L2.435,27.3966667 C0.95,28.7083333 0.0633333333,30.595 0.00333333333,32.5733333 C-0.0583333333,34.5533333 0.71,36.4916667 2.11,37.89 C3.47,39.2516667 5.27833333,40 7.20166667,40 C9.26666667,40 11.2366667,39.1133333 12.6033333,37.565 L27.1533333,19.5833333 C28.0566667,19.8516667 29.01,20 30,20 C35.5233333,20 40,15.5233333 40,10 C40,8.55166667 39.685,7.18 39.1316667,5.93666667 L33.785,11.285 Z">
+                                                            </path>
                                                         </g>
                                                     </g>
                                                 </g>
                                             </g>
                                         </svg>
-                                    </div>
-                                    <span class="text-sm">Changer Mot de Passe</span>
-                                </a>
-                            </li>
-                        </ul>
+                                        <span class="ms-1">Settings</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-                <div class="col-lg-9 mt-lg-0 mt-4">
-                    <!-- Navbar -->
-                    <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl position-sticky blur shadow-blur mt-4 left-auto top-1 z-index-sticky" id="navbarBlur" data-scroll="true">
-                        <div class="container-fluid py-1 px-3">
-                            <nav aria-label="breadcrumb">
-                                <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
-                                    <li class="breadcrumb-item text-sm text-dark active" aria-current="page"><a href="javascript:history.go(-1)">Retour</a></li>
-                                </ol>
-                                <h6 class="font-weight-bolder mb-0">Parametres du Profil</h6>
-                            </nav>
-                            <div class="mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
-                                <div class="ms-md-auto pe-md-3 d-flex align-items-center">
-                                    <div class="input-group">
-                                        <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
-                                        <input type="text" name="search" class="form-control" placeholder="Reachercher ici...">
-                                    </div>
-                                    <ul class="navbar-nav col-flex col-4 col-sm-4 justify-content-end">
-                                        <li class="nav-item d-flex align-items-center">
-                                            <a href="<?= URLROOT ?>/users/_2y_10_AG_OSzHJ09ubMAfgTiWdM_Lw_aobUlVAr6Kw7bTOUMXEJPIMUn66W" class="nav-link text-body font-weight-bold px-0" target="_blank">
-                                                <i class="fa fa-user me-sm-1"></i>
-                                                <span class="d-sm-inline d-none">Logout</span>
-                                            </a>
-                                        </li>
-                                    </ul>
+            </div>
+        </div>
+        <div class="container-fluid py-4">
+            <div class="row mt-3">
+                <div class="col-12 col-md-6 col-xl-8 mt-md-0 mt-4">
+                    <div class="card h-100">
+                        <div class="card-header pb-0 p-3">
+                            <div class="row">
+                                <div class="col-md-8 d-flex align-items-center">
+                                    <h6 class="mb-0">Informations de Profil</h6>
+                                </div>
+                                <div class="col-md-4 text-end">
+                                    <a href="javascript:;">
+                                        <i class="fas fa-user-edit text-secondary text-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Profile"></i>
+                                    </a>
                                 </div>
                             </div>
                         </div>
-                    </nav>
-                    <!-- End Navbar -->
-                    <!-- Card Profile -->
-                    <div class="card card-body m-4" id="profile">
-                        <div class="row justify-content-center align-items-center">
-                            <div class="col-sm-auto col-4">
-                                <div class="avatar avatar-xl position-relative">
-                                    <img src="<?= URLROOT ?>/assets/img/bruce-mars.jpg" alt="bruce" class="w-100 border-radius-lg shadow-sm">
-                                </div>
-                            </div>
-                            <div class="col-sm-auto col-8 my-auto">
-                                <div class="h-100">
-                                    <h5 class="mb-1 font-weight-bolder">
-                                        <?= $data['medecin']->nomMedecin . " " . $data['medecin']->prenomMedecin ?>
-                                    </h5>
-                                    <p class="mb-0 font-weight-bold text-sm">
-                                        Medecin / <?= $data['medecin']->codeService ?>
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="col-sm-auto ms-sm-auto mt-sm-0 mt-3 d-flex">
-                            </div>
+                        <div class="card-body p-3">
+                            <hr class="horizontal dark my-2">
+                            <ul class="list-group">
+                                <li class="list-group-item border-0 ps-0 pt-0 text-sm w-full"><strong class="text-dark">Nom complet:</strong> &nbsp; <?= $data['medecin']->sexeMedecin ? 'M.' : 'Mme.' ?> <?= $data['medecin']->nomMedecin . " " . $data['medecin']->prenomMedecin ?></li>
+                                <li class="list-group-item border-0 ps-0 text-sm w-full"><strong class="text-dark">Telephone:</strong> &nbsp; <?= $data['medecin']->telMedecin ?></li>
+                                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Email:</strong> &nbsp; <?= $_SESSION['userMail'] ?></li>
+                                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Adresse:</strong> &nbsp; <?= $data['medecin']->adresseMedecin ?></li>
+                                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Date de Naissance:</strong> &nbsp; <?= $data['medecin']->dateNaissanceMedecin ?></li>
+                                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Lieu de Naissance:</strong> &nbsp; <?= $data['medecin']->lieuNaissanceMedecin ?></li>
+                            </ul>
+                            <hr class="horizontal dark my-4">
+                            <ul class="list-group">
+                                <li class="list-group-item border-0 ps-0 pt-0 text-sm text-info"><strong class="text-dark">Code du Service:</strong> &nbsp; <?= $data['medecin']->codeService ?></li>
+                            </ul>
                         </div>
                     </div>
+<<<<<<< HEAD
                     <!-- Card Basic Info -->
                     <form action="editProfile" method="post" class="m-4">
                         <div class="card mt-4" id="basic-info">
@@ -195,9 +218,25 @@
                                         <label class="form-label mt-4">Votre Adresse</label>
                                         <div class="input-group">
                                             <input id="location" name="location" maxlength="55" value="<?= $data['medecin']->adresseMedecin ?>" class="form-control <?= (!empty($data['adresse_err'])) ? 'is-invalid' : '' ?>" type="text">
+=======
+                </div>
+                <div class="col-12 col-xl-4 mt-xl-0 mt-4">
+                    <div class="card h-100 bg-light">
+                        <div class="card-header pb-0 p-3 bg-light">
+                            <h6 class="mb-0">Demande de Rendez-vous</h6>
+                        </div>
+                        <div class="card-body p-3">
+                            <ul class="list-group">
+                                <li class="list-group-item border-0 d-flex justify-content-between ps-3 mb-2 border-radius-lg">
+                                    <div class="d-flex align-items-center">
+                                        <div class="d-flex flex-column">
+                                            <h6 class="mb-1 text-dark text-sm">Patient X</h6>
+                                            <span class="text-xs">Bonjour Dr, besoin d'un rdv urgent svp..</span>
+>>>>>>> d3b17ef6a8b39e1ad153e4e5460d97dffa4516dd
                                         </div>
                                         <span class="invalid-feedback"><?php echo $data['adresse_err']; ?></span>
                                     </div>
+<<<<<<< HEAD
                                     <div class="col-12 col-sm-6">
                                         <label class="form-label mt-4">Numéro de Telephone</label>
                                         <div class="input-group">
@@ -264,138 +303,28 @@
                                 </ul>
                                 <button class="btn bg-gradient-dark btn-sm float-end mt-6 mb-0">Mettre à jour</button>
                             </div>
+=======
+                                    <div class="d-flex">
+                                        <a class="btn btn-link btn-icon-only btn-rounded btn-sm text-dark icon-move-right my-auto"><i class="ni ni-bold-right" aria-hidden="true"></i></a>
+                                    </div>
+                                </li>
+                            </ul>
+>>>>>>> d3b17ef6a8b39e1ad153e4e5460d97dffa4516dd
                         </div>
-                    </form>
+                    </div>
                 </div>
             </div>
             <?php require APPROOT . '/views/includes/copyright-ui.php'; ?>
         </div>
     </main>
-
-    <script src="<?= URLROOT ?>/assets/js/core/popper.min.js"></script>
+    </div>
+    <!--   Core JS Files   -->
     <script src="<?= URLROOT ?>/assets/js/core/bootstrap.min.js"></script>
     <script src="<?= URLROOT ?>/assets/js/plugins/perfect-scrollbar.min.js"></script>
     <script src="<?= URLROOT ?>/assets/js/plugins/smooth-scrollbar.min.js"></script>
-    <script src="<?= URLROOT ?>/assets/js/plugins/choices.min.js"></script>
-    <script>
-        if (document.getElementById('choices-gender')) {
-            var gender = document.getElementById('choices-gender');
-            const example = new Choices(gender);
-        }
+    <!-- Kanban scripts -->
+    <script src="<?= URLROOT ?>/assets/js/plugins/multistep-form.js"></script>
 
-        if (document.getElementById('choices-language')) {
-            var language = document.getElementById('choices-language');
-            const example = new Choices(language);
-        }
-
-        if (document.getElementById('choices-skills')) {
-            var skills = document.getElementById('choices-skills');
-            const example = new Choices(skills, {
-                delimiter: ',',
-                editItems: true,
-                maxItemCount: 5,
-                removeItemButton: true,
-                addItems: true
-            });
-        }
-
-        if (document.getElementById('choices-year')) {
-            var year = document.getElementById('choices-year');
-            setTimeout(function() {
-                const example = new Choices(year);
-            }, 1);
-
-            for (y = 1900; y <= 2020; y++) {
-                var optn = document.createElement("OPTION");
-                optn.text = y;
-                optn.value = y;
-
-                if (y == 2020) {
-                    optn.selected = true;
-                }
-
-                year.options.add(optn);
-            }
-        }
-
-        if (document.getElementById('choices-day')) {
-            var day = document.getElementById('choices-day');
-            setTimeout(function() {
-                const example = new Choices(day);
-            }, 1);
-
-
-            for (y = 1; y <= 31; y++) {
-                var optn = document.createElement("OPTION");
-                optn.text = y;
-                optn.value = y;
-
-                if (y == 1) {
-                    optn.selected = true;
-                }
-
-                day.options.add(optn);
-            }
-
-        }
-
-        if (document.getElementById('choices-month')) {
-            var month = document.getElementById('choices-month');
-            setTimeout(function() {
-                const example = new Choices(month);
-            }, 1);
-
-            var d = new Date();
-            var monthArray = new Array();
-            monthArray[0] = "January";
-            monthArray[1] = "February";
-            monthArray[2] = "March";
-            monthArray[3] = "April";
-            monthArray[4] = "May";
-            monthArray[5] = "June";
-            monthArray[6] = "July";
-            monthArray[7] = "August";
-            monthArray[8] = "September";
-            monthArray[9] = "October";
-            monthArray[10] = "November";
-            monthArray[11] = "December";
-            for (m = 0; m <= 11; m++) {
-                var optn = document.createElement("OPTION");
-                optn.text = monthArray[m];
-                // server side month start from one
-                optn.value = (m + 1);
-                // if june selected
-                if (m == 1) {
-                    optn.selected = true;
-                }
-                month.options.add(optn);
-            }
-        }
-
-        function visible() {
-            var elem = document.getElementById('profileVisibility');
-            if (elem) {
-                if (elem.innerHTML == "Compte inactif") {
-                    elem.innerHTML = "Compte actif"
-                } else {
-                    elem.innerHTML = "Compte inactif"
-                }
-            }
-        }
-
-        var openFile = function(event) {
-            var input = event.target;
-
-            // Instantiate FileReader
-            var reader = new FileReader();
-            reader.onload = function() {
-                imageFile = reader.result;
-
-                document.getElementById("imageChange").innerHTML = '<img width="200" src="' + imageFile + '" class="rounded-circle w-100 shadow" />';
-            };
-            reader.readAsDataURL(input.files[0]);
-        };
-    </script>
     <script>
         var win = navigator.platform.indexOf('Win') > -1;
         if (win && document.querySelector('#sidenav-scrollbar')) {
@@ -405,6 +334,11 @@
             Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
         }
     </script>
+    <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
+    <script src="<?= URLROOT ?>/assets/js/soft-ui-dashboard.min2c70.js?v=1.0.3"></script>
 </body>
+
+
+<!-- Mirrored from demos.creative-tim.com/soft-ui-dashboard-pro/pages/applications/wizard.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 06 Jul 2021 01:31:33 GMT -->
 
 </html>

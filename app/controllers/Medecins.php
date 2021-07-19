@@ -12,6 +12,7 @@ class Medecins extends Controller
       'state' => $_SESSION['userState']
     ];
     $this->medecinModel = $this->model('Medecin');
+    $this->adminModel = $this->model('Admin');
     if ($_SESSION['userType'] == 'medecin')
       $this->activeUser = $this->medecinModel->getMedecinById($user);
   }
@@ -116,6 +117,18 @@ class Medecins extends Controller
       $data = [
         'medecin' => $this->activeUser
       ];
+      $this->view('medecins/profileSettings', $data);
+    }
+  }
+
+  public function profil()
+  {
+    if ($_SESSION['userType'] != 'medecin') {
+      notAuthorized();
+    } else {
+      $data = [
+        'medecin' => $this->activeUser
+      ];
       $this->view('medecins/profile', $data);
     }
   }
@@ -130,6 +143,51 @@ class Medecins extends Controller
       ];
       $this->view('medecins/add-patient', $data);
     }
+  }
+
+  public function consultations()
+  {
+    if ($_SESSION['userType'] != 'medecin') {
+      notAuthorized();
+    } else {
+      $data = [
+        'medecin' => $this->activeUser
+      ];
+      $this->view('medecins/all-consultations', $data);
+    }
+  }
+
+  public function addConsultationNew()
+  {
+    if ($_SESSION['userType'] != 'medecin') {
+      notAuthorized();
+    } else {
+      $data = [
+        'medecin' => $this->activeUser,
+        'patients' => $this->medecinModel->listePatient()
+      ];
+      $this->view('medecins/add-consultation', $data);
+    }
+  }
+  /** redirige vers la page*/
+  public function addConsultation($idPatient)
+  {
+    if ($_SESSION['userType'] != 'medecin') {
+      notAuthorized();
+    } else {
+      $data = [
+        'medecin' => $this->activeUser,
+        'patient' => $this->medecinModel->profilePatient($idPatient),
+        'idPatient' => $idPatient
+      ];
+      $this->view('medecins/add-consultation', $data);
+    }
+  }
+  /**traitement d'ajout de consultation */
+  public function ajouterConsultation()
+  {
+    if ($_POST)
+      var_dump($_POST['symptomes']);
   }
 
   public function rdvs($filter = "only", $etat = "")
@@ -159,16 +217,101 @@ class Medecins extends Controller
     }
   }
 
-  public function patientProfil()
+  public function patientProfil($id)
+  {
+    if ($_SESSION['userType'] != 'medecin') {
+      notAuthorized();
+    } else {
+      $data = [
+        'medecin' => $this->activeUser,
+        'patient' => $this->medecinModel->profilePatient($id),
+        'premiereinfo' => $this->medecinModel->premiereInfo($id),
+        'contacturgence' => $this->medecinModel->recupurgence($id),
+        'id' => $id
+      ];
+      $this->view('medecins/patient-profil', $data);
+    }
+  }
+
+  public function premiereObservation($patient)
   {
     if ($_SESSION['userType'] != 'medecin') {
       notAuthorized();
     } else {
       $data = [
         //'patients' => $this->medecinModel->patients(),
-        'medecin' => $this->activeUser
+        'medecin' => $this->activeUser,
+        'patient' => $patient,
       ];
-      $this->view('medecins/patient-profil', $data);
+      $this->view('medecins/premiere-observation', $data);
+    }
+  }
+
+  public function rdvAttente()
+  {
+    if ($_SESSION['userType'] != 'medecin') {
+      notAuthorized();
+    } else {
+      $data = [
+        //'patients' => $this->medecinModel->patients(),
+        'medecin' => $this->activeUser,
+      ];
+      $this->view('medecins/rdvAttenteMed', $data);
+    }
+  }
+
+  public function validerRdv()
+  {
+    if ($_SESSION['userType'] != 'medecin') {
+      notAuthorized();
+    } else {
+      $data = [
+        //'patients' => $this->medecinModel->patients(),
+        'medecin' => $this->activeUser,
+        'msg' => 'success-message'
+      ];
+      $this->view('medecins/rdvAttenteMed', $data);
+    }
+  }
+
+  public function annulerRdv()
+  {
+    if ($_SESSION['userType'] != 'medecin') {
+      notAuthorized();
+    } else {
+      $data = [
+        //'patients' => $this->medecinModel->patients(),
+        'medecin' => $this->activeUser,
+        'msg' => 'success-message'
+      ];
+      $this->view('medecins/rdvAvenirMed', $data);
+    }
+  }
+
+  public function supprimmerRdv()
+  {
+    if ($_SESSION['userType'] != 'medecin') {
+      notAuthorized();
+    } else {
+      $data = [
+        //'patients' => $this->medecinModel->patients(),
+        'medecin' => $this->activeUser,
+        'msg' => 'delete-message'
+      ];
+      $this->view('medecins/rdvAttenteMed', $data);
+    }
+  }
+
+  public function rdvAvenir()
+  {
+    if ($_SESSION['userType'] != 'medecin') {
+      notAuthorized();
+    } else {
+      $data = [
+        //'patients' => $this->medecinModel->patients(),
+        'medecin' => $this->activeUser,
+      ];
+      $this->view('medecins/rdvAvenirMed', $data);
     }
   }
 
