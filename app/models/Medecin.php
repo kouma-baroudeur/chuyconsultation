@@ -153,4 +153,60 @@ class Medecin
         $this->db->query($sql);
         return $this->db->execute();
     }
+    //fonction recuperer identifiant
+    public function recuperId(){
+    $user = [
+            'id'    =>  $_SESSION['userId'],
+            'type'  =>  $_SESSION['userType'],
+            'email' => $_SESSION['userMail'],
+            'state' => $_SESSION['userState']
+        ];
+    $data=[
+        $email=$this->getMedecinById($user)->email,
+        $password=$this->getMedecinById($user)->password,
+    ];
+        return $data;
+    }
+    public function recuperIdentifiant()
+    {
+        $sql1 = GETUSER;
+
+        $this->db->query($sql1);
+        $answer = $this->db->resultSet();
+        return $answer;
+   }
+   public function users(){
+        // $user = [
+        //     'id'    =>  $_SESSION['userId'],
+        //     'type'  =>  $_SESSION['userType'],
+        //     'email' => $_SESSION['userMail'],
+        //     'state' => $_SESSION['userState']
+        // ];
+        $this->db->query('SELECT * FROM users WHERE id = :id');
+        $this->db->bind(':id', $_SESSION['userId']);
+        $this->db->execute();
+        $row = $this->db->single();
+        $hashedPass = $row->password;
+        return $hashedPass;
+        // // $sql1 = "SELECT * FROM users WHERE id=". $_SESSION['userId'];
+
+        // $this->db->query($sql1);
+        // $answer = $this->db->single();
+        // return $answer;
+       
+   }
+  public function editInfo($data)
+    {
+        $user = [
+            'id'    =>  $_SESSION['userId'],
+            'type'  =>  $_SESSION['userType'],
+            'email' => $_SESSION['userMail'],
+            'state' => $_SESSION['userState']
+        ];
+        $sql = "UPDATE users SET email ='" . $data['email'] . "',password ='" . $data['newPwd'] . "' WHERE id= " . $_SESSION['userId'];
+        $this->db->query($sql);
+        return $this->db->execute();
+   }
+
+
 }

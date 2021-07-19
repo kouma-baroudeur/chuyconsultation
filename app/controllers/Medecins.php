@@ -107,7 +107,8 @@ class Medecins extends Controller
       $this->view('medecins/initialForm', $data);
     }
   }
-  public function profile()
+  // fonction recharge profile.
+  public function _2y_10_Cb7AAwLgh7Mmx5IH_MW6huC7BFuFsidzcjeA1UDrRep8VzYj0Er6W()
   {
     if ($_SESSION['userType'] != 'medecin') {
       notAuthorized();
@@ -170,7 +171,7 @@ class Medecins extends Controller
       $this->view('medecins/patient-profil', $data);
     }
   }
-  
+
   /** mise a jour hebdomadaire du planning des medecins */
   public function planning()
   {
@@ -252,62 +253,157 @@ class Medecins extends Controller
   }
   // fonction editer profile medecin.
   public function editProfile()
- {
+  {
     if ($_SESSION['userType'] != 'medecin') {
       notAuthorized();
     } else {
-      
-      if (isset($_POST["submit"])) {
-        $data = [
-          'nom' => trim($_POST['nom']),
-          'prenom' => trim($_POST['prenom']),
-          'dateNaissance' => trim($_POST['dateNaissance']),
-          'lieuNaissance' => trim($_POST['lieuNaissance']),
-          'sexe' => $_POST['sexe'],
-          'adresse' => trim($_POST['adresse']),
-          'tel' => trim($_POST['tel']),
-          'nom_err' => '',
-          'prenom_err' => '',
-          'date_err' => '',
-          'lieu_err' => '',
-          'adresse_err' => '',
-          'service_err' => '',
-          'tel_err' => '',
-          'email_err' => ''
-        ];
 
-        if (empty($data['nom'])) {
-          $data['nom_err'] = 'Veuillez renseigner ce champ.';
-        }
-        if (empty($data['prenom'])) {
-          $data['prenom_err'] = 'Veuillez renseigner ce champ.';
-        }
-        if (empty($data['dateNaissance'])) {
-          $data['date_err'] = 'Veuillez renseigner ce champ.';
-        }
-        if (empty($data['lieuNaissance'])) {
-          $data['lieu_err'] = 'Veuillez renseigner ce champ.';
-        }
-        if (empty($data['adresse'])) {
-          $data['adresse_err'] = 'Veuillez renseigner ce champ.';
-        }
-        if (empty($data['tel']) || (!preg_match("/^[0-9]{9}$/", $data['tel']))) {
-          $data['tel_err'] = 'Veuillez renseigner ce champ.';
-        }
+      $data = [
+        'nom' => trim($_POST['firstName']),
+        'prenom' => trim($_POST['lastName']),
+        'dateNaissance' => trim($_POST['dateNaissance']),
+        'lieuNaissance' => trim($_POST['lieuNaissance']),
+        'sexe' => $_POST['choices-gender'],
+        'service' => trim($_POST['service']),
+        'adresse' => trim($_POST['location']),
+        'tel' => trim($_POST['phone']),
+        'nom_err' => '',
+        'prenom_err' => '',
+        'date_err' => '',
+        'lieu_err' => '',
+        'service_err' => '',
+        'adresse_err' => '',
+        'service_err' => '',
+        'tel_err' => '',
+        'email_err' => ''
+      ];
 
-        if (empty($data['nom_err']) && empty($data['prenom_err']) && empty($data['date_err']) && empty($data['lieu_err']) && empty($data['adresse_err']) && empty($data['date_err'])) {
-          // adding information into de table patient
-          if ($this->medecinModel->editProfile($data)) {
-            flash('modifier_success', 'Vos informations ont été mis à jours');
-            redirect('medecins/home');
-          } else {
-            die('Quelque chose qui ne va pas bien!');
-          }
+      if (empty($data['nom'])) {
+        $data['nom_err'] = 'Veuillez renseigner ce champ.';
+      }
+      if (empty($data['prenom'])) {
+        $data['prenom_err'] = 'Veuillez renseigner ce champ.';
+      }
+      if (empty($data['dateNaissance'])) {
+        $data['date_err'] = 'Veuillez renseigner ce champ.';
+      }
+      if (empty($data['lieuNaissance'])) {
+        $data['lieu_err'] = 'Veuillez renseigner ce champ.';
+      }
+      if (empty($data['service'])) {
+        $data['service_err'] = 'Veuillez renseigner ce champ.';
+      }
+      if (empty($data['adresse'])) {
+        $data['adresse_err'] = 'Veuillez renseigner ce champ.';
+      }
+      if (empty($data['tel']) || (!preg_match("/^[0-9]{9}$/", $data['tel']))) {
+        $data['tel_err'] = 'Veuillez renseigner ce champ.';
+      }
+
+      if (empty($data['nom_err']) && empty($data['prenom_err']) && empty($data['date_err']) && empty($data['lieu_err']) && empty($data['service_err']) && empty($data['adresse_err']) && empty($data['date_err'])) {
+        // adding information into de table patient
+        if ($this->medecinModel->editProfile($data)) {
+          flash('modifier_success', 'Vos informations ont été mis à jours');
+          redirect('medecins/_2y_10_AG_OSzHJ09ubMAfgTiWdM_Lw_aobUlVAr6Kw7bTOUMXEJPIMUn66W');
         } else {
-          $this->view('admins/home', $data);
+          die('Quelque chose qui ne va pas bien!');
         }
+      } else {
+        $this->view('medecins/_2y_10_Cb7AAwLgh7Mmx5IH_MW6huC7BFuFsidzcjeA1UDrRep8VzYj0Er6W', $data);
       }
     }
+  }
 
- }
+  //changer le mot de passe
+  public function editInfo()
+  {
+    if ($_SESSION['userType'] != 'medecin') {
+      notAuthorized();
+    } else {
+      $user = [
+        'id'    =>  $_SESSION['userId'],
+        'type'  =>  $_SESSION['userType'],
+        'email' => $_SESSION['userMail'],
+        'state' => $_SESSION['userState']
+      ];
+      $data = [
+
+        'email' => trim($_POST['email']),
+        'confirmEmail' => trim($_POST['confirmation']),
+        'password' => trim($_POST['currentPwd']),
+        'newPwd' => trim($_POST['newPwd']),
+        'confirmPassword' => trim($_POST['connfirmPwd']),
+        'email_err' => '',
+        'confirmEmail_err' => '',
+        'password_err' => '',
+        'newPwd_err' => '',
+        'confirmPwd_err' => '',
+      ];
+      if (empty($data['email'])) {
+        $data['email_err'] = 'Veuillez renseigner ce champ.';
+      }
+      if (empty($data['confirmEmail'])) {
+        $data['confirmEmail_err'] = 'Veuillez renseigner ce champ.';
+      }
+
+      if (empty($data['password'])) {
+        $data['password_err'] = 'Veuillez renseigner ce champ.';
+      }
+      if (empty($data['newPwd']) and strlen($data['password'])<6) {
+        $data['newPwd_err'] = 'Veuillez renseigner ce champ.';
+      }
+      if (empty($data['confirmPassword'])) {
+        $data['confirmPassword_err'] = 'Veuillez renseigner ce champ.';
+      }
+      if ($data['email'] == $data['confirmEmail']) {
+        $tab["user"] = $this->medecinModel->recuperId();
+        foreach ($tab as $email => $pers) {
+          if ($pers->email == $data['email'] and $data['email'] != $this->medecinModel->getMedecinById($user)->$email) {
+            $data['email_err'] = 'Email existant.';
+          }
+        }
+      }else{
+        $data['email_err'] = 'Veuillez renseigner ce champ.';
+        $data['confirmEmail_err'] = 'Email différent.';
+
+      }
+      // $password = password_hash($data['password'], PASSWORD_DEFAULT);
+        $userPassword = $this->medecinModel->users();
+      // // $pwd = $pass[]->password;
+      // //var_dump($pass);
+      // echo $data['password'] ."<br>";
+      // echo $userPassword . "<br>";
+      // echo password_verify($data['password'], $userPassword);
+    
+      //echo $data['password'];
+      if(password_verify($data['password'], $userPassword))
+      {
+        if($data['newPwd']== $data['confirmPassword']){
+          $data['newPwd'] = password_hash($data['newPwd'], PASSWORD_DEFAULT);
+
+        }else{
+          $data['confirmPassword_err'] = ' Ce mot de passe ne correspond pas.';
+
+        }
+      }else{
+        $data['password_err'] = 'Ancien mot passe incorrect.';
+
+      }
+      
+      if (empty($data['email_err']) && empty($data['confirmEmail_err']) && empty($data['password_err']) && empty($data['newPwd_err']) && empty($data['confirmPassword_err'])) {
+        // adding information into de table patient
+        if ($this->medecinModel->editInfo($data)) {
+          flash('modifier_success', 'Vos informations ont été mis à jours');
+          endUserSession();
+        }else{
+
+          die('Quelque chose qui ne va pas bien!');
+        }
+      } else {
+        $this->view('medecins/home', $data);
+
+      }
+      
+  }
+  }
 }

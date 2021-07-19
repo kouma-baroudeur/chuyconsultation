@@ -1,77 +1,83 @@
 <style>
-body {font-family: Arial, Helvetica, sans-serif;}
-* {box-sizing: border-box;}
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+  }
 
-/* Button used to open the chat form - fixed at the bottom of the page */
-.open-button {
-  background-color: #2b6cb0;
-  color: white;
-  /* padding: 6px 2px; */
-  border: none;
-  cursor: pointer;
-  opacity: 1.8;
-  position: fixed;
-  bottom: 23px;
-  right: 10px;
-  width: 45px;
-  /* height: 45px; */
-}
+  * {
+    box-sizing: border-box;
+  }
 
-/* The popup chat - hidden by default */
-.chat-popup {
-  display: none;
-  position: fixed;
-  bottom: 0;
-  right: 15px;
-  border: 3px solid #f1f1f1;
-  z-index: 9;
-}
+  /* Button used to open the chat form - fixed at the bottom of the page */
+  .open-button {
+    background-color: #2b6cb0;
+    color: white;
+    /* padding: 6px 2px; */
+    border: none;
+    cursor: pointer;
+    opacity: 1.8;
+    position: fixed;
+    bottom: 23px;
+    right: 10px;
+    width: 45px;
+    /* height: 45px; */
+  }
 
-/* Add styles to the form container */
-.form-container {
-  max-width: 300px;
-  padding: 10px;
-  background-color: white;
-}
+  /* The popup chat - hidden by default */
+  .chat-popup {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    right: 15px;
+    border: 3px solid #f1f1f1;
+    z-index: 9;
+  }
 
-/* Full-width textarea */
-.form-container textarea {
-  width: 100%;
-  padding: 15px;
-  margin: 5px 0 22px 0;
-  border: none;
-  background: #f1f1f1;
-  resize: none;
-  min-height: 200px;
-}
+  /* Add styles to the form container */
+  .form-container {
+    max-width: 300px;
+    padding: 10px;
+    background-color: white;
+  }
 
-/* When the textarea gets focus, do something */
-.form-container textarea:focus {
-  background-color: #ddd;
-  outline: none;
-}
+  /* Full-width textarea */
+  .form-container textarea {
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    border: none;
+    background: #f1f1f1;
+    resize: none;
+    min-height: 200px;
+  }
 
-/* Set a style for the submit/send button */
-.form-container .btn {
-  background-color: #04AA6D;
-  color: white;
-  padding: 16px 20px;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-  margin-bottom:10px;
-  opacity: 0.8;
-}
+  /* When the textarea gets focus, do something */
+  .form-container textarea:focus {
+    background-color: #ddd;
+    outline: none;
+  }
 
-/* Add a red background color to the cancel button */
-.form-container .cancel {
-  background-color: red;
-}
+  /* Set a style for the submit/send button */
+  .form-container .btn {
+    background-color: #04AA6D;
+    color: white;
+    padding: 16px 20px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    margin-bottom: 10px;
+    opacity: 0.8;
+  }
 
-/* Add some hover effects to buttons */
-.form-container .btn:hover, .open-button:hover {
-  opacity: 1;
-}
+  /* Add a red background color to the cancel button */
+  .form-container .cancel {
+    background-color: red;
+  }
+
+  /* Add some hover effects to buttons */
+  .form-container .btn:hover,
+  .open-button:hover {
+    opacity: 1;
+  }
 </style>
 <header class="z-10 py-4 bg-white shadow-md dark:bg-gray-800">
   <div class="container flex items-center justify-between h-full px-6 mx-auto text-blue-600 dark:text-blue-600">
@@ -157,16 +163,16 @@ body {font-family: Arial, Helvetica, sans-serif;}
       <li class="relative">
         <button class="align-middle rounded-full focus:shadow-outline-blue focus:outline-none" @click="toggleProfileMenu" @keydown.escape="closeProfileMenu" aria-label="Account" aria-haspopup="true">
           <?php
-            if ($_SESSION['userType'] == 'patient') {
-                ?><img class="object-cover w-12 h-12 rounded-full" src=<?= PAT ?> alt="pp" aria-hidden="true" /><?php
-            }
-            if ($_SESSION['userType'] == 'admin') {
-                ?><img class="object-cover w-12 h-12 rounded-full" src=<?= ADM ?> alt="pp" aria-hidden="true" /><?php
-            }
-            if ($_SESSION['userType'] == 'medecin') {
-          ?><img class="object-cover w-12 h-12 rounded-full" src=<?= DOC ?> alt="pp" aria-hidden="true" /><?php
-            }
-          ?>
+          if ($_SESSION['userType'] == 'patient') {
+          ?><img class="object-cover w-12 h-12 rounded-full" src=<?= PAT ?> alt="pp" aria-hidden="true" /><?php
+                                                                                                              }
+                                                                                                              if ($_SESSION['userType'] == 'admin') {
+                                                                                                                ?><img class="object-cover w-12 h-12 rounded-full" src=<?= ADM ?> alt="pp" aria-hidden="true" /><?php
+                                                                                                              }
+                                                                                                              if ($_SESSION['userType'] == 'medecin') {
+                                                                                                                ?><img class="object-cover w-12 h-12 rounded-full" src=<?= DOC ?> alt="pp" aria-hidden="true" /><?php
+                                                                                                              }
+                                                                                                          ?>
 
         </button>
         <template x-if="isProfileMenuOpen">
@@ -182,7 +188,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
               </a>
             </li>
             <li class="flex">
-              <a class="inline-flex items-center w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200" href="profile">
+              <a class="inline-flex items-center w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200" href="_2y_10_Cb7AAwLgh7Mmx5IH_MW6huC7BFuFsidzcjeA1UDrRep8VzYj0Er6W">
                 <svg class="w-4 h-4 mr-3" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
                   <path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
                   <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>

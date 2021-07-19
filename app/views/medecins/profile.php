@@ -138,20 +138,22 @@
                                     <div class="col-12 col-sm-6">
                                         <label class="form-label">Nom</label>
                                         <div class="input-group">
-                                            <input id="firstName" name="firstName" maxlength="55" value="<?= $data['medecin']->nomMedecin ?>" class="form-control" type="text" required>
+                                            <input id="firstName" name="firstName" maxlength="55" value="<?= $data['medecin']->nomMedecin ?>" class="form-control <?= (!empty($data['nom_err'])) ? 'is-invalid' : '' ?>" type="text" required>
                                         </div>
+                                        <span class="invalid-feedback"><?php echo $data['nom_err']; ?></span>
                                     </div>
                                     <div class="col-12 col-sm-6">
                                         <label class="form-label">Prenom</label>
                                         <div class="input-group">
-                                            <input id="lastName" name="lastName" maxlength="55" value="<?= $data['medecin']->prenomMedecin ?>" class="form-control" type="text" required>
+                                            <input id="lastName" name="lastName" maxlength="55" value="<?= $data['medecin']->prenomMedecin ?>" class="form-control <?= (!empty($data['prenom_err'])) ? 'is-invalid' : '' ?>" type="text" required>
                                         </div>
+                                        <span class="invalid-feedback"><?php echo $data['prenom_err']; ?></span>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-12 col-sm-6">
                                         <label class="form-label mt-4">Sexe</label>
-                                        <select class="form-control" name="choices-gender" id="choices-gender" required>
+                                        <select class="form-control <?= (!empty($data['sexe_err'])) ? 'is-invalid' : '' ?>" name="choices-gender" id="choices-gender" required>
                                             <?php
                                             if ($data['medecin']->sexeMedecin == 'M') {
                                                 echo '<option value="M" selected>Homme</option>
@@ -163,71 +165,84 @@
                                             ?>
                                         </select>
                                     </div>
+                                    <div class="col-12 col-sm-6">
+                                        <label class="form-label mt-4 ">Service</label>
+                                        <div class="input-group">
+                                            <input id="service" name="service" maxlength="55" value="<?= $data['medecin']->codeService ?>" class="form-control <?= (!empty($data['service_err'])) ? 'is-invalid' : '' ?>" type="text" required>
+                                        </div>
+                                        <span class="invalid-feedback"><?php echo $data['service_err']; ?></span>
+                                    </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-12 col-sm-6">
-                                        <label class="form-label mt-4">Lieu de Naissance</label>
+                                        <label class="form-label mt-4 >">Lieu de Naissance</label>
                                         <div class="input-group">
-                                            <input id="lieuNaissance" name="lieuNaissance" maxlength="55" value="<?= $data['medecin']->lieuNaissanceMedecin ?>" class="form-control" type="text" required>
+                                            <input id="lieuNaissance" name="lieuNaissance" maxlength="55" value="<?= $data['medecin']->lieuNaissanceMedecin ?>" class="form-control <?= (!empty($data['lieuNaissance_err'])) ? 'is-invalid' : '' ?>" type="text" required>
                                         </div>
+                                        <span class="invalid-feedback"><?php echo $data['lieuNaissance_err']; ?></span>
                                     </div>
                                     <div class="col-12 col-sm-6">
                                         <label class="form-label mt-4">Date de Naissance</label>
                                         <div class="input-group">
-                                            <input id="dateNaissance" name="dateNaissance" value="<?= $data['medecin']->dateNaissanceMedecin ?>" class="form-control" type="Date" value="" max="<?php echo date('Y-m-d'); ?>">
+                                            <input id="dateNaissance" name="dateNaissance" value="<?= $data['medecin']->dateNaissanceMedecin ?>" class="form-control <?= (!empty($data['dateNaissance_err'])) ? 'is-invalid' : '' ?>" type="Date" value="" max="<?php echo date('Y-m-d'); ?>">
                                         </div>
+                                        <span class="invalid-feedback"><?php echo $data['dateNaissance_err']; ?></span>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-6">
-                                        <label class="form-label mt-4">Email</label>
-                                        <div class="input-group">
-                                            <input id="email" name="email" maxlength="55" value="<?= $_SESSION['userMail'] ?>" class="form-control" type="email">
-                                        </div>
-                                    </div>
-                                    <div class="col-6">
-                                        <label class="form-label mt-4">Confirmation Email</label>
-                                        <div class="input-group">
-                                            <input id="confirmation" value="<?= $_SESSION['userMail'] ?>" name="confirmation" class="form-control" type="email">
-                                        </div>
-                                    </div>
-                                </div>
+
                                 <div class="row">
                                     <div class="col-12 col-sm-6">
                                         <label class="form-label mt-4">Votre Adresse</label>
                                         <div class="input-group">
-                                            <input id="location" name="location" maxlength="55" value="<?= $data['medecin']->adresseMedecin ?>" class="form-control" type="text">
+                                            <input id="location" name="location" maxlength="55" value="<?= $data['medecin']->adresseMedecin ?>" class="form-control <?= (!empty($data['adresse_err'])) ? 'is-invalid' : '' ?>" type="text">
                                         </div>
+                                        <span class="invalid-feedback"><?php echo $data['adresse_err']; ?></span>
                                     </div>
                                     <div class="col-12 col-sm-6">
                                         <label class="form-label mt-4">Numéro de Telephone</label>
                                         <div class="input-group">
                                             <input id="phone" name="phone" data-maxlength="9" oninput="this.value=this.value.slice(0,this.dataset.maxlength)" value="<?= $data['medecin']->telMedecin ?>" class="form-control" type="number">
                                         </div>
+                                        <span class="invalid-feedback"><?php echo $data['tel_err']; ?></span>
                                     </div>
                                 </div>
-                                <button class="btn bg-gradient-dark btn-sm float-end mt-6 mb-0">Mettre à jour</button>
+                                <button type="submit" class="btn bg-gradient-dark btn-sm float-end mt-6 mb-0">Mettre à jour</button>
                             </div>
                         </div>
                     </form>
                     <!-- Card Change Password -->
-                    <form action="editPasswordMed" method="post" class="m-4">
+                    <form action="editInfo" method="post" class="m-4">
                         <div class="card mt-4" id="password">
                             <div class="card-header">
                                 <h5>Changer le Mot de Passe</h5>
                             </div>
                             <div class="card-body pt-0">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <label class="form-label mt-4">Email</label>
+                                        <div class="input-group">
+                                            <input id="email" name="email" maxlength="55" value="<?= $_SESSION['userMail'] ?>" class="form-control  <?= (!empty($data['email_err'])) ? 'is-invalid' : '' ?>" type="email">
+                                        </div>
+                                        <span class="invalid-feedback"><?php echo $data['email_err']; ?></span>
+                                    </div>
+                                    <div class="col-6">
+                                        <label class="form-label mt-4">Confirmation Email</label>
+                                        <div class="input-group">
+                                            <input id="confirmation" value="<?= $_SESSION['userMail'] ?>" name="confirmation" class="form-control  <?= (!empty($data['email_err'])) ? 'is-invalid' : '' ?>" type="email">
+                                        </div>
+                                    </div>
+                                </div>
                                 <label class="form-label">Mot de passe actuel</label>
                                 <div class="form-group">
-                                    <input class="form-control" type="password" placeholder="Current password" required>
+                                    <input class="form-control" type="password" name="currentPwd" placeholder="Current password" required>
                                 </div>
                                 <label class="form-label">Nouveau mot de passe</label>
                                 <div class="form-group">
-                                    <input class="form-control" type="password" placeholder="New password" required>
+                                    <input class="form-control" type="password" name="newPwd" placeholder="New password" required>
                                 </div>
                                 <label class="form-label">Confirmer nouveau mot de passe</label>
                                 <div class="form-group">
-                                    <input class="form-control" type="password" placeholder="Confirm password" required>
+                                    <input class="form-control" type="password" name="connfirmPwd" placeholder="Confirm password" required>
                                 </div>
                                 <h5 class="mt-5">Recommendations du mot de passe</h5>
                                 <p class="text-muted mb-2">
