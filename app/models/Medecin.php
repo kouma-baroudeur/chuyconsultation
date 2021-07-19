@@ -109,7 +109,7 @@ class Medecin
             'state' => $_SESSION['userState']
         ];
         $codeMedecin = $this->getMedecinById($user)->codeMedecin;
-        $sql = "SELECT * FROM service,plannings,medecin WHERE plannings.codeMedecin = medecin.codeMedecin AND medecin.codeService=service.codeService AND medecin.codeMedecin=".$codeMedecin;
+        $sql = "SELECT * FROM service,plannings,medecin WHERE plannings.codeMedecin = medecin.codeMedecin AND medecin.codeService=service.codeService AND medecin.codeMedecin=" . $codeMedecin;
         $this->db->query($sql);
         $answer = $this->db->resultSet();
         return $answer;
@@ -133,14 +133,7 @@ class Medecin
         $answer = $this->db->execute();
         return $answer;
     }
-<<<<<<< HEAD
-    public function profilePatient($id)
-    {
-        $sql = "SELECT * FROM patient,users WHERE userId=$id AND patient.userId=users.id";
-        $this->db->query($sql);
-        $data = $this->db->resultSet();
-        return $data;
-    }
+
     //fonction editer un profile medecin
     public function editProfile($data)
     {
@@ -150,53 +143,37 @@ class Medecin
             'email' => $_SESSION['userMail'],
             'state' => $_SESSION['userState']
         ];
-        $sql = "UPDATE medecin SET nomMedecin ='" . $data['nom'] . "',prenomMedecin ='" . $data['prenom'] . "',codeService = '" . $data['service'] . "',sexeMedecin = '" . $data['sexe'] . "',adresseMedecin = '" . $data['adresse'] . "',dateNaissanceMedecin = '" . $data['dateNaissance'] . "',lieuNaissanceMedecin = '" . $data['lieuNaissance'] . "',telMedecin ='" . $data['tel'] . "'  WHERE userId= ". $_SESSION['userId'];
+        $sql = "UPDATE medecin SET nomMedecin ='" . $data['nom'] . "',prenomMedecin ='" . $data['prenom'] . "',codeService = '" . $data['service'] . "',sexeMedecin = '" . $data['sexe'] . "',adresseMedecin = '" . $data['adresse'] . "',dateNaissanceMedecin = '" . $data['dateNaissance'] . "',lieuNaissanceMedecin = '" . $data['lieuNaissance'] . "',telMedecin ='" . $data['tel'] . "'  WHERE userId= " . $_SESSION['userId'];
         $this->db->query($sql);
         return $this->db->execute();
     }
     //fonction recuperer identifiant
-    public function recuperId(){
-    $user = [
+    public function recuperId()
+    {
+        $user = [
             'id'    =>  $_SESSION['userId'],
             'type'  =>  $_SESSION['userType'],
             'email' => $_SESSION['userMail'],
             'state' => $_SESSION['userState']
         ];
-    $data=[
-        $email=$this->getMedecinById($user)->email,
-        $password=$this->getMedecinById($user)->password,
-    ];
+        $data = [
+            $email = $this->getMedecinById($user)->email,
+            $password = $this->getMedecinById($user)->password,
+        ];
         return $data;
     }
-    public function recuperIdentifiant()
+    
+    public function users()
     {
-        $sql1 = GETUSER;
-
-        $this->db->query($sql1);
-        $answer = $this->db->resultSet();
-        return $answer;
-   }
-   public function users(){
-        // $user = [
-        //     'id'    =>  $_SESSION['userId'],
-        //     'type'  =>  $_SESSION['userType'],
-        //     'email' => $_SESSION['userMail'],
-        //     'state' => $_SESSION['userState']
-        // ];
-        $this->db->query('SELECT * FROM users WHERE id = :id');
+       $this->db->query('SELECT * FROM users WHERE id = :id');
         $this->db->bind(':id', $_SESSION['userId']);
         $this->db->execute();
         $row = $this->db->single();
         $hashedPass = $row->password;
-        return $hashedPass;
-        // // $sql1 = "SELECT * FROM users WHERE id=". $_SESSION['userId'];
+        return $hashedPass;// return $answer;
 
-        // $this->db->query($sql1);
-        // $answer = $this->db->single();
-        // return $answer;
-       
-   }
-  public function editInfo($data)
+    }
+    public function editInfo($data)
     {
         $user = [
             'id'    =>  $_SESSION['userId'],
@@ -207,36 +184,34 @@ class Medecin
         $sql = "UPDATE users SET email ='" . $data['email'] . "',password ='" . $data['newPwd'] . "' WHERE id= " . $_SESSION['userId'];
         $this->db->query($sql);
         return $this->db->execute();
-   }
-
-
-}
-=======
-    /**liste tous les patients */
-    public function listePatient(){
-        $sql = "SELECT * FROM patient";
-          $this->db->query($sql);
-          $response = $this->db->resultSet();
-          return $response;
     }
-    public function profilePatient($id){
-        $sql = "SELECT * FROM patient WHERE IP=".$id;
-          $this->db->query($sql);
-          $response = $this->db->single();
-          return $response;
+    /**liste tous les patients */
+    public function listePatient()
+    {
+        $sql = "SELECT * FROM patient";
+        $this->db->query($sql);
+        $response = $this->db->resultSet();
+        return $response;
+    }
+    public function profilePatient($id)
+    {
+        $sql = "SELECT * FROM patient WHERE IP=" . $id;
+        $this->db->query($sql);
+        $response = $this->db->single();
+        return $response;
     }
     public function premiereInfo($id)
     {
-        $sql = "SELECT * FROM premiereobservation WHERE IP=".$id;
-          $this->db->query($sql);
-          $response = $this->db->single();
-          return $response;
+        $sql = "SELECT * FROM premiereobservation WHERE IP=" . $id;
+        $this->db->query($sql);
+        $response = $this->db->single();
+        return $response;
     }
-    public function recupurgence($id){
-        $sql = "SELECT * FROM contacturgence WHERE IP=".$id;
+    public function recupurgence($id)
+    {
+        $sql = "SELECT * FROM contacturgence WHERE IP=" . $id;
         $this->db->query($sql);
         $answer = $this->db->single();
         return $answer;
     }
 }
->>>>>>> d3b17ef6a8b39e1ad153e4e5460d97dffa4516dd
