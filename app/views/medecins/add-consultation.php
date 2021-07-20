@@ -13,7 +13,7 @@
         <div class="container-fluid py-4">
             <div class="row">
                 <div class="col-lg-9 col-12 mx-auto">
-                    <form action="<?= URLROOT ?>/medecins/ajouterConsultation" method="post" onsubmit="return getContenu();">
+                    <form action="ajouterConsultation" method="post" onsubmit="return getContenu();">
                         <div class="card card-body mt-4">
                             <h6 class="mb-0">Nouvelle consultaion</h6>
                             <p class="text-sm mb-0">Veuillez remplir les champs</p>
@@ -42,7 +42,7 @@
                                 <p>Melen, BP XXXX, <strong>tel +237 6XX XXX XXX</strong>, Rue XXXX</p><br>
                                 <p><br></p>
                             </div>
-                            <input type="text" class="form-control" id="contenu" hidden>
+                            <input type="text" name="contenu" class="form-control" id="contenu" hidden>
                             <label class="mt-4 form-label">Symptômes du Patient</label>
                             <select class="form-control" name="symptomes[]" id="choices-multiple-remove-button" multiple>
                                 <option value="Choice 1" selected>symptome 1</option>
@@ -52,7 +52,7 @@
                             </select>
                             <div class="row">
                                 <div class="col-6">
-                                    <label class="form-label">Date de consultaion: </label><span class="text-sm">&nbsp;&nbsp;<?php echo date('d/m/Y'); ?></span>
+                                    <label class="form-label" name="date_consultation">Date de consultaion: </label><span class="text-sm">&nbsp;&nbsp;<?php echo date('d/m/Y'); ?></span>
                                 </div>
                                 <label class="mt-4 form-label">Ajouter des documents</label>
                                 <div class="form-control dropzone" id="dropzone">

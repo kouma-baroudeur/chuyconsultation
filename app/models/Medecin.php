@@ -134,7 +134,7 @@ class Medecin
         return $answer;
     }
 
-    //fonction editer un profile medecin
+  //fonction editer un profile medecin
     public function editProfile($data)
     {
         $user = [
@@ -214,4 +214,112 @@ class Medecin
         $answer = $this->db->single();
         return $answer;
     }
+    public function consultMedecin()
+    {
+        $user = [
+            'id'    =>  $_SESSION['userId'],
+            'type'  =>  $_SESSION['userType'],
+            'email' => $_SESSION['userMail'],
+            'state' => $_SESSION['userState']
+        ];
+        $codeMedecin = $this->getMedecinById($user)->codeMedecin;
+        $sql = "SELECT * ";
+        $sql .= "FROM patient,medecin,consultations ";
+        $sql .= "WHERE consultations.codeMedecin = medecin.codeMedecin ";
+        $sql .= "AND consultations.IP = patient.IP ";
+        $sql .= "AND medecin.codeMedecin =:codeMedecin ";
+        $this->db->query($sql);
+        $this->db->bind(':codeMedecin', $codeMedecin);
+        $rows = $this->db->resultSet();
+        return $rows;
+    } 
+    public function add_consultation($data)
+    {
+    
+    $sql = ADDCONSULT ;
+    $this->db->query($sql);
+    $this->db->bind(':contenu', $data['contenu']);
+    $this->db->bind(':symptomes', $data['symptomes']);
+    $this->db->bind(':fichier', $data['fichier']);
+    $this->db->bind(':dateConsultation', $data['date_consultation']);
+    $this->db->bind(':date_edition', $data['date_edition']);
+    $this->db->bind(':codeMedecin', $data['medecin']);
+    $this->db->bind(':IP', $data['patient']);
+    return $this->db->execute();
+} 
+
+//rendez-vous en attente
+public function rvdAttente($etat){
+        $user = [
+            'id'    =>  $_SESSION['userId'],
+            'type'  =>  $_SESSION['userType'],
+            'email' => $_SESSION['userMail'],
+            'state' => $_SESSION['userState']
+        ];
+        $codeMedecin = $this->getMedecinById($user)->codeMedecin;
+        $sql = "SELECT * ";
+        $sql .= "FROM patient,medecin,rendezvous ";
+        $sql .= "WHERE rendezvous.codeMedecin = medecin.codeMedecin ";
+        $sql .= "AND rendezvous.IP = patient.IP ";
+        $sql .= RDVETATATTENTE;
+        $sql .= "AND medecin.codeMedecin =:codeMedecin ";
+        $sql .= RDVORDRE;
+        $this->db->query($sql);
+        $this->db->bind(':codeMedecin', $codeMedecin);
+        $rows = $this->db->resultSet();
+        return $rows;
+
+}
+    //rendez-vous en valide
+    public function rvdValide($etat)
+    {
+        $user = [
+            'id'    =>  $_SESSION['userId'],
+            'type'  =>  $_SESSION['userType'],
+            'email' => $_SESSION['userMail'],
+            'state' => $_SESSION['userState']
+        ];
+        $codeMedecin = $this->getMedecinById($user)->codeMedecin;
+        $sql = "SELECT * ";
+        $sql .= "FROM patient,medecin,rendezvous ";
+        $sql .= "WHERE rendezvous.codeMedecin = medecin.codeMedecin ";
+        $sql .= "AND rendezvous.IP = patient.IP ";
+        $sql .= RDVETATCONFIRME;
+        $sql .= "AND medecin.codeMedecin =:codeMedecin ";
+        $sql .= RDVORDRE;
+        $this->db->query($sql);
+        $this->db->bind(':codeMedecin', $codeMedecin);
+        $rows = $this->db->resultSet();
+        return $rows;
+    }
+
+    public function rvdAnnuler($id)
+    {
+        $conf = 'Annulé';
+        $sql = "UPDATE rendezvous SET etatRdv=:statut WHERE numeroRdv =:id";
+        $this->db->query($sql);
+        $this->db->bind(':statut', $conf);
+        $this->db->bind(':id', $id);
+        return $this->db->execute();
+    
+    }
+    public function rvdConfirmer($id)
+    {
+        $conf = 'Confirmé';
+        $sql = "UPDATE rendezvous SET etatRdv=:statut WHERE numeroRdv=:id";
+        $this->db->query($sql);
+        $this->db->bind(':statut', $conf);
+        $this->db->bind(':id', $id);
+        return $this->db->execute();
+    }
+    public function rvdSupprimer($id)
+    {
+        $conf = 'refuser';
+        $sql = "UPDATE rendezvous SET etatRdv=:statut WHERE numeroRdv=:id";
+        $this->db->query($sql);
+        $this->db->bind(':statut', $conf);
+        $this->db->bind(':id', $id);
+        return $this->db->execute();
+    }
+
 }

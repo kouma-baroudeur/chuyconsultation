@@ -133,7 +133,7 @@ class Admin
     public function statutA($id)
     {
         $conf = 'Annulé';
-        $sql ="UPDATE rendezvous SET etatRdv=:statut WHERE numeroRdv=:id";
+        $sql ="UPDATE rendezvous SET etatRdv=:statut WHERE numeroRdv =:id";
         $this->db->query($sql); 
         $this->db->bind(':statut', $conf);
         $this->db->bind(':id', $id);
