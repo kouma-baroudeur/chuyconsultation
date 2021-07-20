@@ -148,7 +148,7 @@
                 </a>
               </li>
               <li class="nav-item ">
-                <a class="nav-link " href="<?= URLROOT ?>/medecins/newRdv">
+                <a class="nav-link " href="<?= URLROOT ?>/medecins/addRdv">
                   <span class="sidenav-mini-icon"> N </span>
                   <span class="sidenav-normal"> Nouveau Rendez-vous <b class="caret"></b></span>
                 </a>

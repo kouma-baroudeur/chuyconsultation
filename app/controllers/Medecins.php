@@ -11,6 +11,7 @@ class Medecins extends Controller
       'email' => $_SESSION['userMail'],
       'state' => $_SESSION['userState']
     ];
+    $this->patientModel = $this->model('Patient');
     $this->medecinModel = $this->model('Medecin');
     $this->adminModel = $this->model('Admin');
     if ($_SESSION['userType'] == 'medecin')
@@ -25,12 +26,14 @@ class Medecins extends Controller
       $data = [
         'params' => $page,
         'services' => $this->medecinModel->listeService(),
-        'medecin' => $this->activeUser
+        'patients' => $this->medecinModel->patients(),
+        'medecin' => $this->activeUser,
+        'page' => 'Dashboard'
       ];
       if ($_SESSION['userState'] == 'incomplet')
         $this->view('medecins/initialForm', $data);
       else
-        $this->view('medecins/home', $data);
+        $this->view('medecins/dashboardMed', $data);
     }
   }
   public function createProfile()
@@ -115,7 +118,8 @@ class Medecins extends Controller
       notAuthorized();
     } else {
       $data = [
-        'medecin' => $this->activeUser
+        'medecin' => $this->activeUser,
+        'page' => 'Parametre du Compte'
       ];
       $this->view('medecins/profileSettings', $data);
     }
@@ -127,7 +131,8 @@ class Medecins extends Controller
       notAuthorized();
     } else {
       $data = [
-        'medecin' => $this->activeUser
+        'medecin' => $this->activeUser,
+        'page' => 'Mon Profil'
       ];
       $this->view('medecins/profile', $data);
     }
@@ -139,7 +144,8 @@ class Medecins extends Controller
       notAuthorized();
     } else {
       $data = [
-        'medecin' => $this->activeUser
+        'medecin' => $this->activeUser,
+        'page' => 'Ajouter un Patient'
       ];
       $this->view('medecins/add-patient', $data);
     }
@@ -151,7 +157,8 @@ class Medecins extends Controller
       notAuthorized();
     } else {
       $data = [
-        'medecin' => $this->activeUser
+        'medecin' => $this->activeUser,
+        'page' => 'Mes Consultations'
       ];
       $this->view('medecins/all-consultations', $data);
     }
@@ -164,7 +171,8 @@ class Medecins extends Controller
     } else {
       $data = [
         'medecin' => $this->activeUser,
-        'patients' => $this->medecinModel->listePatient()
+        'patients' => $this->medecinModel->listePatient(),
+        'page' => 'Ajouter une Consultation'
       ];
       $this->view('medecins/add-consultation', $data);
     }
@@ -178,7 +186,8 @@ class Medecins extends Controller
       $data = [
         'medecin' => $this->activeUser,
         'patient' => $this->medecinModel->profilePatient($idPatient),
-        'idPatient' => $idPatient
+        'idPatient' => $idPatient,
+        'page' => 'Ajouter une Consultation'
       ];
       $this->view('medecins/add-consultation', $data);
     }
@@ -197,7 +206,7 @@ class Medecins extends Controller
     } else {
       $data = [
         'rdv' => $this->medecinModel->medRdvAll($filter, $etat),
-        'medecin' => $this->activeUser
+        'medecin' => $this->activeUser,
       ];
 
       $this->view('medecins/allmedrdvs', $data);
@@ -211,7 +220,8 @@ class Medecins extends Controller
     } else {
       $data = [
         'patients' => $this->medecinModel->patients(),
-        'medecin' => $this->activeUser
+        'medecin' => $this->activeUser,
+        'page' => 'Liste des Patients'
       ];
       $this->view('medecins/all-patients', $data);
     }
@@ -227,13 +237,14 @@ class Medecins extends Controller
         'patient' => $this->medecinModel->profilePatient($id),
         'premiereinfo' => $this->medecinModel->premiereInfo($id),
         'contacturgence' => $this->medecinModel->recupurgence($id),
-        'id' => $id
+        'id' => $id,
+        'page' => 'Profil du Patient'
       ];
       $this->view('medecins/patient-profil', $data);
     }
   }
 
-  public function premiereObservation($patient)
+  public function premiereObservation($idPatient)
   {
     if ($_SESSION['userType'] != 'medecin') {
       notAuthorized();
@@ -241,9 +252,25 @@ class Medecins extends Controller
       $data = [
         //'patients' => $this->medecinModel->patients(),
         'medecin' => $this->activeUser,
-        'patient' => $patient,
+        'page' => 'Premiere Observation'
+        //'patient' => $patient,
       ];
       $this->view('medecins/premiere-observation', $data);
+    }
+  }
+
+  public function addRdv()
+  {
+    if ($_SESSION['userType'] != 'medecin') {
+      notAuthorized();
+    } else {
+      $data = [
+        //'patients' => $this->medecinModel->patients(),
+        'medecin' => $this->activeUser,
+        'medecins' => $this->patientModel->listeMedecins(),
+        'page' => 'Ajouter un Rendez-vous'
+      ];
+      $this->view('medecins/add-rendez-vous', $data);
     }
   }
 
@@ -255,6 +282,7 @@ class Medecins extends Controller
       $data = [
         //'patients' => $this->medecinModel->patients(),
         'medecin' => $this->activeUser,
+        'page' => 'Rendez-vous en Attente'
       ];
       $this->view('medecins/rdvAttenteMed', $data);
     }
@@ -268,7 +296,8 @@ class Medecins extends Controller
       $data = [
         //'patients' => $this->medecinModel->patients(),
         'medecin' => $this->activeUser,
-        'msg' => 'success-message'
+        'msg' => 'success-message',
+        'page' => 'Rendez-vous en Attente'
       ];
       $this->view('medecins/rdvAttenteMed', $data);
     }
@@ -282,7 +311,8 @@ class Medecins extends Controller
       $data = [
         //'patients' => $this->medecinModel->patients(),
         'medecin' => $this->activeUser,
-        'msg' => 'success-message'
+        'msg' => 'success-message',
+        'page' => 'Rendez-vous en Attente'
       ];
       $this->view('medecins/rdvAvenirMed', $data);
     }
@@ -296,7 +326,8 @@ class Medecins extends Controller
       $data = [
         //'patients' => $this->medecinModel->patients(),
         'medecin' => $this->activeUser,
-        'msg' => 'delete-message'
+        'msg' => 'delete-message',
+        'page' => 'Rendez-vous en Attente'
       ];
       $this->view('medecins/rdvAttenteMed', $data);
     }
@@ -310,22 +341,25 @@ class Medecins extends Controller
       $data = [
         //'patients' => $this->medecinModel->patients(),
         'medecin' => $this->activeUser,
+        'page' => 'Rendez-vous a Venir'
       ];
       $this->view('medecins/rdvAvenirMed', $data);
     }
   }
 
   /** mise a jour hebdomadaire du planning des medecins */
-  public function planning()
+  public function medPlanning()
   {
     if ($_SESSION['userType'] != 'medecin') {
       notAuthorized();
     } else {
       $data = [
+        'medecin' => $this->activeUser,
         'planning' => $this->medecinModel->planning(),
-        'jours' => $this->medecinModel->listeJour()
+        'jours' => $this->medecinModel->listeJour(),
+        'page' => 'Mon Planning'
       ];
-      $this->view('medecins/programme', $data);
+      $this->view('medecins/planningMed', $data);
     }
   }
   /** formulaire permettant d'emerger son planning */
@@ -336,7 +370,7 @@ class Medecins extends Controller
     } else {
       $data = [
         'planning' => $this->medecinModel->planning(),
-        'jours' => $this->medecinModel->listeJour()
+        'jours' => $this->medecinModel->listeJour(),
       ];
       $this->view('medecins/planning', $data);
     }
@@ -389,7 +423,8 @@ class Medecins extends Controller
       $id = $_GET['id'];
 
       $data = [
-        'patient' => $this->medecinModel->profilePatient($id)
+        'patient' => $this->medecinModel->profilePatient($id),
+        'page' => 'Profile du Patient'
       ];
       $this->view('medecins/profilePatient', $data);
     }
@@ -418,7 +453,7 @@ class Medecins extends Controller
         'adresse_err' => '',
         'service_err' => '',
         'tel_err' => '',
-        'email_err' => ''
+        'email_err' => '',
       ];
 
       if (empty($data['nom'])) {
