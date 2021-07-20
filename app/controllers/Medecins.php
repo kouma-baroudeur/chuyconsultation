@@ -17,6 +17,7 @@ class Medecins extends Controller
       $this->activeUser = $this->medecinModel->getMedecinById($user);
   }
 
+  //Dashboard
   public function _2y_10_rBg9JAf8xXLLAL506TuAoOXjaPWXAf7e5XZ9sf1cscgbeSW6gCg2C($page = "home")
   {
     if ($_SESSION['userType'] != 'medecin') {
@@ -33,6 +34,8 @@ class Medecins extends Controller
         $this->view('medecins/home', $data);
     }
   }
+
+  //Ajouter un medecin
   public function createProfile()
   {
     if (isLoggedIn() && $_SESSION['userState'] == 'incomplet') {
@@ -108,7 +111,8 @@ class Medecins extends Controller
       $this->view('medecins/initialForm', $data);
     }
   }
-  // fonction parametrage profile.
+
+  //Affiche page parametre profile.
   public function _2y_10_Cb7AAwLgh7Mmx5IH_MW6huC7BFuFsidzcjeA1UDrRep8VzYj0Er6W()
   {
     if ($_SESSION['userType'] != 'medecin') {
@@ -121,7 +125,7 @@ class Medecins extends Controller
     }
   }
 
-  //Affiche profil du medecin
+  //Affiche le du medecin
   public function profil()
   {
     if ($_SESSION['userType'] != 'medecin') {
@@ -134,7 +138,7 @@ class Medecins extends Controller
     }
   }
 
-  //Affiche page d'ajout patient
+  //Affiche page ajout patient
   public function addPatient()
   {
     if ($_SESSION['userType'] != 'medecin') {
@@ -147,7 +151,7 @@ class Medecins extends Controller
     }
   }
 
-  //Affiche page list des consultaion du medecin
+  //Affiche page liste des consultations du medecin
   public function consultations()
   {
     if ($_SESSION['userType'] != 'medecin') {
@@ -160,7 +164,7 @@ class Medecins extends Controller
     }
   }
 
-  //Affiche page ajout consultation sans parametre
+  //Affiche page ajout consultation
   public function addConsultationNew()
   {
     if ($_SESSION['userType'] != 'medecin') {
@@ -189,7 +193,7 @@ class Medecins extends Controller
     }
   }
 
-  /**traitement d'ajout de consultation */
+  //Traitement ajout consultation
   public function ajouterConsultation()
   {
     if ($_SESSION['userType'] != 'medecin') {
@@ -244,7 +248,7 @@ class Medecins extends Controller
     }
   }
 
-
+  //non-utiliser
   public function rdvs($filter = "only", $etat = "")
   {
     if ($_SESSION['userType'] != 'medecin') {
@@ -273,7 +277,7 @@ class Medecins extends Controller
     }
   }
 
-  //Affiche page profil du patient
+  //Affiche page profile du patient
   public function patientProfil($id)
   {
     if ($_SESSION['userType'] != 'medecin') {
@@ -290,8 +294,8 @@ class Medecins extends Controller
     }
   }
 
-  //Affiche page edition premiere observation du patient
-  public function premiereObservation($patient)
+  //Affiche page edition premiere consultation du patient
+  public function premiereObservation($idPatient)
   {
     if ($_SESSION['userType'] != 'medecin') {
       notAuthorized();
@@ -336,8 +340,9 @@ class Medecins extends Controller
       $this->view('medecins/rdvAttenteMed', $data);
     }
   }
-  //change le statut d'un rdv à annuler
-  public function annulerRdv()
+
+  //Traitement valider un rendez vous (statut = confirmer ou valider) puis redirection vers page rdv attente
+  public function validerRdv()
   {
     if ($_SESSION['userType'] != 'medecin') {
       notAuthorized();
@@ -351,8 +356,9 @@ class Medecins extends Controller
       $this->view('medecins/rdvAvenirMed', $data);
     }
   }
-  //change le statut d'un rdv à confirmer
-  public function confirmerRdv()
+
+  //Traitement annuler un rendez vous (statut = annuler) puis redirection vers page rdv attente
+  public function annulerRdv()
   {
     if ($_SESSION['userType'] != 'medecin') {
       notAuthorized();
@@ -366,7 +372,8 @@ class Medecins extends Controller
       $this->view('medecins/rdvAvenirMed', $data);
     }
   }
-  //change le statut d'un rdv à refuser
+
+  //Traitement supprimmer un rendez vous (statut = refuser) puis redirection vers page rdv attente
   public function supprimmerRdv()
   {
     if ($_SESSION['userType'] != 'medecin') {
@@ -380,7 +387,8 @@ class Medecins extends Controller
       $this->view('medecins/rdvAttenteMed', $data);
     }
   }
-  //change le statut d'un rdv à confirmer
+
+  //Affiche page rendez vous a venir
   public function rdvAvenir()
   {
     if ($_SESSION['userType'] != 'medecin') {
@@ -396,9 +404,8 @@ class Medecins extends Controller
     }
   }
 
-  //non utiliser
-  /** mise a jour hebdomadaire du planning des medecins */
-  public function planning()
+  //Affiche page planning du medecin
+  public function medPlanning()
   {
     if ($_SESSION['userType'] != 'medecin') {
       notAuthorized();
@@ -411,21 +418,22 @@ class Medecins extends Controller
     }
   }
 
-  //non ajour
-  /** formulaire permettant d'emerger son planning */
-  public function addPlanning()
+  //Affiche page Mise a jour du planning
+  public function emergerPlanning()
   {
     if ($_SESSION['userType'] != 'medecin') {
       notAuthorized();
     } else {
       $data = [
         'planning' => $this->medecinModel->planning(),
-        'jours' => $this->medecinModel->listeJour()
+        'jours' => $this->medecinModel->listeJour(),
+        'page' => 'Mise a Jour du Planning'
       ];
-      $this->view('medecins/planning', $data);
+      $this->view('medecins/MAJ-planningMed', $data);
     }
   }
-  /** control for planning fullfiling input */
+
+  /** method non utiliser */
   public function planningControl()
   {
     if ($_SESSION['userType'] != 'medecin') {
@@ -454,7 +462,6 @@ class Medecins extends Controller
     }
   }
 
-
   /**fonction redirigeant vers le module de la messagerie instantanée  */
   public function chatapp()
   {
@@ -467,7 +474,8 @@ class Medecins extends Controller
       redirect('chuychat/Login');
     }
   }
-  
+
+  //Affiche page profil du patient
   public function profilePatient()
   {
     if ($_SESSION['userType'] != 'medecin') {
@@ -481,7 +489,8 @@ class Medecins extends Controller
       $this->view('medecins/profilePatient', $data);
     }
   }
-  // fonction editer profile medecin.
+
+  //Traitement editer information profile medecin.
   public function editProfile()
   {
     if ($_SESSION['userType'] != 'medecin') {
@@ -544,7 +553,7 @@ class Medecins extends Controller
     }
   }
 
-  //changer le mot de passe
+  //changer le mot de passe et email
   public function editInfo()
   {
     if ($_SESSION['userType'] != 'medecin') {

@@ -208,6 +208,24 @@
               </a>
             </li>
             <li class="nav-item ">
+              <a class="nav-link " href="<?= URLROOT ?>/medecins/emergerPlanning">
+                <span class="sidenav-mini-icon"> MAJ </span>
+                <span class="sidenav-normal"> Mettre A Jour <b class="caret"></b></span>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <span class="nav-link-text ms-1">Plannings</span>
+        </a>
+        <div class="collapse " id="authExamples">
+          <ul class="nav ms-4 ps-3">
+            <li class="nav-item ">
+              <a class="nav-link " href="<?= URLROOT ?>/medecins/medPlanning">
+                <span class="sidenav-mini-icon"> M </span>
+                <span class="sidenav-normal"> Mon Planning <b class="caret"></b></span>
+              </a>
+            </li>
+            <li class="nav-item ">
               <a class="nav-link " href="<?= URLROOT ?>/medecins/newPlanning">
                 <span class="sidenav-mini-icon"> MAJ </span>
                 <span class="sidenav-normal"> Mettre A Jour <b class="caret"></b></span>
