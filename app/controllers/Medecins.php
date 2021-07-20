@@ -303,7 +303,7 @@ class Medecins extends Controller
       $data = [
         //'patients' => $this->medecinModel->patients(),
         'medecin' => $this->activeUser,
-        'patient' => $patient,
+        'patient' => $idPatient,
       ];
       $this->view('medecins/premiere-observation', $data);
     }
@@ -323,24 +323,6 @@ class Medecins extends Controller
       $this->view('medecins/rdvAttenteMed', $data);
     }
   }
-
-  //Operation de validation du rendez vous
-  public function validerRdv()
-  {
-    if ($_SESSION['userType'] != 'medecin') {
-      notAuthorized();
-    } else {
-      $etat = "confirmer";
-
-      $data = [
-        //'patients' => $this->medecinModel->rvdValide($etat),
-        //'medecin' => $this->activeUser,
-        'msg' => 'success-message'
-      ];
-      $this->view('medecins/rdvAttenteMed', $data);
-    }
-  }
-
   //Traitement valider un rendez vous (statut = confirmer ou valider) puis redirection vers page rdv attente
   public function validerRdv()
   {
