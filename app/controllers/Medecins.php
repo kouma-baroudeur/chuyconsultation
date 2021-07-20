@@ -363,7 +363,7 @@ class Medecins extends Controller
     }
   }
   /** formulaire permettant d'emerger son planning */
-  public function addPlanning()
+  public function emergerPlanning()
   {
     if ($_SESSION['userType'] != 'medecin') {
       notAuthorized();
@@ -371,8 +371,9 @@ class Medecins extends Controller
       $data = [
         'planning' => $this->medecinModel->planning(),
         'jours' => $this->medecinModel->listeJour(),
+        'page' => 'Mise a Jour du Planning'
       ];
-      $this->view('medecins/planning', $data);
+      $this->view('medecins/MAJ-planningMed', $data);
     }
   }
   /** control for planning fullfiling input */
