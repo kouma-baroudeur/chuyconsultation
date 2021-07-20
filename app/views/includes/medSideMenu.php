@@ -97,7 +97,7 @@
         <div class="collapse" id="applicationsExamples">
           <ul class="nav ms-4 ps-3">
             <li class="nav-item ">
-              <a class="nav-link " href="<?= URLROOT ?>/medecins/consult">
+              <a class="nav-link " href="<?= URLROOT ?>/medecins/consultations">
                 <span class="sidenav-mini-icon"> M </span>
                 <span class="sidenav-normal"> Mes Consultations </span>
               </a>
@@ -132,6 +132,30 @@
             </svg>
           </div>
           <span class="nav-link-text ms-1">Rendez-vous</span>
+        </a>
+        <div class="collapse " id="ecommerceExamples">
+          <ul class="nav ms-4 ps-3">
+            <li class="nav-item ">
+              <a class="nav-link " href="<?= URLROOT ?>/medecins/rdvAvenir">
+                <span class="sidenav-mini-icon"> A </span>
+                <span class="sidenav-normal"> A Venir </span>
+              </a>
+            </li>
+            <li class="nav-item ">
+              <a class="nav-link " href="<?= URLROOT ?>/medecins/rdvAttente">
+                <span class="sidenav-mini-icon"> E </span>
+                <span class="sidenav-normal"> En Attente <b class="caret"></b></span>
+              </a>
+            </li>
+            <li class="nav-item ">
+              <a class="nav-link " href="<?= URLROOT ?>/medecins/addRdv">
+                <span class="sidenav-mini-icon"> N </span>
+                <span class="sidenav-normal"> Nouveau Rendez-vous <b class="caret"></b></span>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <span class="nav-link-text ms-1">Rendez-vous</span>
         </a>
         <div class="collapse " id="ecommerceExamples">
           <ul class="nav ms-4 ps-3">

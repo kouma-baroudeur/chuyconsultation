@@ -108,7 +108,7 @@ class Medecins extends Controller
       $this->view('medecins/initialForm', $data);
     }
   }
-  // fonction recharge profile.
+  // fonction parametrage profile.
   public function _2y_10_Cb7AAwLgh7Mmx5IH_MW6huC7BFuFsidzcjeA1UDrRep8VzYj0Er6W()
   {
     if ($_SESSION['userType'] != 'medecin') {
@@ -121,6 +121,7 @@ class Medecins extends Controller
     }
   }
 
+  //Affiche profil du medecin
   public function profil()
   {
     if ($_SESSION['userType'] != 'medecin') {
@@ -133,6 +134,7 @@ class Medecins extends Controller
     }
   }
 
+  //Affiche page d'ajout patient
   public function addPatient()
   {
     if ($_SESSION['userType'] != 'medecin') {
@@ -145,18 +147,20 @@ class Medecins extends Controller
     }
   }
 
-  public function consult()
+  //Affiche page list des consultaion du medecin
+  public function consultations()
   {
     if ($_SESSION['userType'] != 'medecin') {
       notAuthorized();
     } else {
       $data = [
-        'consultations' =>$this->medecinModel->consultMedecin()
+        'consultations' => $this->medecinModel->consultMedecin()
       ];
       $this->view('medecins/all-consultations', $data);
     }
   }
 
+  //Affiche page ajout consultation sans parametre
   public function addConsultationNew()
   {
     if ($_SESSION['userType'] != 'medecin') {
@@ -169,7 +173,8 @@ class Medecins extends Controller
       $this->view('medecins/add-consultation', $data);
     }
   }
-  /** redirige vers la page*/
+
+  //Affiche page ajout consultation avec parametre
   public function addConsultation($idPatient)
   {
     if ($_SESSION['userType'] != 'medecin') {
@@ -183,6 +188,7 @@ class Medecins extends Controller
       $this->view('medecins/add-consultation', $data);
     }
   }
+
   /**traitement d'ajout de consultation */
   public function ajouterConsultation()
   {
@@ -190,10 +196,10 @@ class Medecins extends Controller
       notAuthorized();
     } else {
       $id = $_GET['id'];
-      $data =[
+      $data = [
         'patient' => trim($_POST['patient']),
         'medecin' => trim($_POST['medecin']),
-        'symptomes' =>implode(",", $_POST['symptomes']),
+        'symptomes' => implode(",", $_POST['symptomes']),
         'contenu' => trim($_POST['contenu']),
         'file' => "filezkopkdop",
         'date_consultation' => date('y/m/d'),
@@ -225,7 +231,7 @@ class Medecins extends Controller
       var_dump($data);
       if (empty($data['patient_err']) && empty($data['medecin_err']) && empty($data['symptomes_err']) && empty($data['contenu_err']) && empty($data['file_err']) && empty($data['date_consultation_err'])) {
         // adding information into de table patient
-       
+
         if ($this->medecinModel->add_consultation($data)) {
           flash('modifier_success', 'Vos informations ont été mis à jours');
           redirect('medecins/home');
@@ -235,12 +241,9 @@ class Medecins extends Controller
       } else {
         $this->view('medecins/home', $data);
       }
-     
-    
+    }
   }
-}
 
- 
 
   public function rdvs($filter = "only", $etat = "")
   {
@@ -256,6 +259,7 @@ class Medecins extends Controller
     }
   }
 
+  //Affiche page liste des patients
   public function patients()
   {
     if ($_SESSION['userType'] != 'medecin') {
@@ -269,6 +273,7 @@ class Medecins extends Controller
     }
   }
 
+  //Affiche page profil du patient
   public function patientProfil($id)
   {
     if ($_SESSION['userType'] != 'medecin') {
@@ -285,6 +290,7 @@ class Medecins extends Controller
     }
   }
 
+  //Affiche page edition premiere observation du patient
   public function premiereObservation($patient)
   {
     if ($_SESSION['userType'] != 'medecin') {
@@ -298,7 +304,8 @@ class Medecins extends Controller
       $this->view('medecins/premiere-observation', $data);
     }
   }
-//affiche le rdv en attente
+
+  //affiche page liste rdv en attente du medecin
   public function rdvAttente()
   {
     if ($_SESSION['userType'] != 'medecin') {
@@ -306,13 +313,14 @@ class Medecins extends Controller
     } else {
       $etat = "attente";
       $data = [
-        'rdv' => $this->medecinModel->rvdAttente($etat)
-       
+        'rdvs' => $this->medecinModel->rvdAttente($etat)
+
       ];
       $this->view('medecins/rdvAttenteMed', $data);
     }
   }
-//affiche les rendez-vous valident ou confirmés
+
+  //Operation de validation du rendez vous
   public function validerRdv()
   {
     if ($_SESSION['userType'] != 'medecin') {
@@ -321,20 +329,20 @@ class Medecins extends Controller
       $etat = "confirmer";
 
       $data = [
-        'patients' => $this->medecinModel->rvdValide($etat),
+        //'patients' => $this->medecinModel->rvdValide($etat),
         //'medecin' => $this->activeUser,
         'msg' => 'success-message'
       ];
       $this->view('medecins/rdvAttenteMed', $data);
     }
   }
-//change le statut d'un rdv à annuler
+  //change le statut d'un rdv à annuler
   public function annulerRdv()
   {
     if ($_SESSION['userType'] != 'medecin') {
       notAuthorized();
     } else {
-      $id=$_POST["id"];
+      $id = $_POST["id"];
       $data = [
         'rvd' => $this->medecinModel->rvdAnnuler($id),
         //'medecin' => $this->activeUser,
@@ -344,21 +352,21 @@ class Medecins extends Controller
     }
   }
   //change le statut d'un rdv à confirmer
-  // public function confirmerRdv()
-  // {
-  //   if ($_SESSION['userType'] != 'medecin') {
-  //     notAuthorized();
-  //   } else {
-  //     $id = $_POST["id"];
-  //     $data = [
-  //       'rvd' => $this->medecinModel->rvdConfirmer($id),
-  //       //'medecin' => $this->activeUser,
-  //       'msg' => 'success-message'
-  //     ];
-  //     $this->view('medecins/rdvAvenirMed', $data);
-  //   }
-  // }
-//change le statut d'un rdv à refuser
+  public function confirmerRdv()
+  {
+    if ($_SESSION['userType'] != 'medecin') {
+      notAuthorized();
+    } else {
+      $id = $_POST["id"];
+      $data = [
+        'rvd' => $this->medecinModel->rvdConfirmer($id),
+        //'medecin' => $this->activeUser,
+        'msg' => 'success-message'
+      ];
+      $this->view('medecins/rdvAvenirMed', $data);
+    }
+  }
+  //change le statut d'un rdv à refuser
   public function supprimmerRdv()
   {
     if ($_SESSION['userType'] != 'medecin') {
@@ -372,7 +380,7 @@ class Medecins extends Controller
       $this->view('medecins/rdvAttenteMed', $data);
     }
   }
- //change le statut d'un rdv à confirmer
+  //change le statut d'un rdv à confirmer
   public function rdvAvenir()
   {
     if ($_SESSION['userType'] != 'medecin') {
@@ -388,6 +396,7 @@ class Medecins extends Controller
     }
   }
 
+  //non utiliser
   /** mise a jour hebdomadaire du planning des medecins */
   public function planning()
   {
@@ -401,6 +410,8 @@ class Medecins extends Controller
       $this->view('medecins/programme', $data);
     }
   }
+
+  //non ajour
   /** formulaire permettant d'emerger son planning */
   public function addPlanning()
   {
@@ -442,6 +453,8 @@ class Medecins extends Controller
       }
     }
   }
+
+
   /**fonction redirigeant vers le module de la messagerie instantanée  */
   public function chatapp()
   {
@@ -454,6 +467,7 @@ class Medecins extends Controller
       redirect('chuychat/Login');
     }
   }
+  
   public function profilePatient()
   {
     if ($_SESSION['userType'] != 'medecin') {
@@ -565,7 +579,7 @@ class Medecins extends Controller
       if (empty($data['password'])) {
         $data['password_err'] = 'Veuillez renseigner ce champ.';
       }
-      if (empty($data['newPwd']) and strlen($data['password'])<6) {
+      if (empty($data['newPwd']) and strlen($data['password']) < 6) {
         $data['newPwd_err'] = 'Veuillez renseigner ce champ.';
       }
       if (empty($data['confirmPassword'])) {
@@ -578,50 +592,44 @@ class Medecins extends Controller
             $data['email_err'] = 'Email existant.';
           }
         }
-      }else{
+      } else {
         $data['email_err'] = 'Veuillez renseigner ce champ.';
         $data['confirmEmail_err'] = 'Email différent.';
-
       }
       // $password = password_hash($data['password'], PASSWORD_DEFAULT);
-        $userPassword = $this->medecinModel->users();
+      $userPassword = $this->medecinModel->users();
       // // $pwd = $pass[]->password;
       // //var_dump($pass);
       // echo $data['password'] ."<br>";
       // echo $userPassword . "<br>";
       // echo password_verify($data['password'], $userPassword);
-    
+
       //echo $data['password'];
-      if(password_verify($data['password'], $userPassword))
-      {
-        if($data['newPwd']== $data['confirmPassword']){
+      if (password_verify($data['password'], $userPassword)) {
+        if ($data['newPwd'] == $data['confirmPassword']) {
           $data['newPwd'] = password_hash($data['newPwd'], PASSWORD_DEFAULT);
-
-        }else{
+        } else {
           $data['confirmPassword_err'] = ' Ce mot de passe ne correspond pas.';
-
         }
-      }else{
+      } else {
         $data['password_err'] = 'Ancien mot passe incorrect.';
-
       }
-      
+
       if (empty($data['email_err']) && empty($data['confirmEmail_err']) && empty($data['password_err']) && empty($data['newPwd_err']) && empty($data['confirmPassword_err'])) {
         // adding information into de table patient
         if ($this->medecinModel->editInfo($data)) {
           flash('modifier_success', 'Vos informations ont été mis à jours');
           endUserSession();
-        }else{
+        } else {
 
           die('Quelque chose qui ne va pas bien!');
         }
       } else {
         $this->view('medecins/home', $data);
-
       }
-      
+    }
   }
+  public function detailConsultation()
+  {
   }
-    public function detailConsultation(){
 }
-  }

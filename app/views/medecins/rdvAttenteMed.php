@@ -20,8 +20,8 @@
                         <div class="card overflow-hidden">
                             <div class="card-body p-3">
                                 <div class="d-flex align-items-center">
-                                    <div class="icon icon-shape bg-info-soft shadow text-center border-radius-md shadow-none">
-                                        <i class="ni ni-bell-55 text-lg text-info text-gradient opacity-10" aria-hidden="true"></i>
+                                    <div class="icon icon-shape bg-success-soft shadow text-center border-radius-md shadow-none">
+                                        <i class="ni ni-bell-55 text-lg text-success text-gradient opacity-10" aria-hidden="true"></i>
                                     </div>
                                     <div class="ms-3">
                                         <p class="text-sm text-capitalize mb-0 font-weight-bold">Nom du Patient</p>
@@ -31,7 +31,7 @@
                                     </div>
                                     <div class="progress-wrapper ms-auto w-auto">
                                         <div class="d-flex">
-                                            <form class="form-check form-switch ms-auto" id="1" action="validerRdv" method="post">
+                                            <form class="form-check form-switch ms-auto text-end" id="1" action="validerRdv" method="post">
                                                 <input name="idConsultation" value="<?= $rdv->numeroRdv ?>" type="text" hidden>
                                                 <button type="button" class=" btn btn-default btn-xs bg-white text-xs text-info font-weight-bold border-radius-md shadow-none" for="statut" onclick="javascript: showAlert('action',1);">action</button>
                                                 <!--<button class="text-xs text-info btn btn-default btn-xs bg-white" for="statut" onclick="javascript: showAlert('warning-message-and-confirmation',1);">action</button>-->
