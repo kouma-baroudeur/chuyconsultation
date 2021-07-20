@@ -134,7 +134,7 @@ class Medecin
         return $answer;
     }
 
-  //fonction editer un profile medecin
+    //fonction editer un profile medecin
     public function editProfile($data)
     {
         $user = [
@@ -162,15 +162,15 @@ class Medecin
         ];
         return $data;
     }
-    
+
     public function users()
     {
-       $this->db->query('SELECT * FROM users WHERE id = :id');
+        $this->db->query('SELECT * FROM users WHERE id = :id');
         $this->db->bind(':id', $_SESSION['userId']);
         $this->db->execute();
         $row = $this->db->single();
         $hashedPass = $row->password;
-        return $hashedPass;// return $answer;
+        return $hashedPass; // return $answer;
 
     }
     public function editInfo($data)
@@ -232,24 +232,25 @@ class Medecin
         $this->db->bind(':codeMedecin', $codeMedecin);
         $rows = $this->db->resultSet();
         return $rows;
-    } 
+    }
     public function add_consultation($data)
     {
-    
-    $sql = ADDCONSULT ;
-    $this->db->query($sql);
-    $this->db->bind(':contenu', $data['contenu']);
-    $this->db->bind(':symptomes', $data['symptomes']);
-    $this->db->bind(':fichier', $data['fichier']);
-    $this->db->bind(':dateConsultation', $data['date_consultation']);
-    $this->db->bind(':date_edition', $data['date_edition']);
-    $this->db->bind(':codeMedecin', $data['medecin']);
-    $this->db->bind(':IP', $data['patient']);
-    return $this->db->execute();
-} 
 
-//rendez-vous en attente
-public function rvdAttente($etat){
+        $sql = ADDCONSULT;
+        $this->db->query($sql);
+        $this->db->bind(':contenu', $data['contenu']);
+        $this->db->bind(':symptomes', $data['symptomes']);
+        $this->db->bind(':fichier', $data['fichier']);
+        $this->db->bind(':dateConsultation', $data['date_consultation']);
+        $this->db->bind(':date_edition', $data['date_edition']);
+        $this->db->bind(':codeMedecin', $data['medecin']);
+        $this->db->bind(':IP', $data['patient']);
+        return $this->db->execute();
+    }
+
+    //renvoie rendez-vous en attente du medecin
+    public function rvdAttente()
+    {
         $user = [
             'id'    =>  $_SESSION['userId'],
             'type'  =>  $_SESSION['userType'],
@@ -268,10 +269,9 @@ public function rvdAttente($etat){
         $this->db->bind(':codeMedecin', $codeMedecin);
         $rows = $this->db->resultSet();
         return $rows;
-
-}
-    //rendez-vous en valide
-    public function rvdValide($etat)
+    }
+    //renvoie rendez-vous en valide du medecin
+    public function rvdValide()
     {
         $user = [
             'id'    =>  $_SESSION['userId'],
@@ -293,7 +293,7 @@ public function rvdAttente($etat){
         return $rows;
     }
 
-    public function rvdAnnuler($id)
+    public function annulerRdv($id)
     {
         $conf = 'Annulé';
         $sql = "UPDATE rendezvous SET etatRdv=:statut WHERE numeroRdv =:id";
@@ -301,9 +301,8 @@ public function rvdAttente($etat){
         $this->db->bind(':statut', $conf);
         $this->db->bind(':id', $id);
         return $this->db->execute();
-    
     }
-    public function rvdConfirmer($id)
+    public function confirmerRdv($id)
     {
         $conf = 'Confirmé';
         $sql = "UPDATE rendezvous SET etatRdv=:statut WHERE numeroRdv=:id";
@@ -312,7 +311,7 @@ public function rvdAttente($etat){
         $this->db->bind(':id', $id);
         return $this->db->execute();
     }
-    public function rvdSupprimer($id)
+    public function supprimerRdv($id)
     {
         $conf = 'refuser';
         $sql = "UPDATE rendezvous SET etatRdv=:statut WHERE numeroRdv=:id";
@@ -321,5 +320,4 @@ public function rvdAttente($etat){
         $this->db->bind(':id', $id);
         return $this->db->execute();
     }
-
 }
