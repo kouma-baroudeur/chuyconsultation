@@ -234,6 +234,19 @@ class Medecins extends Controller
     }
   }
 
+  public function rdvAttente()
+  {
+    if ($_SESSION['userType'] != 'medecin') {
+      notAuthorized();
+    } else {
+      $data = [
+        //'patients' => $this->medecinModel->patients(),
+        'medecin' => $this->activeUser,
+      ];
+      $this->view('medecins/rdvAttenteMed', $data);
+    }
+  }
+
   /** mise a jour hebdomadaire du planning des medecins */
   public function planning()
   {
