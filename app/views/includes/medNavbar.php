@@ -5,7 +5,7 @@
             <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
                 <li class="breadcrumb-item text-sm text-info active" aria-current="page"><a href="javascript:history.go(-1)" class="text-info">Retour</a></li>
             </ol>
-            <h6 class="font-weight-bolder mb-0">Ajouter un Patient</h6>
+            <h6 class="font-weight-bolder mb-0"><?= $data["page"] ?></h6>
         </nav>
         <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
             <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -25,7 +25,7 @@
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
                         <li class="mb-2">
-                            <a class="dropdown-item border-radius-md" href="profil">
+                            <a class="dropdown-item border-radius-md" href="<?= URLROOT ?>/medecins/profil">
                                 <div class="d-flex py-1">
                                     <div class="my-auto">
                                         <img src="<?= URLROOT ?>/assets/img/team-2.jpg" class="avatar avatar-sm  me-3 " alt="user image">
@@ -54,7 +54,7 @@
                                 <div class="d-flex py-1">
                                     <div class="d-flex flex-column justify-content-center">
                                         <h6 class="text-sm font-weight-normal mb-1">
-                                        <span class="font-weight-bold">Notifications</span>
+                                        <span class="font-weight-bold">Notifications</span><span class="ms-4 badge bg-info-soft shadow text-dark text-xs h-4 text-center border-radius-xl shadow-none">15</span>
                                         </h6>
                                     </div>
                                 </div>

@@ -52,7 +52,7 @@ Pour la réalisation de ce projet,[Dr. MOUAFO Laetitia](https://github.com/Laeti
 
 ## Equipe de développement
 
-L'équipe de développement est constituée de [M. KOUMADOUL Baroud](https://github.com/kouma-baroudeur), [Mlle. MOYOPO FOTSO Michelle Rosane](https://github.com/michelle-moyopo) dite la Débogueuse 😆 et de [M. NJIH KEMI Steve Christian ](https://github.com/KingVelly) le Designer.
+L'équipe de développement est constituée de [M. KOUMADOUL Baroud](https://github.com/kouma-baroudeur), [Mlle. MOYOPO FOTSO Michelle Rosane](https://github.com/michelle-moyopo) et de [M. NJIH KEMI Steve Christian ](https://github.com/KingVelly) le Designer.
 C'est avec cette équipe dynamique que ce projet à finalement vu jour.
 Elle est constituée uniquement des étudiant de l'[Université de Yaoundé 1/ICT4D/L3]().
 

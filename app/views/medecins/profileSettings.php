@@ -177,20 +177,6 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-6">
-                                        <label class="form-label mt-4">Email</label>
-                                        <div class="input-group">
-                                            <input id="email" name="email" maxlength="55" value="<?= $_SESSION['userMail'] ?>" class="form-control" type="email" placeholder="example@email.com">
-                                        </div>
-                                    </div>
-                                    <div class="col-6">
-                                        <label class="form-label mt-4">Confirmation Email</label>
-                                        <div class="input-group">
-                                            <input id="confirmation" value="<?= $_SESSION['userMail'] ?>" name="confirmation" class="form-control" type="email" placeholder="example@email.com">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
                                     <div class="col-12 col-sm-6">
                                         <label class="form-label mt-4">Votre Adresse</label>
                                         <div class="input-group">
@@ -215,7 +201,21 @@
                                 <h5>Changer le Mot de Passe</h5>
                             </div>
                             <div class="card-body pt-0">
-                                <label class="form-label">Mot de passe actuel</label>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <label class="form-label mt-4">Email</label>
+                                        <div class="input-group">
+                                            <input id="email" name="email" maxlength="55" value="<?= $_SESSION['userMail'] ?>" class="form-control" type="email" placeholder="example@email.com">
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <label class="form-label mt-4">Confirmation Email</label>
+                                        <div class="input-group">
+                                            <input id="confirmation" value="<?= $_SESSION['userMail'] ?>" name="confirmation" class="form-control" type="email" placeholder="example@email.com">
+                                        </div>
+                                    </div>
+                                </div>
+                                <label class="form-label mt-4">Mot de passe actuel</label>
                                 <div class="form-group">
                                     <input class="form-control" name="password" type="password" placeholder="Current password" required>
                                 </div>
@@ -263,7 +263,7 @@
     <script>
         function presentToast() {
             $('.counter').counterUp({
-                delay : 10,
+                delay: 10,
                 time: 100
             });
 
@@ -291,10 +291,10 @@
             var email1 = document.getElementById("email").value;
             var email2 = document.getElementById("confirmation").value;
             var result = email1.localeCompare(email2);
-            presentToast("warning","Emails incorrect!");
+            presentToast("warning", "Emails incorrect!");
             if (result != 0) {
                 document.getElementById("confirmation").value = "";
-                presentToast("warning","Emails incorrect!");
+                presentToast("warning", "Emails incorrect!");
                 return false;
             }
 

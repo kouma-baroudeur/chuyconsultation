@@ -19,31 +19,34 @@
                     <div class="col-sm-6 col-lg-4 mt-lg-4 mt-4">
                         <div class="card overflow-hidden">
                             <div class="card-body p-3">
-                                <div class="d-flex align-items-center">
-                                    <div class="col-3 icon icon-shape bg-success-soft shadow text-center border-radius-md shadow-none">
-                                        <i class="ni ni-bell-55 text-lg text-success text-gradient opacity-10" aria-hidden="true"></i>
+                                <a class="d-flex align-items-center">
+                                    <div class="col-3 icon icon-shape bg-gradient-info shadow text-center border-radius-md">
+                                        <i class="ni ni-calendar-grid-58 text-lg opacity-10" aria-hidden="true"></i>
                                     </div>
-                                    <div class="col-8 ms-3">
-                                        <p class="text-sm text-capitalize mb-0 font-weight-bold"><?= $rdv->nomPatient . " " . $rdv->prenomPatient ?></p>
+                                    <div class="col-5 ms-3">
+                                    <p class="text-sm text-capitalize mb-0 font-weight-bold"><?= $rdv->nomPatient." ".$rdv->prenomPatient ?></p>
                                         <h5 class="font-weight-bolder text-sm mb-0">
-                                            <?= $rdv->dateRdv ?> à <?= $rdv->heureRdv ?>
+                                        <?= $rdv->dateRdv ?> à <?= $rdv->heureRdv ?>
                                         </h5>
                                     </div>
-                                    <div class="col-1 d-flex">
-                                        <a class="btn btn-link btn-icon-only btn-rounded btn-md text-dark icon-move-right my-auto" onclick="javascript: showAlert('action',<?= $rdv->numeroRdv ?>);"><i class="ni ni-bold-right" aria-hidden="true"></i></a>
+                                    <div class="col-4 progress-wrapper">
+                                        <div class="d-flex">
+                                        <form class="form-check form-switch ms-auto" id="<?= $rdv->numeroRdv ?>" action="annulerRdv" method="post">
+                                                <input name="id" value="<?= $rdv->numeroRdv ?>" type="text" hidden>
+                                                <button type="button" class="btn btn-default btn-xs bg-white text-xs text-info font-weight-bold border-radius-md shadow-none" for="statut" onclick="javascript: showAlert('action',<?= $rdv->numeroRdv ?>);">annuler</button>
+                                                <!--<button class="text-xs text-info btn btn-default btn-xs bg-white" for="statut" onclick="javascript: showAlert('warning-message-and-confirmation',1);">action</button>-->
+                                            </form>
+                                        </div>
                                     </div>
-                                    <form hidden id="<?= $rdv->numeroRdv ?>" action="validerRdv" method="post">
-                                        <input name="id" value="<?= $rdv->numeroRdv ?>" type="text" hidden>
-                                    </form>
-                                    <form hidden name="<?= $rdv->numeroRdv ?>" action="supprimmerRdv" method="post">
-                                        <input name="id" value="<?= $rdv->numeroRdv ?>" type="text" hidden>
-                                    </form>
-                                </div>
+                                </a>
                             </div>
                         </div>
                     </div>
-                <?php endforeach; ?>
-                <?= empty($data['rdvs']) ? "<div class='col-6 mx-auto mt-12 mb-8 text-lg font-weight-bold'>Vous n'avez aucune nouvelle demande rendez-vous</div> " : "" ?>
+                    <?php endforeach ?>
+                    <?= empty($data['rdvs']) ? "<div class='col-6 mx-auto mt-12 mb-8 text-lg font-weight-bold'>Vous n'avez aucun rendez-vous de prévu </div> " : "" ?>
+                <hr class="horizontal dark mt-4" />
+                <h6>Aujourd'hui</h6>
+                <hr class="horizontal dark my-1" />
             </div>
             <?php require APPROOT . '/views/includes/copyright-ui.php'; ?>
         </div>
@@ -67,9 +70,9 @@
 
         function showMessage(e) {
             if ("success-message" == e)
-                Swal.fire("Confirmation!", "Le rendez-vous a été confirmé", "success");
+                Swal.fire("Annulation!", "Le rendez-vous a été annulé", "success");
             else if ("delete-message" == e)
-                Swal.fire("Suppression", "La demande a été supprimmer", "error");
+                Swal.fire("Suppression", "La rendez-vous a été supprimmer", "error");
         }
 
         function showAlert(e, id) {
@@ -82,21 +85,20 @@
                     buttonsStyling: !1,
                 });
                 n.fire({
-                    title: "Valider/Refuser le rendez-vous?",
+                    title: "Voulez-vous vraiment annuler le rendez-vous?",
                     text: "Veuillez faire un choix!",
                     type: "info",
                     showCancelButton: !0,
-                    confirmButtonText: "Valider le rendez-vous",
-                    cancelButtonText: "Refuser",
+                    confirmButtonText: "Oui, je le veux",
+                    cancelButtonText: "Annuler",
                     reverseButtons: !1,
                 }).then((e) => {
                     e.value ?
                         document.getElementById(id).submit() :
-                        e.dismiss === Swal.DismissReason.cancel &&
-                        Swal.fire("Suppression", "La demande a été supprimmer", "error") &&
-                        document.getElementsByName(id)[0].submit();
+                        e.dismiss === Swal.DismissReason.cancel;
                 });
             }
+            return false;
         }
 
         var win = navigator.platform.indexOf('Win') > -1;

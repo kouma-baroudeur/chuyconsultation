@@ -13,7 +13,7 @@
         <!-- End Navbar -->
         <div class="container-fluid">
             <div class="page-header min-height-300 border-radius-xl mt-4" style="background-image: url('<?= URLROOT ?>/assets/img/curved-images/curved0.jpg'); background-position-y: 50%;">
-                <span class="mask bg-gradient-primary opacity-6"></span>
+                <span class="mask bg-gradient-success opacity-6"></span>
             </div>
             <div class="card card-body blur shadow-blur mx-4 mt-n6 overflow-hidden">
                 <div class="row gx-4">
@@ -83,7 +83,7 @@
         </div>
         <div class="container-fluid py-4">
             <div class="row mt-3">
-                <div class="col-12 col-md-6 col-xl-8 mt-md-0 mt-4">
+                <div class="col-12 col-sm-6 col-xl-8 mt-sm-0 mt-4">
                     <div class="card h-100">
                         <div class="card-header pb-0 p-3">
                             <div class="row">
@@ -114,24 +114,37 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-12 col-xl-4 mt-xl-0 mt-4">
-                    <div class="card h-100 bg-light">
-                        <div class="card-header pb-0 p-3 bg-light">
+                <div class="col-12 col-sm-6 col-xl-4 mt-sm-0 mt-4">
+                    <div class="card h-100">
+                        <div class="card-header pb-0 p-3">
                             <h6 class="mb-0">Demande de Rendez-vous</h6>
                         </div>
                         <div class="card-body p-3">
                             <ul class="list-group">
-                                <li class="list-group-item border-0 d-flex justify-content-between ps-3 mb-2 border-radius-lg">
-                                    <div class="d-flex align-items-center">
-                                        <div class="d-flex flex-column">
-                                            <h6 class="mb-1 text-dark text-sm">Patient X</h6>
-                                            <span class="text-xs">Bonjour Dr, besoin d'un rdv urgent svp..</span>
+                                <?php foreach ($data['rdvs'] as $id => $rdv) : ?>
+                                    <li class="list-group-item border-0 d-flex justify-content-between ps-3 mb-2 border-radius-lg bg-success-soft">
+                                        <div class=" col-3 icon icon-shape shadow text-center border-radius-md shadow-none">
+                                            <i class="ni ni-bell-55 text-lg text-success text-gradient opacity-10" aria-hidden="true"></i>
                                         </div>
-                                    </div>
-                                    <div class="d-flex">
-                                        <a class="btn btn-link btn-icon-only btn-rounded btn-sm text-dark icon-move-right my-auto"><i class="ni ni-bold-right" aria-hidden="true"></i></a>
-                                    </div>
-                                </li>
+                                        <div class="col-8 d-flex">
+                                            <div class="d-flex flex-column">
+                                                <h6 class="mb-1 text-dark text-sm font-weight-bold"><?= $rdv->nomPatient . " " . $rdv->prenomPatient ?></h6>
+                                                <span class="text-xs text-dark font-weight-bold"><?= $rdv->dateRdv ?> à <?= $rdv->heureRdv ?></span>
+                                            </div>
+                                            <span class="invalid-feedback"></span>
+                                        </div>
+                                        <div class="col-1 d-flex align-items-end">
+                                            <a class="btn btn-link btn-icon-only btn-rounded btn-md text-dark icon-move-right my-auto" onclick="javascript: showAlert('action',<?= $rdv->numeroRdv ?>);"><i class="ni ni-bold-right" aria-hidden="true"></i></a>
+                                        </div>
+                                        <form hidden class="form-check form-switch ms-auto text-end" id="<?= $rdv->numeroRdv ?>" action="validerRdv" method="post">
+                                            <input name="id" value="<?= $rdv->numeroRdv ?>" type="text" hidden>
+                                        </form>
+                                        <form hidden name="<?= $rdv->numeroRdv ?>" action="supprimmerRdv" method="post">
+                                            <input name="id" value="<?= $rdv->numeroRdv ?>" type="text" hidden>
+                                        </form>
+                                    </li>
+                                <?php endforeach; ?>
+                                <?= empty($data['rdvs']) ? "<div class='mx-auto mt-8 text-center text-sm font-weight-bold'>Vous n'avez aucune nouvelle<br> demande rendez-vous</div> " : "" ?>
                             </ul>
                         </div>
                     </div>
@@ -145,10 +158,45 @@
     <script src="<?= URLROOT ?>/assets/js/core/bootstrap.min.js"></script>
     <script src="<?= URLROOT ?>/assets/js/plugins/perfect-scrollbar.min.js"></script>
     <script src="<?= URLROOT ?>/assets/js/plugins/smooth-scrollbar.min.js"></script>
+    <script src="<?= URLROOT ?>/assets/js/plugins/sweetalert.min.js"></script>
     <!-- Kanban scripts -->
     <script src="<?= URLROOT ?>/assets/js/plugins/multistep-form.js"></script>
 
     <script>
+        function showMessage(e) {
+            if ("success-message" == e)
+                Swal.fire("Confirmation!", "Le rendez-vous a été confirmé", "success");
+            else if ("delete-message" == e)
+                Swal.fire("Suppression", "La demande a été supprimmer", "error");
+        }
+
+        function showAlert(e, id) {
+            if ("action" == e) {
+                const n = Swal.mixin({
+                    customClass: {
+                        confirmButton: "btn bg-gradient-success",
+                        cancelButton: "btn bg-gradient-danger",
+                    },
+                    buttonsStyling: !1,
+                });
+                n.fire({
+                    title: "Valider/Refuser le rendez-vous?",
+                    text: "Veuillez faire un choix!",
+                    type: "info",
+                    showCancelButton: !0,
+                    confirmButtonText: "Valider le rendez-vous",
+                    cancelButtonText: "Refuser",
+                    reverseButtons: !1,
+                }).then((e) => {
+                    e.value ?
+                        document.getElementById(id).submit() :
+                        e.dismiss === Swal.DismissReason.cancel &&
+                        Swal.fire("Suppression", "La demande a été supprimmer", "error") &&
+                        document.getElementsByName(id)[0].submit();
+                });
+            }
+        }
+
         var win = navigator.platform.indexOf('Win') > -1;
         if (win && document.querySelector('#sidenav-scrollbar')) {
             var options = {

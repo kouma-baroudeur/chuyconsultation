@@ -15,7 +15,7 @@
                 <h6 class="mb-0">Premieres Observations du Patient</h6>
                 <p class="text-sm mb-0">Veuillez remplir les champs</p>
 
-                <div class="row mt-5">
+                <div class="row mt-5 col-8 mx-auto">
                     <div class="col-6 col-sm-3">
                         <label class="form-label">Poids (Kg)</label>
                         <div class="form-group">
@@ -79,7 +79,7 @@
                             <?php
                                 $examens = array('Examen 1','Examen 2','Examen 3','Examen 4','Examen 5');
                                 foreach ($examens as $examen) {
-                                    if ($data['premiereinfo']->allergies != null) {
+                                    if ($data['premiereinfo']->examensPhysiques != null) {
                                         foreach ($data['premiereinfo']->examensPhysiques as $patientExamens) {
                                             echo "<option " . ($patientExamens == $examen ? 'selected' : '') . "value='$examen'>" . $examen . "</option>";
                                         }
@@ -105,7 +105,7 @@
                     </div>
                     <div class="row mt-5 mb-5">
                         <div class="col-lg-8 col-12 actions text-end ms-auto">
-                            <button class="btn bg-gradient-info mb-0" type="button">Enregistrer</button>
+                            <button class="btn bg-gradient-info mb-0" type="submit">Enregistrer</button>
                         </div>
                     </div>
                 </div>
