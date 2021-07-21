@@ -43,6 +43,7 @@
                         </div>
                     </div>
                     <?php endforeach ?>
+                    <?= empty($data['rdvs']) ? "<div class='col-6 mx-auto mt-12 mb-8 text-lg font-weight-bold'>Vous n'avez aucun rendez-vous de prévu </div> " : "" ?>
                 <hr class="horizontal dark mt-4" />
                 <h6>Aujourd'hui</h6>
                 <hr class="horizontal dark my-1" />

@@ -21,8 +21,6 @@
                             <label for="projectName" class="form-label">Patient</label>
 
                             <input type="text" class="form-control" name="medecin" value="<?= $data['medecin']->codeMedecin ?>" hidden>
-
-
                             <?php
                             if ($data['idPatient'] != null) {
                                 echo '<select class="form-control" name="patient" disabled>';
@@ -45,10 +43,10 @@
                             <input type="text" name="contenu" class="form-control" id="contenu" hidden>
                             <label class="mt-4 form-label">Symptômes du Patient</label>
                             <select class="form-control" name="symptomes[]" id="choices-multiple-remove-button" multiple>
-                                <option value="Choice 1" selected>symptome 1</option>
-                                <option value="Choice 2">symptome 2</option>
-                                <option value="Choice 3">symptome 3</option>
-                                <option value="Choice 4">symptome 4</option>
+                                <option value="Symptome 1" selected>symptome 1</option>
+                                <option value="Symptome 2">symptome 2</option>
+                                <option value="Symptome 3">symptome 3</option>
+                                <option value="Symptome 4">symptome 4</option>
                             </select>
                             <div class="row">
                                 <div class="col-6">
@@ -64,6 +62,7 @@
                                     <button class="btn bg-gradient-info ms-auto mb-0 js-btn">
                                         Ajouter Consultation
                                     </button>
+                                    <button type="reset" name="button" class="btn btn-light m-0  ms-2" onclick="history.go(-1)">Cancel</button>
                                 </div>
                             </div>
                     </form>

@@ -25,7 +25,7 @@
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
                         <li class="mb-2">
-                            <a class="dropdown-item border-radius-md" href="profil">
+                            <a class="dropdown-item border-radius-md" href="<?= URLROOT ?>/medecins/profil">
                                 <div class="d-flex py-1">
                                     <div class="my-auto">
                                         <img src="<?= URLROOT ?>/assets/img/team-2.jpg" class="avatar avatar-sm  me-3 " alt="user image">

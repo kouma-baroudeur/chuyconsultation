@@ -137,6 +137,7 @@ class Medecins extends Controller
     } else {
       $data = [
         'medecin' => $this->activeUser,
+        'rdvs' => $this->medecinModel->rvdAttente(),
         'page' => 'Mon Profil'
       ];
       $this->view('medecins/profile', $data);
@@ -165,9 +166,26 @@ class Medecins extends Controller
     } else {
       $data = [
         'medecin' => $this->activeUser,
+        'consultations' => $this->medecinModel->consultMedecin(),
         'page' => 'Mes Consultations'
       ];
       $this->view('medecins/all-consultations', $data);
+    }
+  }
+
+  //Affiche page liste des consultations du medecin
+  public function detailConsultation($numeroConsultation)
+  {
+    if ($_SESSION['userType'] != 'medecin') {
+      notAuthorized();
+    } else {
+      $data = [
+        'symptomes' => explode(",", $this->medecinModel->getConsultation($numeroConsultation)->symptomes),
+        'medecin' => $this->activeUser,
+        'consultation' => $this->medecinModel->getConsultation($numeroConsultation),
+        'page' => 'Detail de la Consultation'
+      ];
+      $this->view('medecins/detail-consultation', $data);
     }
   }
 
@@ -205,8 +223,108 @@ class Medecins extends Controller
   //Traitement ajout consultation
   public function ajouterConsultation()
   {
-    if ($_POST)
-      var_dump($_POST['symptomes']);
+    if ($_SESSION['userType'] != 'medecin') {
+      notAuthorized();
+    } else {
+      $id = $_GET['id'];
+      $data = [
+        'patient' => trim($_POST['patient']),
+        'medecin' => trim($_POST['medecin']),
+        'symptomes' => implode(",", $_POST['symptomes']),
+        'contenu' => trim($_POST['contenu']),
+        'date_consultation' => date('y/m/d'),
+        'dateEdition' => date('y/m/d'),
+        'patient_err' => '',
+        'medecin_err' => '',
+        'symptomes_err' => '',
+        'contenu_err' => '',
+        'date_consultation_err' => '',
+      ];
+      if (empty($data['patient'])) {
+        $data['patient_err'] = 'Veuillez renseigner ce champ.';
+      }
+      if (empty($data['medecin'])) {
+        $data['medecin_err'] = 'Veuillez renseigner ce champ.';
+      }
+      if (empty($data['symptomes'])) {
+        $data['symptomes_err'] = 'Veuillez renseigner ce champ.';
+      }
+      if (empty($data['contenu'])) {
+        $data['contenu_err'] = 'Veuillez renseigner ce champ.';
+      }
+      if (empty($data['date_consultation'])) {
+        $data['date_consultation_err'] = 'Veuillez renseigner ce champ.';
+      }
+      if (empty($data['patient_err']) && empty($data['medecin_err']) && empty($data['symptomes_err']) && empty($data['contenu_err']) && empty($data['date_consultation_err'])) {
+        // adding information into de table patient
+
+        if ($this->medecinModel->add_consultation($data)) {
+          flash('modifier_success', 'Vos informations ont été mis à jours');
+          $data = [
+            'medecin' => $this->activeUser,
+            'consultations' => $this->medecinModel->consultMedecin(),
+            'page' => 'Mes Consultations'
+          ];
+          $this->view('medecins/all-consultations', $data);
+        } else {
+          die('Quelque chose qui ne va pas bien!');
+        }
+      } else {
+        $data = [
+          'medecin' => $this->activeUser,
+          'patients' => $this->medecinModel->listePatient(),
+          'page' => 'Ajouter une Consultation'
+        ];
+        $this->view('medecins/add-consultation', $data);
+      }
+    }
+  }
+
+  //Traitement ajout consultation
+  public function editerConsultation()
+  {
+    if ($_SESSION['userType'] != 'medecin') {
+      notAuthorized();
+    } else {
+      $numeroConsultation = trim($_POST['numConsultation']);
+      $data = [
+        'numeroConsultation' => trim($_POST['numConsultation']),
+        'symptomes' => implode(",", $_POST['symptomes']),
+        'contenu' => trim($_POST['contenu']),
+        'dateEdition' => date('y/m/d'),
+        'symptomes_err' => '',
+        'contenu_err' => '',
+      ];
+      if (empty($data['symptomes'])) {
+        $data['symptomes_err'] = 'Veuillez renseigner ce champ.';
+      }
+      if (empty($data['contenu'])) {
+        $data['contenu_err'] = 'Veuillez renseigner ce champ.';
+      }
+      if (empty($data['symptomes_err']) && empty($data['contenu_err'])) {
+        // adding information into de table patient
+
+        if ($this->medecinModel->edit_consultation($data)) {
+          flash('modifier_success', 'Vos informations ont été mis à jours');
+          $data = [
+            'medecin' => $this->activeUser,
+            'consultations' => $this->medecinModel->consultMedecin(),
+            'page' => 'Mes Consultations'
+          ];
+          $this->view('medecins/all-consultations', $data);
+        } else {
+          die('Quelque chose qui ne va pas bien!');
+        }
+      } else {
+        $data = [
+          'symptomes' => explode(",", $this->medecinModel->getConsultation($numeroConsultation)->symptomes),
+          'medecin' => $this->activeUser,
+          'consultation' => $this->medecinModel->getConsultation($numeroConsultation),
+          'page' => 'Detail de la Consultation'
+        ];
+        $this->view('medecins/detail-consultation', $data);
+      }
+    }
   }
 
   //non-utiliser
@@ -250,6 +368,7 @@ class Medecins extends Controller
         'patient' => $this->medecinModel->profilePatient($id),
         'premiereinfo' => $this->medecinModel->premiereInfo($id),
         'contacturgence' => $this->medecinModel->recupurgence($id),
+        'consultations' => $this->medecinModel->consultPatient($id),
         'id' => $id,
         'page' => 'Profil du Patient'
       ];
@@ -281,7 +400,10 @@ class Medecins extends Controller
     } else {
       $data = [
         //'patients' => $this->medecinModel->patients(),
+        'medecinModel' => $this->medecinModel,
         'medecin' => $this->activeUser,
+        'services' => $this->medecinModel->listeService(),
+        'planning' => $this->medecinModel->planning(),
         'medecins' => $this->patientModel->listeMedecins(),
         'page' => 'Ajouter un Rendez-vous'
       ];
@@ -320,7 +442,7 @@ class Medecins extends Controller
         'msg' => 'success-message',
         'page' => 'Rendez-vous en Attente'
       ];
-      $this->view('medecins/rdvAttenteMed', $data);
+      $this->view('medecins/rdvAvenirMed', $data);
     }
   }
 
@@ -400,11 +522,81 @@ class Medecins extends Controller
       notAuthorized();
     } else {
       $data = [
-        'planning' => $this->medecinModel->planning(),
-        'jours' => $this->medecinModel->listeJour(),
+        'medecin' => $this->activeUser,
+        
         'page' => 'Mise a Jour du Planning'
       ];
       $this->view('medecins/MAJ-planningMed', $data);
+    }
+  }
+
+  //Affiche page Mise a jour du planning
+  public function modifierPlanning()
+  {
+    if ($_SESSION['userType'] != 'medecin') {
+      notAuthorized();
+    } else {
+      $jours = $_POST['jours'];
+
+      $medecin = $this->activeUser->codeMedecin;
+
+      if (isset($_POST['jours'])) {
+        $this->medecinModel->viderPlanning($medecin);
+        foreach ($jours as $jour) {
+          switch ($jour) {
+            case 'LUN':
+              $nbrRdvLundi = $_POST['nbrRdvLundi'];
+              $heureDebutLundi = $_POST['heureDebutLundi'];
+              $heureFinLundi = $_POST['heureFinLundi'];
+
+              $this->medecinModel->emergerPlanning($medecin, $jour, $nbrRdvLundi, $heureDebutLundi, $heureFinLundi);
+              break;
+            case 'MAR':
+              $nbrRdvMardi = $_POST['nbrRdvMardi'];
+              $heureDebutMardi = $_POST['heureDebutMardi'];
+              $heureFinMardi = $_POST['heureFinMardi'];
+
+              $this->medecinModel->emergerPlanning($medecin, $jour, $nbrRdvMardi, $heureDebutMardi, $heureFinMardi);
+              break;
+            case 'MER':
+              $nbrRdvMercredi = $_POST['nbrRdvMercredi'];
+              $heureDebutMercredi = $_POST['heureDebutMercredi'];
+              $heureFinMercredi = $_POST['heureFinMercredi'];
+
+              $this->medecinModel->emergerPlanning($medecin, $jour, $nbrRdvMercredi, $heureDebutMercredi, $heureFinMercredi);
+              break;
+            case 'JEU':
+              $nbrRdvJeudi = $_POST['nbrRdvJeudi'];
+              $heureDebutJeudi = $_POST['heureDebutJeudi'];
+              $heureFinJeudi = $_POST['heureFinJeudi'];
+
+              $this->medecinModel->emergerPlanning($medecin, $jour, $nbrRdvJeudi, $heureDebutJeudi, $heureFinJeudi);
+              break;
+            case 'VEN':
+              $nbrRdvVendredi = $_POST['nbrRdvVendredi'];
+              $heureDebutVendredi = $_POST['heureDebutVendredi'];
+              $heureFinVendredi = $_POST['heureFinVendredi'];
+
+              $this->medecinModel->emergerPlanning($medecin, $jour, $nbrRdvVendredi, $heureDebutVendredi, $heureFinVendredi);
+              break;
+            default:
+              break;
+          }
+        }
+        $data = [
+          'medecin' => $this->activeUser,
+          'plannings' => $this->medecinModel->getPlanning($medecin),
+          'page' => 'Mon Planning'
+        ];
+        $this->view('medecins/planningMed', $data);
+      } else {
+        $data = [
+          'medecin' => $this->activeUser,
+          'page' => 'Mise a Jour du Planning'
+        ];
+        $this->view('medecins/MAJ-planningMed', $data);
+      }
+      //$this->view('medecins/MAJ-planningMed', $data);
     }
   }
 
@@ -479,7 +671,6 @@ class Medecins extends Controller
         'dateNaissance' => trim($_POST['dateNaissance']),
         'lieuNaissance' => trim($_POST['lieuNaissance']),
         'sexe' => $_POST['choices-gender'],
-        'service' => trim($_POST['service']),
         'adresse' => trim($_POST['location']),
         'tel' => trim($_POST['phone']),
         'nom_err' => '',
@@ -505,9 +696,6 @@ class Medecins extends Controller
       if (empty($data['lieuNaissance'])) {
         $data['lieu_err'] = 'Veuillez renseigner ce champ.';
       }
-      if (empty($data['service'])) {
-        $data['service_err'] = 'Veuillez renseigner ce champ.';
-      }
       if (empty($data['adresse'])) {
         $data['adresse_err'] = 'Veuillez renseigner ce champ.';
       }
@@ -515,7 +703,9 @@ class Medecins extends Controller
         $data['tel_err'] = 'Veuillez renseigner ce champ.';
       }
 
-      if (empty($data['nom_err']) && empty($data['prenom_err']) && empty($data['date_err']) && empty($data['lieu_err']) && empty($data['service_err']) && empty($data['adresse_err']) && empty($data['date_err'])) {
+      var_dump($data);
+
+      if (empty($data['nom_err']) && empty($data['prenom_err']) && empty($data['date_err']) && empty($data['lieu_err']) && empty($data['adresse_err']) && empty($data['tel_err'])) {
         // adding information into de table patient
         if ($this->medecinModel->editProfile($data)) {
           flash('modifier_success', 'Vos informations ont été mis à jours');
@@ -534,7 +724,7 @@ class Medecins extends Controller
   }
 
   //changer le mot de passe et email
-  public function editInfo()
+  public function editPasswordMed()
   {
     if ($_SESSION['userType'] != 'medecin') {
       notAuthorized();
@@ -549,9 +739,9 @@ class Medecins extends Controller
 
         'email' => trim($_POST['email']),
         'confirmEmail' => trim($_POST['confirmation']),
-        'password' => trim($_POST['currentPwd']),
-        'newPwd' => trim($_POST['newPwd']),
-        'confirmPassword' => trim($_POST['connfirmPwd']),
+        'password' => trim($_POST['password']),
+        'newPwd' => trim($_POST['newpassword']),
+        'confirmPassword' => trim($_POST['confirmnewpassword']),
         'email_err' => '',
         'confirmEmail_err' => '',
         'password_err' => '',
@@ -585,15 +775,9 @@ class Medecins extends Controller
         $data['email_err'] = 'Veuillez renseigner ce champ.';
         $data['confirmEmail_err'] = 'Email différent.';
       }
-      // $password = password_hash($data['password'], PASSWORD_DEFAULT);
-      $userPassword = $this->medecinModel->users();
-      // // $pwd = $pass[]->password;
-      // //var_dump($pass);
-      // echo $data['password'] ."<br>";
-      // echo $userPassword . "<br>";
-      // echo password_verify($data['password'], $userPassword);
 
-      //echo $data['password'];
+      $userPassword = $this->medecinModel->users();
+
       if (password_verify($data['password'], $userPassword)) {
         if ($data['newPwd'] == $data['confirmPassword']) {
           $data['newPwd'] = password_hash($data['newPwd'], PASSWORD_DEFAULT);
