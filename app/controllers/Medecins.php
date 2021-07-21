@@ -620,7 +620,14 @@ class Medecins extends Controller
       }
     }
   }
-  public function detailConsultation()
+
+  public function afficheConsultations()
   {
+    if ($_SESSION['userType'] != 'medecin') {
+      notAuthorized();
+    } else {
+  $id=$_POST["id"]
+
+    }
   }
 }
