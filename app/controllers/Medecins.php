@@ -353,7 +353,6 @@ class Medecins extends Controller
       $this->view('medecins/allmedrdvs', $data);
     }
   }
-
   //Affiche page liste des patients
   public function patients()
   {
@@ -385,6 +384,35 @@ class Medecins extends Controller
         'page' => 'Profil du Patient'
       ];
       $this->view('medecins/patient-profil', $data);
+    }
+  }
+  /**editer premiere observation */
+  public function editPremiereInfo($id)
+  {
+    if ($_SESSION['userType'] != 'medecin') {
+      notAuthorized();
+    } else {
+      $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+      $data = [
+        'poids'=>trim($_POST['poids']),
+        'taille'=>trim($_POST['taille']),
+        'pa'=>trim($_POST['pa']),
+        'pouls'=>trim($_POST['pouls']),
+        'groupeSanguin'=>trim($_POST['groupeSanguin']),
+        'rhesus'=>trim($_POST['rhesus']),
+        'allergies'=>trim($_POST['allergies']),
+        'examens'=>trim($_POST['examens']),
+        'antmed'=>trim($_POST['antmed']),
+        'antfam'=>trim($_POST['antfam']),
+        'medecin' => $this->activeUser,
+        'id' => $id,
+        'page' => 'Edition des première observations'
+      ];
+      if ($this->medecinModel->editpreInfo($data)) {
+        $this->view('medecins/patient-profil', $data);
+      } else {
+        $this->view('medecins/premiere-observation', $data);
+      }
     }
   }
 

@@ -19,13 +19,13 @@
                     <div class="col-6 col-sm-3">
                         <label class="form-label">Poids (Kg)</label>
                         <div class="form-group">
-                            <input class="form-control" value="<?= $data['premiereinfo']->poids ?>" name="poids" type="number" min="0" max="300" data-maxlength="3" oninput="this.value=this.value.slice(0,this.dataset.maxlength)" placeholder="Entree le poids">
+                            <input class="form-control" value="<?= $data['premiereinfo']->poids ?>" name="poids" type="number" min="0" max="300" data-maxlength="6" oninput="this.value=this.value.slice(0,this.dataset.maxlength)" placeholder="Entree le poids">
                         </div>
                     </div>
                     <div class="col-6 col-sm-3">
                         <label class="form-label">Taille (cm)</label>
                         <div class="form-group">
-                            <input class="form-control" value="<?= $data['premiereinfo']->taille ?>" name="taille" type="number" min="0" max="300" data-maxlength="3" oninput="this.value=this.value.slice(0,this.dataset.maxlength)" placeholder="Entre la taille">
+                            <input class="form-control" value="<?= $data['premiereinfo']->taille ?>" name="taille" type="number" min="0" max="300" data-maxlength="4" oninput="this.value=this.value.slice(0,this.dataset.maxlength)" placeholder="Entre la taille">
                         </div>
                     </div>
                     <div class="col-6 col-sm-3">
@@ -94,13 +94,13 @@
                     <div class="col-12 mt">
                         <label class="form-label">Antecedents Medicaux</label>
                         <div class="form-group">
-                            <textarea class="form-control" placeholder="Renseigner les antecedent medicaux ici..."></textarea>
+                            <textarea name="antmed" class="form-control" placeholder="Renseigner les antecedent medicaux ici..."></textarea>
                         </div>
                     </div>
                     <div class="col-12">
                         <label class="form-label">Antecedents Familiaux</label>
                         <div class="form-group">
-                            <textarea class="form-control" placeholder="Renseigner les antecedent familiaux ici..."></textarea>
+                            <textarea name="antfam" class="form-control" placeholder="Renseigner les antecedent familiaux ici..."></textarea>
                         </div>
                     </div>
                     <div class="row mt-5 mb-5">
