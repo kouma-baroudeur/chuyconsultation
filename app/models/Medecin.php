@@ -185,11 +185,7 @@ class Medecin
 
         $this->db->query($sql);
         $this->db->bind(':codeMedecin', $medecin);
-<<<<<<< HEAD
         $this->db->bind(':jour', $jour);
-=======
-        $this->db->bind(':jours', $jour);
->>>>>>> 2975d4fe3592ff63388f410ebbf227f7f14badd9
         $this->db->bind(':heureDebut', $heureDebut);
         $this->db->bind(':heureFin', $heureFin);
         $answer = $this->db->execute();

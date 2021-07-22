@@ -13,11 +13,7 @@
         <div class="container-fluid py-4">
             <div class="row">
                 <div class="col-lg-9 col-12 mx-auto">
-<<<<<<< HEAD
                     <form action="<?= URLROOT ?>/medecins/ajouterConsultation" method="post" onsubmit="return getContenu();">
-=======
-                    <form action="<?= URLROOT ?>/medecins/ajouterConsultation" method="post" >
->>>>>>> 2975d4fe3592ff63388f410ebbf227f7f14badd9
                         <div class="card card-body mt-4">
                             <h6 class="mb-0">Nouvelle consultaion</h6>
                             <p class="text-sm mb-0">Veuillez remplir les champs</p>
