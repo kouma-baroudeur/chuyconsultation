@@ -48,12 +48,7 @@
                                             <div class="row mt-3">
                                                 <div class="col-12 col-sm-8 mt-4 mt-sm-0 text-start mx-auto">
                                                     <label for="projectName" class="form-label">Service</label>
-                                                    <select class="form-control" name="service" onchange='
-                                                        <?php 
-                                                            $dom = new DOMDocument();
-                                                            $dom->load("index.php");
-                                                        ?>
-                                                    '>
+                                                    <select class="form-control" name="service" id="service" onchange=''>
                                                         <option value="all" selected>Tous les Services</option>
                                                         <?php
                                                         foreach ($data['services'] as $id => $service) {
@@ -80,7 +75,7 @@
                                             <div class="row mt-4">
                                                 <div class="col-12 col-sm-8 mt-4 mt-sm-0 text-start mx-auto">
                                                     <label for="projectName" class="form-label">Medecin</label>
-                                                    <select class="form-control" name="medecin">
+                                                    <select class="form-control" name="medecin" id="medecin">>
                                                         <?php
                                                         foreach ($data['medecins'] as $id => $medecin) {
                                                             echo '<option value="' . $medecin->codeMedecin . '">' . $medecin->nomMedecin . ' ' . $medecin->prenomMedecin . '</option>';

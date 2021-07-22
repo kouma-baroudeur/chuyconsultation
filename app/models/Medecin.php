@@ -195,12 +195,6 @@ class Medecin
     //fonction editer un profile medecin
     public function editProfile($data)
     {
-        $user = [
-            'id'    =>  $_SESSION['userId'],
-            'type'  =>  $_SESSION['userType'],
-            'email' => $_SESSION['userMail'],
-            'state' => $_SESSION['userState']
-        ];
         $sql = "UPDATE medecin SET nomMedecin ='" . $data['nom'] . "',prenomMedecin ='" . $data['prenom'] . "',sexeMedecin = '" . $data['sexe'] . "',adresseMedecin = '" . $data['adresse'] . "',dateNaissanceMedecin = '" . $data['dateNaissance'] . "',lieuNaissanceMedecin = '" . $data['lieuNaissance'] . "',telMedecin ='" . $data['tel'] . "'  WHERE userId= " . $_SESSION['userId'];
         $this->db->query($sql);
         return $this->db->execute();
