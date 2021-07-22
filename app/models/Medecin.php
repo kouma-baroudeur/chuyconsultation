@@ -171,23 +171,21 @@ class Medecin
     /** Retourne le planning des medecins*/
     public function getAllMedPlannings()
     {
-        $sql = GETPLANNING;
+        $sql = GETALLMEDPLANNINGS;
 
         $this->db->query($sql);
-        $this->db->bind(':codeMedecin', $medecin);
         $answer = $this->db->execute();
         return $answer;
     }
 
     /** Emmerger le planning d'un medecin*/
-    public function emergerPlanning($medecin, $jour, $nbrRdv, $heureDebut, $heureFin)
+    public function emergerPlanning($medecin, $jour, $heureDebut, $heureFin)
     {
         $sql = ADDPLANNING;
 
         $this->db->query($sql);
         $this->db->bind(':codeMedecin', $medecin);
         $this->db->bind(':jour', $jour);
-        $this->db->bind(':nombreRdv', $nbrRdv);
         $this->db->bind(':heureDebut', $heureDebut);
         $this->db->bind(':heureFin', $heureFin);
         $answer = $this->db->execute();
