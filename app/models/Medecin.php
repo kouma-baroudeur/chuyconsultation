@@ -243,6 +243,12 @@ class Medecin
         $this->db->query($sql);
         return $this->db->execute();
     }
+    public function editpreInfo($data)
+    {
+        $sql = "UPDATE premiereobservation SET SET poids='" . $data['poids'] . "',taille='" . $data['taille'] . "',PA='" . $data['pa'] . "',pouls='" . $data['pouls'] . "',antecedantMedicaux='" . $data['antmed'] . "',antecedantFamiliaux='" . $data['antfam'] . "',allergies='" . $data['allergies'] . "',goupeSanguin='" . $data['groupeSanguin'] . "',rhesus='" . $data['rhesus'] . "',examenPhysique='" . $data['examens'] . "' WHERE IP=".$data['id'];
+        $this->db->query($sql);
+        return $this->db->execute();
+    }
     /**liste tous les patients */
     public function listePatient()
     {
