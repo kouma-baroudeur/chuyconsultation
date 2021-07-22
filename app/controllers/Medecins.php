@@ -220,7 +220,7 @@ class Medecins extends Controller
     }
   }
 
-  //Traitement ajout consultation
+  /**Traitement ajout consultation*/
   public function ajouterConsultation()
   {
     if ($_SESSION['userType'] != 'medecin') {
@@ -523,14 +523,14 @@ class Medecins extends Controller
     } else {
       $data = [
         'medecin' => $this->activeUser,
-        
+
         'page' => 'Mise a Jour du Planning'
       ];
       $this->view('medecins/MAJ-planningMed', $data);
     }
   }
 
-  //Affiche page Mise a jour du planning
+  /**Affiche page Mise a jour du planning*/
   public function modifierPlanning()
   {
     if ($_SESSION['userType'] != 'medecin') {
@@ -545,39 +545,34 @@ class Medecins extends Controller
         foreach ($jours as $jour) {
           switch ($jour) {
             case 'LUN':
-              $nbrRdvLundi = $_POST['nbrRdvLundi'];
               $heureDebutLundi = $_POST['heureDebutLundi'];
               $heureFinLundi = $_POST['heureFinLundi'];
 
-              $this->medecinModel->emergerPlanning($medecin, $jour, $nbrRdvLundi, $heureDebutLundi, $heureFinLundi);
+              $this->medecinModel->emergerPlanning($medecin, $jour, $heureDebutLundi, $heureFinLundi);
               break;
             case 'MAR':
-              $nbrRdvMardi = $_POST['nbrRdvMardi'];
               $heureDebutMardi = $_POST['heureDebutMardi'];
               $heureFinMardi = $_POST['heureFinMardi'];
 
-              $this->medecinModel->emergerPlanning($medecin, $jour, $nbrRdvMardi, $heureDebutMardi, $heureFinMardi);
+              $this->medecinModel->emergerPlanning($medecin, $jour, $heureDebutMardi, $heureFinMardi);
               break;
             case 'MER':
-              $nbrRdvMercredi = $_POST['nbrRdvMercredi'];
               $heureDebutMercredi = $_POST['heureDebutMercredi'];
               $heureFinMercredi = $_POST['heureFinMercredi'];
 
-              $this->medecinModel->emergerPlanning($medecin, $jour, $nbrRdvMercredi, $heureDebutMercredi, $heureFinMercredi);
+              $this->medecinModel->emergerPlanning($medecin, $jour, $heureDebutMercredi, $heureFinMercredi);
               break;
             case 'JEU':
-              $nbrRdvJeudi = $_POST['nbrRdvJeudi'];
               $heureDebutJeudi = $_POST['heureDebutJeudi'];
               $heureFinJeudi = $_POST['heureFinJeudi'];
 
-              $this->medecinModel->emergerPlanning($medecin, $jour, $nbrRdvJeudi, $heureDebutJeudi, $heureFinJeudi);
+              $this->medecinModel->emergerPlanning($medecin, $jour, $heureDebutJeudi, $heureFinJeudi);
               break;
             case 'VEN':
-              $nbrRdvVendredi = $_POST['nbrRdvVendredi'];
               $heureDebutVendredi = $_POST['heureDebutVendredi'];
               $heureFinVendredi = $_POST['heureFinVendredi'];
 
-              $this->medecinModel->emergerPlanning($medecin, $jour, $nbrRdvVendredi, $heureDebutVendredi, $heureFinVendredi);
+              $this->medecinModel->emergerPlanning($medecin, $jour, $heureDebutVendredi, $heureFinVendredi);
               break;
             default:
               break;

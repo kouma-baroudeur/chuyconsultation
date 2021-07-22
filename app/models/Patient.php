@@ -99,6 +99,7 @@ class Patient
         $answer = $this->db->execute();   
         return $answer;
     }
+    /**RECUPERTATION DES CONTACTS D'URGENCE */
     public function recupurgence(){
         $user = [
             'id'    =>  $_SESSION['userId'],
@@ -110,6 +111,34 @@ class Patient
         $sql = "SELECT * FROM contacturgence,patient WHERE contacturgence.IP=".$codePatient;
         $this->db->query($sql);
         $answer = $this->db->single();
+        return $answer;
+    }
+    /**RECUPERATION DES PREMIERE OBSERVATIONS */
+    public function premiereobserv(){
+        $user = [
+            'id'    =>  $_SESSION['userId'],
+            'type'  =>  $_SESSION['userType'],
+            'email' => $_SESSION['userMail'],
+            'state' => $_SESSION['userState']
+        ];
+        $codePatient = $this->getPatientById($user)->IP;
+        $sql = "SELECT * FROM premiereobservation WHERE IP=".$codePatient;
+        $this->db->query($sql);
+        $answer = $this->db->single();
+        return $answer;
+    }
+    /**RECUPERATION DES CONSULTATIONS */
+    public function consultation(){
+        $user = [
+            'id'    =>  $_SESSION['userId'],
+            'type'  =>  $_SESSION['userType'],
+            'email' => $_SESSION['userMail'],
+            'state' => $_SESSION['userState']
+        ];
+        $codePatient = $this->getPatientById($user)->IP;
+        $sql = "SELECT * FROM consultations,medecin WHERE consultations.codeMedecin=medecin.codeMedecin AND IP=".$codePatient;
+        $this->db->query($sql);
+        $answer = $this->db->resultSet();
         return $answer;
     }
     public function rendezvous($etat)

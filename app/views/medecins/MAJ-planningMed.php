@@ -37,10 +37,6 @@
                                                 <h6 class="mb-0 text-dark font-weight-bold text-sm">Lundi</h6>
                                             </div>
                                             <div class="row align-items-center ms-4 mt-3 ps-1">
-                                                <div class="col-12 col-md-2">
-                                                    <p class="text-xs mb-0 text-secondary font-weight-bold">Nombre RDV</p>
-                                                    <input name="nbrRdvLundi" id="nbrRdvLundi" class="text-xs font-weight-bolder form-control" type="number" value="15" min="1" max="15" data-maxlength="2" oninput="this.value=this.value.slice(0,this.dataset.maxlength)" disabled />
-                                                </div>
                                                 <div class="col-12 col-md-2 ms-auto">
                                                     <p class="text-xs mb-0 text-secondary font-weight-bold">Heure de Debut</p>
                                                     <input name="heureDebutLundi" id="heureDebutLundi" class="text-xs font-weight-bolder form-control" type="time" value="08:00" min="08:00" max="18:00" onchange="javascript:checkHeureDebut('Lundi');" disabled />
@@ -63,10 +59,6 @@
                                                 <h6 class="mb-0 text-dark font-weight-bold text-sm">Mardi</h6>
                                             </div>
                                             <div class="row align-items-center ms-4 mt-3 ps-1">
-                                                <div class="col-12 col-md-2">
-                                                    <p class="text-xs mb-0 text-secondary font-weight-bold">Nombre RDV</p>
-                                                    <input name="nbrRdvMardi" id="nbrRdvMardi" class="text-xs font-weight-bolder form-control" type="number" value="15" min="1" max="15" data-maxlength="2" oninput="this.value=this.value.slice(0,this.dataset.maxlength)" disabled />
-                                                </div>
                                                 <div class="col-12 col-md-2 ms-auto">
                                                     <p class="text-xs mb-0 text-secondary font-weight-bold">Heure de Debut</p>
                                                     <input name="heureDebutMardi" id="heureDebutMardi" class="text-xs font-weight-bolder form-control" type="time" value="08:00" min="08:00" max="18:00" onchange="javascript:checkHeureDebut('Mardi');" disabled />
@@ -89,10 +81,6 @@
                                                 <h6 class="mb-0 text-dark font-weight-bold text-sm">Mercredi</h6>
                                             </div>
                                             <div class="row align-items-center ms-4 mt-3 ps-1">
-                                                <div class="col-12 col-md-2">
-                                                    <p class="text-xs mb-0 text-secondary font-weight-bold">Nombre RDV</p>
-                                                    <input name="nbrRdvMercredi" id="nbrRdvMercredi" class="text-xs font-weight-bolder form-control" type="number" value="15" min="1" max="15" data-maxlength="2" oninput="this.value=this.value.slice(0,this.dataset.maxlength)" disabled />
-                                                </div>
                                                 <div class="col-12 col-md-2 ms-auto">
                                                     <p class="text-xs mb-0 text-secondary font-weight-bold">Heure de Debut</p>
                                                     <input name="heureDebutMercredi" id="heureDebutMercredi" class="text-xs font-weight-bolder form-control" type="time" value="08:00" min="08:00" max="18:00" onchange="javascript:checkHeureDebut('Mercredi');" disabled />
@@ -115,10 +103,6 @@
                                                 <h6 class="mb-0 text-dark font-weight-bold text-sm">Jeudi</h6>
                                             </div>
                                             <div class="row align-items-center ms-4 mt-3 ps-1">
-                                                <div class="col-12 col-md-2">
-                                                    <p class="text-xs mb-0 text-secondary font-weight-bold">Nombre RDV</p>
-                                                    <input name="nbrRdvJeudi" id="nbrRdvJeudi" class="text-xs font-weight-bolder form-control" type="number" value="15" min="1" max="15" data-maxlength="2" oninput="this.value=this.value.slice(0,this.dataset.maxlength)" disabled />
-                                                </div>
                                                 <div class="col-12 col-md-2 ms-auto">
                                                     <p class="text-xs mb-0 text-secondary font-weight-bold">Heure de Debut</p>
                                                     <input name="heureDebutJeudi" id="heureDebutJeudi" class="text-xs font-weight-bolder form-control" type="time" value="08:00" min="08:00" max="18:00" onchange="javascript:checkHeureDebut('Jeudi');" disabled />
@@ -141,10 +125,6 @@
                                                 <h6 class="mb-0 text-dark font-weight-bold text-sm">Vendredi</h6>
                                             </div>
                                             <div class="row align-items-center ms-4 mt-3 ps-1">
-                                                <div class="col-12 col-md-2">
-                                                    <p class="text-xs mb-0 text-secondary font-weight-bold">Nombre RDV</p>
-                                                    <input name="nbrRdvVendredi" id="nbrRdvVendredi" class="text-xs font-weight-bolder form-control" type="number" value="15" min="1" max="15" data-maxlength="2" oninput="this.value=this.value.slice(0,this.dataset.maxlength)" disabled />
-                                                </div>
                                                 <div class="col-12 col-md-2 ms-auto">
                                                     <p class="text-xs mb-0 text-secondary font-weight-bold">Heure de Debut</p>
                                                     <input name="heureDebutVendredi" id="heureDebutVendredi" class="text-xs font-weight-bolder form-control" type="time" value="08:00" min="08:00" max="18:00" onchange="javascript:checkHeureDebut('Vendredi');" disabled />

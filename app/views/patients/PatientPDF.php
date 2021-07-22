@@ -47,7 +47,7 @@ class PatientPDF extends FPDF
         // Line break
         $this->Ln(10);
     }
-
+    /**info de base du patient et son contact d'urgence */
     function Info($param, $data)
     {
         // Times 12
@@ -57,7 +57,7 @@ class PatientPDF extends FPDF
         // Line break
         $this->Ln();
     }
-
+    /**petite entete du contact d'urgence */
     function MidHead($title)
     {
         // Arial bold 15
@@ -68,11 +68,17 @@ class PatientPDF extends FPDF
         // Colors of frame, background and text
         $this->SetDrawColor(0,80,180);
         $this->SetFillColor(230,230,0);
-        $this->SetTextColor(220,50,50);
+        //$this->SetTextColor(220,50,50);
         // Thickness of frame (1 mm)
         $this->SetLineWidth(1);
         // Title
         $this->Cell($w,9,$title,1,1,'C',true);
+        // Line break
+        $this->Ln(10);
+    }
+    function Divider()
+    {
+        $this->MultiCell(0,7,'------------------------------------------------------------------------------------------------------------------');
         // Line break
         $this->Ln(10);
     }
