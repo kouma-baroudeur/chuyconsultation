@@ -220,7 +220,7 @@ class Medecins extends Controller
     }
   }
 
-  //Traitement ajout consultation
+  /**Traitement ajout consultation*/
   public function ajouterConsultation()
   {
     if ($_SESSION['userType'] != 'medecin') {
@@ -523,14 +523,14 @@ class Medecins extends Controller
     } else {
       $data = [
         'medecin' => $this->activeUser,
-        
+
         'page' => 'Mise a Jour du Planning'
       ];
       $this->view('medecins/MAJ-planningMed', $data);
     }
   }
 
-  //Affiche page Mise a jour du planning
+  /**Affiche page Mise a jour du planning*/
   public function modifierPlanning()
   {
     if ($_SESSION['userType'] != 'medecin') {
