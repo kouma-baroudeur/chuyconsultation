@@ -37,11 +37,7 @@
                                                 <h6 class="mb-0 text-dark font-weight-bold text-sm">Lundi</h6>
                                             </div>
                                             <div class="row align-items-center ms-4 mt-3 ps-1">
-<<<<<<< HEAD
                                                 <div class="col-12 col-md-4">
-=======
-                                                <div class="col-12 col-md-2 ms-auto">
->>>>>>> 2975d4fe3592ff63388f410ebbf227f7f14badd9
                                                     <p class="text-xs mb-0 text-secondary font-weight-bold">Heure de Debut</p>
                                                     <input name="heureDebutLundi" id="heureDebutLundi" class="text-xs font-weight-bolder form-control" type="time" value="08:00" min="08:00" max="18:00" onchange="javascript:checkHeureDebut('Lundi');" disabled/>
                                                     <span id="heureDebutInfoLundi" class="text-xs text-danger"></span>
@@ -63,11 +59,7 @@
                                                 <h6 class="mb-0 text-dark font-weight-bold text-sm">Mardi</h6>
                                             </div>
                                             <div class="row align-items-center ms-4 mt-3 ps-1">
-<<<<<<< HEAD
                                                 <div class="col-12 col-md-4">
-=======
-                                                <div class="col-12 col-md-2 ms-auto">
->>>>>>> 2975d4fe3592ff63388f410ebbf227f7f14badd9
                                                     <p class="text-xs mb-0 text-secondary font-weight-bold">Heure de Debut</p>
                                                     <input name="heureDebutMardi" id="heureDebutMardi" class="text-xs font-weight-bolder form-control" type="time" value="08:00" min="08:00" max="18:00" onchange="javascript:checkHeureDebut('Mardi');" disabled/>
                                                     <span id="heureDebutInfoMardi" class="text-xs text-danger"></span>
@@ -89,11 +81,7 @@
                                                 <h6 class="mb-0 text-dark font-weight-bold text-sm">Mercredi</h6>
                                             </div>
                                             <div class="row align-items-center ms-4 mt-3 ps-1">
-<<<<<<< HEAD
                                                 <div class="col-12 col-md-4">
-=======
-                                                <div class="col-12 col-md-2 ms-auto">
->>>>>>> 2975d4fe3592ff63388f410ebbf227f7f14badd9
                                                     <p class="text-xs mb-0 text-secondary font-weight-bold">Heure de Debut</p>
                                                     <input name="heureDebutMercredi" id="heureDebutMercredi" class="text-xs font-weight-bolder form-control" type="time" value="08:00" min="08:00" max="18:00" onchange="javascript:checkHeureDebut('Mercredi');" disabled/>
                                                     <span id="heureDebutInfoMercredi" class="text-xs text-danger"></span>
@@ -115,11 +103,7 @@
                                                 <h6 class="mb-0 text-dark font-weight-bold text-sm">Jeudi</h6>
                                             </div>
                                             <div class="row align-items-center ms-4 mt-3 ps-1">
-<<<<<<< HEAD
                                                 <div class="col-12 col-md-4">
-=======
-                                                <div class="col-12 col-md-2 ms-auto">
->>>>>>> 2975d4fe3592ff63388f410ebbf227f7f14badd9
                                                     <p class="text-xs mb-0 text-secondary font-weight-bold">Heure de Debut</p>
                                                     <input name="heureDebutJeudi" id="heureDebutJeudi" class="text-xs font-weight-bolder form-control" type="time" value="08:00" min="08:00" max="18:00" onchange="javascript:checkHeureDebut('Jeudi');" disabled/>
                                                     <span id="heureDebutInfoJeudi" class="text-xs text-danger"></span>
@@ -141,11 +125,7 @@
                                                 <h6 class="mb-0 text-dark font-weight-bold text-sm">Vendredi</h6>
                                             </div>
                                             <div class="row align-items-center ms-4 mt-3 ps-1">
-<<<<<<< HEAD
                                                 <div class="col-12 col-md-4">
-=======
-                                                <div class="col-12 col-md-2 ms-auto">
->>>>>>> 2975d4fe3592ff63388f410ebbf227f7f14badd9
                                                     <p class="text-xs mb-0 text-secondary font-weight-bold">Heure de Debut</p>
                                                     <input name="heureDebutVendredi" id="heureDebutVendredi" class="text-xs font-weight-bolder form-control" type="time" value="08:00" min="08:00" max="18:00" onchange="javascript:checkHeureDebut('Vendredi');" disabled/>
                                                     <span id="heureDebutInfoVendredi" class="text-xs text-danger"></span>

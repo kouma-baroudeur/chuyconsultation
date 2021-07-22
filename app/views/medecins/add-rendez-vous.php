@@ -41,14 +41,19 @@
                                     <div class="card multisteps-form__panel p-3 border-radius-xl bg-white js-active" data-animation="FadeIn">
                                         <div class="row text-center">
                                             <div class="col-10 mx-auto">
-                                                <h5 class="font-weight-normal">Quel services souhaitez-vous?</h5>
+                                                <h5 class="font-weight-normal">Quel est votre probleme?</h5>
                                             </div>
                                         </div>
                                         <div class="multisteps-form__content">
                                             <div class="row mt-3">
                                                 <div class="col-12 col-sm-8 mt-4 mt-sm-0 text-start mx-auto">
                                                     <label for="projectName" class="form-label">Service</label>
-                                                    <select class="form-control" name="service">
+                                                    <select class="form-control" name="service" onchange='
+                                                        <?php 
+                                                            $dom = new DOMDocument();
+                                                            $dom->load("index.php");
+                                                        ?>
+                                                    '>
                                                         <option value="all" selected>Tous les Services</option>
                                                         <?php
                                                         foreach ($data['services'] as $id => $service) {
@@ -67,12 +72,22 @@
                                     <div class="card multisteps-form__panel p-3 border-radius-xl bg-white" data-animation="FadeIn">
                                         <div class="row text-center">
                                             <div class="col-10 mx-auto">
-                                                <h5 class="font-weight-normal">What are you doing? (checkboxes)</h5>
-                                                <p>Give us more details about you. What do you enjoy doing in your spare time?</p>
+                                                <h5 class="font-weight-normal">Voici le medecins diponible pour ce service</h5>
+                                                <p>Veuillez en choisir un</p>
                                             </div>
                                         </div>
                                         <div class="multisteps-form__content">
                                             <div class="row mt-4">
+                                                <div class="col-12 col-sm-8 mt-4 mt-sm-0 text-start mx-auto">
+                                                    <label for="projectName" class="form-label">Medecin</label>
+                                                    <select class="form-control" name="medecin">
+                                                        <?php
+                                                        foreach ($data['medecins'] as $id => $medecin) {
+                                                            echo '<option value="' . $medecin->codeMedecin . '">' . $medecin->nomMedecin . ' ' . $medecin->prenomMedecin . '</option>';
+                                                        }
+                                                        ?>
+                                                    </select>
+                                                </div><br>
                                                 <div class="col-sm-3 ms-auto">
                                                     <input type="checkbox" class="btn-check" id="btncheck1">
                                                     <label class="btn btn-lg btn-outline-secondary border-2 px-6 py-5" for="btncheck1">
@@ -138,6 +153,48 @@
                                             <div class="button-row d-flex mt-4">
                                                 <button class="btn bg-gradient-light mb-0 js-btn-prev" type="button" title="Prev">Prev</button>
                                                 <button class="btn bg-gradient-dark ms-auto mb-0 js-btn-next" type="button" title="Next">Next</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--single form panel-->
+                                    <div class="card multisteps-form__panel p-3 border-radius-xl bg-white" data-animation="FadeIn">
+                                        <div class="row text-center">
+                                            <div class="col-10 mx-auto">
+                                                <h5 class="font-weight-normal">Are you living in a nice area?</h5>
+                                                <p>One thing I love about the later sunsets is the chance to go for a walk through the neighborhood woods before dinner</p>
+                                            </div>
+                                        </div>
+                                        <div class="multisteps-form__content">
+                                            <div class="row text-start">
+                                                <div class="col-12 col-md-8 ms-auto mt-3">
+                                                    <label>Street Name</label>
+                                                    <input class="multisteps-form__input form-control" type="text" placeholder="Eg. Soft" />
+                                                </div>
+                                                <div class="col-12 col-md-4 ms-auto mt-3">
+                                                    <label>Street No</label>
+                                                    <input class="multisteps-form__input form-control" type="number" placeholder="Eg. 221" />
+                                                </div>
+                                                <div class="col-12 col-md-7 ms-auto mt-3">
+                                                    <label>City</label>
+                                                    <input class="multisteps-form__input form-control" type="text" placeholder="Eg. Tokyo" />
+                                                </div>
+                                                <div class="col-12 col-md-5 ms-auto mt-3 text-start">
+                                                    <label>Country</label>
+                                                    <select class="form-control" name="choices-country" id="choices-country">
+                                                        <option value="Argentina">Argentina</option>
+                                                        <option value="Albania">Albania</option>
+                                                        <option value="Algeria">Algeria</option>
+                                                        <option value="Andorra">Andorra</option>
+                                                        <option value="Angola">Angola</option>
+                                                        <option value="Brasil">Brasil</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="button-row d-flex mt-4 col-12">
+                                                    <button class="btn bg-gradient-light mb-0 js-btn-prev" type="button" title="Prev">Prev</button>
+                                                    <button class="btn bg-gradient-dark ms-auto mb-0" type="button" title="Send">Send</button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
