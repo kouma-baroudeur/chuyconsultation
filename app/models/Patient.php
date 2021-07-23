@@ -259,4 +259,20 @@ class Patient
         return $rows;
     }
    
+      public function premierObservation(){
+
+        $user = [
+            'id'    =>  $_SESSION['userId'],
+            'type'  =>  $_SESSION['userType'],
+            'email' => $_SESSION['userMail'],
+            'state' => $_SESSION['userState']
+        ];
+
+        $codePatient = $this->getPatientById($user)->IP;
+        $sql1= "INSERT INTO premiereobservation(poids,taille,PA,pouls,antecedantMedicaux,antecedantFamiliaux,allergies,goupeSanguin,rhesus,examenPhysique,IP) VALUES(0,0 ,'','','','','','','','',:IP)";
+        $this->db->query($sql1);
+        $this->db->bind(':IP', $codePatient);
+        $rows = $this->db->execute();
+        return $rows;
+    }
 }

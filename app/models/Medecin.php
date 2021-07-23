@@ -426,5 +426,6 @@ class Medecin
         $rows = $this->db->resultSet();
         return $rows;
     }
+  
 
 }
