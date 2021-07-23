@@ -204,6 +204,18 @@ class Medecins extends Controller
     }
   }
 
+  //Imprimmer le dossier medical
+  public function _2y_10_r2W8RrJ3iE_HI4y4H__wmexIpXZQtHTrBALAZqmpvTiz5FR4oiZ5W($id)
+  {
+    $data = [
+      'patient' => $this->medecinModel->profilePatient($id),
+      'premiereobserv' => $this->medecinModel->premiereInfo($id),
+      'urgence' => $this->medecinModel->recupurgence($id),
+      'consultation' => $this->medecinModel->consultPatient($id),
+    ];
+    $this->view('patients/Pdf', $data);
+  }
+
   //Affiche page ajout consultation avec parametre
   public function addConsultation($idPatient)
   {
@@ -397,8 +409,24 @@ class Medecins extends Controller
         'page' => 'Edition des première observations'
       ];
       if ($this->medecinModel->editpreInfo($data)) {
+        $data = [
+          'medecin' => $this->activeUser,
+          'patient' => $this->medecinModel->profilePatient($id),
+          'premiereinfo' => $this->medecinModel->premiereInfo($id),
+          'contacturgence' => $this->medecinModel->recupurgence($id),
+          'consultations' => $this->medecinModel->consultPatient($id),
+          'id' => $id,
+          'page' => 'Profil du Patient'
+        ];
         $this->view('medecins/patient-profil', $data);
       } else {
+        $data = [
+          //'patients' => $this->medecinModel->patients(),
+          'medecin' => $this->activeUser,
+          'IP' => $id,
+          'page' => 'Premiere Observation'
+          //'patient' => $patient,
+        ];
         $this->view('medecins/premiere-observation', $data);
       }
     }
@@ -413,6 +441,7 @@ class Medecins extends Controller
       $data = [
         //'patients' => $this->medecinModel->patients(),
         'medecin' => $this->activeUser,
+        'IP' => $idPatient,
         'page' => 'Premiere Observation'
         //'patient' => $patient,
       ];
@@ -551,7 +580,7 @@ class Medecins extends Controller
     } else {
       $data = [
         'medecin' => $this->activeUser,
-
+        'medecinModel' => $this->medecinModel,
         'page' => 'Mise a Jour du Planning'
       ];
       $this->view('medecins/MAJ-planningMed', $data);
@@ -829,4 +858,15 @@ class Medecins extends Controller
       }
     }
   }
+
+  public function afficheConsultations()
+  {
+    if ($_SESSION['userType'] != 'medecin') {
+      notAuthorized();
+    } else {
+  $id=$_POST["id"];                                                                                                                                                                                                                                                                              
+
+    }
+  }
+  
 }

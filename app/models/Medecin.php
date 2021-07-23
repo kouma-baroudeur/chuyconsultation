@@ -195,12 +195,6 @@ class Medecin
     //fonction editer un profile medecin
     public function editProfile($data)
     {
-        $user = [
-            'id'    =>  $_SESSION['userId'],
-            'type'  =>  $_SESSION['userType'],
-            'email' => $_SESSION['userMail'],
-            'state' => $_SESSION['userState']
-        ];
         $sql = "UPDATE medecin SET nomMedecin ='" . $data['nom'] . "',prenomMedecin ='" . $data['prenom'] . "',sexeMedecin = '" . $data['sexe'] . "',adresseMedecin = '" . $data['adresse'] . "',dateNaissanceMedecin = '" . $data['dateNaissance'] . "',lieuNaissanceMedecin = '" . $data['lieuNaissance'] . "',telMedecin ='" . $data['tel'] . "'  WHERE userId= " . $_SESSION['userId'];
         $this->db->query($sql);
         return $this->db->execute();
@@ -245,7 +239,7 @@ class Medecin
     }
     public function editpreInfo($data)
     {
-        $sql = "UPDATE premiereobservation SET SET poids='" . $data['poids'] . "',taille='" . $data['taille'] . "',PA='" . $data['pa'] . "',pouls='" . $data['pouls'] . "',antecedantMedicaux='" . $data['antmed'] . "',antecedantFamiliaux='" . $data['antfam'] . "',allergies='" . $data['allergies'] . "',goupeSanguin='" . $data['groupeSanguin'] . "',rhesus='" . $data['rhesus'] . "',examenPhysique='" . $data['examens'] . "' WHERE IP=".$data['id'];
+        $sql = "UPDATE premiereobservation SET poids='" . $data['poids'] . "',taille='" . $data['taille'] . "',PA='" . $data['pa'] . "',pouls='" . $data['pouls'] . "',antecedantMedicaux='" . $data['antmed'] . "',antecedantFamiliaux='" . $data['antfam'] . "',allergies='" . $data['allergies'] . "',goupeSanguin='" . $data['groupeSanguin'] . "',rhesus='" . $data['rhesus'] . "',examenPhysique='" . $data['examens'] . "' WHERE IP=".$data['id'];
         $this->db->query($sql);
         return $this->db->execute();
     }
@@ -421,4 +415,17 @@ class Medecin
         $this->db->bind(':id', $id);
         return $this->db->execute();
     }
+    public function afficheConsultation($id){
+
+        $sql = "SELECT * ";
+        $sql .= "FROM patient,consultations ";
+        $sql .= "WHERE consultations.IP = patient.IP ";
+        $sql .= "AND numeroConsultation=:id ";
+        $this->db->query($sql);
+        $this->db->bind(':id', $id);
+        $rows = $this->db->resultSet();
+        return $rows;
+    }
+  
+
 }

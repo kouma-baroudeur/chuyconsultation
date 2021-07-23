@@ -158,7 +158,7 @@ class Patients extends Controller
 
       if (empty($data['nomContact_err']) && empty($data['prenomContact_err']) && empty($data['telurgence_err']) && empty($data['adresseContact_err'])) {
         // adding information into de table
-        if ($this->patientModel->urgence($data)) {
+        if ($this->patientModel->urgence($data) AND $this->patientModel->premierObservation()) {
           flash('register_success', 'Le contact d\'urgence a été enrégistré avec succès.');
           redirect('patients/_2y_10_rBg9JAf8xXLLAL506TuAoOXjaPWXAf7e5XZ9sf1cscgbeSW6gCg2C');
         } else {

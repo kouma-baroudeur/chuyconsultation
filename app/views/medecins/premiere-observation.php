@@ -11,10 +11,10 @@
         <?php require APPROOT . '/views/includes/medNavbar.php'; ?>
 
         <div class="container-fluid py-4">
-            <form action="<?= URLROOT ?>/medecins/editPremiereInfo" method="post" class="text-center">
+            <form action="<?= URLROOT ?>/medecins/editPremiereInfo/<?= $data['IP'] ?>" method="post" class="text-center">
                 <h6 class="mb-0">Premieres Observations du Patient</h6>
                 <p class="text-sm mb-0">Veuillez remplir les champs</p>
-
+                <input type="text" class="form-control" name="patient" value="<?= $data['IP'] ?>" hidden>
                 <div class="row mt-5 col-8 mx-auto">
                     <div class="col-6 col-sm-3">
                         <label class="form-label">Poids (Kg)</label>
