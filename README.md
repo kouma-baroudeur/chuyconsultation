@@ -66,7 +66,7 @@ Elle est constituée uniquement des étudiant de l'[Université de Yaoundé 1/IC
 
 
 ## Comment utiliser notre solution ?
-Afin de savoir comment utiliser notre solution, ouvrez la [Documentation](Documentation/CommentUtiliserCHUYConsultation.pdf)
+Afin de savoir comment utiliser notre solution, ouvrez la [Documentation](Documentation/CommentUtiliserCHUYConsultationt.pdf)
 
 ### License
 [MIT License](LICENSE)
