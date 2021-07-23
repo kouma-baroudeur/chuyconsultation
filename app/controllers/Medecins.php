@@ -409,8 +409,24 @@ class Medecins extends Controller
         'page' => 'Edition des première observations'
       ];
       if ($this->medecinModel->editpreInfo($data)) {
+        $data = [
+          'medecin' => $this->activeUser,
+          'patient' => $this->medecinModel->profilePatient($id),
+          'premiereinfo' => $this->medecinModel->premiereInfo($id),
+          'contacturgence' => $this->medecinModel->recupurgence($id),
+          'consultations' => $this->medecinModel->consultPatient($id),
+          'id' => $id,
+          'page' => 'Profil du Patient'
+        ];
         $this->view('medecins/patient-profil', $data);
       } else {
+        $data = [
+          //'patients' => $this->medecinModel->patients(),
+          'medecin' => $this->activeUser,
+          'IP' => $id,
+          'page' => 'Premiere Observation'
+          //'patient' => $patient,
+        ];
         $this->view('medecins/premiere-observation', $data);
       }
     }
