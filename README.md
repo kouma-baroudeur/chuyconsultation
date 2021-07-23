@@ -56,8 +56,17 @@ L'équipe de développement est constituée de [M. KOUMADOUL Baroud](https://git
 C'est avec cette équipe dynamique que ce projet à finalement vu jour.
 Elle est constituée uniquement des étudiant de l'[Université de Yaoundé 1/ICT4D/L3]().
 
+## Quelques captures :
+#### Accueil
+![alt text](Captures/accueil.png?raw=true)
+#### Création de compte
+![alt text](Captures/creercompte.png?raw=true)
+#### Dashboard Médecin
+![alt text](Captures/dashboardmed.png?raw=true)
+
+
 ## Comment utiliser notre solution ?
-[Documentation](Documentation/CommentUtiliserCHUYConsultation.pdf)
+Afin de savoir comment utiliser notre solution, ouvrez la [Documentation](Documentation/CommentUtiliserCHUYConsultation.pdf)
 
 ### License
 [MIT License](LICENSE)
