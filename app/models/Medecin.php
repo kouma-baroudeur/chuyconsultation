@@ -171,23 +171,21 @@ class Medecin
     /** Retourne le planning des medecins*/
     public function getAllMedPlannings()
     {
-        $sql = GETPLANNING;
+        $sql = GETALLMEDPLANNINGS;
 
         $this->db->query($sql);
-        $this->db->bind(':codeMedecin', $medecin);
         $answer = $this->db->execute();
         return $answer;
     }
 
     /** Emmerger le planning d'un medecin*/
-    public function emergerPlanning($medecin, $jour, $nbrRdv, $heureDebut, $heureFin)
+    public function emergerPlanning($medecin, $jour, $heureDebut, $heureFin)
     {
         $sql = ADDPLANNING;
 
         $this->db->query($sql);
         $this->db->bind(':codeMedecin', $medecin);
         $this->db->bind(':jour', $jour);
-        $this->db->bind(':nombreRdv', $nbrRdv);
         $this->db->bind(':heureDebut', $heureDebut);
         $this->db->bind(':heureFin', $heureFin);
         $answer = $this->db->execute();
@@ -197,12 +195,6 @@ class Medecin
     //fonction editer un profile medecin
     public function editProfile($data)
     {
-        $user = [
-            'id'    =>  $_SESSION['userId'],
-            'type'  =>  $_SESSION['userType'],
-            'email' => $_SESSION['userMail'],
-            'state' => $_SESSION['userState']
-        ];
         $sql = "UPDATE medecin SET nomMedecin ='" . $data['nom'] . "',prenomMedecin ='" . $data['prenom'] . "',sexeMedecin = '" . $data['sexe'] . "',adresseMedecin = '" . $data['adresse'] . "',dateNaissanceMedecin = '" . $data['dateNaissance'] . "',lieuNaissanceMedecin = '" . $data['lieuNaissance'] . "',telMedecin ='" . $data['tel'] . "'  WHERE userId= " . $_SESSION['userId'];
         $this->db->query($sql);
         return $this->db->execute();
@@ -242,6 +234,12 @@ class Medecin
             'state' => $_SESSION['userState']
         ];
         $sql = "UPDATE users SET email ='" . $data['email'] . "',password ='" . $data['newPwd'] . "' WHERE id= " . $_SESSION['userId'];
+        $this->db->query($sql);
+        return $this->db->execute();
+    }
+    public function editpreInfo($data)
+    {
+        $sql = "UPDATE premiereobservation SET poids='" . $data['poids'] . "',taille='" . $data['taille'] . "',PA='" . $data['pa'] . "',pouls='" . $data['pouls'] . "',antecedantMedicaux='" . $data['antmed'] . "',antecedantFamiliaux='" . $data['antfam'] . "',allergies='" . $data['allergies'] . "',goupeSanguin='" . $data['groupeSanguin'] . "',rhesus='" . $data['rhesus'] . "',examenPhysique='" . $data['examens'] . "' WHERE IP=".$data['id'];
         $this->db->query($sql);
         return $this->db->execute();
     }

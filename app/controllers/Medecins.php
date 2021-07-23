@@ -204,6 +204,18 @@ class Medecins extends Controller
     }
   }
 
+  //Imprimmer le dossier medical
+  public function _2y_10_r2W8RrJ3iE_HI4y4H__wmexIpXZQtHTrBALAZqmpvTiz5FR4oiZ5W($id)
+  {
+    $data = [
+      'patient' => $this->medecinModel->profilePatient($id),
+      'premiereobserv' => $this->medecinModel->premiereInfo($id),
+      'urgence' => $this->medecinModel->recupurgence($id),
+      'consultation' => $this->medecinModel->consultPatient($id),
+    ];
+    $this->view('patients/Pdf', $data);
+  }
+
   //Affiche page ajout consultation avec parametre
   public function addConsultation($idPatient)
   {
@@ -220,13 +232,12 @@ class Medecins extends Controller
     }
   }
 
-  //Traitement ajout consultation
+  /**Traitement ajout consultation*/
   public function ajouterConsultation()
   {
     if ($_SESSION['userType'] != 'medecin') {
       notAuthorized();
     } else {
-      $id = $_GET['id'];
       $data = [
         'patient' => trim($_POST['patient']),
         'medecin' => trim($_POST['medecin']),
@@ -255,6 +266,7 @@ class Medecins extends Controller
       if (empty($data['date_consultation'])) {
         $data['date_consultation_err'] = 'Veuillez renseigner ce champ.';
       }
+
       if (empty($data['patient_err']) && empty($data['medecin_err']) && empty($data['symptomes_err']) && empty($data['contenu_err']) && empty($data['date_consultation_err'])) {
         // adding information into de table patient
 
@@ -341,7 +353,6 @@ class Medecins extends Controller
       $this->view('medecins/allmedrdvs', $data);
     }
   }
-
   //Affiche page liste des patients
   public function patients()
   {
@@ -375,6 +386,51 @@ class Medecins extends Controller
       $this->view('medecins/patient-profil', $data);
     }
   }
+  /**editer premiere observation */
+  public function editPremiereInfo($id)
+  {
+    if ($_SESSION['userType'] != 'medecin') {
+      notAuthorized();
+    } else {
+      $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+      $data = [
+        'poids'=>trim($_POST['poids']),
+        'taille'=>trim($_POST['taille']),
+        'pa'=>trim($_POST['pa']),
+        'pouls'=>trim($_POST['pouls']),
+        'groupeSanguin'=>trim($_POST['groupeSanguin']),
+        'rhesus'=>trim($_POST['rhesus']),
+        'allergies'=>trim($_POST['allergies']),
+        'examens'=>trim($_POST['examens']),
+        'antmed'=>trim($_POST['antmed']),
+        'antfam'=>trim($_POST['antfam']),
+        'medecin' => $this->activeUser,
+        'id' => $id,
+        'page' => 'Edition des première observations'
+      ];
+      if ($this->medecinModel->editpreInfo($data)) {
+        $data = [
+          'medecin' => $this->activeUser,
+          'patient' => $this->medecinModel->profilePatient($id),
+          'premiereinfo' => $this->medecinModel->premiereInfo($id),
+          'contacturgence' => $this->medecinModel->recupurgence($id),
+          'consultations' => $this->medecinModel->consultPatient($id),
+          'id' => $id,
+          'page' => 'Profil du Patient'
+        ];
+        $this->view('medecins/patient-profil', $data);
+      } else {
+        $data = [
+          //'patients' => $this->medecinModel->patients(),
+          'medecin' => $this->activeUser,
+          'IP' => $id,
+          'page' => 'Premiere Observation'
+          //'patient' => $patient,
+        ];
+        $this->view('medecins/premiere-observation', $data);
+      }
+    }
+  }
 
   //Affiche page edition premiere consultation du patient
   public function premiereObservation($idPatient)
@@ -385,6 +441,7 @@ class Medecins extends Controller
       $data = [
         //'patients' => $this->medecinModel->patients(),
         'medecin' => $this->activeUser,
+        'IP' => $idPatient,
         'page' => 'Premiere Observation'
         //'patient' => $patient,
       ];
@@ -523,14 +580,14 @@ class Medecins extends Controller
     } else {
       $data = [
         'medecin' => $this->activeUser,
-        
+        'medecinModel' => $this->medecinModel,
         'page' => 'Mise a Jour du Planning'
       ];
       $this->view('medecins/MAJ-planningMed', $data);
     }
   }
 
-  //Affiche page Mise a jour du planning
+  /**Affiche page Mise a jour du planning*/
   public function modifierPlanning()
   {
     if ($_SESSION['userType'] != 'medecin') {
@@ -545,39 +602,34 @@ class Medecins extends Controller
         foreach ($jours as $jour) {
           switch ($jour) {
             case 'LUN':
-              $nbrRdvLundi = $_POST['nbrRdvLundi'];
               $heureDebutLundi = $_POST['heureDebutLundi'];
               $heureFinLundi = $_POST['heureFinLundi'];
 
-              $this->medecinModel->emergerPlanning($medecin, $jour, $nbrRdvLundi, $heureDebutLundi, $heureFinLundi);
+              $this->medecinModel->emergerPlanning($medecin, $jour, $heureDebutLundi, $heureFinLundi);
               break;
             case 'MAR':
-              $nbrRdvMardi = $_POST['nbrRdvMardi'];
               $heureDebutMardi = $_POST['heureDebutMardi'];
               $heureFinMardi = $_POST['heureFinMardi'];
 
-              $this->medecinModel->emergerPlanning($medecin, $jour, $nbrRdvMardi, $heureDebutMardi, $heureFinMardi);
+              $this->medecinModel->emergerPlanning($medecin, $jour, $heureDebutMardi, $heureFinMardi);
               break;
             case 'MER':
-              $nbrRdvMercredi = $_POST['nbrRdvMercredi'];
               $heureDebutMercredi = $_POST['heureDebutMercredi'];
               $heureFinMercredi = $_POST['heureFinMercredi'];
 
-              $this->medecinModel->emergerPlanning($medecin, $jour, $nbrRdvMercredi, $heureDebutMercredi, $heureFinMercredi);
+              $this->medecinModel->emergerPlanning($medecin, $jour, $heureDebutMercredi, $heureFinMercredi);
               break;
             case 'JEU':
-              $nbrRdvJeudi = $_POST['nbrRdvJeudi'];
               $heureDebutJeudi = $_POST['heureDebutJeudi'];
               $heureFinJeudi = $_POST['heureFinJeudi'];
 
-              $this->medecinModel->emergerPlanning($medecin, $jour, $nbrRdvJeudi, $heureDebutJeudi, $heureFinJeudi);
+              $this->medecinModel->emergerPlanning($medecin, $jour, $heureDebutJeudi, $heureFinJeudi);
               break;
             case 'VEN':
-              $nbrRdvVendredi = $_POST['nbrRdvVendredi'];
               $heureDebutVendredi = $_POST['heureDebutVendredi'];
               $heureFinVendredi = $_POST['heureFinVendredi'];
 
-              $this->medecinModel->emergerPlanning($medecin, $jour, $nbrRdvVendredi, $heureDebutVendredi, $heureFinVendredi);
+              $this->medecinModel->emergerPlanning($medecin, $jour, $heureDebutVendredi, $heureFinVendredi);
               break;
             default:
               break;

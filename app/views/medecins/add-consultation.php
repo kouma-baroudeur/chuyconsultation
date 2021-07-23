@@ -13,7 +13,7 @@
         <div class="container-fluid py-4">
             <div class="row">
                 <div class="col-lg-9 col-12 mx-auto">
-                    <form action="ajouterConsultation" method="post" onsubmit="return getContenu();">
+                    <form action="<?= URLROOT ?>/medecins/ajouterConsultation" method="post" onsubmit="return getContenu();">
                         <div class="card card-body mt-4">
                             <h6 class="mb-0">Nouvelle consultaion</h6>
                             <p class="text-sm mb-0">Veuillez remplir les champs</p>
@@ -23,8 +23,9 @@
                             <input type="text" class="form-control" name="medecin" value="<?= $data['medecin']->codeMedecin ?>" hidden>
                             <?php
                             if ($data['idPatient'] != null) {
-                                echo '<select class="form-control" name="patient" disabled>';
-                                echo '<option value="' . $data['idPatient'] . '" selected>' . $data['patient']->nomPatient . ' ' . $data['patient']->prenomPatient . '</option>';
+                                echo '<input type="text" class="form-control" name="patient" value="' . $data['patient']->IP. '" hidden>';
+                                echo '<select class="form-control" disabled>';
+                                echo '<option value="' . $data['patient']->IP. '" selected>' . $data['patient']->nomPatient . ' ' . $data['patient']->prenomPatient . '</option>';
                             } else {
                                 echo '<select class="form-control" name="patient">';
                                 foreach ($data['patients'] as $id => $patient) {
@@ -52,12 +53,14 @@
                                 <div class="col-6">
                                     <label class="form-label" name="date_consultation">Date de consultaion: </label><span class="text-sm">&nbsp;&nbsp;<?php echo date('d/m/Y'); ?></span>
                                 </div>
-                                <label class="mt-4 form-label">Ajouter des documents</label>
-                                <div class="form-control dropzone" id="dropzone">
-                                    <div class="fallback">
-                                        <input name="file" type="file" multiple />
+                                <!--
+                                    <label class="mt-4 form-label">Ajouter des documents</label>
+                                    <div class="form-control dropzone" id="dropzone">
+                                        <div class="fallback">
+                                            <input name="file" type="file" multiple />
+                                        </div>
                                     </div>
-                                </div>
+                                -->
                                 <div class="button-row d-flex mt-4">
                                     <button class="btn bg-gradient-info ms-auto mb-0 js-btn">
                                         Ajouter Consultation

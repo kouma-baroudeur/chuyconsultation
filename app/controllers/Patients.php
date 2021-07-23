@@ -51,7 +51,9 @@ class Patients extends Controller
   {
     $data = [
       'patient' => $this->activeUser,
-      'urgence' => $this->patientModel->recupurgence()
+      'urgence' => $this->patientModel->recupurgence(),
+      'premiereobserv' => $this->patientModel->premiereobserv(),
+      'consultation' => $this->patientModel->consultation()
     ];
     $this->view('patients/Pdf', $data);
   }
