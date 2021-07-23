@@ -172,58 +172,22 @@
                                     <h6 class="mb-0">Dernieres Consultations</h6>
                                 </div>
                                 <div class="col-6 text-end">
-                                    <a href="javascript:;">
-                                        <span class="text-secondary text-sm">VOIR TOUT</span>
-                                    </a>
                                 </div>
                             </div>
                         </div>
                         <div class="card-body pt-4 p-3">
                             <ul class="list-group">
+                            <?php foreach ($data['consultations'] as $id => $consult) : ?>
                                 <li class="list-group-item border-0 d-flex p-2 mb-2 bg-gray-100 border-radius-lg">
                                     <div class="d-flex flex-column">
-                                        <h6 class="mb-3 text-sm">Dr. Oliver Liam</h6>
-                                        <span class="mb-2 text-xs">Type de consultation: <span class="text-dark font-weight-bold ms-sm-2">Viking Burrito</span></span>
-                                        <span class="text-xs">Date: <span class="text-dark ms-sm-2 font-weight-bold">FRB1235476</span>&nbsp;&nbsp; Derniere mise a jour: <span class="text-dark ms-sm-2 font-weight-bold">FRB1235476</span></span>
+                                        <h6 class="mb-3 text-sm">Dr. <?= $consult->nomMedecin ?> <?= $consult->prenomMedecin ?></h6>
+                                        <span class="text-xs">Date: <span class="text-dark ms-sm-2 font-weight-bold"><?= $consult->dateConsultation ?></span>&nbsp;&nbsp; Derniere mise a jour: <span class="text-dark ms-sm-2 font-weight-bold"><?= $consult->dateEdition ?></span></span>
                                     </div>
                                     <div class="ms-auto text-end">
-                                        <a class="btn btn-link text-info text-gradient px-3 mb-0" href="javascript:;">Voir</a>
-                                        <a class="btn btn-link text-dark px-3 mb-0" href="javascript:;"><i class="fas fa-pencil-alt text-dark me-2" aria-hidden="true"></i>Edit</a>
+                                        <a class="btn btn-link text-info text-gradient px-3 mb-0" href="<?= URLROOT ?>/medecins/detailConsultation/<?= $consult->numeroConsultation ?>">Voir</a>
                                     </div>
                                 </li>
-                                <li class="list-group-item border-0 d-flex p-2 mb-2 mt-3 bg-gray-100 border-radius-lg">
-                                    <div class="d-flex flex-column">
-                                        <h6 class="mb-3 text-sm">Dr. Lucas Harper</h6>
-                                        <span class="mb-2 text-xs">Type de consultation: <span class="text-dark font-weight-bold ms-sm-2">Stone Tech Zone</span></span>
-                                        <span class="text-xs">Date: <span class="text-dark ms-sm-2 font-weight-bold">FRB1235476</span>&nbsp;&nbsp; Derniere mise a jour: <span class="text-dark ms-sm-2 font-weight-bold">FRB1235476</span></span>
-                                    </div>
-                                    <div class="ms-auto text-end">
-                                        <a class="btn btn-link text-info text-gradient px-3 mb-0" href="javascript:;">Voir</a>
-                                        <a class="btn btn-link text-dark px-3 mb-0" href="javascript:;"><i class="fas fa-pencil-alt text-dark me-2" aria-hidden="true"></i>Edit</a>
-                                    </div>
-                                </li>
-                                <li class="list-group-item border-0 d-flex p-2 mb-2 mt-3 bg-gray-100 border-radius-lg">
-                                    <div class="d-flex flex-column">
-                                        <h6 class="mb-3 text-sm">Dr. Ethan James</h6>
-                                        <span class="mb-2 text-xs">Type de consultation: <span class="text-dark font-weight-bold ms-sm-2">Fiber Notion</span></span>
-                                        <span class="text-xs">Date: <span class="text-dark ms-sm-2 font-weight-bold">FRB1235476</span>&nbsp;&nbsp; Derniere mise a jour: <span class="text-dark ms-sm-2 font-weight-bold">FRB1235476</span></span>
-                                    </div>
-                                    <div class="ms-auto text-end">
-                                        <a class="btn btn-link text-info text-gradient px-3 mb-0" href="javascript:;">Voir</a>
-                                        <a class="btn btn-link text-dark px-3 mb-0" href="javascript:;"><i class="fas fa-pencil-alt text-dark me-2" aria-hidden="true"></i>Edit</a>
-                                    </div>
-                                </li>
-                                <li class="list-group-item border-0 d-flex p-2 mb-2 mt-3 bg-gray-100 border-radius-lg">
-                                    <div class="d-flex flex-column">
-                                        <h6 class="mb-3 text-sm">Dr. Ethan James</h6>
-                                        <span class="mb-2 text-xs">Type de consultation: <span class="text-dark font-weight-bold ms-sm-2">Fiber Notion</span></span>
-                                        <span class="text-xs">Date: <span class="text-dark ms-sm-2 font-weight-bold">FRB1235476</span>&nbsp;&nbsp; Derniere mise a jour: <span class="text-dark ms-sm-2 font-weight-bold">FRB1235476</span></span>
-                                    </div>
-                                    <div class="ms-auto text-end">
-                                        <a class="btn btn-link text-info text-gradient px-3 mb-0" href="javascript:;">Voir</a>
-                                        <a class="btn btn-link text-dark px-3 mb-0" href="javascript:;"><i class="fas fa-pencil-alt text-dark me-2" aria-hidden="true"></i>Edit</a>
-                                    </div>
-                                </li>
+                            <?php endforeach ?>
                             </ul>
                         </div>
                     </div>

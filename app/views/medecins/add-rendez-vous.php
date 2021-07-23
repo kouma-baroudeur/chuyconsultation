@@ -21,6 +21,9 @@
                                 <hr class="horizontal dark my-3">
 
                                 <input type="text" class="form-control" name="patient" value="<?= $data['patient']->IP ?>" hidden>
+
+                                <input type="text" class="form-control" name="medecins[]" value="<?= $data['medecins'] ?>" hidden>
+
                             </div>
 
                             <div class="row">
@@ -29,7 +32,7 @@
                                     <select class="form-control" name="service">
                                         <option value="all" selected>Tous les Services</option>
                                         <?php
-                                        foreach ($data['services'] as $id => $service) {
+                                        foreach ($data['medecinModel']->listeService() as $id => $service) {
                                             echo '<option value="' . $service->codeService . '">' . $service->nomService . '</option>';
                                         }
                                         ?>
@@ -61,8 +64,8 @@
                                     <select class="form-control" name="objet">
                                         <option value="all" selected>Choisissez la date de disponibilite</option>
                                         <?php
-                                        foreach ($data['joursMedecin'] as $id => $jour) {
-                                            echo '<option value="' . $jour . '">' . $jour . '</option>';
+                                        foreach ($data['planning'] as $id => $jour) {
+                                            echo '<option value="' . $jour->codeJour . '">' . $valeur . '</option>';
                                         }
                                         ?>
                                     </select>
@@ -103,6 +106,13 @@
     <script src="<?= URLROOT ?>/assets/js/plugins/flatpickr.min.js"></script>
     <script src="<?= URLROOT ?>/assets/js/plugins/dropzone.min.js"></script>
     <script>
+        function getMedecinsService(code) {
+            var contenu = listeMedecinsService();
+            document.getElementById('contenu').value = contenu;
+
+            return true;
+        }
+
         function getContenu() {
             var contenu = document.getElementById('contenuText').innerHTML;
             document.getElementById('contenu').value = contenu;
@@ -110,33 +120,11 @@
             return true;
         }
 
-        if (document.getElementById('contenuText')) {
-            var quill = new Quill('#contenuText', {
-                theme: 'snow' // Specify theme in configuration
-            });
-        }
-
-        if (document.getElementById('choices-multiple-remove-button')) {
-            var element = document.getElementById('choices-multiple-remove-button');
-            const example = new Choices(element, {
-                removeItemButton: true
-            });
-        }
-
-
         if (document.querySelector('.datetimepicker')) {
             flatpickr('.datetimepicker', {
                 allowInput: true
             }); // flatpickr
         }
-
-        Dropzone.autoDiscover = false;
-        var drop = document.getElementById('dropzone')
-        var myDropzone = new Dropzone(drop, {
-            url: "/file/post",
-            addRemoveLinks: true
-
-        });
     </script>
     <!-- Kanban scripts -->
     <script src="<?= URLROOT ?>/assets/js/plugins/dragula/dragula.min.js"></script>

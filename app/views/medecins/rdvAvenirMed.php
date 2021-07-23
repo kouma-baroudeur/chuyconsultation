@@ -15,7 +15,7 @@
             <div class="row mb-8">
                 <h6>Aujourd'hui</h6>
                 <hr class="horizontal dark my-1" />
-                <?php for ($i = 0; $i < 20; $i++) : ?>
+                <?php foreach ($data['rdvs'] as $id => $rdv) : ?>
                     <div class="col-sm-6 col-lg-4 mt-lg-4 mt-4">
                         <div class="card overflow-hidden">
                             <div class="card-body p-3">
@@ -24,16 +24,16 @@
                                         <i class="ni ni-calendar-grid-58 text-lg opacity-10" aria-hidden="true"></i>
                                     </div>
                                     <div class="col-5 ms-3">
-                                        <p class="text-sm text-capitalize mb-0 font-weight-bold" >Nom du Patient</p>
+                                    <p class="text-sm text-capitalize mb-0 font-weight-bold"><?= $rdv->nomPatient." ".$rdv->prenomPatient ?></p>
                                         <h5 class="font-weight-bolder text-sm mb-0">
-                                            Date de consultation
+                                        <?= $rdv->dateRdv ?> à <?= $rdv->heureRdv ?>
                                         </h5>
                                     </div>
                                     <div class="col-4 progress-wrapper">
                                         <div class="d-flex">
-                                        <form class="form-check form-switch ms-auto" id="1" action="annulerRdv" method="post">
-                                                <input name="idConsultation" value="<?= $rdv->numeroRdv ?>" type="text" hidden>
-                                                <button type="button" class="btn btn-default btn-xs bg-white text-xs text-info font-weight-bold border-radius-md shadow-none" for="statut" onclick="javascript: showAlert('action',1);">annuler</button>
+                                        <form class="form-check form-switch ms-auto" id="<?= $rdv->numeroRdv ?>" action="annulerRdv" method="post">
+                                                <input name="id" value="<?= $rdv->numeroRdv ?>" type="text" hidden>
+                                                <button type="button" class="btn btn-default btn-xs bg-white text-xs text-info font-weight-bold border-radius-md shadow-none" for="statut" onclick="javascript: showAlert('action',<?= $rdv->numeroRdv ?>);">annuler</button>
                                                 <!--<button class="text-xs text-info btn btn-default btn-xs bg-white" for="statut" onclick="javascript: showAlert('warning-message-and-confirmation',1);">action</button>-->
                                             </form>
                                         </div>
@@ -42,7 +42,8 @@
                             </div>
                         </div>
                     </div>
-                <?php endfor; ?>
+                    <?php endforeach ?>
+                    <?= empty($data['rdvs']) ? "<div class='col-6 mx-auto mt-12 mb-8 text-lg font-weight-bold'>Vous n'avez aucun rendez-vous de prévu </div> " : "" ?>
                 <hr class="horizontal dark mt-4" />
                 <h6>Aujourd'hui</h6>
                 <hr class="horizontal dark my-1" />

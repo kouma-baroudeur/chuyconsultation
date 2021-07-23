@@ -46,7 +46,7 @@
                                                 <span class="my-2 text-xs"><?= $consult->dateConsultation ?></span>
                                             </td>
                                             <td class="font-weight-bold">
-                                                <span class="my-2 text-xs"><?= $consult->date_edition ?></span>
+                                                <span class="my-2 text-xs"><?= $consult->dateEdition ?></span>
                                             </td>
                                             <td class="text-xs font-weight-bold">
                                                 <div class="d-flex align-items-center">

@@ -13,7 +13,7 @@
         <div class="container-fluid py-4">
             <div class="row mt-4">
                 <div class="col-lg-8 col-12 mx-auto mb-5">
-                    <form action="<?= URLROOT ?>/medecins/emergerPlanning" method="post" onsubmit="return getContenu();">
+                    <form action="<?= URLROOT ?>/medecins/modifierPlanning" id="form" method="post">
                         <div class="card">
                             <div class="card-header p-3">
                                 <div class="row">
@@ -32,23 +32,23 @@
                                         <div class="checklist-item checklist-item-primary ps-2 ms-3">
                                             <div class="d-flex align-items-center">
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" value="" id="checkLundi" onchange="activeDeactive('Lundi')">
+                                                    <input class="form-check-input" type="checkbox" value="LUN" name="jours[]" id="checkLundi" onchange="activeDeactive('Lundi')">
                                                 </div>
                                                 <h6 class="mb-0 text-dark font-weight-bold text-sm">Lundi</h6>
                                             </div>
                                             <div class="row align-items-center ms-4 mt-3 ps-1">
                                                 <div class="col-12 col-md-2">
                                                     <p class="text-xs mb-0 text-secondary font-weight-bold">Nombre RDV</p>
-                                                    <input name="nbrRdvLundi" id="nbrRdvLundi" class="text-xs font-weight-bolder form-control" type="number" value="15" min="1" max="15" data-maxlength="2" oninput="this.value=this.value.slice(0,this.dataset.maxlength)" disabled/>
+                                                    <input name="nbrRdvLundi" id="nbrRdvLundi" class="text-xs font-weight-bolder form-control" type="number" value="15" min="1" max="15" data-maxlength="2" oninput="this.value=this.value.slice(0,this.dataset.maxlength)" disabled />
                                                 </div>
                                                 <div class="col-12 col-md-2 ms-auto">
                                                     <p class="text-xs mb-0 text-secondary font-weight-bold">Heure de Debut</p>
-                                                    <input name="heureDebutLundi" id="heureDebutLundi" class="text-xs font-weight-bolder form-control" type="time" value="08:00" min="08:00" max="18:00" onchange="javascript:checkHeureDebut('Lundi');" disabled/>
+                                                    <input name="heureDebutLundi" id="heureDebutLundi" class="text-xs font-weight-bolder form-control" type="time" value="08:00" min="08:00" max="18:00" onchange="javascript:checkHeureDebut('Lundi');" disabled />
                                                     <span id="heureDebutInfoLundi" class="text-xs text-danger"></span>
                                                 </div>
                                                 <div class="col-12 col-md-2 mx-auto">
                                                     <p class="text-xs mb-0 text-secondary font-weight-bold">Heure de Fin</p>
-                                                    <input name="heureFinLundi" id="heureFinLundi" class="text-xs font-weight-bolder form-control" type="time" value="18:00" min="08:00" max="18:00" onchange="javascript:checkHeureFin('Lundi');" disabled/>
+                                                    <input name="heureFinLundi" id="heureFinLundi" class="text-xs font-weight-bolder form-control" type="time" value="18:00" min="08:00" max="18:00" onchange="javascript:checkHeureFin('Lundi');" disabled />
                                                     <span id="heureFinInfoLundi" class="text-xs text-danger"></span>
                                                 </div>
                                             </div>
@@ -58,23 +58,23 @@
                                         <div class="checklist-item checklist-item-success ps-2 ms-3">
                                             <div class="d-flex align-items-center">
                                                 <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="" id="checkMardi" onchange="activeDeactive('Mardi')">
+                                                    <input class="form-check-input" type="checkbox" value="MAR" name="jours[]" id="checkMardi" onchange="activeDeactive('Mardi')">
                                                 </div>
                                                 <h6 class="mb-0 text-dark font-weight-bold text-sm">Mardi</h6>
                                             </div>
                                             <div class="row align-items-center ms-4 mt-3 ps-1">
                                                 <div class="col-12 col-md-2">
                                                     <p class="text-xs mb-0 text-secondary font-weight-bold">Nombre RDV</p>
-                                                    <input name="nbrRdvMardi" id="nbrRdvMardi" class="text-xs font-weight-bolder form-control" type="number" value="15" min="1" max="15" data-maxlength="2" oninput="this.value=this.value.slice(0,this.dataset.maxlength)" disabled/>
+                                                    <input name="nbrRdvMardi" id="nbrRdvMardi" class="text-xs font-weight-bolder form-control" type="number" value="15" min="1" max="15" data-maxlength="2" oninput="this.value=this.value.slice(0,this.dataset.maxlength)" disabled />
                                                 </div>
                                                 <div class="col-12 col-md-2 ms-auto">
                                                     <p class="text-xs mb-0 text-secondary font-weight-bold">Heure de Debut</p>
-                                                    <input name="heureDebutMardi" id="heureDebutMardi" class="text-xs font-weight-bolder form-control" type="time" value="08:00" min="08:00" max="18:00" onchange="javascript:checkHeureDebut('Mardi');" disabled/>
+                                                    <input name="heureDebutMardi" id="heureDebutMardi" class="text-xs font-weight-bolder form-control" type="time" value="08:00" min="08:00" max="18:00" onchange="javascript:checkHeureDebut('Mardi');" disabled />
                                                     <span id="heureDebutInfoMardi" class="text-xs text-danger"></span>
                                                 </div>
                                                 <div class="col-12 col-md-2 mx-auto">
                                                     <p class="text-xs mb-0 text-secondary font-weight-bold">Heure de Fin</p>
-                                                    <input name="heureFinMardi" id="heureFinMardi" class="text-xs font-weight-bolder form-control" type="time" value="18:00" min="08:00" max="18:00" onchange="javascript:checkHeureFin('Mardi');" disabled/>
+                                                    <input name="heureFinMardi" id="heureFinMardi" class="text-xs font-weight-bolder form-control" type="time" value="18:00" min="08:00" max="18:00" onchange="javascript:checkHeureFin('Mardi');" disabled />
                                                     <span id="heureFinInfoMardi" class="text-xs text-danger"></span>
                                                 </div>
                                             </div>
@@ -84,23 +84,23 @@
                                         <div class="checklist-item checklist-item-dark ps-2 ms-3">
                                             <div class="d-flex align-items-center">
                                                 <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="" id="checkMercredi" onchange="activeDeactive('Mercredi')">
+                                                    <input class="form-check-input" type="checkbox" value="MER" name="jours[]" id="checkMercredi" onchange="activeDeactive('Mercredi')">
                                                 </div>
                                                 <h6 class="mb-0 text-dark font-weight-bold text-sm">Mercredi</h6>
                                             </div>
                                             <div class="row align-items-center ms-4 mt-3 ps-1">
                                                 <div class="col-12 col-md-2">
                                                     <p class="text-xs mb-0 text-secondary font-weight-bold">Nombre RDV</p>
-                                                    <input name="nbrRdvMercredi" id="nbrRdvMercredi" class="text-xs font-weight-bolder form-control" type="number" value="15" min="1" max="15" data-maxlength="2" oninput="this.value=this.value.slice(0,this.dataset.maxlength)" disabled/>
+                                                    <input name="nbrRdvMercredi" id="nbrRdvMercredi" class="text-xs font-weight-bolder form-control" type="number" value="15" min="1" max="15" data-maxlength="2" oninput="this.value=this.value.slice(0,this.dataset.maxlength)" disabled />
                                                 </div>
                                                 <div class="col-12 col-md-2 ms-auto">
                                                     <p class="text-xs mb-0 text-secondary font-weight-bold">Heure de Debut</p>
-                                                    <input name="heureDebutMercredi" id="heureDebutMercredi" class="text-xs font-weight-bolder form-control" type="time" value="08:00" min="08:00" max="18:00" onchange="javascript:checkHeureDebut('Mercredi');" disabled/>
+                                                    <input name="heureDebutMercredi" id="heureDebutMercredi" class="text-xs font-weight-bolder form-control" type="time" value="08:00" min="08:00" max="18:00" onchange="javascript:checkHeureDebut('Mercredi');" disabled />
                                                     <span id="heureDebutInfoMercredi" class="text-xs text-danger"></span>
                                                 </div>
                                                 <div class="col-12 col-md-2 mx-auto">
                                                     <p class="text-xs mb-0 text-secondary font-weight-bold">Heure de Fin</p>
-                                                    <input name="heureFinMercredi" id="heureFinMercredi" class="text-xs font-weight-bolder form-control" type="time" value="18:00" min="08:00" max="18:00" onchange="javascript:checkHeureFin('Mercredi');" disabled/>
+                                                    <input name="heureFinMercredi" id="heureFinMercredi" class="text-xs font-weight-bolder form-control" type="time" value="18:00" min="08:00" max="18:00" onchange="javascript:checkHeureFin('Mercredi');" disabled />
                                                     <span id="heureFinInfoMercredi" class="text-xs text-danger"></span>
                                                 </div>
                                             </div>
@@ -110,23 +110,23 @@
                                         <div class="checklist-item checklist-item-warning ps-2 ms-3">
                                             <div class="d-flex align-items-center">
                                                 <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="" id="checkJeudi" onchange="activeDeactive('Jeudi')">
+                                                    <input class="form-check-input" type="checkbox" value="JEU" name="jours[]" id="checkJeudi" onchange="activeDeactive('Jeudi')">
                                                 </div>
                                                 <h6 class="mb-0 text-dark font-weight-bold text-sm">Jeudi</h6>
                                             </div>
                                             <div class="row align-items-center ms-4 mt-3 ps-1">
                                                 <div class="col-12 col-md-2">
                                                     <p class="text-xs mb-0 text-secondary font-weight-bold">Nombre RDV</p>
-                                                    <input name="nbrRdvJeudi" id="nbrRdvJeudi" class="text-xs font-weight-bolder form-control" type="number" value="15" min="1" max="15" data-maxlength="2" oninput="this.value=this.value.slice(0,this.dataset.maxlength)" disabled/>
+                                                    <input name="nbrRdvJeudi" id="nbrRdvJeudi" class="text-xs font-weight-bolder form-control" type="number" value="15" min="1" max="15" data-maxlength="2" oninput="this.value=this.value.slice(0,this.dataset.maxlength)" disabled />
                                                 </div>
                                                 <div class="col-12 col-md-2 ms-auto">
                                                     <p class="text-xs mb-0 text-secondary font-weight-bold">Heure de Debut</p>
-                                                    <input name="heureDebutJeudi" id="heureDebutJeudi" class="text-xs font-weight-bolder form-control" type="time" value="08:00" min="08:00" max="18:00" onchange="javascript:checkHeureDebut('Jeudi');" disabled/>
+                                                    <input name="heureDebutJeudi" id="heureDebutJeudi" class="text-xs font-weight-bolder form-control" type="time" value="08:00" min="08:00" max="18:00" onchange="javascript:checkHeureDebut('Jeudi');" disabled />
                                                     <span id="heureDebutInfoJeudi" class="text-xs text-danger"></span>
                                                 </div>
                                                 <div class="col-12 col-md-2 mx-auto">
                                                     <p class="text-xs mb-0 text-secondary font-weight-bold">Heure de Fin</p>
-                                                    <input name="heureFinJeudi" id="heureFinJeudi" class="text-xs font-weight-bolder form-control" type="time" value="18:00" min="08:00" max="18:00" onchange="javascript:checkHeureFin('Jeudi');" disabled/>
+                                                    <input name="heureFinJeudi" id="heureFinJeudi" class="text-xs font-weight-bolder form-control" type="time" value="18:00" min="08:00" max="18:00" onchange="javascript:checkHeureFin('Jeudi');" disabled />
                                                     <span id="heureFinInfoJeudi" class="text-xs text-danger"></span>
                                                 </div>
                                             </div>
@@ -136,23 +136,23 @@
                                         <div class="checklist-item checklist-item-primary ps-2 ms-3">
                                             <div class="d-flex align-items-center">
                                                 <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="" id="checkVendredi" onchange="activeDeactive('Vendredi')">
+                                                    <input class="form-check-input" type="checkbox" value="VEN" name="jours[]" id="checkVendredi" onchange="activeDeactive('Vendredi')">
                                                 </div>
                                                 <h6 class="mb-0 text-dark font-weight-bold text-sm">Vendredi</h6>
                                             </div>
                                             <div class="row align-items-center ms-4 mt-3 ps-1">
                                                 <div class="col-12 col-md-2">
                                                     <p class="text-xs mb-0 text-secondary font-weight-bold">Nombre RDV</p>
-                                                    <input name="nbrRdvVendredi" id="nbrRdvVendredi" class="text-xs font-weight-bolder form-control" type="number" value="15" min="1" max="15" data-maxlength="2" oninput="this.value=this.value.slice(0,this.dataset.maxlength)" disabled/>
+                                                    <input name="nbrRdvVendredi" id="nbrRdvVendredi" class="text-xs font-weight-bolder form-control" type="number" value="15" min="1" max="15" data-maxlength="2" oninput="this.value=this.value.slice(0,this.dataset.maxlength)" disabled />
                                                 </div>
                                                 <div class="col-12 col-md-2 ms-auto">
                                                     <p class="text-xs mb-0 text-secondary font-weight-bold">Heure de Debut</p>
-                                                    <input name="heureDebutVendredi" id="heureDebutVendredi" class="text-xs font-weight-bolder form-control" type="time" value="08:00" min="08:00" max="18:00" onchange="javascript:checkHeureDebut('Vendredi');" disabled/>
+                                                    <input name="heureDebutVendredi" id="heureDebutVendredi" class="text-xs font-weight-bolder form-control" type="time" value="08:00" min="08:00" max="18:00" onchange="javascript:checkHeureDebut('Vendredi');" disabled />
                                                     <span id="heureDebutInfoVendredi" class="text-xs text-danger"></span>
                                                 </div>
                                                 <div class="col-12 col-md-2 mx-auto">
                                                     <p class="text-xs mb-0 text-secondary font-weight-bold">Heure de Fin</p>
-                                                    <input name="heureFinVendredi" id="heureFinVendredi" class="text-xs font-weight-bolder form-control" type="time" value="18:00" min="08:00" max="18:00" onchange="javascript:checkHeureFin('Vendredi');" disabled/>
+                                                    <input name="heureFinVendredi" id="heureFinVendredi" class="text-xs font-weight-bolder form-control" type="time" value="18:00" min="08:00" max="18:00" onchange="javascript:checkHeureFin('Vendredi');" disabled />
                                                     <span id="heureFinInfoVendredi" class="text-xs text-danger"></span>
                                                 </div>
                                             </div>
@@ -163,7 +163,7 @@
                         </div>
                         <div class="row">
                             <div class="button-row d-flex mt-4">
-                                <button type="submit" class="btn bg-gradient-info ms-auto mb-0 js-btn">
+                                <button type="button" onclick="return check();" class="btn bg-gradient-info ms-auto mb-0 js-btn">
                                     Mettre a Jour
                                 </button>
                             </div>
@@ -194,33 +194,69 @@
                 Swal.fire("Suppression", "La rendez-vous a été supprimmer", "error");
         }
 
+        function check() {
+            if (document.getElementById('checkLundi').checked || document.getElementById('checkMardi').checked ||
+                document.getElementById('checkMercredi').checked || document.getElementById('checkJeudi').checked ||
+                document.getElementById('checkVendredi').checked) {
+                Swal.fire({
+                    title: "Mise à Jour en Cours!",
+                    html: "Terminé dans <b></b> millisecondes.",
+                    timer: 2e3,
+                    timerProgressBar: !1,
+                    didOpen: () => {
+                        Swal.showLoading(),
+                            (e = setInterval(() => {
+                                const e = Swal.getHtmlContainer();
+                                if (e) {
+                                    const t = e.querySelector("b");
+                                    t && (t.textContent = Swal.getTimerLeft());
+                                }
+                            }, 100));
+                    },
+                    willClose: () => {
+                        clearInterval(e);
+                    },
+                }).then((e) => {
+                    e.dismiss, Swal.DismissReason.timer;
+                    Swal.fire("Success!", "Votre planning a été mise a jour", "success").then((e) => {
+                        document.getElementById("form").submit();
+                    });
+                });
+                //Swal.fire("Success!", "Votre planning a été mise a jour", "success");
+            } else {
+                Swal.fire("Désolé!", "Veuillez renseigner au moins un jour", "error");
+                return false;
+            }
+
+        }
+
         function activeDeactive(jour) {
-            document.getElementById("nbrRdv"+jour).toggleAttribute("disabled");
-            document.getElementById("heureDebut"+jour).toggleAttribute("disabled");
-            document.getElementById("heureFin"+jour).toggleAttribute("disabled");
+            document.getElementById("nbrRdv" + jour).toggleAttribute("disabled");
+            document.getElementById("heureDebut" + jour).toggleAttribute("disabled");
+            document.getElementById("heureFin" + jour).toggleAttribute("disabled");
         }
 
         function checkHeureDebut(jour) {
-            var heureDebut = document.getElementById("heureDebut"+jour).value ;
-            var heureFin = document.getElementById("heureFin"+jour).value ;
+            var heureDebut = document.getElementById("heureDebut" + jour).value;
+            var heureFin = document.getElementById("heureFin" + jour).value;
 
             if (!(heureDebut < heureFin)) {
-                document.getElementById("heureDebut"+jour).value = "08:00"
-                document.getElementById("heureDebutInfo"+jour).innerHTML = "Renseigner une heure valide!";
-            }else {
-                document.getElementById("heureDebutInfo"+jour).innerHTML = "";
+                document.getElementById("heureDebut" + jour).value = "08:00"
+                document.getElementById("heureDebutInfo" + jour).innerHTML = "Renseigner une heure valide!";
+            } else {
+                document.getElementById("heureDebutInfo" + jour).innerHTML = "";
             }
         }
 
         function checkHeureFin(jour) {
-            var heureDebut = document.getElementById("heureDebut"+jour).value ;
-            var heureFin = document.getElementById("heureFin"+jour).value ;
+            var heureDebut = document.getElementById("heureDebut" + jour).value;
+            var heureFin = document.getElementById("heureFin" + jour).value;
 
             if (!(heureFin > heureDebut)) {
-                document.getElementById("heureFin"+jour).value = "18:00"
-                document.getElementById("heureFinInfo"+jour).innerHTML = "Renseigner une heure valide!";
-            }else {
-                document.getElementById("heureFinInfo"+jour).innerHTML = "";
+                document.getElementById("heureFin" + jour).value = "18:00"
+                document.getElementById("heureFinInfo" + jour).innerHTML = "Renseigner une heure valide!";
+            } else {
+                document.getElementById("heureFinInfo" + jour).innerHTML = "";
             }
         }
 
