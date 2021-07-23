@@ -29,8 +29,15 @@ class Medecins extends Controller
         'services' => $this->medecinModel->listeService(),
         'patients' => $this->medecinModel->patients(),
         'medecin' => $this->activeUser,
+        'rdvs' => $this->medecinModel->rvdValide(),
+        'nbrRdvAttente' => $this->medecinModel->nbrRdv('Attente',$this->activeUser->codeMedecin),
+        'nbrRdvAvenir' => $this->medecinModel->nbrRdv('Confirme',$this->activeUser->codeMedecin),
+        'nbrPatientsMed' => $this->medecinModel->nbrPatientsMed($this->activeUser->codeMedecin),
+        'nbrConsultationsMed' => $this->medecinModel->nbrConsultationsMed($this->activeUser->codeMedecin),
+        'nbrPatientsHopital' => $this->medecinModel->nbrPatientsHopital($this->activeUser->codeMedecin),
         'page' => 'Dashboard'
       ];
+      
       if ($_SESSION['userState'] == 'incomplet')
         $this->view('medecins/initialForm', $data);
       else
@@ -460,7 +467,7 @@ class Medecins extends Controller
         'medecinModel' => $this->medecinModel,
         'medecin' => $this->activeUser,
         'services' => $this->medecinModel->listeService(),
-        'planning' => $this->medecinModel->planning(),
+        'plannings' => $this->medecinModel->getAllPlannings(),
         'medecins' => $this->patientModel->listeMedecins(),
         'page' => 'Ajouter un Rendez-vous'
       ];

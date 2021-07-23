@@ -120,32 +120,47 @@
                             <h6 class="mb-0">Demande de Rendez-vous</h6>
                         </div>
                         <div class="card-body p-3">
-                            <ul class="list-group">
-                                <?php foreach ($data['rdvs'] as $id => $rdv) : ?>
-                                    <li class="list-group-item border-0 d-flex justify-content-between ps-3 mb-2 border-radius-lg bg-success-soft">
-                                        <div class=" col-3 icon icon-shape shadow text-center border-radius-md shadow-none">
-                                            <i class="ni ni-bell-55 text-lg text-success text-gradient opacity-10" aria-hidden="true"></i>
-                                        </div>
-                                        <div class="col-8 d-flex">
-                                            <div class="d-flex flex-column">
-                                                <h6 class="mb-1 text-dark text-sm font-weight-bold"><?= $rdv->nomPatient . " " . $rdv->prenomPatient ?></h6>
-                                                <span class="text-xs text-dark font-weight-bold"><?= $rdv->dateRdv ?> à <?= $rdv->heureRdv ?></span>
-                                            </div>
-                                            <span class="invalid-feedback"></span>
-                                        </div>
-                                        <div class="col-1 d-flex align-items-end">
-                                            <a class="btn btn-link btn-icon-only btn-rounded btn-md text-dark icon-move-right my-auto" onclick="javascript: showAlert('action',<?= $rdv->numeroRdv ?>);"><i class="ni ni-bold-right" aria-hidden="true"></i></a>
-                                        </div>
-                                        <form hidden class="form-check form-switch ms-auto text-end" id="<?= $rdv->numeroRdv ?>" action="validerRdv" method="post">
-                                            <input name="id" value="<?= $rdv->numeroRdv ?>" type="text" hidden>
-                                        </form>
-                                        <form hidden name="<?= $rdv->numeroRdv ?>" action="supprimmerRdv" method="post">
-                                            <input name="id" value="<?= $rdv->numeroRdv ?>" type="text" hidden>
-                                        </form>
-                                    </li>
-                                <?php endforeach; ?>
-                                <?= empty($data['rdvs']) ? "<div class='mx-auto mt-8 text-center text-sm font-weight-bold'>Vous n'avez aucune nouvelle<br> demande rendez-vous</div> " : "" ?>
-                            </ul>
+                            <div class="table-responsive">
+                                <table class="table table-flush" id="datatable-search2">
+                                    <tbody>
+
+                                        <?php foreach ($data['rdvs'] as $id => $rdv) : ?>
+                                            <tr>
+                                                <ul class="list-group">
+                                                    <?php
+                                                    if ($rdv->dateRdv == date('Y-m-d')) {
+                                                        echo ('
+                                                        <li class="list-group-item border-0 d-flex justify-content-between ps-2 mb-2 border-radius-lg bg-success-soft">
+                                                            <div class=" col-3 icon icon-shape shadow text-center border-radius-md shadow-none">
+                                                                <i class="ni ni-bell-55 text-lg text-success text-gradient opacity-10" aria-hidden="true"></i>
+                                                            </div>
+                                                            <div class="col-8 d-flex">
+                                                                <div class="d-flex flex-column">
+                                                                    <h6 class="mb-1 text-dark text-sm font-weight-bold">' . $rdv->nomPatient . " " . $rdv->prenomPatient . '</h6>
+                                                                    <span class="text-xs text-dark font-weight-bold">' . $rdv->dateRdv . ' à ' . $rdv->heureRdv . '</span>
+                                                                </div>
+                                                                <span class="invalid-feedback"></span>
+                                                            </div>
+                                                            <div class="col-1 d-flex align-items-end">
+                                                                <a class="btn btn-link btn-icon-only btn-rounded btn-md text-dark icon-move-right my-auto" onclick="javascript: showAlert("action",' . $rdv->numeroRdv . ');"><i class="ni ni-bold-right" aria-hidden="true"></i></a>
+                                                            </div>
+                                                            <form hidden class="form-check form-switch ms-auto text-end" id="' . $rdv->numeroRdv . '" action="validerRdv" method="post">
+                                                                <input name="id" value="' . $rdv->numeroRdv . '" type="text" hidden>
+                                                            </form>
+                                                            <form hidden name="' . $rdv->numeroRdv . '" action="supprimmerRdv" method="post">
+                                                                <input name="id" value="' . $rdv->numeroRdv . '" type="text" hidden>
+                                                            </form>
+                                                        </li>
+                                                    ');
+                                                    } ?>
+                                                </ul>
+                                            </tr>
+                                        <?php endforeach; ?>
+                                        <?= empty($data['rdvs']) ? "<div class='mx-auto mt-8 text-center text-sm font-weight-bold'>Vous n'avez aucune nouvelle<br> demande rendez-vous</div> " : "" ?>
+
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -159,10 +174,16 @@
     <script src="<?= URLROOT ?>/assets/js/plugins/perfect-scrollbar.min.js"></script>
     <script src="<?= URLROOT ?>/assets/js/plugins/smooth-scrollbar.min.js"></script>
     <script src="<?= URLROOT ?>/assets/js/plugins/sweetalert.min.js"></script>
+    <script src="<?= URLROOT ?>/assets/js/plugins/datatables.js"></script>
     <!-- Kanban scripts -->
     <script src="<?= URLROOT ?>/assets/js/plugins/multistep-form.js"></script>
 
     <script>
+        const dataTableSearch2 = new simpleDatatables.DataTable("#datatable-search2", {
+            searchable: false,
+            fixedHeight: true,
+        });
+
         function showMessage(e) {
             if ("success-message" == e)
                 Swal.fire("Confirmation!", "Le rendez-vous a été confirmé", "success");

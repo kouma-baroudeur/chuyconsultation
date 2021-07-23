@@ -38,7 +38,7 @@ class Medecin
     {
         $sql = "SELECT * ";
         $sql .= "FROM medecin ";
-        $sql .= "WHERE codeService = ".$codeService;
+        $sql .= "WHERE codeService = " . $codeService;
         $this->db->query($sql);
         $answer = $this->db->resultSet();
         return $answer;
@@ -126,6 +126,16 @@ class Medecin
         $answer = $this->db->resultSet();
         return $answer;
     }
+    /** planning hebdomadaire d'un medecin*/
+    public function getAllPlannings()
+    {
+        $sql = "SELECT * FROM plannings,jours WHERE plannings.jour = jours.codeJour";
+        $this->db->query($sql);
+        $answer = $this->db->resultSet();
+        return $answer;
+    }
+
+
     /** planning hebdomadaire d'un medecin*/
     public function planningAction($data)
     {
@@ -227,19 +237,13 @@ class Medecin
     }
     public function editInfo($data)
     {
-        $user = [
-            'id'    =>  $_SESSION['userId'],
-            'type'  =>  $_SESSION['userType'],
-            'email' => $_SESSION['userMail'],
-            'state' => $_SESSION['userState']
-        ];
         $sql = "UPDATE users SET email ='" . $data['email'] . "',password ='" . $data['newPwd'] . "' WHERE id= " . $_SESSION['userId'];
         $this->db->query($sql);
         return $this->db->execute();
     }
     public function editpreInfo($data)
     {
-        $sql = "UPDATE premiereobservation SET poids='" . $data['poids'] . "',taille='" . $data['taille'] . "',PA='" . $data['pa'] . "',pouls='" . $data['pouls'] . "',antecedantMedicaux='" . $data['antmed'] . "',antecedantFamiliaux='" . $data['antfam'] . "',allergies='" . $data['allergies'] . "',goupeSanguin='" . $data['groupeSanguin'] . "',rhesus='" . $data['rhesus'] . "',examenPhysique='" . $data['examens'] . "' WHERE IP=".$data['id'];
+        $sql = "UPDATE premiereobservation SET poids='" . $data['poids'] . "',taille='" . $data['taille'] . "',PA='" . $data['pa'] . "',pouls='" . $data['pouls'] . "',antecedantMedicaux='" . $data['antmed'] . "',antecedantFamiliaux='" . $data['antfam'] . "',allergies='" . $data['allergies'] . "',goupeSanguin='" . $data['groupeSanguin'] . "',rhesus='" . $data['rhesus'] . "',examenPhysique='" . $data['examens'] . "' WHERE IP=" . $data['id'];
         $this->db->query($sql);
         return $this->db->execute();
     }
@@ -343,6 +347,54 @@ class Medecin
         return $this->db->execute();
     }
 
+    //renvoie le nombre rendez-vous en attente du medecin
+    public function nbrRdv($etatRdv, $codeMedecin)
+    {
+        $query = 'SELECT * FROM rendezvous WHERE etatRdv = :etatRdv AND codeMedecin = :codeMedecin ';
+        $this->db->query($query);
+        $this->db->bind(':etatRdv', $etatRdv);
+        $this->db->bind(':codeMedecin', $codeMedecin);
+        $res = $this->db->resultSet();
+        $total = count($res);
+
+        return $total;
+    }
+
+    //renvoie le nombre patients de l hopital
+    public function nbrPatientsHopital()
+    {
+        $query = 'SELECT * FROM patient';
+        $this->db->query($query);
+        $res = $this->db->resultSet();
+        $total = count($res);
+
+        return $total;
+    }
+
+    //renvoie le nombre patient du medecin
+    public function nbrPatientsMed($codeMedecin)
+    {
+        $query = 'SELECT * FROM consultations WHERE codeMedecin = :codeMedecin GROUP BY IP';
+        $this->db->query($query);
+        $this->db->bind(':codeMedecin', $codeMedecin);
+        $res = $this->db->resultSet();
+        $total = count($res);
+
+        return $total;
+    }
+
+    //renvoie le nombre consultation du medecin
+    public function nbrConsultationsMed($codeMedecin)
+    {
+        $query = 'SELECT * FROM consultations WHERE codeMedecin = :codeMedecin ';
+        $this->db->query($query);
+        $this->db->bind(':codeMedecin', $codeMedecin);
+        $res = $this->db->resultSet();
+        $total = count($res);
+
+        return $total;
+    }
+
     //renvoie rendez-vous en attente du medecin
     public function rvdAttente()
     {
@@ -352,6 +404,7 @@ class Medecin
             'email' => $_SESSION['userMail'],
             'state' => $_SESSION['userState']
         ];
+
         $codeMedecin = $this->getMedecinById($user)->codeMedecin;
         $sql = "SELECT * ";
         $sql .= "FROM patient,medecin,rendezvous ";
@@ -365,6 +418,23 @@ class Medecin
         $rows = $this->db->resultSet();
         return $rows;
     }
+    
+    //renvoie rendez-vous du jour du medecin
+    public function rvdDuJourMed($codeMedecin)
+    {
+        $sql = "SELECT * ";
+        $sql .= "FROM patient,medecin,rendezvous ";
+        $sql .= "WHERE rendezvous.codeMedecin = medecin.codeMedecin ";
+        $sql .= "AND rendezvous.IP = patient.IP ";
+        $sql .= "AND medecin.codeMedecin =:codeMedecin ";
+        $sql .= RDVETATCONFIRME;
+        $sql .= RDVORDRE;
+        $this->db->query($sql);
+        $this->db->bind(':codeMedecin', $codeMedecin);
+        $rows = $this->db->resultSet();
+        return $rows;
+    }
+    
     //renvoie rendez-vous en valide du medecin
     public function rvdValide()
     {

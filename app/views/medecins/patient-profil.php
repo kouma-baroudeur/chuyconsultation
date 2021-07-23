@@ -184,7 +184,7 @@
             </div>
             <div class="row mt-4">
                 <div class="col-12 col-xl-6 mt-xl-0">
-                    <div class="card h-100 max-height-vh-100">
+                    <div class="card">
                         <div class="card-header pb-0 px-3">
                             <div class="row">
                                 <div class="col-6 d-flex align-items-center">
@@ -197,7 +197,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="card-body pt-4 p-3">
+                        <div class="card-body pt-4 p-3 max-height-vh-16 h-16">
                             <ul class="list-group">
                                 <?php foreach ($data['consultations'] as $id => $consult) : ?>
                                     <li class="list-group-item border-0 d-flex p-2 mb-2 bg-gray-100 border-radius-lg">
