@@ -485,4 +485,35 @@ class Medecin
         $this->db->bind(':id', $id);
         return $this->db->execute();
     }
+    public function afficheConsultation($id){
+
+        $sql = "SELECT * ";
+        $sql .= "FROM patient,consultations ";
+        $sql .= "WHERE consultations.IP = patient.IP ";
+        $sql .= "AND numeroConsultation=:id ";
+        $this->db->query($sql);
+        $this->db->bind(':id', $id);
+        $rows = $this->db->resultSet();
+        return $rows;
+    }
+    public function ajouterPatient($data)
+    {
+
+        $sql = REGISTERUSER;
+        $this->db->query($sql);
+        $this->db->bind(':email', $data['email']);
+        $this->db->bind(':password', $data['password']);
+        $this->db->bind(':type', $data['type']);
+        $this->db->bind(':state', 'incomplet');
+        $rows = $this->db->execute();
+        return $rows;
+    }
+    public function findUserByEmail($email)
+    {
+        $this->db->query(FINDUSERBYMAIL);
+        $this->db->bind(':email', $email);
+
+        $row = $this->db->single();
+      return $row;
+    }
 }
