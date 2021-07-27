@@ -571,8 +571,7 @@ class Medecins extends Controller
     } else {
       $data = [
         'medecin' => $this->activeUser,
-        'planning' => $this->medecinModel->planning(),
-        'jours' => $this->medecinModel->listeJour(),
+        'plannings' => $this->medecinModel->getPlanning($this->activeUser->codeMedecin),
         'page' => 'Mon Planning'
       ];
       $this->view('medecins/planningMed', $data);
@@ -865,15 +864,4 @@ class Medecins extends Controller
       }
     }
   }
-
-  public function afficheConsultations()
-  {
-    if ($_SESSION['userType'] != 'medecin') {
-      notAuthorized();
-    } else {
-  $id=$_POST["id"];                                                                                                                                                                                                                                                                              
-
-    }
-  }
-  
 }

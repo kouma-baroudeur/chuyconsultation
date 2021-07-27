@@ -19,21 +19,21 @@
                     <div class="multisteps-form mb-5">
                         <!--progress bar-->
                         <div class="row">
-                            <div class="col-12 col-lg-8 mx-auto my-5">
+                            <div class="col-12 col-lg-8 mx-auto my-3">
                                 <div class="multisteps-form__progress">
-                                    <button class="multisteps-form__progress-btn js-active" type="button" title="User Info">
+                                    <button class="multisteps-form__progress-btn js-active" title="User Info" disabled>
                                         <span>1.Besoin</span>
                                     </button>
-                                    <button class="multisteps-form__progress-btn <?= isset($_GET['serv']) ? 'js-active' : '' ?>" type="button" title="Address">
+                                    <button class="multisteps-form__progress-btn <?= isset($_GET['serv']) ? 'js-active' : '' ?>" type="" title="Address" disabled>
                                         <span>2.Medecin</span>
                                     </button>
-                                    <button class="multisteps-form__progress-btn" <?= isset($_GET['med']) ? 'js-active' : '' ?> type="button" title="Order Info">
+                                    <button class="multisteps-form__progress-btn  <?= isset($_GET['med']) ? 'js-active' : '' ?>" type="" title="Order Info" disabled>
                                         <span>3.Date</span>
                                     </button>
-                                    <button class="multisteps-form__progress-btn" <?= isset($_GET['date']) ? 'js-active' : '' ?> type="button" title="Order Info">
+                                    <button class="multisteps-form__progress-btn <?= isset($_GET['date']) ? 'js-active' : '' ?>" type="" title="Order Info" disabled>
                                         <span>3.Heure</span>
                                     </button>
-                                    <button class="multisteps-form__progress-btn" type="button" title="Order Info">
+                                    <button class="multisteps-form__progress-btn <?= isset($_GET['h']) ? 'js-active' : '' ?>" title="Order Info">
                                         <span>Terminer</span>
                                     </button>
                                 </div>
@@ -42,7 +42,9 @@
                         <!--form panels-->
                         <div class="row">
                             <div class="col-12 col-lg-8 m-auto">
-                                <form class="multisteps-form__form">
+                                <form class="multisteps-form__form" action="<?= URLROOT ?>/medecins/addRendezvous" method="post">
+                                    
+                                    <input name="patient" value="" hidden/>
                                     <!--single form panel-->
                                     <div class="card multisteps-form__panel p-3 border-radius-xl bg-white js-active" data-animation="FadeIn">
                                         <div class="row text-center">
@@ -80,7 +82,7 @@
                                         </div>
                                     </div>
                                     <!--single form panel-->
-                                    <div class="card multisteps-form__panel p-3 border-radius-xl bg-white <?= isset($_GET['serv']) ? 'js-active' : '' ?>" data-animation="FadeIn">
+                                    <div class="card multisteps-form__panel p-3 border-radius-xl bg-white <?= isset($_GET['serv']) && !isset($_GET['med']) ? 'js-active' : '' ?>" data-animation="FadeIn">
                                         <div class="row text-center">
                                             <div class="col-10 mx-auto">
                                                 <h5 class="font-weight-normal">Voici le medecins diponible pour votre besoin</h5>
@@ -121,82 +123,125 @@
                                         </div>
                                     </div>
                                     <!--single form panel-->
-                                    <div class="card multisteps-form__panel p-3 border-radius-xl bg-white <?= isset($_GET['med']) ? 'js-active' : '' ?>" data-animation="FadeIn">
+                                    <div class="card multisteps-form__panel p-3 border-radius-xl bg-white <?= isset($_GET['med']) && !isset($_GET['date']) ? 'js-active' : '' ?>" data-animation="FadeIn">
                                         <div class="row text-center">
                                             <div class="col-10 mx-auto">
                                                 <h5 class="font-weight-normal">Le Medecin est actuellement disponible les jours suivants:</h5>
-                                                <p>Lundi, Mardi, Jeudi, Vendredi</p>
+                                                <p> <?php foreach ($data['plannings'] as $id => $planning) {
+                                                        if (isset($_GET['med'])) {
+                                                            if ($planning->codeMedecin == $_GET['med']) {
+                                                                echo $planning->valeur . ', ';
+                                                            }
+                                                        }
+                                                    } ?></p>
+                                                <input id="joursMed" type="text" value="<?php foreach ($data['plannings'] as $id => $planning) {
+                                                                                            if (isset($_GET['med'])) {
+                                                                                                if ($planning->codeMedecin == $_GET['med']) {
+                                                                                                    echo $planning->numero . ',';
+                                                                                                }
+                                                                                            }
+                                                                                        } ?>-1" hidden />
+                                                <input id="n" value="" hidden>
                                             </div>
                                         </div>
                                         <div class="multisteps-form__content">
                                             <div class="row mt-4">
                                                 <div class="col-12 col-sm-8 mt-4 mt-sm-0 text-start mx-auto">
                                                     <label for="projectName" class="form-label">Jour</label>
-                                                    <input class="form-control datetimepicker" name="date" type="text" placeholder="Veuillez choisir une date correspondant" data-input>
-                                                    <!--
-                                                    <select class="form-control" name="date" id="date">
-                                                        <?php /*
-                                                        foreach ($data['plannings'] as $id => $planning) {
-                                                            if (isset($_GET['med'])) {
-                                                                if ($planning->codeMedecin == $_GET['med']) {
-                                                                    echo '<option value="' . $planning->codeJour . '" selected>' . $planning->valeur . '</option>';
-                                                                }
-                                                            } else {
-                                                                echo '<option value="' . $service->codeJour . '">' . $planning->valeur . '</option>';
-                                                            }
-                                                        }
-                                                        */
-                                                        ?>
-                                                    </select>
-                                                    -->
+                                                    <input class="form-control datetimepicker" id="date" name="date" value="<?= isset($_GET['date']) ? $_GET['date'] : '' ?>" onchange="getCodeJour()" type="text" placeholder="Veuillez choisir une date correspondant" data-input required>
                                                 </div>
                                             </div>
                                             <div class="button-row d-flex mt-4">
                                                 <button class="btn bg-gradient-light mb-0 js-btn-prev" type="button" title="Prev">Prev</button>
-                                                <button class="btn bg-gradient-dark ms-auto mb-0 js-btn-next" type="button" title="Next">Next</button>
+                                                <a onclick="this.href = '<?= URLROOT ?>/medecins/addRdv/?serv='+document.getElementById('service').value+'&med='+document.getElementById('medecin').value+'&date='+document.getElementById('date').value+'&n='+document.getElementById('n').value" class="btn bg-gradient-dark ms-auto mb-0 js-btn-next" type="button" title="Next">Next</a>
                                             </div>
                                         </div>
                                     </div>
                                     <!--single form panel-->
-                                    <div class="card multisteps-form__panel p-3 border-radius-xl bg-white <?= isset($_GET['date']) ? 'js-active' : '' ?>" data-animation="FadeIn">
+                                    <div class="card multisteps-form__panel p-3 border-radius-xl bg-white <?= isset($_GET['date']) && !isset($_GET['h']) ? 'js-active' : '' ?>" data-animation="FadeIn">
                                         <div class="row text-center">
                                             <div class="col-10 mx-auto">
-                                                <h5 class="font-weight-normal">Voici le medecins diponible pour ce service</h5>
+                                                <h5 class="font-weight-normal">Le Medecin sera disponible durant la periode suivante:</h5>
+                                                <p> <?php foreach ($data['plannings'] as $id => $planning) {
+                                                        if (isset($_GET['med'])) {
+                                                            if (isset($_GET['n'])) {
+                                                                if ($planning->codeMedecin == $_GET['med']) {
+                                                                    if ($planning->numero == $_GET['n']) {
+                                                                        echo $planning->heureDebut . ' - ' . $planning->heureFin;
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    } ?></p>
+                                                <input id="minH" type="text" value="<?php foreach ($data['plannings'] as $id => $planning) {
+                                                                                        if (isset($_GET['med'])) {
+                                                                                            if (isset($_GET['n'])) {
+                                                                                                if ($planning->codeMedecin == $_GET['med']) {
+                                                                                                    if ($planning->numero == $_GET['n']) {
+                                                                                                        echo $planning->heureDebut;
+                                                                                                    }
+                                                                                                }
+                                                                                            }
+                                                                                        }
+                                                                                    } ?>" hidden />
+                                                <input id="maxH" type="text" value="<?php foreach ($data['plannings'] as $id => $planning) {
+                                                                                        if (isset($_GET['med'])) {
+                                                                                            if (isset($_GET['n'])) {
+                                                                                                if ($planning->codeMedecin == $_GET['med']) {
+                                                                                                    if ($planning->numero == $_GET['n']) {
+                                                                                                        echo $planning->heureFin;
+                                                                                                    }
+                                                                                                }
+                                                                                            }
+                                                                                        }
+                                                                                    } ?>" hidden />
                                             </div>
                                         </div>
                                         <div class="multisteps-form__content">
                                             <div class="row mt-4">
                                                 <div class="col-12 col-sm-8 mt-4 mt-sm-0 text-start mx-auto">
-                                                    <?php // echo '<script> document.writeln(document.getElementById("serv").value)</script>' 
-                                                    ?>
-                                                    <label for="projectName" class="form-label">Medecin</label>
-                                                    <select class="form-control" name="medecin" id="medecin">
-                                                        <?php
-                                                        if (isset($_GET['serv'])) {
-                                                            $serv = $_GET['serv'];
-                                                            if ($serv == 'all') {
-                                                                foreach ($data['medecins'] as $id => $medecin) {
-                                                                    echo '<option value="' . $medecin->codeMedecin . '" >' . $medecin->nomMedecin . ' ' . $medecin->prenomMedecin . '</option>';
-                                                                }
-                                                            } else {
-                                                                foreach ($data['medecins'] as $id => $medecin) {
-                                                                    if ($medecin->codeService == $_GET['serv']) {
-                                                                        echo '<option value="' . $medecin->codeMedecin . '" >' . $medecin->nomMedecin . ' ' . $medecin->prenomMedecin . '</option>';
-                                                                    }
-                                                                }
-                                                            }
-                                                        } else {
-                                                            foreach ($data['medecins'] as $id => $medecin) {
-                                                                echo '<option value="' . $medecin->codeMedecin . '">' . $medecin->nomMedecin . ' ' . $medecin->prenomMedecin . '</option>';
-                                                            }
-                                                        }
-                                                        ?>
-                                                    </select>
+                                                    <label for="projectName" class="form-label">Heure</label>
+                                                    <input class="form-control timepicker" id="heure" value="<?= isset($_GET['h']) ? $_GET['h'] : '' ?>" name="heure" type="text" placeholder="Veuillez choisir une heure" data-input required>
+
                                                 </div>
                                             </div>
                                             <div class="button-row d-flex mt-4">
                                                 <button class="btn bg-gradient-light mb-0 js-btn-prev" type="button" title="Prev">Prev</button>
-                                                <button class="btn bg-gradient-dark ms-auto mb-0 js-btn-next" type="button" title="Next">Next</button>
+                                                <a onclick="this.href = '<?= URLROOT ?>/medecins/addRdv/?serv='+document.getElementById('service').value+
+                                                '&med='+document.getElementById('medecin').value+
+                                                '&date='+document.getElementById('date').value+
+                                                '&n='+document.getElementById('n').value+
+                                                '&h='+document.getElementById('heure').value" class="btn bg-gradient-dark ms-auto mb-0 js-btn-next" type="button" title="Next">Next</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--single form panel-->
+                                    <div class="card multisteps-form__panel p-3 border-radius-xl bg-white <?= isset($_GET['h']) ? 'js-active' : '' ?>" data-animation="FadeIn">
+                                        <div class="row text-center">
+                                            <div class="col-10 mx-auto">
+                                                <h5 class="font-weight-normal">Confirmer-vous le rendez-vous suivant?</h5>
+                                            </div>
+                                        </div>
+                                        <div class="multisteps-form__content">
+                                            <div class="row mt-4">
+                                                <div class="col-12 col-sm-8 mt-4 mt-sm-0 text-start mx-auto">
+                                                    <h6 class="text-sm text-center">
+                                                        Medecin: <span class="font-weight-bold">
+                                                            <?php if (isset($_GET['med'])) {
+                                                                foreach ($data['medecins'] as $id => $medecin) {
+                                                                    if ($medecin->codeService == $_GET['serv']) {
+                                                                        echo 'Dr ' . $medecin->nomMedecin . ' ' . $medecin->prenomMedecin . '&nbsp;&nbsp;&nbsp; Service: ' . $medecin->codeService;
+                                                                    }
+                                                                }
+                                                            } ?></span><br>
+                                                        Le: <span class="font-weight-bold"><?= $_GET['date'] ?></span><br>
+                                                        A: <span class="font-weight-bold"><?= $_GET['h'] ?> </span><br>
+                                                    </h6>
+                                                </div>
+                                            </div>
+                                            <div class="button-row d-flex mt-4">
+                                                <button class="btn bg-gradient-light mb-0 js-btn-prev" type="button" title="Prev">Prev</button>
+                                                <button class="btn bg-gradient-info ms-auto mb-0" type="submit" onclick="this.form.submit()">Terminer</button>
                                             </div>
                                         </div>
                                     </div>
@@ -205,84 +250,6 @@
                         </div>
                     </div>
                 </div>
-                <!--
-                <div class="col-lg-6 col-12 mx-auto mb-5">
-                    <form action="<?= URLROOT ?>/medecins/ajouterRendezvous" method="post" onsubmit="return getContenu();">
-                        <div class="card card-body mt-4">
-                            <div class="text-center">
-                                <h6 class="mb-0">Demander un rendez vous</h6>
-                                <p class="text-sm mb-0">Veuillez remplir les champs</p>
-                                <hr class="horizontal dark my-3">
-
-                                <input type="text" class="form-control" name="patient" value="<?= $data['patient']->IP ?>" hidden>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-12 mt-3">
-                                    <label for="projectName" class="form-label">Service</label>
-                                    <select class="form-control" name="service">
-                                        <option value="all" selected>Tous les Services</option>
-                                        <?php
-                                        foreach ($data['services'] as $id => $service) {
-                                            echo '<option value="' . $service->codeService . '">' . $service->nomService . '</option>';
-                                        }
-                                        ?>
-                                    </select>
-                                </div>
-                                <div class="col-12 mt-3">
-                                    <label for="projectName" class="form-label">Medecin</label>
-                                    <select class="form-control" name="medecin">
-                                        <?php
-                                        foreach ($data['medecins'] as $id => $medecin) {
-                                            echo '<option value="' . $medecin->codeMedecin . '">' . $medecin->nomMedecin . ' ' . $medecin->prenomMedecin . '</option>';
-                                        }
-                                        ?>
-                                    </select>
-                                </div>
-                                <div class="col-12 mt-3">
-                                    <label for="projectName" class="form-label">Objet du Rendez-vous</label>
-                                    <select class="form-control" name="objet">
-                                        <option value="all" selected>Choisissez l'objet</option>
-                                        <?php
-                                        foreach ($data['objets'] as $id => $objet) {
-                                            echo '<option value="' . $objet . '">' . $objet . '</option>';
-                                        }
-                                        ?>
-                                    </select>
-                                </div>
-                                <div class="col-12 col-sm-6 mt-3">
-                                    <label for="projectName" class="form-label">Date disponible du medecin</label>
-                                    <select class="form-control" name="objet">
-                                        <option value="all" selected>Choisissez la date de disponibilite</option>
-                                        <?php
-                                        foreach ($data['joursMedecin'] as $id => $jour) {
-                                            echo '<option value="' . $jour . '">' . $jour . '</option>';
-                                        }
-                                        ?>
-                                    </select>
-                                </div>
-                                <div class="col-12 col-sm-6 mt-3">
-                                    <label for="projectName" class="form-label">Heure disponible du medecin</label>
-                                    <select class="form-control" name="objet">
-                                        <option value="all" selected>Choisissez l'heure de disponibilite</option>
-                                        <?php
-                                        foreach ($data['horairesMedecin'] as $id => $horaire) {
-                                            echo '<option value="' . $horaire . '">' . $horaire . '</option>';
-                                        }
-                                        ?>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="button-row d-flex mt-4">
-                                    <button class="btn bg-gradient-info ms-auto mb-0 js-btn">
-                                        Ajouter Consultation
-                                    </button>
-                                </div>
-                            </div>
-                    </form>
-                </div>
-                -->
             </div>
             <?php require APPROOT . '/views/includes/copyright-ui.php'; ?>
         </div>
@@ -299,17 +266,11 @@
     <script src="<?= URLROOT ?>/assets/js/plugins/dropzone.min.js"></script>
     <script src="<?= URLROOT ?>/assets/js/plugins/multistep-form.js"></script>
     <script>
-        function getContenu() {
-            var contenu = document.getElementById('contenuText').innerHTML;
-            document.getElementById('contenu').value = contenu;
+        function getCodeJour() {
+            var data = document.getElementById('date').value;
+            var d = new Date(data);
 
-            return true;
-        }
-
-        if (document.getElementById('contenuText')) {
-            var quill = new Quill('#contenuText', {
-                theme: 'snow' // Specify theme in configuration
-            });
+            document.getElementById('n').value = d.getDay();
         }
 
         if (document.getElementById('choices-multiple-remove-button')) {
@@ -319,6 +280,12 @@
             });
         }
 
+        function getJoursMed() {
+            var jours = document.getElementById('joursMed').value;
+
+            var jours = jours.split(",");
+            return jours;
+        }
 
         if (document.querySelector('.datetimepicker')) {
             flatpickr('.datetimepicker', {
@@ -326,20 +293,38 @@
                 "enable": [
                     function(date) {
                         // return true to disable
-                        return (date.getDay() === 0 || date.getDay() === 6);
-
+                        const jours = getJoursMed();
+                        console.log(jours);
+                        if (jours.includes("" + date.getDay())) {
+                            return true;
+                        } else {
+                            return false;
+                        }
                     }
                 ]
             }); // flatpickr
         }
 
-        Dropzone.autoDiscover = false;
-        var drop = document.getElementById('dropzone')
-        var myDropzone = new Dropzone(drop, {
-            url: "/file/post",
-            addRemoveLinks: true
+        function getMinHeureMed() {
+            var min = document.getElementById('minH').value;
+            return min;
+        }
 
-        });
+        function getMaxHeureMed() {
+            var max = document.getElementById('maxH').value;
+            return max;
+        }
+
+        if (document.querySelector('.timepicker')) {
+            flatpickr('.timepicker', {
+                enableTime: true,
+                noCalendar: true,
+                dateFormat: "H:i",
+                time_24hr: true,
+                minTime: getMinHeureMed(),
+                maxTime: getMaxHeureMed()
+            }); // flatpickr
+        }
     </script>
     <!-- Kanban scripts -->
     <script src="<?= URLROOT ?>/assets/js/plugins/dragula/dragula.min.js"></script>

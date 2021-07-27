@@ -16,7 +16,7 @@
       <ul class="navbar-nav">
         <li class="nav-item">
   
-          <a href="<?= URLROOT ?>/medecins/_2y_10_rBg9JAf8xXLLAL506TuAoOXjaPWXAf7e5XZ9sf1cscgbeSW6gCg2C" class="nav-link " role="button">
+          <a href="<?= URLROOT ?>/medecins/_2y_10_rBg9JAf8xXLLAL506TuAoOXjaPWXAf7e5XZ9sf1cscgbeSW6gCg2C" class="nav-link <?= $data['page'] == 'Dashboard' ? 'active' : '' ?>" role="button">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
               <svg width="12px" height="12px" viewBox="0 0 45 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <title>Dash </title>
@@ -39,7 +39,7 @@
         <hr class="horizontal dark" />
         </li>
         <li class="nav-item">
-          <a data-bs-toggle="collapse" href="#pagesExamples" class="nav-link active" aria-controls="pagesExamples" role="button" aria-expanded="false">
+          <a data-bs-toggle="collapse" href="#pagesExamples" class="nav-link <?= $data['page'] == 'Liste des Patients' || $data['page'] == 'Ajouter un Patient' ? 'active' : '' ?>" aria-controls="pagesExamples" role="button" aria-expanded="false">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
               <svg width="12px" height="12px" viewBox="0 0 46 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <title>patient</title>
@@ -58,16 +58,16 @@
             </div>
             <span class="nav-link-text ms-1">Patients</span>
           </a>
-          <div class="collapse show" id="pagesExamples">
+          <div class="collapse" id="pagesExamples">
             <ul class="nav ms-4 ps-3">
               <li class="nav-item ">
-                <a class="nav-link " href="<?= URLROOT ?>/medecins/patients">
+                <a class="nav-link  <?= $data['page'] == 'Liste des Patients' ? 'active' : '' ?>" href="<?= URLROOT ?>/medecins/patients">
                   <span class="sidenav-mini-icon"> L </span>
                   <span class="sidenav-normal"> Liste des Patients </span>
                 </a>
               </li>
-              <li class="nav-item active">
-                <a class="nav-link active" href="<?= URLROOT ?>/medecins/addPatient">
+              <li class="nav-item">
+                <a class="nav-link <?= $data['page'] == 'Ajouter un Patient' ? 'active' : '' ?>" href="<?= URLROOT ?>/medecins/addPatient">
                   <span class="sidenav-mini-icon"> N </span>
                   <span class="sidenav-normal"> Nouveau Patient </span>
                 </a>
@@ -76,7 +76,7 @@
           </div>
         </li>
         <li class="nav-item">
-          <a data-bs-toggle="collapse" href="#applicationsExamples" class="nav-link" aria-controls="applicationsExamples" role="button" aria-expanded="false">
+          <a data-bs-toggle="collapse" href="#applicationsExamples" class="nav-link <?= $data['page'] == 'Mes Consultations' || $data['page'] == 'Ajouter une Consultation' ? 'active' : '' ?>" aria-controls="applicationsExamples" role="button" aria-expanded="false">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
               <svg width="12px" height="12px" viewBox="0 0 40 44" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <title>planning</title>
@@ -97,13 +97,13 @@
           <div class="collapse" id="applicationsExamples">
             <ul class="nav ms-4 ps-3">
               <li class="nav-item ">
-                <a class="nav-link " href="<?= URLROOT ?>/medecins/consultations">
+                <a class="nav-link <?= $data['page'] == 'Mes Consultations' ? 'active' : '' ?>" href="<?= URLROOT ?>/medecins/consultations">
                   <span class="sidenav-mini-icon"> M </span>
                   <span class="sidenav-normal"> Mes Consultations </span>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="<?= URLROOT ?>/medecins/addConsultationNew">
+                <a class="nav-link <?= $data['page'] == 'Ajouter une Consultation' ? 'active' : '' ?>" href="<?= URLROOT ?>/medecins/addConsultationNew">
                   <span class="sidenav-mini-icon"> N </span>
                   <span class="sidenav-normal"> Nouvelle Consultation </span>
                 </a>
@@ -115,7 +115,7 @@
         <hr class="horizontal dark my-2" />
         </li>
         <li class="nav-item">
-          <a data-bs-toggle="collapse" href="#ecommerceExamples" class="nav-link " aria-controls="ecommerceExamples" role="button" aria-expanded="false">
+          <a data-bs-toggle="collapse" href="#ecommerceExamples" class="nav-link <?= $data['page'] == 'Rendez-vous a Venir' || $data['page'] == 'Rendez-vous en attente' || $data['page'] == 'Ajouter un Rendez-vous' ? 'active' : '' ?>" aria-controls="ecommerceExamples" role="button" aria-expanded="false">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
             <svg width="12px" height="12px" viewBox="0 0 43 36" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <title>credit-card</title>
@@ -135,20 +135,20 @@
           </a>
           <div class="collapse " id="ecommerceExamples">
             <ul class="nav ms-4 ps-3">
-              <li class="nav-item ">
+              <li class="nav-item <?= $data['page'] == 'Rendez-vous a Venir' ? 'active' : '' ?>">
                 <a class="nav-link " href="<?= URLROOT ?>/medecins/rdvAvenir">
                   <span class="sidenav-mini-icon"> A </span>
                   <span class="sidenav-normal"> A Venir </span>
                 </a>
               </li>
               <li class="nav-item ">
-                <a class="nav-link " href="<?= URLROOT ?>/medecins/rdvAttente">
+                <a class="nav-link  <?= $data['page'] == 'Rendez-vous en attente' ? 'active' : '' ?>" href="<?= URLROOT ?>/medecins/rdvAttente">
                   <span class="sidenav-mini-icon"> E </span>
                   <span class="sidenav-normal"> En Attente <b class="caret"></b></span>
                 </a>
               </li>
               <li class="nav-item ">
-                <a class="nav-link " href="<?= URLROOT ?>/medecins/addRdv">
+                <a class="nav-link  <?= $data['page'] == 'Ajouter un Rendez-vous' ? 'active' : '' ?>" href="<?= URLROOT ?>/medecins/addRdv">
                   <span class="sidenav-mini-icon"> N </span>
                   <span class="sidenav-normal"> Nouveau Rendez-vous <b class="caret"></b></span>
                 </a>
@@ -157,7 +157,7 @@
           </div>
         </li>
         <li class="nav-item">
-          <a data-bs-toggle="collapse" href="#authExamples" class="nav-link " aria-controls="authExamples" role="button" aria-expanded="false">
+          <a data-bs-toggle="collapse" href="#authExamples" class="nav-link <?= $data['page'] == 'Mon Planning' || $data['page'] == 'Mettre a jour du Planning' ? 'active' : '' ?>" aria-controls="authExamples" role="button" aria-expanded="false">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
               <svg width="12px" height="12px" viewBox="0 0 40 44" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <title>planning</title>
@@ -178,13 +178,13 @@
           <div class="collapse " id="authExamples">
             <ul class="nav ms-4 ps-3">
               <li class="nav-item ">
-                <a class="nav-link " href="<?= URLROOT ?>/medecins/medPlanning">
+                <a class="nav-link <?= $data['page'] == 'Mon Planning' ? 'active' : '' ?>" href="<?= URLROOT ?>/medecins/medPlanning">
                   <span class="sidenav-mini-icon"> M </span>
                   <span class="sidenav-normal"> Mon Planning <b class="caret"></b></span>
                 </a>
               </li>
               <li class="nav-item ">
-                <a class="nav-link " href="<?= URLROOT ?>/medecins/emergerPlanning">
+                <a class="nav-link <?= $data['page'] == 'Mettre a jour du Planning' ? 'active' : '' ?>" href="<?= URLROOT ?>/medecins/emergerPlanning">
                   <span class="sidenav-mini-icon"> MAJ </span>
                   <span class="sidenav-normal"> Mettre A Jour <b class="caret"></b></span>
                 </a>

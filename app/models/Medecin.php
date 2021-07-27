@@ -174,7 +174,7 @@ class Medecin
 
         $this->db->query($sql);
         $this->db->bind(':codeMedecin', $medecin);
-        $answer = $this->db->execute();
+        $answer = $this->db->resultSet();
         return $answer;
     }
 
@@ -485,17 +485,4 @@ class Medecin
         $this->db->bind(':id', $id);
         return $this->db->execute();
     }
-    public function afficheConsultation($id){
-
-        $sql = "SELECT * ";
-        $sql .= "FROM patient,consultations ";
-        $sql .= "WHERE consultations.IP = patient.IP ";
-        $sql .= "AND numeroConsultation=:id ";
-        $this->db->query($sql);
-        $this->db->bind(':id', $id);
-        $rows = $this->db->resultSet();
-        return $rows;
-    }
-  
-
 }
