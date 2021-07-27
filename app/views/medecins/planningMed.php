@@ -57,9 +57,8 @@
             }
             events.push({
                 title: rdv['nomPatient']+' '+rdv['prenomPatient'],
-                start: rdv['dateRdv'],
-                end: rdv['dateRdv'],
-                className: className
+                start: rdv['dateRdv']+'T'+rdv['heureRdv'],
+                className: className,
             });
         });
 
@@ -74,11 +73,13 @@
             dayMaxEvents: true,
             eventMaxStack: 2,
             initialView: "dayGridMonth",
+            locale: 'fr',
             headerToolbar: {
                 start: 'today prev,next', // will normally be on the left. if RTL, will be on the right
                 center: 'title',
                 end: 'dayGridMonth,timeGridWeek,timeGridDay' // will normally be on the right. if RTL, will be on the left
             },
+            defaultTimedEventDuration: '00:15',
             selectable: true,
             editable: true,
             initialDate: new Date(),
@@ -107,14 +108,9 @@
             },
             businessHours: [ // specify an array instead
                 {
-                    daysOfWeek: [1, 2, 3], // Monday, Tuesday, Wednesday
-                    startTime: '08:00', // 8am
-                    endTime: '18:00' // 6pm
-                },
-                {
-                    daysOfWeek: [4, 5], // Thursday, Friday
-                    startTime: '10:00', // 10am
-                    endTime: '16:00' // 4pm
+                    daysOfWeek: [1,2,3,4, 5], // Thursday, Friday
+                    startTime: '08:00', // 10am
+                    endTime: '18:00' // 4pm
                 }
             ],
         });

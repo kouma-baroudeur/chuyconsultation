@@ -43,8 +43,8 @@
                         <div class="row">
                             <div class="col-12 col-lg-8 m-auto">
                                 <form class="multisteps-form__form" action="<?= URLROOT ?>/medecins/addRendezvous" method="post">
-                                    
-                                    <input name="patient" value="" hidden/>
+
+                                    <input name="patient" value="" hidden />
                                     <!--single form panel-->
                                     <div class="card multisteps-form__panel p-3 border-radius-xl bg-white js-active" data-animation="FadeIn">
                                         <div class="row text-center">
@@ -57,7 +57,7 @@
                                                 <div class="col-12 col-sm-8 mt-4 mt-sm-0 text-start mx-auto">
                                                     <input id="serv" value="14" hidden>
                                                     <label for="projectName" class="form-label">Service</label>
-                                                    <select class="form-control" name="service" id="service" onchange=" javascript: var serv = this.value;">
+                                                    <select class="form-control" name="service" id="service" onchange=" javascript: var serv = this.value;" required>
                                                         <option value="all" selected>Tous les Services</option>
                                                         <?php
                                                         foreach ($data['services'] as $id => $service) {
@@ -92,18 +92,26 @@
                                             <div class="row mt-4">
                                                 <div class="col-12 col-sm-8 mt-4 mt-sm-0 text-start mx-auto">
                                                     <label for="projectName" class="form-label">Medecin</label>
-                                                    <select class="form-control" name="medecin" id="medecin">
+                                                    <select class="form-control" name="medecin" id="medecin" required>
                                                         <?php
                                                         if (isset($_GET['serv'])) {
                                                             $serv = $_GET['serv'];
                                                             if ($serv == 'all') {
                                                                 foreach ($data['medecins'] as $id => $medecin) {
-                                                                    echo '<option value="' . $medecin->codeMedecin . '" >' . $medecin->nomMedecin . ' ' . $medecin->prenomMedecin . '</option>';
+                                                                    if ($medecin->codeMedecin == $_GET['med']) {
+                                                                        echo '<option value="' . $medecin->codeMedecin . '" selected>' . $medecin->nomMedecin . ' ' . $medecin->prenomMedecin . '</option>';
+                                                                    } else {
+                                                                        echo '<option value="' . $medecin->codeMedecin . '" >' . $medecin->nomMedecin . ' ' . $medecin->prenomMedecin . '</option>';
+                                                                    }
                                                                 }
                                                             } else {
                                                                 foreach ($data['medecins'] as $id => $medecin) {
                                                                     if ($medecin->codeService == $_GET['serv']) {
-                                                                        echo '<option value="' . $medecin->codeMedecin . '" >' . $medecin->nomMedecin . ' ' . $medecin->prenomMedecin . '</option>';
+                                                                        if ($medecin->codeMedecin == $_GET['med']) {
+                                                                            echo '<option value="' . $medecin->codeMedecin . '" selected>' . $medecin->nomMedecin . ' ' . $medecin->prenomMedecin . '</option>';
+                                                                        } else {
+                                                                            echo '<option value="' . $medecin->codeMedecin . '" >' . $medecin->nomMedecin . ' ' . $medecin->prenomMedecin . '</option>';
+                                                                        }
                                                                     }
                                                                 }
                                                             }
@@ -229,7 +237,7 @@
                                                         Medecin: <span class="font-weight-bold">
                                                             <?php if (isset($_GET['med'])) {
                                                                 foreach ($data['medecins'] as $id => $medecin) {
-                                                                    if ($medecin->codeService == $_GET['serv']) {
+                                                                    if ($medecin->codeMedecin == $_GET['med']) {
                                                                         echo 'Dr ' . $medecin->nomMedecin . ' ' . $medecin->prenomMedecin . '&nbsp;&nbsp;&nbsp; Service: ' . $medecin->codeService;
                                                                     }
                                                                 }
@@ -241,7 +249,7 @@
                                             </div>
                                             <div class="button-row d-flex mt-4">
                                                 <button class="btn bg-gradient-light mb-0 js-btn-prev" type="button" title="Prev">Prev</button>
-                                                <button class="btn bg-gradient-info ms-auto mb-0" type="submit" onclick="this.form.submit()">Terminer</button>
+                                                <button class="btn bg-gradient-info ms-auto mb-0" type="submit" onclick="this.form.submit()">Oui, Je confirme!</button>
                                             </div>
                                         </div>
                                     </div>
