@@ -29,7 +29,6 @@
                                         <th>NOMS & PRENOMS</th>
                                         <th>SEXE</th>
                                         <th>ADRESSE</th>
-                                        <th>STATUT</th>
                                         <th>OPTIONS</th>
                                     </tr>
                                 </thead>
@@ -49,11 +48,6 @@
                                             </td>
                                             <td class="font-weight-bold">
                                                 <span class="my-2 text-xs"><?= $patient->adressePatient ?></span>
-                                            </td>
-                                            <td>
-                                                <div class="d-flex align-items-center">
-                                                    <span class="badge badge-sm bg-gradient-success">Guéri</span>
-                                                </div>
                                             </td>
                                             <td class="text-xs font-weight-bold">
                                                 <div class="d-flex align-items-center">

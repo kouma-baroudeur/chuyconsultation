@@ -13,7 +13,7 @@
         <div class="container-fluid py-4">
             <div class="row mt-4">
                 <div class="col-lg-8 col-12 mx-auto mb-5">
-                    <form action="<?= URLROOT ?>/medecins/emergerPlanning" method="post" onsubmit="return getContenu();">
+                    <form action="<?= URLROOT ?>/medecins/modifierPlanning" method="post" onsubmit="return getContenu();">
                         <div class="card">
                             <div class="card-header p-3">
                                 <div class="row">
@@ -32,7 +32,7 @@
                                         <div class="checklist-item checklist-item-primary ps-2 ms-3">
                                             <div class="d-flex align-items-center">
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" value="" id="checkLundi" onchange="activeDeactive('Lundi')">
+                                                    <input class="form-check-input" name="jours[]" type="checkbox" value="LUN" id="checkLundi" onchange="activeDeactive('Lundi')">
                                                 </div>
                                                 <h6 class="mb-0 text-dark font-weight-bold text-sm">Lundi</h6>
                                             </div>
@@ -54,7 +54,7 @@
                                         <div class="checklist-item checklist-item-success ps-2 ms-3">
                                             <div class="d-flex align-items-center">
                                                 <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="" id="checkMardi" onchange="activeDeactive('Mardi')">
+                                                <input class="form-check-input" name="jours[]" type="checkbox" value="MAR" id="checkMardi" onchange="activeDeactive('Mardi')">
                                                 </div>
                                                 <h6 class="mb-0 text-dark font-weight-bold text-sm">Mardi</h6>
                                             </div>
@@ -76,7 +76,7 @@
                                         <div class="checklist-item checklist-item-dark ps-2 ms-3">
                                             <div class="d-flex align-items-center">
                                                 <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="" id="checkMercredi" onchange="activeDeactive('Mercredi')">
+                                                <input class="form-check-input" name="jours[]" type="checkbox" value="MER" id="checkMercredi" onchange="activeDeactive('Mercredi')">
                                                 </div>
                                                 <h6 class="mb-0 text-dark font-weight-bold text-sm">Mercredi</h6>
                                             </div>
@@ -98,7 +98,7 @@
                                         <div class="checklist-item checklist-item-warning ps-2 ms-3">
                                             <div class="d-flex align-items-center">
                                                 <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="" id="checkJeudi" onchange="activeDeactive('Jeudi')">
+                                                <input class="form-check-input" name="jours[]" type="checkbox" value="JEU" id="checkJeudi" onchange="activeDeactive('Jeudi')">
                                                 </div>
                                                 <h6 class="mb-0 text-dark font-weight-bold text-sm">Jeudi</h6>
                                             </div>
@@ -120,7 +120,7 @@
                                         <div class="checklist-item checklist-item-primary ps-2 ms-3">
                                             <div class="d-flex align-items-center">
                                                 <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="" id="checkVendredi" onchange="activeDeactive('Vendredi')">
+                                                <input class="form-check-input" name="jours[]" type="checkbox" value="VEN" id="checkVendredi" onchange="activeDeactive('Vendredi')">
                                                 </div>
                                                 <h6 class="mb-0 text-dark font-weight-bold text-sm">Vendredi</h6>
                                             </div>

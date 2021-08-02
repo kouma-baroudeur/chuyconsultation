@@ -174,7 +174,7 @@ class Medecin
 
         $this->db->query($sql);
         $this->db->bind(':codeMedecin', $medecin);
-        $answer = $this->db->execute();
+        $answer = $this->db->resultSet();
         return $answer;
     }
 
@@ -496,6 +496,24 @@ class Medecin
         $rows = $this->db->resultSet();
         return $rows;
     }
-  
+    public function ajouterPatient($data)
+    {
 
+        $sql = REGISTERUSER;
+        $this->db->query($sql);
+        $this->db->bind(':email', $data['email']);
+        $this->db->bind(':password', $data['password']);
+        $this->db->bind(':type', $data['type']);
+        $this->db->bind(':state', 'incomplet');
+        $rows = $this->db->execute();
+        return $rows;
+    }
+    public function findUserByEmail($email)
+    {
+        $this->db->query(FINDUSERBYMAIL);
+        $this->db->bind(':email', $email);
+
+        $row = $this->db->single();
+      return $row;
+    }
 }

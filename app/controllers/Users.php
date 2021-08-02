@@ -54,7 +54,7 @@ class Users extends Controller
                     if ($data['password'] != $data['confirm_pass'])
                         $data['confirm_pass_err'] = 'La confirmation ne correspond pas au mot de passe';
                 }
-
+        
                 if (empty($data['email_err']) && empty($data['password_err']) && empty($data['confirm_pass_err']) && empty($data['type_err'])) {
                     // hashing the password for security
                     $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
